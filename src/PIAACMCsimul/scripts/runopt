@@ -1,0 +1,339 @@
+#!/bin/bash
+
+if [ "$1" = "help" ] || [ "$#" -lt 1 ]; then
+	echo "help"
+	echo ""
+	echo "Scan focal plane mask radius for a fixed output central obstruction (coout): "
+	echo "   $0 optscan <nbrings> <coout>"
+	echo ""
+	echo "Optimize a specific configuration :"
+	echo "   $0 optsingle <nbrings> <coout> <fpmr> <maskradld>"
+	echo ""
+	echo ""
+	echo "Evaluate a pre-existing solution:"
+	echo ""
+	echo " compute contrast (only on-axis contrast and PSF):"
+	echo "   $0 eval0 <nbrings> <coout> <fpmr> <maskradld>"
+	echo " compute contrasts (compute on-axis and resolved source PSFs and contrasts):"
+	echo "   $0 eval1 <nbrings> <coout> <fpmr> <maskradld>"
+	echo " conpute contrasts, transmission curve:"
+	echo "   $0 eval2 <nbrings> <coout> <fpmr> <maskradld>"
+	echo ""
+	exit
+fi
+
+if [ "$#" -gt 5 ]; then
+    echo "Illegal number of parameters (4 params max)"
+    exit
+fi
+
+
+searchtime=3600.0
+# search time [sec]
+
+computetransmcurve=0
+NBrings=$2
+coout=$3
+maskradinput=1.00
+
+computecontrast=2
+# 0: do not compute PSFs and contrast curves
+# 1: compute only on-axis contrast and PSF
+# 2: compute on-axis and resolved source PSFs and contrasts
+
+inputmode=0
+
+
+
+if [ $1 == "optscan" ]; then
+	echo "optimize scan"
+	searchtime=3600.0
+	inputmode=1
+fi
+
+if [ $1 == "optsingle" ]; then
+	echo "optimize single configuration (loop)"
+	searchtime=7200.0
+	maskradinput=$4
+	maskradld=$5
+	computecontrast=0
+	inputmode=2
+fi
+
+if [ $1 == "eval0" ]; then
+	echo "Evaluate Solution"
+	searchtime=10.0
+	computetransmcurve=0
+	maskradinput=$4
+	maskradld=$5
+	computecontrast=1
+	inputmode=3
+fi
+
+if [ $1 == "eval1" ]; then
+	echo "Evaluate Solution"
+	searchtime=10.0
+	computetransmcurve=0
+	maskradinput=$4
+	maskradld=$5
+	computecontrast=2
+	inputmode=3
+fi
+
+if [ $1 == "eval2" ]; then
+	echo "Evaluate Solution"
+	searchtime=10.0
+	computetransmcurve=1
+	maskradinput=$4
+	maskradld=$5
+	computecontrast=2
+	inputmode=3
+fi
+
+
+
+
+if [ $inputmode -eq 0 ]; then
+	echo "ERROR: command $1 not recognized"
+	exit
+fi
+
+
+
+
+
+reoptimize=1
+
+coin=0.30
+
+
+
+# mask = 1.3x design size
+minfpmscale=120
+maxfpmscale=140
+# unit : percent
+# maximum focal plane mask radius scaling
+# polychromatic mask size will be 1.1x, 1.3x, 1.5x, etc... (increment of 0.2x) times the designed monochromatic focal plane mask radius, until this number is reached
+
+
+#
+#                    STELLAR ANGULAR SIZE
+#
+minssize=10
+maxssize=20
+# ssize = minsize+5 .., 25, 30, 35, 40, ... until maxssize-1
+
+
+fpmrad=1.0 # default
+lambda=550 # default
+lambdaB=10 # spectral bandwidth [%]
+NBlambda=20
+ssize=20   # 0.01 l/D
+
+
+
+#file="./conf_lambda.txt"
+#if [ -f $file ]
+#	then
+#	lambda=$(echo "$(cat $file)")
+#	else
+#	echo "CANNOT READ FILE ${file}"
+#	ok=0
+#fi
+echo "lambda = $lambda nm"
+
+
+mzfpmoptimize ()
+{
+stepfile=$(printf "stepfile_fpmr%4.2f_coin%4.2f_coout%4.2f_sr%02d_l%04d_maskrad%4.2f_rings%03d_ss%02d" "$fpmrad" "$coin" "$coout" "$lambdaB" "$lambda" "$maskradld" "$NBrings" "$ssize")
+
+if [ $reoptimize -eq 1 ]; then
+	stepfiletest="bogus"
+	else
+	stepfiletest=$stepfile
+fi
+
+
+
+if [ ! -f ${stepfiletest} ]
+then
+
+# Turn focal plane mask into zones, Compute polychromatic response to zones, store result in FPMresp
+echo "$1" > conf_MASKRADLD.txt
+echo "1" > conf_FPMsectors.txt
+echo "$NBrings" > conf_NBrings.txt
+echo "$NBlambda" > conf_nblambda.txt
+echo "$ssize" > conf_resolved.txt   # optimize for 0.01 l/D jitter
+echo "1" > conf_extmode.txt   # 6 points
+
+./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 800 000   # set configuration settings
+./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 101 000   # compute FPMresp if not present
+
+#./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 210 000   # co-optimize fpm and PIAA shapes
+#exit
+
+# Search for optimal solution
+echo "$searchtime" > searchtime.txt
+./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 102 000
+
+
+# compute polychromatic PSF
+if [ $computecontrast -gt 0 ]
+then
+./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 720 000
+fi
+
+
+
+if [ $computecontrast -gt 1 ]
+then
+./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 721 000
+fi
+
+if [ $computetransmcurve -eq 1 ]
+then
+echo "computing transmission curve"
+./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 750 000
+fi
+
+# make focal plane mask OPD
+#./sim1024 $fpmrad 0.30 $2 00 0 $lambdaB $lambda 800 000
+
+touch $stepfile
+
+fi
+}
+
+
+
+
+funcprocess ()
+{
+file1="./status/${coout}_${fpmrad}_mono.txt"
+echo "file1 : $file1"
+if [ -f ${file1} ]
+then
+	echo "file ${file1} exists"	
+else
+	# if directory does not exist but reference exists, adopt it	
+	./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 501 000
+	echo "./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 501 000"
+	
+	# PHASE 1: COMPUTE MONOCHROMATIC IDEAL PIAACMC
+	# will skip if already computed
+	./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 801 000
+	#if ! [[ $inputmode -eq 3 ]]; then
+	./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 13 000
+	#fi
+	
+	# copy solution as master reference (if it does not exist) for other lambda / lambdaB
+	./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 500 000
+	
+	# COMPUTE ON-AXIS PSF with idealized focal plane mask	
+	./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 700 000
+	echo "./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 700 000"
+	
+	#./sim1024 $fpmrad $coin $coout 00 0 $lambdaB $lambda 701 000
+	touch $file
+fi
+
+
+
+
+# PHASE 2: POLYCHROMATIC, PHYSICAL MASKS
+echo "POLYCHROMATIC MASK COMPUTATION"		
+						for ssize in 15 20 25 30 
+						do		
+							if [ ${ssize} -gt ${minssize} ]
+							then			
+								if [ ${ssize} -lt ${maxssize} ]
+								then
+									echo "OPTIMIZE MASK SIZE $maskradld"
+									mzfpmoptimize $maskradld
+								fi
+							fi
+						done	
+}
+
+
+
+
+
+
+
+mkdir -p status
+rm status/${coout}_*.txt
+
+# optimize scan
+if [ $inputmode -eq 1 ]; then
+reoptimize=1
+while :
+do
+	for step in 16 8 4
+	do
+		for i in `seq 110 $step 130`;
+		do
+			fpmrad=$(echo "scale=2; $i/100" | bc -q 2> /dev/null)
+			echo "$fpmrad"
+			file="./status/${coout}_${fpmrad}.txt"
+			rm $file
+			if [ -f $file ]
+			then
+				echo "$file exists"
+			else		
+				funcprocess			
+				echo "$file does not exist"
+				sleep 1
+				touch $file
+			fi	
+		done
+	done
+done
+fi
+
+
+
+# optsingle
+if [ $inputmode -eq 2 ]; then
+	reoptimize=1
+	echo "Optimizing fpmr = $maskradinput"
+	fpmrad=$maskradinput
+	echo "$fpmrad"
+			file="./status/${coout}_${fpmrad}.txt"
+			rm $file
+			if [ -f $file ]
+			then
+				echo "$file exists"
+			else		
+				while :
+				do
+					funcprocess			
+					echo "$file does not exist"
+					sleep 1
+					touch $file
+				done
+			fi	
+fi
+
+
+
+# eval single
+if [ $inputmode -eq 3 ]; then
+	reoptimize=1
+	echo "Evaluating for fpmr = $maskradinput"
+	fpmrad=$maskradinput
+	echo "$fpmrad"
+			file="./status/${coout}_${fpmrad}.txt"			
+			rm $file
+			if [ -f $file ]
+			then
+				echo "$file exists"
+			else		
+				funcprocess			
+				echo "$file does not exist"
+				sleep 1
+				touch $file
+			fi	
+fi
+
+
