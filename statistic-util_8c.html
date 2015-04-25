@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>PIAACMCdesign: Main Page</title>
+<title>PIAACMCdesign: src/statistic/statistic-util.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -43,10 +43,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -65,6 +65,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -77,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('index.html','');});
+$(document).ready(function(){initNavTree('statistic-util_8c.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -95,15 +101,95 @@ $(document).ready(function(){initNavTree('index.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">PIAACMCdesign Documentation</div>  </div>
+<div class="title">statistic-util.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><code>#include &lt;sys/stat.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;Cfits.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="statistic_8h_source.html">statistic.h</a>&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:adf68f86d319ba00ac620d3468420f5d4"><td class="memItemLeft" align="right" valign="top">PF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="statistic-util_8c.html#adf68f86d319ba00ac620d3468420f5d4">mod_statistic_putphnoise</a> (struct lxrcmd *c)</td></tr>
+<tr class="separator:adf68f86d319ba00ac620d3468420f5d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedea1c5063287d3e0ce501bf630a3b05"><td class="memItemLeft" align="right" valign="top">PF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="statistic-util_8c.html#aedea1c5063287d3e0ce501bf630a3b05">mod_statistic_init</a> (struct module *m)</td></tr>
+<tr class="separator:aedea1c5063287d3e0ce501bf630a3b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a0adc435a6dca61c948182a0d8d2c9dc4"><td class="memItemLeft" align="right" valign="top">struct lxrcmd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="statistic-util_8c.html#a0adc435a6dca61c948182a0d8d2c9dc4">mod_statistic_cmds</a> []</td></tr>
+<tr class="separator:a0adc435a6dca61c948182a0d8d2c9dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="aedea1c5063287d3e0ce501bf630a3b05"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PF mod_statistic_init </td>
+          <td>(</td>
+          <td class="paramtype">struct module *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adf68f86d319ba00ac620d3468420f5d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PF mod_statistic_putphnoise </td>
+          <td>(</td>
+          <td class="paramtype">struct lxrcmd *&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a0adc435a6dca61c948182a0d8d2c9dc4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct lxrcmd mod_statistic_cmds[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line"></div>
+<div class="line">    {    <span class="stringliteral">&quot;putphnoise&quot;</span>,</div>
+<div class="line">         <a class="code" href="statistic-util_8c.html#adf68f86d319ba00ac620d3468420f5d4">mod_statistic_putphnoise</a>,</div>
+<div class="line">         <span class="stringliteral">&quot;put photon noise&quot;</span>,</div>
+<div class="line">         <span class="stringliteral">&quot;str1 is input, str2 is output&quot;</span>,</div>
+<div class="line">         <span class="stringliteral">&quot;putphnoise in out&quot;</span>,</div>
+<div class="line">         <span class="stringliteral">&quot;%s %s %s&quot;</span>,</div>
+<div class="line">         3,</div>
+<div class="line">         <span class="stringliteral">&quot;put_poisson_noise&quot;</span>,</div>
+<div class="line">    },</div>
+<div class="line">}</div>
+<div class="ttc" id="statistic-util_8c_html_adf68f86d319ba00ac620d3468420f5d4"><div class="ttname"><a href="statistic-util_8c.html#adf68f86d319ba00ac620d3468420f5d4">mod_statistic_putphnoise</a></div><div class="ttdeci">PF mod_statistic_putphnoise(struct lxrcmd *c)</div><div class="ttdef"><b>Definition:</b> statistic-util.c:108</div></div>
+</div><!-- fragment -->
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_545a73c80b83e1c7812a6808fc9654f7.html">statistic</a></li><li class="navelem"><a class="el" href="statistic-util_8c.html">statistic-util.c</a></li>
     <li class="footer">Generated on Fri Apr 24 2015 18:41:10 for PIAACMCdesign by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
