@@ -95,23 +95,23 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /usr/include/gsl/gsl_matrix_uint.h /usr/include/gsl/gsl_matrix_int.h \
  /usr/include/gsl/gsl_matrix_ushort.h /usr/include/gsl/gsl_matrix_short.h \
  /usr/include/gsl/gsl_matrix_uchar.h /usr/include/gsl/gsl_matrix_char.h \
- /usr/include/gsl/gsl_min.h /home/guyon/src/Cfits/src/CLIcore.h \
+ /usr/include/gsl/gsl_min.h /home/guyon/src/PIAACMCdesign/src/CLIcore.h \
  /usr/include/semaphore.h /usr/include/x86_64-linux-gnu/bits/semaphore.h \
  /usr/include/fftw3.h /usr/include/gsl/gsl_rng.h \
- /home/guyon/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
- /home/guyon/src/Cfits/src/COREMOD_arith/COREMOD_arith.h \
- /home/guyon/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
- /home/guyon/src/Cfits/src/info/info.h \
- /home/guyon/src/Cfits/src/fft/fft.h \
- /home/guyon/src/Cfits/src/image_gen/image_gen.h \
- /home/guyon/src/Cfits/src/WFpropagate/WFpropagate.h \
- /home/guyon/src/Cfits/src/statistic/statistic.h \
- /home/guyon/src/Cfits/src/linopt_imtools/linopt_imtools.h \
- /home/guyon/src/Cfits/src/OpticsMaterials/OpticsMaterials.h \
- /home/guyon/src/Cfits/src/image_filter/image_filter.h \
- /home/guyon/src/Cfits/src/coronagraphs/coronagraphs.h \
- /home/guyon/src/Cfits/src/PIAACMCsimul/PIAACMCsimul.h \
- /home/guyon/src/Cfits/src/OptSystProp/OptSystProp.h \
+ /home/guyon/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
+ /home/guyon/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h \
+ /home/guyon/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h \
+ /home/guyon/src/PIAACMCdesign/src/info/info.h \
+ /home/guyon/src/PIAACMCdesign/src/fft/fft.h \
+ /home/guyon/src/PIAACMCdesign/src/image_gen/image_gen.h \
+ /home/guyon/src/PIAACMCdesign/src/WFpropagate/WFpropagate.h \
+ /home/guyon/src/PIAACMCdesign/src/statistic/statistic.h \
+ /home/guyon/src/PIAACMCdesign/src/linopt_imtools/linopt_imtools.h \
+ /home/guyon/src/PIAACMCdesign/src/OpticsMaterials/OpticsMaterials.h \
+ /home/guyon/src/PIAACMCdesign/src/image_filter/image_filter.h \
+ /home/guyon/src/PIAACMCdesign/src/coronagraphs/coronagraphs.h \
+ /home/guyon/src/PIAACMCdesign/src/PIAACMCsimul/PIAACMCsimul.h \
+ /home/guyon/src/PIAACMCdesign/src/OptSystProp/OptSystProp.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.9/include/omp.h
 
 /usr/include/stdc-predef.h:
@@ -388,7 +388,7 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/gsl/gsl_min.h:
 
-/home/guyon/src/Cfits/src/CLIcore.h:
+/home/guyon/src/PIAACMCdesign/src/CLIcore.h:
 
 /usr/include/semaphore.h:
 
@@ -398,32 +398,32 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/gsl/gsl_rng.h:
 
-/home/guyon/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
+/home/guyon/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/guyon/src/Cfits/src/COREMOD_arith/COREMOD_arith.h:
+/home/guyon/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h:
 
-/home/guyon/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:
+/home/guyon/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h:
 
-/home/guyon/src/Cfits/src/info/info.h:
+/home/guyon/src/PIAACMCdesign/src/info/info.h:
 
-/home/guyon/src/Cfits/src/fft/fft.h:
+/home/guyon/src/PIAACMCdesign/src/fft/fft.h:
 
-/home/guyon/src/Cfits/src/image_gen/image_gen.h:
+/home/guyon/src/PIAACMCdesign/src/image_gen/image_gen.h:
 
-/home/guyon/src/Cfits/src/WFpropagate/WFpropagate.h:
+/home/guyon/src/PIAACMCdesign/src/WFpropagate/WFpropagate.h:
 
-/home/guyon/src/Cfits/src/statistic/statistic.h:
+/home/guyon/src/PIAACMCdesign/src/statistic/statistic.h:
 
-/home/guyon/src/Cfits/src/linopt_imtools/linopt_imtools.h:
+/home/guyon/src/PIAACMCdesign/src/linopt_imtools/linopt_imtools.h:
 
-/home/guyon/src/Cfits/src/OpticsMaterials/OpticsMaterials.h:
+/home/guyon/src/PIAACMCdesign/src/OpticsMaterials/OpticsMaterials.h:
 
-/home/guyon/src/Cfits/src/image_filter/image_filter.h:
+/home/guyon/src/PIAACMCdesign/src/image_filter/image_filter.h:
 
-/home/guyon/src/Cfits/src/coronagraphs/coronagraphs.h:
+/home/guyon/src/PIAACMCdesign/src/coronagraphs/coronagraphs.h:
 
-/home/guyon/src/Cfits/src/PIAACMCsimul/PIAACMCsimul.h:
+/home/guyon/src/PIAACMCdesign/src/PIAACMCsimul/PIAACMCsimul.h:
 
-/home/guyon/src/Cfits/src/OptSystProp/OptSystProp.h:
+/home/guyon/src/PIAACMCdesign/src/OptSystProp/OptSystProp.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/4.9/include/omp.h:

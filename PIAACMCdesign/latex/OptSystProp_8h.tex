@@ -1,0 +1,62 @@
+\hypertarget{OptSystProp_8h}{\section{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.h File Reference}
+\label{OptSystProp_8h}\index{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+h@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+h}}
+}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structDM__SIM}{D\+M\+\_\+\+S\+I\+M}
+\item 
+struct \hyperlink{structASPHSURFM}{A\+S\+P\+H\+S\+U\+R\+F\+M}
+\item 
+struct \hyperlink{structASPHSURFR}{A\+S\+P\+H\+S\+U\+R\+F\+R}
+\item 
+struct \hyperlink{structFOCMASK}{F\+O\+C\+M\+A\+S\+K}
+\item 
+struct \hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{OptSystProp_8h_abfed4bbe5593d9c8a2e691be59a1eac8}{Opt\+Syst\+Prop\+\_\+propagate\+Cube} (\hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T} $\ast$\hyperlink{PIAACMCsimul_8c_afd320a44eac81011bd37a9d649950587}{optsyst}, long index, char $\ast$I\+Din\+\_\+amp\+\_\+name, char $\ast$I\+Din\+\_\+pha\+\_\+name, char $\ast$I\+Dout\+\_\+amp\+\_\+name, char $\ast$I\+Dout\+\_\+pha\+\_\+name, double zprop)
+\item 
+int \hyperlink{OptSystProp_8h_a7409625459eecabd46fd1fdf39b4e435}{Opt\+Syst\+Prop\+\_\+run} (\hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T} $\ast$\hyperlink{PIAACMCsimul_8c_afd320a44eac81011bd37a9d649950587}{optsyst}, long index, long elemstart, long elemend, char $\ast$savedir)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{OptSystProp_8h_abfed4bbe5593d9c8a2e691be59a1eac8}{\index{Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}!Opt\+Syst\+Prop\+\_\+propagate\+Cube@{Opt\+Syst\+Prop\+\_\+propagate\+Cube}}
+\index{Opt\+Syst\+Prop\+\_\+propagate\+Cube@{Opt\+Syst\+Prop\+\_\+propagate\+Cube}!Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}}
+\subsubsection[{Opt\+Syst\+Prop\+\_\+propagate\+Cube}]{\setlength{\rightskip}{0pt plus 5cm}int Opt\+Syst\+Prop\+\_\+propagate\+Cube (
+\begin{DoxyParamCaption}
+\item[{{\bf O\+P\+T\+S\+Y\+S\+T} $\ast$}]{optsyst, }
+\item[{long}]{index, }
+\item[{char $\ast$}]{I\+Din\+\_\+amp\+\_\+name, }
+\item[{char $\ast$}]{I\+Din\+\_\+pha\+\_\+name, }
+\item[{char $\ast$}]{I\+Dout\+\_\+amp\+\_\+name, }
+\item[{char $\ast$}]{I\+Dout\+\_\+pha\+\_\+name, }
+\item[{double}]{zprop}
+\end{DoxyParamCaption}
+)}}\label{OptSystProp_8h_abfed4bbe5593d9c8a2e691be59a1eac8}
+\hypertarget{OptSystProp_8h_a7409625459eecabd46fd1fdf39b4e435}{\index{Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}!Opt\+Syst\+Prop\+\_\+run@{Opt\+Syst\+Prop\+\_\+run}}
+\index{Opt\+Syst\+Prop\+\_\+run@{Opt\+Syst\+Prop\+\_\+run}!Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}}
+\subsubsection[{Opt\+Syst\+Prop\+\_\+run}]{\setlength{\rightskip}{0pt plus 5cm}int Opt\+Syst\+Prop\+\_\+run (
+\begin{DoxyParamCaption}
+\item[{{\bf O\+P\+T\+S\+Y\+S\+T} $\ast$}]{optsyst, }
+\item[{long}]{index, }
+\item[{long}]{elemstart, }
+\item[{long}]{elemend, }
+\item[{char $\ast$}]{savedir}
+\end{DoxyParamCaption}
+)}}\label{OptSystProp_8h_a7409625459eecabd46fd1fdf39b4e435}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & system index (usually 0) \\
+\hline
+\mbox{\tt in}  & {\em elemstart} & starting element index \\
+\hline
+\mbox{\tt in}  & {\em elemend} & ending element index \\
+\hline
+\mbox{\tt in}  & {\em savedir} & directory to which image results are saved\\
+\hline
+\end{DoxyParams}
+$\ast$elemkeepmem 1 if element complex amplitude should be kept in memory after use discard element memory after used 
