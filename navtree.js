@@ -1,6 +1,10 @@
 var NAVTREE =
 [
   [ "PIAACMCdesign", "index.html", [
+    [ "Command Line Interface (CLI)", "md_PIAACMCdesign_src_CLIcore.html", null ],
+    [ "PIAACMC_designcodes", "md_PIAACMCdesign_src_PIAACMCsimul_PIAACMC_designcodes.html", null ],
+    [ "PIAACMC design", "md_PIAACMCdesign_src_PIAACMCsimul_README.html", "md_PIAACMCdesign_src_PIAACMCsimul_README" ],
+    [ "Project README file", "md_README.html", null ],
     [ "Command Line Interface (CLI)", "md_src_CLIcore.html", null ],
     [ "PIAACMC_designcodes", "md_src_PIAACMCsimul_PIAACMC_designcodes.html", null ],
     [ "PIAACMC design", "md_src_PIAACMCsimul_README.html", "md_src_PIAACMCsimul_README" ],
@@ -29,17 +33,26 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"00CORE-util_8c.html",
-"COREMOD__arith_8c.html#a9842752e03b4de9b4593f1a3b34364ab",
-"COREMOD__arith_8h.html#aeeb8054415b3b98e54f206fa6889e672",
-"COREMOD__memory_8h.html#aa9234a32623bef57dec5366a36fba715",
-"PIAACMCsimul_8c.html#ae6b65340d4798aa2bb96a7f66e541187",
-"calc__bison_8h.html#a15c9f7bd2f0e9686df5d9df4f3314aa9aefad6a8e2d44518afd4d145bd5b4014a",
-"coronagraphs_8c.html#a4d008a7219a7d93d19381b9df8e43abd",
-"functions_vars_d.html",
-"image__filter_8c.html#ab09faa231b0d2eedbac6ebdb64bacda9",
-"kdtree_8h.html#ae2d5802f669e14e245fc8ee6b8a3ff16",
-"structOPTPIAACMCDESIGN.html#a8206d0c4c019d9c2a6dda4d22cf7d8a6"
+"PIAACMC_designcodes.html",
+"PIAACMCdesign_2src_2COREMOD__arith_2COREMOD__arith_8c.html#a8f6355984b430fd6692acc1b09c9ac54",
+"PIAACMCdesign_2src_2COREMOD__arith_2COREMOD__arith_8h.html#aed7f92e335f5a05fc81a2645a0c9be20",
+"PIAACMCdesign_2src_2COREMOD__memory_2COREMOD__memory_8h.html#a984798b15b26063866b435805ce9b715",
+"PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#aca981b7467acc14aad08893436297772",
+"PIAACMCdesign_2src_2calc__bison_8c.html#aebb94255a7d4c72e6f9eea0a8e755c56",
+"PIAACMCdesign_2src_2coronagraphs_2coronagraphs-util_8c.html#a1899341d9678aeef845c3e6b93a19665",
+"PIAACMCdesign_2src_2fft_2fft_8h.html#a50c12c71d5b035a83be67ed5eb2f4fd8",
+"PIAACMCdesign_2src_2image__gen_2image__gen_8h.html#a569861f60dd659cfe49f73fd65a84cbe",
+"dir_9f6f2943035ca97f9d932fbd807c06c9.html",
+"src_2CLIcore_8c.html#ad2db3c586e9264ff9b3a8dc9d0c3283d",
+"src_2COREMOD__arith_2COREMOD__arith_8c.html#adbbb61716e321fe3627dccdc69c8bd22",
+"src_2COREMOD__memory_2COREMOD__memory-util_8c.html",
+"src_2COREMOD__tools_2COREMOD__tools_8c.html#a64ea40c62e90dcbdf65a8cc7b4b057d4",
+"src_2ZernikePolyn_2ZernikePolyn_8c.html#a5d9d454d4b9f2ff8106d5199ac0d0186",
+"src_2calc__bison_8h.html#a15c9f7bd2f0e9686df5d9df4f3314aa9af92ae8130574543b80d6449fecce3e12",
+"src_2coronagraphs_2coronagraphs_8c.html#a54696b76a94c4ba7d925d1cdb5af6537",
+"src_2image__basic_2image__basic_8c.html#abd7ba0b446c6e26a790c710944cab32f",
+"src_2info_2info_8h.html#abe194de9490f72422a241e1ab45c3ad5",
+"structIMAGE__KEYWORD.html#a148ed6e2cddc70400b2692efbdd23280"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

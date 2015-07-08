@@ -132,6 +132,18 @@ $(document).ready(function(){initNavTree('PIAACMC_designcodes.html','');});
 <td>size </td><td>array size [pix] </td><td>File ./conf_size.txt (optional, default = 1024), read by ./runopt script </td></tr>
 <tr>
 <td>MdesignStepMax </td><td>Maximum design step (monochromatic) </td><td>File ./conf_MdesignStepMax.txt (optional, default = 13, max = 18), read by ./runopt script </td></tr>
+<tr>
+<td>beamrad </td><td>Beam physical radius [m] </td><td>File ./conf_PIAAbeamrad.txt (optional, default = 0.01), read by ./runPIAACMC script, PIAACMC_beamrad </td></tr>
+<tr>
+<td>Fratio </td><td>Focal ratio at focal plane </td><td>File ./conf_Fratio.txt (optional, default = 80), read by ./runPIAACMC, PIAACMC_Fratio </td></tr>
+<tr>
+<td>r0lim </td><td>outer radius of first PIAA optic </td><td>File ./conf_PIAAr0lim.txt (optional, default = 1.15), read by ./runPIAACMC, PIAACMC_r0lim </td></tr>
+<tr>
+<td>r1lim </td><td>outer radius of second PIAA optic </td><td>File ./conf_PIAAr1lim.txt (optional, default = 1.50), read by ./runPIAACMC, PIAACMC_r1lim </td></tr>
+<tr>
+<td>piaasep </td><td>separation between PIAA elements [m] </td><td>File ./conf_PIAAsep.txt (optional, default = 1.00), read by ./runPIAACMC, PIAACMC_piaasep </td></tr>
+<tr>
+<td>piaa0pos </td><td>conjugation of first PIAA element [m] </td><td>File ./conf_PIAA0pos.txt (optional, default = 1.00), read by ./runPIAACMC, PIAACMC_piaa0pos </td></tr>
 </table>
 <h2>Variables driving focal plane mask design</h2>
 <table class="doxtable">
@@ -176,9 +188,8 @@ lt   : Lyot stops geometric transmission [%]
 ls   : Number of Lyot Stops
 i    : design index (used to number designs beyond parameters above)
 </pre><h2>FOCAL PLANE MASK DESIGNS</h2>
-<pre class="fragment">fpm_zonez_s&lt;s&gt;_l&lt;xxxx&gt;_sr&lt;bb&gt;_nbr&lt;zzz&gt;_mr&lt;rrr&gt;_ssr&lt;ss&gt;_ssm&lt;m&gt;_wb&lt;ll&gt;
-
-&lt;ss&gt;_&lt;m&gt;_&lt;s&gt;_&lt;rr&gt;_&lt;zzz&gt;_l&lt;xxxx&gt;_&lt;ll&gt;.fits
+<h3>Design solution</h3>
+<pre class="fragment">fpm_zonez_s&lt;s&gt;_l&lt;xxxx&gt;_sr&lt;bb&gt;_nbr&lt;zzz&gt;_mr&lt;rrr&gt;_ssr&lt;ss&gt;_ssm&lt;m&gt;_wb&lt;ll&gt;.fits
 
 
 s    : PIAACMC_FPMsectors (usually 1)
@@ -193,6 +204,65 @@ m    : computePSF_ResolvedTarget_mode
     0: 3 points
     1: 6 points
 ll   : number of wavelength bins
+
+
+sprintf(fname, "!%s/fpm_zonez_s%d_l%04ld_sr%02ld_nbr%03ld_mr%03ld_ssr%02d_ssm%d_%s_wb%02d.fits", piaacmcconfdir, PIAACMC_FPMsectors, (long) (1.0e9*piaacmc[0].lambda + 0.1), (long) (1.0*piaacmc[0].lambdaB + 0.1), piaacmc[0].NBrings, (long) (100.0*PIAACMC_MASKRADLD+0.1), computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, piaacmc[0].fpmmaterial_name, piaacmc[0].nblambda);</pre><h3>Linear response between focal plane mask zones sags and final focal plane complex amplitude</h3>
+<pre class="fragment">FPMresp&lt;m&gt;_s&lt;s&gt;_l&lt;xxxx&gt;_sr&lt;bb&gt;_nbr&lt;zzz&gt;_mr&lt;rrr&gt;_ssr&lt;ss&gt;_ssm&lt;m&gt;_wb&lt;ll&gt;.fits
+
+m    : Scoring mask type
+s    : PIAACMC_FPMsectors (usually 1)
+xxxx : central mask wavelength [nm]
+bb   : spectral bandwidth [%]
+zzz  : number of rings
+rrr  : 100*PIAACMC_MASKRADLD
+ss   : computePSF_ResolvedTarget: stellar radius used for optimization  [10x log l/D]
+    radius = 10^{-0.1*ss}
+    example: ss = 15  -&gt;  radius = 0.0316 l/D
+m    : computePSF_ResolvedTarget_mode
+    0: 3 points
+    1: 6 points
+ll   : number of wavelength bins
+
+
+sprintf(fname, "!%s/FPMresp%d_s%d_l%04ld_sr%02ld_nbr%03ld_mr%03ld_ssr%02d_ssm%d_%s_wb%02d.fits", piaacmcconfdir, SCORINGMASKTYPE, PIAACMC_FPMsectors, (long) (1.0e9*piaacmc[0].lambda + 0.1), (long) (1.0*piaacmc[0].lambdaB + 0.1), piaacmc[0].NBrings, (long) (100.0*PIAACMC_MASKRADLD+0.1), computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, piaacmc[0].fpmmaterial_name, piaacmc[0].nblambda);</pre><h3>Evaluation files</h3>
+<pre class="fragment">Point source PSF:
+psfi0_ptsr_sm&lt;m&gt;_s&lt;s&gt;_l&lt;xxxx&gt;_sr&lt;bb&gt;_nbr&lt;zzz&gt;_mr&lt;rrr&gt;_ssr&lt;ss&gt;_ssm&lt;m&gt;_wb&lt;ll&gt;.fits
+
+Extended source PSF (4 points):
+psfi0_extsrc&lt;exss&gt;_sm&lt;m&gt;_s&lt;s&gt;_l&lt;xxxx&gt;_sr&lt;bb&gt;_nbr&lt;zzz&gt;_mr&lt;rrr&gt;_ssr&lt;ss&gt;_ssm&lt;m&gt;_wb&lt;ll&gt;.fits
+
+Flux: 
+flux_sm&lt;m&gt;_s&lt;s&gt;_l&lt;xxxx&gt;_sr&lt;bb&gt;_nbr&lt;zzz&gt;_mr&lt;rrr&gt;_ssr&lt;ss&gt;_ssm&lt;m&gt;_wb&lt;ll&gt;.txt
+
+Contrast estimate vale (point source):
+contrast_sm&lt;m&gt;_s&lt;s&gt;_l&lt;xxxx&gt;_sr&lt;bb&gt;_nbr&lt;zzz&gt;_mr&lt;rrr&gt;_ssr&lt;ss&gt;_ssm&lt;m&gt;_wb&lt;ll&gt;.txt
+
+Extended source contrast:
+ContrastVal_extsrc&lt;exss&gt;_sm&lt;m&gt;_s&lt;s&gt;_l&lt;xxxx&gt;_sr&lt;bb&gt;_nbr&lt;zzz&gt;_mr&lt;rrr&gt;_ssr&lt;ss&gt;_ssm&lt;m&gt;_&lt;material&gt;_wb&lt;ll&gt;.fits
+(2nd number is contrast estimate)
+
+Extended source contrast curve:
+ContrastCurve_extsrc&lt;exss&gt;_sm&lt;m&gt;_s&lt;s&gt;_l&lt;xxxx&gt;_sr&lt;bb&gt;_nbr&lt;zzz&gt;_mr&lt;rrr&gt;_ssr&lt;ss&gt;_ssm&lt;m&gt;_&lt;material&gt;_wb&lt;ll&gt;.fits
+
+
+exss : stellar radius used for evaluation  [10x log l/D]
+m    : Scoring mask type
+s    : PIAACMC_FPMsectors (usually 1)
+xxxx : central mask wavelength [nm]
+bb   : spectral bandwidth [%]
+zzz  : number of rings
+rrr  : 100*PIAACMC_MASKRADLD
+ss   : computePSF_ResolvedTarget: stellar radius used for optimization  [10x log l/D]
+    radius = 10^{-0.1*ss}
+    example: ss = 15  -&gt;  radius = 0.0316 l/D
+m    : computePSF_ResolvedTarget_mode
+    0: 3 points
+    1: 6 points
+material: focal plane mask material
+ll   : number of wavelength bins
+
+
+sprintf(fname, "!%s/psfi0_sm%d_s%d_l%04ld_sr%02ld_nbr%03ld_mr%03ld_ssr%02d_ssm%d_%s_wb%02d.fits", piaacmcconfdir, SCORINGMASKTYPE, PIAACMC_FPMsectors, (long) (1.0e9*piaacmc[0].lambda + 0.1), (long) (1.0*piaacmc[0].lambdaB + 0.1), piaacmc[0].NBrings, (long) (100.0*PIAACMC_MASKRADLD+0.1), computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, piaacmc[0].fpmmaterial_name, piaacmc[0].nblambda);
 </pre><h1>OPERATION CODES</h1>
 <pre class="fragment">====== CODE INDICES FOR sim1024/runPIAACMC SCRIPTS =====================================================
 
@@ -273,16 +343,17 @@ Note: entering step=4 will complete steps 0, 1, 2 and 3, and STOP at step 4
   3     [  0]   5.12665e-05 actual pupil Compute on-axis PSF                                        [   0nm]
         -&gt; psfi0_step003.fits
 
-  4     [  5]   3.46488e-06 Compute Lyot stops shapes and locations, 1st pass (80% throughput)      [   1mn]
-        throughput = LStransm2
+  4     [  5]   3.46488e-06 Compute Lyot stops shapes and locations, 1st pass                       [   1mn]
+        throughput = LStransm2 (user-specied argument to script)
         -&gt; conjugations.txt
 
   5     [  2]   3.34238e-08 optimize focal plane mask transm, 1st pass -&gt; result_fpmt.log           [   2mn]
         optimal value is written in file &lt;confdir&gt;/piaacmcparams.conf
         -&gt; result_fpmt.log (ampl contrast iter range stepsize)
+        
 
   6     [  5]   2.06295e-08 Compute Lyot stops shapes and locations, 2nd pass, 60% throughput       [   1mn]
-        throughput &gt; LStransm = 0.60
+        throughput &gt; LStransm = LStransm0 = 0.60
 
   7     [ 40]    3.36149e-09    tune PIAA shapes and focal plane mask transm # modes: 10, 5             [  35mn]
         -&gt; linoptval_step007.txt
@@ -292,11 +363,11 @@ Note: entering step=4 will complete steps 0, 1, 2 and 3, and STOP at step 4
         updates piaa shapes (piaa0Cmodes, piaa0Fmodes, piaa1Cmodes, piaa1Fmodes)
         updates focal plane mask transm (&lt;confdir&gt;/piaacmcparams.conf)
 
-  9     [  5]   4.3982e-09      Compute Lyot stops shapes and locations, 2nd pass, 60% throughput       [   1mn]
-        throughput &gt; LStransm
+  9     [  5]   4.3982e-09      Compute Lyot stops shapes and locations, 2nd pass, intermediate throughput [   1mn]
+        throughput = LStransm1
 
  10     [  1]   3.62923e-09 tune Lyot stops conjugations                                        [   8mn]
-        throughput &gt; LStransm1 = 0.70
+        throughput &gt; LStransm1 
         -&gt; result_LMpos.log
 
  11     [ 40]   1.2318e-09  tune PIAA shapes and focal plane mask transm # modes: 20, 20            [  71mn]
@@ -304,8 +375,8 @@ Note: entering step=4 will complete steps 0, 1, 2 and 3, and STOP at step 4
 
  12     [ 40]   2.9522e-10  tune PIAA shapes and focal plane mask transm, # modes: 40, 150          [ 287mn]
 
- 13     [  5]   3.14043e-08 Compute Lyot stops shapes and locations, 3rd pass, 80% throughput       [   1mn]
-        throughput &gt; LStransm2 = 0.80
+ 13     [  5]   3.14043e-08 Compute Lyot stops shapes and locations, 3rd pass, goal throughput      [   1mn]
+        throughput &gt; LStransm2 
         
  14     [  1]   1.41547e-08 Tune Lyot stops conjugations                                            [   9mn]
         
@@ -450,7 +521,7 @@ PIAACMC_FPMsectors, piaacmc[0].NBrings, piaacmc[0].focmNBzone, piaacmc[0].nblamb
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="md_src_PIAACMCsimul_README.html">PIAACMC design</a></li>
-    <li class="footer">Generated on Tue May 5 2015 16:07:24 for PIAACMCdesign by
+    <li class="footer">Generated on Tue Jul 7 2015 18:27:24 for PIAACMCdesign by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

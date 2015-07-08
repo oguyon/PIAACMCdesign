@@ -117,7 +117,7 @@ $(document).ready(function(){initNavTree('md_src_PIAACMCsimul_README.html','');}
 <h1><a class="anchor" id="overview"></a>
 1. Overview</h1>
 <p>Diffraction-based PIAACMC simulation / optimization</p><ul>
-<li>Uses Fresnel propagation engine ( <a class="el" href="OptSystProp_8c.html">OptSystProp.c</a> <a class="el" href="OptSystProp_8h.html">OptSystProp.h</a> ) between optical elements</li>
+<li>Uses Fresnel propagation engine ( OptSystProp.c OptSystProp.h ) between optical elements</li>
 <li>Computes linear perturbations around current design for optimization</li>
 <li>Automatically computes multiple Lyot stop to follow variable conjugation in different parts of the beam</li>
 <li>Polychromatic propagations</li>
@@ -147,7 +147,7 @@ Type ./runPIAACMC with no argument to get help message.</p>
 <h1><a class="anchor" id="code"></a>
 3. C code description</h1>
 <p><a class="el" href="PIAACMC_designcodes.html">PIAACMC design codes</a></p>
-<p>The main function in the source code is <a class="el" href="PIAACMCsimul_8c.html#a1083c078214e43d74447950f8a236c5d" title="Main simulation routine. ">PIAACMCsimul_exec()</a>, which takes two arguments: the configuration index (usually a 3 digit integer) and the mode (integer) which describes the operation to be performed to the PIAACMC design.</p>
+<p>The main function in the source code is <a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#a1083c078214e43d74447950f8a236c5d" title="Main simulation routine. ">PIAACMCsimul_exec()</a>, which takes two arguments: the configuration index (usually a 3 digit integer) and the mode (integer) which describes the operation to be performed to the PIAACMC design.</p>
 <table class="doxtable">
 <tr>
 <th>Mode </th><th>Description  </th></tr>
@@ -272,28 +272,28 @@ This step takes a few minutes - most of the time is spent on iterations to compu
 Total light in scoring field = 9.49968e-06  -&gt; Average contrast = 6.88685e-08
 </pre><h3>Code breakdown</h3>
 <ul>
-<li><a class="el" href="PIAACMCsimul_8c.html#a1083c078214e43d74447950f8a236c5d" title="Main simulation routine. ">PIAACMCsimul_exec()</a> :<ul>
-<li><a class="el" href="PIAACMCsimul_8c.html#a85f1459cf776292b7e2fff9932a79252" title="Creates/initializes piaacmcconf structure and directory. ">PIAAsimul_initpiaacmcconf()</a>: Load/Creates/initializes piaacmcconf structure and directory<ul>
+<li><a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#a1083c078214e43d74447950f8a236c5d" title="Main simulation routine. ">PIAACMCsimul_exec()</a> :<ul>
+<li><a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#a85f1459cf776292b7e2fff9932a79252" title="Creates/initializes piaacmcconf structure and directory. ">PIAAsimul_initpiaacmcconf()</a>: Load/Creates/initializes piaacmcconf structure and directory<ul>
 <li>perform default initialization</li>
-<li><a class="el" href="PIAACMCsimul_8c.html#adedec73128f41e8b3f83796bf913c8da">PIAAsimul_loadpiaacmcconf()</a>: Loading PIAACMC configuration from "piaacmcconfxxx/piaacmcparams.conf" if it exists</li>
+<li><a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#adedec73128f41e8b3f83796bf913c8da">PIAAsimul_loadpiaacmcconf()</a>: Loading PIAACMC configuration from "piaacmcconfxxx/piaacmcparams.conf" if it exists</li>
 <li>Creating/loading Cmodes and Fmodes</li>
 <li>IMPORT / CREATE PIAA SHAPES<ul>
 <li>create 2D prolate iteratively</li>
-<li><a class="el" href="PIAACMCsimul_8c.html#a6828d3577dee2b0882bd7df99602f30d">PIAACMCsimul_load2DRadialApodization()</a>:fit PIAA shapes with Cosine modes</li>
-<li><a class="el" href="PIAACMCsimul_8c.html#a8e2b36e622c11627571989ab113d85eb">PIAACMCsimul_init_geomPIAA_rad()</a>: compute radial PIAA sag from cosine apodization fit</li>
-<li><a class="el" href="PIAACMCsimul_8c.html#adad6ba0da7cd47c07c35232b6096fa1c">PIAACMCsimul_mkPIAAMshapes_from_RadSag()</a>: Make 2D sag shapes from radial PIAA sag</li>
+<li><a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#a6828d3577dee2b0882bd7df99602f30d">PIAACMCsimul_load2DRadialApodization()</a>:fit PIAA shapes with Cosine modes</li>
+<li><a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#a8e2b36e622c11627571989ab113d85eb">PIAACMCsimul_init_geomPIAA_rad()</a>: compute radial PIAA sag from cosine apodization fit</li>
+<li><a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#adad6ba0da7cd47c07c35232b6096fa1c">PIAACMCsimul_mkPIAAMshapes_from_RadSag()</a>: Make 2D sag shapes from radial PIAA sag</li>
 </ul>
 </li>
 <li>MAKE FOCAL PLANE MASK</li>
 <li>MAKE LYOT STOPS</li>
-<li><a class="el" href="PIAACMCsimul_8c.html#aac928f8658448934caa7e805af8606a8">PIAAsimul_savepiaacmcconf()</a>: save configuration</li>
+<li><a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#aac928f8658448934caa7e805af8606a8">PIAAsimul_savepiaacmcconf()</a>: save configuration</li>
 </ul>
 </li>
-<li><a class="el" href="PIAACMCsimul_8c.html#a3a6aa31c31adb655f2afa2416e155684">PIAACMCsimul_makePIAAshapes()</a>: construct PIAA shapes from fitting coefficients<ul>
+<li><a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#a0ae7439a20fe5267506bc7d1e0533f08">PIAACMCsimul_makePIAAshapes()</a>: construct PIAA shapes from fitting coefficients<ul>
 <li>construct 2D PIAA mirror shapes from piaa0Cmodescoeff, piaa0Fmodescoeff, piaa1Cmodescoeff, piaa1Fmodescoeff</li>
 </ul>
 </li>
-<li><a class="el" href="PIAACMCsimul_8c.html#a5c872da1e39bdc8e5ec4dfadc6a42690">PIAACMCsimul_computePSF()</a>: Compute PSF</li>
+<li><a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#a0650545f10bc1e359093510f12a9f9f6">PIAACMCsimul_computePSF()</a>: Compute PSF</li>
 </ul>
 </li>
 </ul>
@@ -330,7 +330,7 @@ Total light in scoring field = 9.49968e-06  -&gt; Average contrast = 6.88685e-08
 <tr>
 <th>Output file </th><th>Notes  </th></tr>
 <tr>
-<td>./piaaconfxxx/APLCapo.1.400.0.300.info </td><td>file written by prolate generation function coronagraph_make_2Dprolate in <a class="el" href="coronagraphs_8c.html">coronagraphs.c</a> </td></tr>
+<td>./piaaconfxxx/APLCapo.1.400.0.300.info </td><td>file written by prolate generation function coronagraph_make_2Dprolate in coronagraphs.c </td></tr>
 <tr>
 <td>./piaaconfxxx/apo2Drad.fits </td><td>idealized PIAACMC 2D apodization </td></tr>
 <tr>
@@ -448,7 +448,7 @@ Complex amplitude is shown AFTER the element has been applied, in the plane of t
 <tr>
 <th>Plane index </th><th>description  </th></tr>
 <tr>
-<td>./piaaconfxxx/scoringmask0.fits </td><td>Evaluation points in focal plane, hardcoded in <a class="el" href="PIAACMCsimul_8c.html#a5c872da1e39bdc8e5ec4dfadc6a42690">PIAACMCsimul_computePSF()</a> </td></tr>
+<td>./piaaconfxxx/scoringmask0.fits </td><td>Evaluation points in focal plane, hardcoded in <a class="el" href="PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c.html#a0650545f10bc1e359093510f12a9f9f6">PIAACMCsimul_computePSF()</a> </td></tr>
 <tr>
 <td>./piaaconfxxx/CnormFactor.txt </td><td>PSF normalization factor used to compute contrast </td></tr>
 <tr>
@@ -492,7 +492,7 @@ Progress can be tracked by watching file : </p><pre class="fragment">tail -f lin
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue May 5 2015 16:07:24 for PIAACMCdesign by
+    <li class="footer">Generated on Tue Jul 7 2015 18:27:24 for PIAACMCdesign by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>
