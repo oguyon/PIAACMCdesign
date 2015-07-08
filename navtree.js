@@ -1,28 +1,9 @@
 var NAVTREE =
 [
   [ "PIAACMCdesign", "index.html", [
-    [ "Command line interpreter", "md_src_CLIcore.html", null ],
-    [ "PIAACMC design", "md_src_PIAACMCsimul_README.html", [
-      [ "1. Overview", "md_src_PIAACMCsimul_README.html#overview", null ],
-      [ "2. High level scripts", "md_src_PIAACMCsimul_README.html#sim1024", null ],
-      [ "3. C code description", "md_src_PIAACMCsimul_README.html#code", null ],
-      [ "4. Design Steps for PIAACMC", "md_src_PIAACMCsimul_README.html#desstep", [
-        [ "3.a. Initialization rules (function  PIAAsimul_initpiaacmc() )", "md_src_PIAACMCsimul_README.html#initrules", null ],
-        [ "3.000. MODE 000: Create an idealized centrally obscured apodized PIAACMC monochromatic design", "md_src_PIAACMCsimul_README.html#mode000", null ],
-        [ "3.002. STEP 002: Specify input pupil geometry", "md_src_PIAACMCsimul_README.html#step002", null ],
-        [ "3.003. STEP 003 (mode = 0): compute on-axis PSF for new pupil geometry", "md_src_PIAACMCsimul_README.html#step003", null ],
-        [ "3.004. STEP 004 (mode = 5): Compute Lyot stops shapes and locations, 1st pass", "md_src_PIAACMCsimul_README.html#step004", null ],
-        [ "3.005. STEP 005 (mode = 2): Optimize focal plane mask transmission, 1st pass", "md_src_PIAACMCsimul_README.html#step005", null ],
-        [ "3.006. STEP 006 (mode = 5): Compute Lyot stops shapes and locations, 2nd pass, 70% throughput", "md_src_PIAACMCsimul_README.html#step006", null ],
-        [ ": 3.007. STEP 007 (mode = 40): Tune PIAA shapes and focal plane mask transm, 10 cosine modes, 5 Fourier modes", "md_src_PIAACMCsimul_README.html#step007", null ],
-        [ ": 3.008. STEP 008 (mode = 40): Tune PIAA shapes and focal plane mask transm,  20 cosine modes, 20 Fourier modes", "md_src_PIAACMCsimul_README.html#step008", null ],
-        [ ": 3.009. STEP 009 (mode = 5): Compute Lyot stops shapes and locations, 2nd pass, 70% throughput", "md_src_PIAACMCsimul_README.html#step009", null ],
-        [ ": 3.010. STEP 010 (mode = 1): Tune Lyot stops conjugations", "md_src_PIAACMCsimul_README.html#step010", null ],
-        [ ": 3.011. STEP 011 (mode = 40): Tune PIAA shapes and focal plane mask transm,  20 cosine modes, 20 Fourier modes", "md_src_PIAACMCsimul_README.html#step011", null ],
-        [ ": 3.012. STEP 012 (mode = 40): Tune PIAA shapes and focal plane mask transm,  40 cosine modes, 150 Fourier modes", "md_src_PIAACMCsimul_README.html#step012", null ],
-        [ ": 3.013. STEP 013 (mode = 5): Compute Lyot stops shapes and locations, 3nd pass, 70% throughput", "md_src_PIAACMCsimul_README.html#step013", null ]
-      ] ]
-    ] ],
+    [ "Command Line Interface (CLI)", "md_src_CLIcore.html", null ],
+    [ "PIAACMC_designcodes", "md_src_PIAACMCsimul_PIAACMC_designcodes.html", null ],
+    [ "PIAACMC design", "md_src_PIAACMCsimul_README.html", "md_src_PIAACMCsimul_README" ],
     [ "Data Structures", null, [
       [ "Data Structures", "annotated.html", "annotated" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -52,13 +33,13 @@ var NAVTREEINDEX =
 "COREMOD__arith_8c.html#a9842752e03b4de9b4593f1a3b34364ab",
 "COREMOD__arith_8h.html#aeeb8054415b3b98e54f206fa6889e672",
 "COREMOD__memory_8h.html#aa9234a32623bef57dec5366a36fba715",
-"PIAACMCsimul_8h.html#a1019cf3ddedd12485a4c9da5fa5f0a8e",
-"calc__bison_8h.html#a1660a48b7bf3296882490d993f9bc4d6",
-"coronagraphs_8c.html#a55b6ba5893f400bde67e81d30ae64285",
-"functions_vars_m.html",
-"image__filter_8h.html#a28448f115c2ee7fa255ee42af30bf87b",
-"linopt__imtools_8c.html#a27d0c0f4b79d950e8e412f07af15337c",
-"structOPTPIAACMCDESIGN.html#ac4a10cbfc3935db33fb2f3c5612fe0ef"
+"PIAACMCsimul_8c.html#ae6b65340d4798aa2bb96a7f66e541187",
+"calc__bison_8h.html#a15c9f7bd2f0e9686df5d9df4f3314aa9aefad6a8e2d44518afd4d145bd5b4014a",
+"coronagraphs_8c.html#a4d008a7219a7d93d19381b9df8e43abd",
+"functions_vars_d.html",
+"image__filter_8c.html#ab09faa231b0d2eedbac6ebdb64bacda9",
+"kdtree_8h.html#ae2d5802f669e14e245fc8ee6b8a3ff16",
+"structOPTPIAACMCDESIGN.html#a8206d0c4c019d9c2a6dda4d22cf7d8a6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

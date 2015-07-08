@@ -46,6 +46,8 @@ var searchData=
   ['masksizeld',['MASKSIZELD',['../coronagraphs_8c.html#afcc9085e76acbf4622ad45134b19f960',1,'coronagraphs.c']]],
   ['mat0',['mat0',['../structASPHSURFR.html#a9c6a2f637f66b2911129ec69640f98d2',1,'ASPHSURFR']]],
   ['mat1',['mat1',['../structASPHSURFR.html#a0f31e31171389f94d70cc4ea0610e2a4',1,'ASPHSURFR']]],
+  ['matcode',['MatCode',['../OpticsMaterials_8c.html#a8e9a5245b5b87e4c8de05527ec2374eb',1,'OpticsMaterials.c']]],
+  ['materialindex',['MaterialIndex',['../structMaterialIndex.html',1,'']]],
   ['max',['max',['../structkdhyperrect.html#aaeaab78eb4536bcd8d4ae4d5e08540f5',1,'kdhyperrect']]],
   ['max_5fnb_5fexclusions',['MAX_NB_EXCLUSIONS',['../CLIcore_8h.html#a74caaf2a5e85d36072159f1f97410c40',1,'CLIcore.h']]],
   ['max_5fnb_5fframename_5fchar',['MAX_NB_FRAMENAME_CHAR',['../CLIcore_8h.html#ac4fdaeb876357d26a97d5ab491cff1b4',1,'CLIcore.h']]],

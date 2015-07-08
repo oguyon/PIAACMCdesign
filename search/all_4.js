@@ -64,6 +64,7 @@ var searchData=
   ['cnt0',['cnt0',['../structIMAGE__METADATA.html#a3cbf524e575ea60f193155cdfe1de552',1,'IMAGE_METADATA']]],
   ['cnt1',['cnt1',['../structIMAGE__METADATA.html#afeb8191116e338cc2ed2dab22b789477',1,'IMAGE_METADATA']]],
   ['cntlast',['cntlast',['../info_8c.html#af317519ddbdd0c94d26509de6402ef18',1,'info.c']]],
+  ['code',['code',['../structMaterialIndex.html#a7b54b40a48c454c51cc0403b571dce15',1,'MaterialIndex']]],
   ['command_5fline',['command_line',['../CLIcore_8c.html#a08a15eb6d82a4967d50502a18fe5f205',1,'CLIcore.c']]],
   ['comment',['comment',['../structIMAGE__KEYWORD.html#a3ace85ee9471c3170cf09ba95c5dda07',1,'IMAGE_KEYWORD::comment()'],['../structVARIABLE.html#a681a0cb52e89855a9cf7f1bd908ba6ee',1,'VARIABLE::comment()']]],
   ['complex_5fdouble',['complex_double',['../structcomplex__double.html',1,'complex_double'],['../CLIcore_8h.html#a15e641fb510847d140b200a2d507b8b6',1,'COMPLEX_DOUBLE():&#160;CLIcore.h']]],
@@ -233,5 +234,5 @@ var searchData=
   ['cube_5fcollapse',['cube_collapse',['../image__basic_8c.html#a4e2f3451f50ee65833130f3d5dfa4493',1,'cube_collapse(char *ID_in_name, char *ID_out_name):&#160;image_basic.c'],['../image__basic_8h.html#a4e2f3451f50ee65833130f3d5dfa4493',1,'cube_collapse(char *ID_in_name, char *ID_out_name):&#160;image_basic.c']]],
   ['cubesize',['cubesize',['../structsavethreadmsg.html#aabe32dc91c33ab3536ad6d2b6730159f',1,'savethreadmsg']]],
   ['cval0',['cval0',['../PIAACMCsimul_8c.html#af135c3b49231877c60dca4688ef8ced1',1,'PIAACMCsimul.c']]],
-  ['command_20line_20interpreter',['Command line interpreter',['../md_src_CLIcore.html',1,'']]]
+  ['command_20line_20interface_20_28cli_29',['Command Line Interface (CLI)',['../md_src_CLIcore.html',1,'']]]
 ];

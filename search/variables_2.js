@@ -28,6 +28,7 @@ var searchData=
   ['cnt0',['cnt0',['../structIMAGE__METADATA.html#a3cbf524e575ea60f193155cdfe1de552',1,'IMAGE_METADATA']]],
   ['cnt1',['cnt1',['../structIMAGE__METADATA.html#afeb8191116e338cc2ed2dab22b789477',1,'IMAGE_METADATA']]],
   ['cntlast',['cntlast',['../info_8c.html#af317519ddbdd0c94d26509de6402ef18',1,'info.c']]],
+  ['code',['code',['../structMaterialIndex.html#a7b54b40a48c454c51cc0403b571dce15',1,'MaterialIndex']]],
   ['comment',['comment',['../structIMAGE__KEYWORD.html#a3ace85ee9471c3170cf09ba95c5dda07',1,'IMAGE_KEYWORD::comment()'],['../structVARIABLE.html#a681a0cb52e89855a9cf7f1bd908ba6ee',1,'VARIABLE::comment()']]],
   ['computepsf_5ffast_5ffpmresp',['computePSF_FAST_FPMresp',['../PIAACMCsimul_8c.html#a57c39fd882af20220761fbf2037d8eac',1,'PIAACMCsimul.c']]],
   ['computepsf_5fresolvedtarget',['computePSF_ResolvedTarget',['../PIAACMCsimul_8c.html#a3a1752b10c24c19f1bb94470c0d8b316',1,'PIAACMCsimul.c']]],

@@ -135,7 +135,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ac53e3930669b38f02e03f0fcdaafcde4"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8h.html#ac53e3930669b38f02e03f0fcdaafcde4">PIAACMCsimul_mkFocalPlaneMask</a> (char *IDzonemap_name, char *ID_name, int mode)</td></tr>
 <tr class="separator:ac53e3930669b38f02e03f0fcdaafcde4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1019cf3ddedd12485a4c9da5fa5f0a8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8h.html#a1019cf3ddedd12485a4c9da5fa5f0a8e">PIAACMCsimul_init</a> (<a class="el" href="structOPTPIAACMCDESIGN.html">OPTPIAACMCDESIGN</a> *design, long index, double TTxld, double TTyld)</td></tr>
-<tr class="memdesc:a1019cf3ddedd12485a4c9da5fa5f0a8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">initializes the optsyst structure to simulate reflective PIAACMC system  <a href="#a1019cf3ddedd12485a4c9da5fa5f0a8e">More...</a><br /></td></tr>
 <tr class="separator:a1019cf3ddedd12485a4c9da5fa5f0a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6828d3577dee2b0882bd7df99602f30d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8h.html#a6828d3577dee2b0882bd7df99602f30d">PIAACMCsimul_load2DRadialApodization</a> (char *IDapo_name, float beamradpix, char *IDapofit_name)</td></tr>
 <tr class="separator:a6828d3577dee2b0882bd7df99602f30d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -391,7 +390,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>returns average contrast in evaluation zone</p>
 <p>source size = 1e-{sourcesize*0.1}, except if sourcesize = 0 (point source) sourcesize is a 2-digit number ( 10 = 0.1 l/D, 20 = 0.01 l/D etc..)</p>
-<p>extmode = 0 : 3 point sources, 120 apart on circle radius = source size extmode = 1 : 6 point sources. 3 as above on circle radius 1/sqrt(2.5) + 3 on outer circle, radius 2/sqrt(2.5), 120 apart, clockled 60 deg off inner points </p>
+<p>extmode = 0 : 3 point sources, 120 apart on circle radius = source size extmode = 1 : 6 point sources. 3 as above on circle radius 1/sqrt(2.5) + 3 on outer circle, radius 2/sqrt(2.5), 120 apart, clockled 60 deg off inner points</p>
+<p>PSF is held in shared memory by default </p>
 
 </div>
 </div>
@@ -447,7 +447,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
 <p>initializes the optsyst structure to simulate reflective PIAACMC system </p>
 
 </div>
@@ -936,7 +935,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a43bbe342066ce7b2de1328729e4bb5e.html">PIAACMCsimul</a></li><li class="navelem"><a class="el" href="PIAACMCsimul_8h.html">PIAACMCsimul.h</a></li>
-    <li class="footer">Generated on Fri Apr 24 2015 18:41:10 for PIAACMCdesign by
+    <li class="footer">Generated on Tue May 5 2015 16:07:24 for PIAACMCdesign by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

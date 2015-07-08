@@ -124,17 +124,29 @@ $(document).ready(function(){initNavTree('md_src_PIAACMCsimul_README.html','');}
 <li>Fits aspheric PIAA shapes on basis of radial cosines and 2-D Fourier modes</li>
 </ul>
 <p>Code is composed of a several layers (from high to low) :</p><ul>
-<li>high level design script: sim1024 (for 1024x1024 pixel maps)</li>
-<li>runPIAACMC script</li>
+<li>high level design script: script "runopt"</li>
+<li>script "sim1024"</li>
+<li>script "runPIAACMC"</li>
 <li>C code</li>
 </ul>
-<h1><a class="anchor" id="sim1024"></a>
+<h1><a class="anchor" id="scripts"></a>
 2. High level scripts</h1>
-<p>TOP LEVEL SCRIPT: ./sim1024<br />
-./sim1024 : Type ./sim1024 with no argument to get help message.</p>
-<p>./runPIAACMC: Type ./runPIAACMC with no argument to get help message.</p>
+<p>Scripts are located in src/PIAACMCsimul/scripts</p>
+<p>TOP LEVEL SCRIPT: <br />
+./runopt<br />
+This script can optimize a PIAACMC design or run an existing design<br />
+Type command with no argument to get help</p>
+<p>runopt calls lower level scripts sim1024</p>
+<p>./sim1024<br />
+This script sequences operations<br />
+Type ./sim1024 with no argument to get help message.</p>
+<p>sim1024 calls runPIAACMC</p>
+<p>./runPIAACMC<br />
+This is the lower-level script calling the C-written executable<br />
+Type ./runPIAACMC with no argument to get help message.</p>
 <h1><a class="anchor" id="code"></a>
 3. C code description</h1>
+<p><a class="el" href="PIAACMC_designcodes.html">PIAACMC design codes</a></p>
 <p>The main function in the source code is <a class="el" href="PIAACMCsimul_8c.html#a1083c078214e43d74447950f8a236c5d" title="Main simulation routine. ">PIAACMCsimul_exec()</a>, which takes two arguments: the configuration index (usually a 3 digit integer) and the mode (integer) which describes the operation to be performed to the PIAACMC design.</p>
 <table class="doxtable">
 <tr>
@@ -480,7 +492,7 @@ Progress can be tracked by watching file : </p><pre class="fragment">tail -f lin
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Apr 24 2015 18:41:10 for PIAACMCdesign by
+    <li class="footer">Generated on Tue May 5 2015 16:07:24 for PIAACMCdesign by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['name',['name',['../structsymrec.html#a13b3ddedd56ed8a393dfd4b266bb81e1',1,'symrec::name()'],['../structMODULE.html#adecbd02b92ae79ddaaff7be512380dea',1,'MODULE::name()'],['../structIMAGE__KEYWORD.html#aa0fef8b5fce4b24d792d0fc01df9dd8a',1,'IMAGE_KEYWORD::name()'],['../structIMAGE__METADATA.html#acf8d6cd7523aacfacb7639e83496a7b8',1,'IMAGE_METADATA::name()'],['../structVARIABLE.html#a40d583ae511f61e22f3ade6f130a7d58',1,'VARIABLE::name()']]],
+  ['name',['name',['../structsymrec.html#a13b3ddedd56ed8a393dfd4b266bb81e1',1,'symrec::name()'],['../structMODULE.html#adecbd02b92ae79ddaaff7be512380dea',1,'MODULE::name()'],['../structIMAGE__KEYWORD.html#aa0fef8b5fce4b24d792d0fc01df9dd8a',1,'IMAGE_KEYWORD::name()'],['../structIMAGE__METADATA.html#acf8d6cd7523aacfacb7639e83496a7b8',1,'IMAGE_METADATA::name()'],['../structVARIABLE.html#a40d583ae511f61e22f3ade6f130a7d58',1,'VARIABLE::name()'],['../structMaterialIndex.html#a9a1c2042061f01de2a32002bd779a630',1,'MaterialIndex::name()']]],
   ['naxis',['naxis',['../structIMAGE__METADATA.html#a03a561578b6eab9c6566d5961944fb8e',1,'IMAGE_METADATA']]],
   ['nb_5faplc_5fstep',['NB_APLC_STEP',['../coronagraphs_8c.html#a0fccf9c2adadd0a03307e7ac0032d693',1,'coronagraphs.c']]],
   ['nb_5fasphsurfm',['NB_asphsurfm',['../structOPTSYST.html#a42bf1a88cf3bc234c3ff551f7094be9e',1,'OPTSYST']]],
@@ -15,7 +15,7 @@ var searchData=
   ['nbact1d',['NBact1D',['../structDM__SIM.html#a2ce1ee098755e4e7996951cd71d8976b',1,'DM_SIM']]],
   ['nbcmd',['NBcmd',['../structDATA.html#ab3ecb17b2561794d854efcbc47584b19',1,'DATA']]],
   ['nbcmodes',['NBCmodes',['../structOPTPIAACMCDESIGN.html#a8206d0c4c019d9c2a6dda4d22cf7d8a6',1,'OPTPIAACMCDESIGN']]],
-  ['nbdms',['nbDMs',['../structOPTPIAACMCDESIGN.html#a9dd958eecd7f96426365ccc6d87c5565',1,'OPTPIAACMCDESIGN']]],
+  ['nbdm',['nbDM',['../structOPTPIAACMCDESIGN.html#abcbc2dfd1fde61c341f2689b1ed810dd',1,'OPTPIAACMCDESIGN']]],
   ['nbelem',['NBelem',['../structOPTSYST.html#ab9532e90f1fa8a506d6316eac6dfd5ce',1,'OPTSYST']]],
   ['nbfmodes',['NBFmodes',['../structOPTPIAACMCDESIGN.html#ac46c632c680659b8c588701a497dbb4b',1,'OPTPIAACMCDESIGN']]],
   ['nbkeword_5fdft',['NBKEWORD_DFT',['../structDATA.html#aece2a33a30b5f15d8250cee2a8f0aa02',1,'DATA']]],

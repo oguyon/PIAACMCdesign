@@ -17,6 +17,7 @@ var annotated =
     [ "kdres", "structkdres.html", "structkdres" ],
     [ "kdtree", "structkdtree.html", "structkdtree" ],
     [ "LOGSHIM_CONF", "structLOGSHIM__CONF.html", "structLOGSHIM__CONF" ],
+    [ "MaterialIndex", "structMaterialIndex.html", "structMaterialIndex" ],
     [ "MODULE", "structMODULE.html", "structMODULE" ],
     [ "OPTPIAACMCDESIGN", "structOPTPIAACMCDESIGN.html", "structOPTPIAACMCDESIGN" ],
     [ "OPTSYST", "structOPTSYST.html", "structOPTSYST" ],
