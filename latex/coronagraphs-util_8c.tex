@@ -1,0 +1,195 @@
+\hypertarget{coronagraphs-util_8c}{\section{src/coronagraphs/coronagraphs-\/util.c File Reference}
+\label{coronagraphs-util_8c}\index{src/coronagraphs/coronagraphs-\/util.\+c@{src/coronagraphs/coronagraphs-\/util.\+c}}
+}
+{\ttfamily \#include $<$sys/stat.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include $<$Cfits.\+h$>$}\\*
+{\ttfamily \#include $<$coronagraphs.\+h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a4a8c6bc3b436950d57c8edff7d08c8b1}{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a0e2a39ce8179e984872fc28ed424a83e}{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolateld} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a949c485b2474e41f248a17478008a164}{mod\+\_\+coronagraphs\+\_\+corup2\+Dprolate} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_aa5a2f9ae091e94fad26d42f8d55467d3}{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate\+\_\+\+C\+S} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a9fa4dfe8c15d371ec5f9ab96589e350b}{mod\+\_\+coronagraphs\+\_\+corsimaic} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_aa1e124dd3e89153a39139d1bc5f48a6c}{mod\+\_\+coronagraphs\+\_\+corsim4qpm} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a3ea43d8fb405d63839784ce312d88f53}{mod\+\_\+coronagraphs\+\_\+corsimbl8} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a02e9ac984e27521eaf1054d546ca9d8e}{mod\+\_\+coronagraphs\+\_\+corsimrrpm} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_af6fc8c21c4930344b7d4fd71b5ab062b}{mod\+\_\+coronagraphs\+\_\+corsimcpa} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_afdac82ed1f2f851d2601fc33afe9bbad}{mod\+\_\+coronagraphs\+\_\+mksubpup} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_ac5101e2ead368ac863546684da4310fe}{mod\+\_\+coronagraphs\+\_\+corsimpiaa} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a103ebd989fc710ee5078cbad55f80122}{mod\+\_\+coronagraphs\+\_\+corsimpiaac} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_ae1bae2c1d62a3c1db1536f8d34cfc35f}{mod\+\_\+coronagraphs\+\_\+corsimpiaacaic} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a1899341d9678aeef845c3e6b93a19665}{mod\+\_\+coronagraphs\+\_\+corsimaplc} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a2c2a5519f28390c6681c02a74ac85c1c}{mod\+\_\+coronagraphs\+\_\+corsimpsf} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a64f8790624a00f66c0909931f9b59fd1}{mod\+\_\+coronagraphs\+\_\+corsimtransm} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_abbb1d233077de55b9998a8ecf194f5ba}{mod\+\_\+coronagraphs\+\_\+corouserf} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_ad184c4a7b3e1b50678d6dac5953a2a1c}{mod\+\_\+coronagraphs\+\_\+scan\+P\+I\+A\+A\+C\+M\+C\+\_\+cent\+Obs\+\_\+perf} (struct lxrcmd $\ast$c)
+\item 
+P\+F \hyperlink{coronagraphs-util_8c_a72e1df16f2ec59428dbded2069869359}{mod\+\_\+coronagraphs\+\_\+init} (struct module $\ast$m)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct lxrcmd \hyperlink{coronagraphs-util_8c_a1d7b5c14afe6db43c68aa98a53de63c0}{mod\+\_\+coronagraphs\+\_\+cmds} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{coronagraphs-util_8c_a4a8c6bc3b436950d57c8edff7d08c8b1}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate@{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate}}
+\index{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate@{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a4a8c6bc3b436950d57c8edff7d08c8b1}
+\hypertarget{coronagraphs-util_8c_aa5a2f9ae091e94fad26d42f8d55467d3}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate\+\_\+\+C\+S@{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate\+\_\+\+C\+S}}
+\index{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate\+\_\+\+C\+S@{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate\+\_\+\+C\+S}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate\+\_\+\+C\+S}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolate\+\_\+\+C\+S (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_aa5a2f9ae091e94fad26d42f8d55467d3}
+\hypertarget{coronagraphs-util_8c_a0e2a39ce8179e984872fc28ed424a83e}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolateld@{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolateld}}
+\index{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolateld@{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolateld}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolateld}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+cormk2\+Dprolateld (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a0e2a39ce8179e984872fc28ed424a83e}
+\hypertarget{coronagraphs-util_8c_abbb1d233077de55b9998a8ecf194f5ba}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corouserf@{mod\+\_\+coronagraphs\+\_\+corouserf}}
+\index{mod\+\_\+coronagraphs\+\_\+corouserf@{mod\+\_\+coronagraphs\+\_\+corouserf}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corouserf}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corouserf (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_abbb1d233077de55b9998a8ecf194f5ba}
+\hypertarget{coronagraphs-util_8c_aa1e124dd3e89153a39139d1bc5f48a6c}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsim4qpm@{mod\+\_\+coronagraphs\+\_\+corsim4qpm}}
+\index{mod\+\_\+coronagraphs\+\_\+corsim4qpm@{mod\+\_\+coronagraphs\+\_\+corsim4qpm}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsim4qpm}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsim4qpm (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_aa1e124dd3e89153a39139d1bc5f48a6c}
+\hypertarget{coronagraphs-util_8c_a9fa4dfe8c15d371ec5f9ab96589e350b}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimaic@{mod\+\_\+coronagraphs\+\_\+corsimaic}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimaic@{mod\+\_\+coronagraphs\+\_\+corsimaic}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimaic}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimaic (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a9fa4dfe8c15d371ec5f9ab96589e350b}
+\hypertarget{coronagraphs-util_8c_a1899341d9678aeef845c3e6b93a19665}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimaplc@{mod\+\_\+coronagraphs\+\_\+corsimaplc}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimaplc@{mod\+\_\+coronagraphs\+\_\+corsimaplc}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimaplc}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimaplc (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a1899341d9678aeef845c3e6b93a19665}
+\hypertarget{coronagraphs-util_8c_a3ea43d8fb405d63839784ce312d88f53}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimbl8@{mod\+\_\+coronagraphs\+\_\+corsimbl8}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimbl8@{mod\+\_\+coronagraphs\+\_\+corsimbl8}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimbl8}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimbl8 (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a3ea43d8fb405d63839784ce312d88f53}
+\hypertarget{coronagraphs-util_8c_af6fc8c21c4930344b7d4fd71b5ab062b}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimcpa@{mod\+\_\+coronagraphs\+\_\+corsimcpa}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimcpa@{mod\+\_\+coronagraphs\+\_\+corsimcpa}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimcpa}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimcpa (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_af6fc8c21c4930344b7d4fd71b5ab062b}
+\hypertarget{coronagraphs-util_8c_ac5101e2ead368ac863546684da4310fe}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimpiaa@{mod\+\_\+coronagraphs\+\_\+corsimpiaa}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimpiaa@{mod\+\_\+coronagraphs\+\_\+corsimpiaa}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimpiaa}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimpiaa (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_ac5101e2ead368ac863546684da4310fe}
+\hypertarget{coronagraphs-util_8c_a103ebd989fc710ee5078cbad55f80122}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimpiaac@{mod\+\_\+coronagraphs\+\_\+corsimpiaac}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimpiaac@{mod\+\_\+coronagraphs\+\_\+corsimpiaac}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimpiaac}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimpiaac (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a103ebd989fc710ee5078cbad55f80122}
+\hypertarget{coronagraphs-util_8c_ae1bae2c1d62a3c1db1536f8d34cfc35f}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimpiaacaic@{mod\+\_\+coronagraphs\+\_\+corsimpiaacaic}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimpiaacaic@{mod\+\_\+coronagraphs\+\_\+corsimpiaacaic}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimpiaacaic}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimpiaacaic (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_ae1bae2c1d62a3c1db1536f8d34cfc35f}
+\hypertarget{coronagraphs-util_8c_a2c2a5519f28390c6681c02a74ac85c1c}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimpsf@{mod\+\_\+coronagraphs\+\_\+corsimpsf}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimpsf@{mod\+\_\+coronagraphs\+\_\+corsimpsf}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimpsf}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimpsf (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a2c2a5519f28390c6681c02a74ac85c1c}
+\hypertarget{coronagraphs-util_8c_a02e9ac984e27521eaf1054d546ca9d8e}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimrrpm@{mod\+\_\+coronagraphs\+\_\+corsimrrpm}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimrrpm@{mod\+\_\+coronagraphs\+\_\+corsimrrpm}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimrrpm}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimrrpm (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a02e9ac984e27521eaf1054d546ca9d8e}
+\hypertarget{coronagraphs-util_8c_a64f8790624a00f66c0909931f9b59fd1}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corsimtransm@{mod\+\_\+coronagraphs\+\_\+corsimtransm}}
+\index{mod\+\_\+coronagraphs\+\_\+corsimtransm@{mod\+\_\+coronagraphs\+\_\+corsimtransm}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corsimtransm}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corsimtransm (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a64f8790624a00f66c0909931f9b59fd1}
+\hypertarget{coronagraphs-util_8c_a949c485b2474e41f248a17478008a164}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+corup2\+Dprolate@{mod\+\_\+coronagraphs\+\_\+corup2\+Dprolate}}
+\index{mod\+\_\+coronagraphs\+\_\+corup2\+Dprolate@{mod\+\_\+coronagraphs\+\_\+corup2\+Dprolate}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+corup2\+Dprolate}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+corup2\+Dprolate (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a949c485b2474e41f248a17478008a164}
+\hypertarget{coronagraphs-util_8c_a72e1df16f2ec59428dbded2069869359}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+init@{mod\+\_\+coronagraphs\+\_\+init}}
+\index{mod\+\_\+coronagraphs\+\_\+init@{mod\+\_\+coronagraphs\+\_\+init}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{struct module $\ast$}]{m}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_a72e1df16f2ec59428dbded2069869359}
+\hypertarget{coronagraphs-util_8c_afdac82ed1f2f851d2601fc33afe9bbad}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+mksubpup@{mod\+\_\+coronagraphs\+\_\+mksubpup}}
+\index{mod\+\_\+coronagraphs\+\_\+mksubpup@{mod\+\_\+coronagraphs\+\_\+mksubpup}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+mksubpup}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+mksubpup (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_afdac82ed1f2f851d2601fc33afe9bbad}
+\hypertarget{coronagraphs-util_8c_ad184c4a7b3e1b50678d6dac5953a2a1c}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+scan\+P\+I\+A\+A\+C\+M\+C\+\_\+cent\+Obs\+\_\+perf@{mod\+\_\+coronagraphs\+\_\+scan\+P\+I\+A\+A\+C\+M\+C\+\_\+cent\+Obs\+\_\+perf}}
+\index{mod\+\_\+coronagraphs\+\_\+scan\+P\+I\+A\+A\+C\+M\+C\+\_\+cent\+Obs\+\_\+perf@{mod\+\_\+coronagraphs\+\_\+scan\+P\+I\+A\+A\+C\+M\+C\+\_\+cent\+Obs\+\_\+perf}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+scan\+P\+I\+A\+A\+C\+M\+C\+\_\+cent\+Obs\+\_\+perf}]{\setlength{\rightskip}{0pt plus 5cm}P\+F mod\+\_\+coronagraphs\+\_\+scan\+P\+I\+A\+A\+C\+M\+C\+\_\+cent\+Obs\+\_\+perf (
+\begin{DoxyParamCaption}
+\item[{struct lxrcmd $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{coronagraphs-util_8c_ad184c4a7b3e1b50678d6dac5953a2a1c}
+
+
+\subsection{Variable Documentation}
+\hypertarget{coronagraphs-util_8c_a1d7b5c14afe6db43c68aa98a53de63c0}{\index{coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}!mod\+\_\+coronagraphs\+\_\+cmds@{mod\+\_\+coronagraphs\+\_\+cmds}}
+\index{mod\+\_\+coronagraphs\+\_\+cmds@{mod\+\_\+coronagraphs\+\_\+cmds}!coronagraphs-\/util.\+c@{coronagraphs-\/util.\+c}}
+\subsubsection[{mod\+\_\+coronagraphs\+\_\+cmds}]{\setlength{\rightskip}{0pt plus 5cm}struct lxrcmd mod\+\_\+coronagraphs\+\_\+cmds\mbox{[}$\,$\mbox{]}}}\label{coronagraphs-util_8c_a1d7b5c14afe6db43c68aa98a53de63c0}
