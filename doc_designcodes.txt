@@ -1,0 +1,268 @@
+====== DIRECTORIES =====================================================================================
+
+piaacmcconf_<x>_fpmr<x.xx>_coin<x.xx>_coout<x.xx>_r<xx>_em<x>_sr<xx>_l<xxxx>_i<xxx>
+
+     : 
+fpmr : design focal plane mask radius
+coin : input central obstruction
+coout: output central obstruction
+r    : source radius for PIAA optimization 
+em   : extended source mode
+sr   : spectral resolution [%]
+l    : central wavelength [nm]
+i    : design index
+
+
+
+
+====== CODE INDICES FOR sim1024/runPIAACMC SCRIPTS =====================================================
+
+The indices are used to instruct which computation step(s) shall be performed
+Unless described otherwise, columns in this table are:
+- ###     code index/step
+- [##]   corresponding index in C function PIAACMCsimul_exec
+- ....   Description
+- [...]  approximate execution time
+
+
+
+
+
+
+--------- 0-99  Monochromatic, point source steps ---------------------------------------------------
+
+Code runs from step 0 to requested step, skipping steps that have already been completed
+Note: entering step=4 will complete steps 0, 1, 2 and 3, and STOP at step 4
+
+  0     [  0]   3.43696e-07	PREPARE - Compute on-axis PSF, monochromatic, idealized PIAACMC, first iteration  [   8mn]
+		function PIAAsimul_initpiaacmcconf
+		{
+			create/load Cmodes_1024.fits & Fmodes_1024.fits (used to fit PIAA shapes)
+
+			CREATE GENERALIZED PROLATE
+			Uses DFT iterations
+			-> APLCapo.0.800.0.300.info  (masksizeld 0.0 prolatethroughput peak)
+			-> <confdir>/piaaref/APLCmaskCtransm.txt : complex amplitude mask transmission (0.51005532508) = (1.0-peak)/peak
+			-> <confdir>/piaaref/apo2Drad.fits : 2D apodization (also copied on <confdir>/apo2Drad.fits)
+			Assumes circular aperture with circular central obstruction
+					
+			FIT 2D RADIAL APODIZATION AS SUM OF 10 COSINES		
+			-> <confdir>/APOmodesCos.fits : modes used for fitting (2D maps)		
+			COMPUTE 2D SAG MAPS
+			Uses the cosine fit above to make 1D radial profile of PIAA shapes
+			-> <confdir>/PIAA_Mshape.txt (r0 z0 r1 z1)
+			Make 2D sag maps
+			-> <confdir>/piaam0z.fits, <confdir>/piaam1z.fits
+
+			FIT 2D PIAA SHAPES AS SUM OF COSINES
+			-> <confdir>/piaa0Cz.fits, <confdir>/piaa1Cz.fits (fitted shapes)
+			-> <confdir>/piaa0Cres.fits, <confdir>/piaa1Cres.fits (residuals)
+			FIT 2D RESIDUAL AS SUM OF FOURIER MODES
+
+			NOMINAL PIAA SHAPES, FITTED TO COSINES AND FOURIER MODES
+			-> <confdir>/piaaref/piaa0Cmodes.fits
+			-> <confdir>/piaaref/piaa1Cmodes.fits
+			-> <confdir>/piaaref/piaa0Fmodes.fits
+			-> <confdir>/piaaref/piaa1Fmodes.fits
+			+ copy to <confdir>/
+		
+			CREATE FOCAL PLANE MASK
+			-> <confdir>/fpm_zonea00_00_001_001.fits	
+			-> <confdir>/fpm_zonez00_00_001_001.fits	
+
+			MAKE LYOT STOPS
+			-> <confdir>/LyotStop0.fits, <confdir>/LyotStop1.fits ...
+		}
+		
+		MAKE PIAA SHAPES FROM COEFFICIENTS (function PIAACMCsimul_makePIAAshapes())
+		-> <confdir>/piaa0Cz.fits
+		-> <confdir>/piaa0Fz.fits
+		-> <confdir>/piaa0z.fits (sum of both terms above)
+		-> <confdir>/piaa1Cz.fits
+		-> <confdir>/piaa1Fz.fits
+		-> <confdir>/piaa1z.fits (sum of both terms above)
+
+		COMPUTE PSF
+	       -> psfi0_step000.fits
+
+  1     [  0]   3.43696e-07
+		-> psfi0_step001.fits
+
+  2     [   ]   5.12665e-05	Load pupil geometry                                                     [   0mn]
+		-> pupa0_1024.fits
+
+  3     [  0]   5.12665e-05	actual pupil Compute on-axis PSF                                        [   0nm]
+		-> psfi0_step003.fits
+
+  4     [  5]   3.46488e-06	Compute Lyot stops shapes and locations, 1st pass (80% throughput)      [   1mn]
+		throughput = LStransm2
+		-> conjugations.txt
+
+  5     [  2]   3.34238e-08	optimize focal plane mask transm, 1st pass -> result_fpmt.log           [   2mn]
+		optimal value is written in file <confdir>/piaacmcparams.conf
+		-> result_fpmt.log (ampl contrast iter range stepsize)
+
+  6     [  5]   2.06295e-08	Compute Lyot stops shapes and locations, 2nd pass, 60% throughput       [   1mn]
+		throughput > LStransm = 0.60
+
+  7     [ 40]    3.36149e-09    tune PIAA shapes and focal plane mask transm # modes: 10, 5             [  35mn]
+		-> linoptval_step007.txt
+
+  8     [ 40]   3.3526e-09	tune PIAA shapes and focal plane mask transm # modes: 20, 20            [  23mn]
+		-> linoptval_step008.txt 
+		updates piaa shapes (piaa0Cmodes, piaa0Fmodes, piaa1Cmodes, piaa1Fmodes)
+		updates focal plane mask transm (<confdir>/piaacmcparams.conf)
+
+  9     [  5]   4.3982e-09   	Compute Lyot stops shapes and locations, 2nd pass, 60% throughput       [   1mn]
+		throughput > LStransm
+
+ 10     [  1]   3.62923e-09	tune Lyot stops conjugations                                    	[   8mn]
+		throughput > LStransm1 = 0.70
+		-> result_LMpos.log
+
+ 11     [ 40]   1.2318e-09	tune PIAA shapes and focal plane mask transm # modes: 20, 20            [  71mn]
+		-> linoptval_step011.txt 
+
+ 12     [ 40]   2.9522e-10	tune PIAA shapes and focal plane mask transm, # modes: 40, 150          [ 287mn]
+
+ 13     [  5]   3.14043e-08	Compute Lyot stops shapes and locations, 3rd pass, 80% throughput     	[   1mn]
+ 		throughput > LStransm2 = 0.80
+ 		
+ 14     [  1]   1.41547e-08	Tune Lyot stops conjugations                                            [   9mn]
+ 		
+ 15     [ 40]   5.25497e-09	tune PIAA shapes and focal plane mask transm # modes: 20, 20            [  37mn]
+ 16     [ 40]    tune PIAA shapes and focal plane mask transm, # modes: 40, 150          	[ 169mn]
+ 17     [ 40]   tune PIAA shapes and focal plane mask transm, # modes: 40, 625          	[ 591mn]
+
+
+
+
+--------- 100-199  Polychromatic, extended source, physical focal plane mask (consecutive) ------------------------
+
+100	[ 11]   turn focal plane mask into zones, Compute polychromatic response to zones, store result in FPMresp
+		-> FPMresp<SRE>_<xx>_<yyy>_<ll>.fits
+			S:   SCORINGMASKTYPE
+			R:   computePSF_ResolvedTarget
+			E:   PIAACMC_FPMsectors
+			xx: (long) (10.0*PIAACMC_MASKRADLD+0.1)  NOTE: this is the outer edge of the outer ring
+			yyy: piaacmc[0].NBrings
+			ll:  piaacmc[0].nblambda
+
+101	[ 13]	linear piece-wise optimization - chromaticity
+		<- Reads input mask from <confdir>/conf_MASKRADLD.txt <confdir>/conf_FPMsectors.txt, <confdir>/conf_NBrings.txt, <confdir>/conf_resolved.txt
+		-> linoptval.txt
+			local derivatives used to indentify steepest descent direction, then scan along this direction
+			lines starting by "##" show values along line of steepest descent
+			Best value then chosen, and new direction computed
+		-> <confdir>/fpm_zonez<RE>_<rr>_<yyy>_<zzz>.fits,  <confdir>/fpm_zonea<RE>_<rr>_<yyy>_<zzz>.fits
+			R:   computePSF_ResolvedTarget
+			E:   PIAACMC_FPMsectors
+			rr:  (long) (10.0*PIAACMC_MASKRADLD+0.1)	(=00 for idealized PIAACMC)	
+			yyy: piaacmc[0].NBrings
+			zzz: piaacmc[0].focmNBzone			
+		-> mode13_<RE>_<yyy>_<zzz>_<ll>.txt
+			R:   computePSF_ResolvedTarget
+			E:   PIAACMC_FPMsectors			
+			yyy: piaacmc[0].NBrings
+			zzz: piaacmc[0].focmNBzone
+		columns:
+			1: iteration
+			2: amplitude of random offset introduced at starting point (MODampl)
+			3: starting point contrast (PIAACMCSIMUL_VALREF)
+			4: current contrast value (PIAACMCSIMUL_VAL)
+			5: best contrast value (bestval)
+			6: zero starting poing flag (zeroST): 1 if starting from zero
+		-> mode13_<RE>_<yyy>_<zzz>_<ll>.bestval.txt
+			best contrast value
+	will run until file <confdir>/stoploop13.txt detected	
+
+
+
+
+
+----------- 200-299  Optimization (polychromatic) single steps ---------------------------------------
+
+210	[40]	full co-optimization of PIAA shapes and focal plane mask zones
+		# modes: 10, 5
+
+
+
+
+
+--------- 500 - 599 : housekeeping -------------------------------------------------------------------
+
+500	[N/A]	store as reference for use at other lambda / spectral band
+
+
+
+
+
+
+------------ 700-799 EVALUATIONS ---------------------------------------------------------------------
+
+A single step will be executed.
+
+MONOCHROMATIC, PERFECT SINGLE ZONE MASK
+
+700     [  0]   Evaluate point source mask constrat, on point source, idealized mask                   [ 12sec]
+	        -> psfi0_step700.fits
+		-> psfi0_%d%d_%02ld_%03ld_%03ld.fits
+piaacmcconfdir, computePSF_ResolvedTarget, PIAACMC_FPMsectors, (long) (10.0*PIAACMC_MASKRADLD+0.1), piaacmc[0].NBrings, piaacmc[0].focmNBzone                                               
+
+701     [100]   Evaluate sensitivity to pointing errors, idealized mask                                [ 25sec]
+	        -> psfi0_step701.fits
+		-> <confdir>/ContrastCurve%d_%03ld_%03ld_%02d_ps%03ld.txt"
+PIAACMC_FPMsectors, piaacmc[0].NBrings, piaacmc[0].focmNBzone, piaacmc[0].nblambda, (long) (1000.0*ldoffset));
+	
+
+702     [   ]   Compute on-axis monochromatic PSF - extended source, using extended source focal plane mask
+
+
+
+720	[  0]   Compute on-axis polychromatic PSF, 10 spectral values
+		-> psfi0.fits, psfp0.fits, psfa0.fits		
+		-> WFamp and WFpha FITS files
+		-> fpm_pha.fits, fpm_amp.fits : 1 - focal plane mask complex amplitude
+		-> lambdalist.txt
+		-> psfi0_%d%d_%02ld_%03ld_%03ld.fits
+piaacmcconfdir, computePSF_ResolvedTarget, PIAACMC_FPMsectors, (long) (10.0*PIAACMC_MASKRADLD+0.1), piaacmc[0].NBrings, piaacmc[0].focmNBzone
+
+721	[100]   Evaluate sensitivity to pointing errors, polychromatic PSF
+		-> psfi0.fits, psfp0.fits, psfa0.fits		
+		-> WFamp and WFpha FITS files
+		-> fpm_pha.fits, fpm_amp.fits : 1 - focal plane mask complex amplitude
+		-> lambdalist.txt
+		-> <confdir>/ContrastVall%d%d_%02ld_%03ld_%02d_tt%03ld.txt
+computePSF_ResolvedTarget, PIAACMC_FPMsectors, (long) (10.0*PIAACMC_MASKRADLD+0.1), piaacmc[0].NBrings, piaacmc[0].nblambda, (long) (1000.0*ldoffset)
+			col 1: valref = average flux over scoring region  
+			col 2: aveC = averge contrast from 2 to 6 l/D
+			col 3: mask rad l/D
+			col 4: input Central Obs
+			col 5: output Central Obs
+			col 6: lambda [nm]
+			col 7: bandwidth [%]
+			col 8: sectors ?
+			col 9: NB rings
+			col 10: NB zones
+			col 11: NB lambda
+			col 12: source size offset
+		-> <confdir>/ContrastCurve%d_%03ld_%03ld_%02d.txt"
+PIAACMC_FPMsectors, piaacmc[0].NBrings, piaacmc[0].focmNBzone, piaacmc[0].nblambda);
+
+750	[101]	Transmission curve
+
+
+
+------------ MISC OPERATIONS -------------------------------------------------------------------------
+
+
+800     [200]   Make focal plane mask OPD map -> FITS file
+		-> <confdir>/fpmOPD<RE>_<yyy>_<zzz>.fits"
+			R:   computePSF_ResolvedTarget
+			E:   PIAACMC_FPMsectors
+			yyy: piaacmc[0].NBrings
+			zzz: piaacmc[0].focmNBzone
+
+
+
+======================================================================================================
