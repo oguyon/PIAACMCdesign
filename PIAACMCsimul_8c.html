@@ -162,10 +162,8 @@ Functions</h2></td></tr>
 <tr class="separator:a83113a71163bd3c5e43291662975513a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34a3bccb03883f7501fbe95d7694ee32"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a34a3bccb03883f7501fbe95d7694ee32">PIAACMCsimul_rings2sectors</a> (char *IDin_name, char *sectfname, char *IDout_name)</td></tr>
 <tr class="separator:a34a3bccb03883f7501fbe95d7694ee32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c3e6da717ecc5767faaf243875a5978"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a9c3e6da717ecc5767faaf243875a5978">PIAACMCsimul_mkFocalPlaneMaskOPD</a> (char *IDzonemap_name, char *IDname)</td></tr>
-<tr class="separator:a9c3e6da717ecc5767faaf243875a5978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac53e3930669b38f02e03f0fcdaafcde4"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#ac53e3930669b38f02e03f0fcdaafcde4">PIAACMCsimul_mkFocalPlaneMask</a> (char *IDzonemap_name, char *ID_name, int mode)</td></tr>
-<tr class="separator:ac53e3930669b38f02e03f0fcdaafcde4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66561b8270f27a900b210f8180e2d1ea"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a66561b8270f27a900b210f8180e2d1ea">PIAACMCsimul_mkFocalPlaneMask</a> (char *IDzonemap_name, char *ID_name, int mode, int saveMask)</td></tr>
+<tr class="separator:a66561b8270f27a900b210f8180e2d1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1019cf3ddedd12485a4c9da5fa5f0a8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a1019cf3ddedd12485a4c9da5fa5f0a8e">PIAACMCsimul_init</a> (<a class="el" href="structOPTPIAACMCDESIGN.html">OPTPIAACMCDESIGN</a> *design, long index, double TTxld, double TTyld)</td></tr>
 <tr class="separator:a1019cf3ddedd12485a4c9da5fa5f0a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6828d3577dee2b0882bd7df99602f30d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a6828d3577dee2b0882bd7df99602f30d">PIAACMCsimul_load2DRadialApodization</a> (char *IDapo_name, float beamradpix, char *IDapofit_name)</td></tr>
@@ -179,18 +177,23 @@ Functions</h2></td></tr>
 <tr class="memitem:a85f1459cf776292b7e2fff9932a79252"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a85f1459cf776292b7e2fff9932a79252">PIAAsimul_initpiaacmcconf</a> (long piaacmctype, double fpmradld, double centobs0, double centobs1, int WFCmode, int load)</td></tr>
 <tr class="memdesc:a85f1459cf776292b7e2fff9932a79252"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates/initializes piaacmcconf structure and directory.  <a href="#a85f1459cf776292b7e2fff9932a79252">More...</a><br /></td></tr>
 <tr class="separator:a85f1459cf776292b7e2fff9932a79252"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a6aa31c31adb655f2afa2416e155684"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a3a6aa31c31adb655f2afa2416e155684">PIAACMCsimul_makePIAAshapes</a> ()</td></tr>
-<tr class="separator:a3a6aa31c31adb655f2afa2416e155684"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c872da1e39bdc8e5ec4dfadc6a42690"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a5c872da1e39bdc8e5ec4dfadc6a42690">PIAACMCsimul_computePSF</a> (float xld, float yld, long startelem, long endelem, int savepsf, int sourcesize, int extmode)</td></tr>
-<tr class="separator:a5c872da1e39bdc8e5ec4dfadc6a42690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ae7439a20fe5267506bc7d1e0533f08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a0ae7439a20fe5267506bc7d1e0533f08">PIAACMCsimul_makePIAAshapes</a> (<a class="el" href="structOPTPIAACMCDESIGN.html">OPTPIAACMCDESIGN</a> *design, long index)</td></tr>
+<tr class="separator:a0ae7439a20fe5267506bc7d1e0533f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0650545f10bc1e359093510f12a9f9f6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a0650545f10bc1e359093510f12a9f9f6">PIAACMCsimul_computePSF</a> (float xld, float yld, long startelem, long endelem, int savepsf, int sourcesize, int extmode, int outsave)</td></tr>
+<tr class="separator:a0650545f10bc1e359093510f12a9f9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac928f8658448934caa7e805af8606a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#aac928f8658448934caa7e805af8606a8">PIAAsimul_savepiaacmcconf</a> (char *dname)</td></tr>
 <tr class="separator:aac928f8658448934caa7e805af8606a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adedec73128f41e8b3f83796bf913c8da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#adedec73128f41e8b3f83796bf913c8da">PIAAsimul_loadpiaacmcconf</a> (char *dname)</td></tr>
 <tr class="separator:adedec73128f41e8b3f83796bf913c8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a0f2012db71d25f80b3780e42e56f95"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a7a0f2012db71d25f80b3780e42e56f95">PIAACMCsimul_mkLyotMask</a> (char *IDincoh_name, char *IDmc_name, char *IDzone_name, double throughput, char *IDout_name)</td></tr>
 <tr class="separator:a7a0f2012db71d25f80b3780e42e56f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16cab6d4f9b3c1b9ac68ec4954f89979"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a16cab6d4f9b3c1b9ac68ec4954f89979">PIAACMCsimul_optimizeLyotStop</a> (char *IDamp_name, char *IDpha_name, char *IDincoh_name, float zmin, float zmax, double throughput, long NBz, long NBmasks)</td></tr>
-<tr class="separator:a16cab6d4f9b3c1b9ac68ec4954f89979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a0aefad27ea12ebcab5e6b2e2386c5e"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a2a0aefad27ea12ebcab5e6b2e2386c5e">PIAACMCsimul_CA2propCubeInt</a> (char *IDamp_name, char *IDpha_name, float zmin, float zmax, long NBz, double sigma, char *IDout_name)</td></tr>
+<tr class="separator:a2a0aefad27ea12ebcab5e6b2e2386c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca5dc251abb935bbb087b1d161af5675"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#aca5dc251abb935bbb087b1d161af5675">PIAACMCsimul_optimizeLyotStop_OAmin</a> (char *IDamp_name, char *IDpha_name, char *IDincohc_name, float zmin, float zmax, double throughput, long NBz, long NBmasks)</td></tr>
+<tr class="memdesc:aca5dc251abb935bbb087b1d161af5675"><td class="mdescLeft">&#160;</td><td class="mdescRight">make Lyot stops using off-axis light minimums  <a href="#aca5dc251abb935bbb087b1d161af5675">More...</a><br /></td></tr>
+<tr class="separator:aca5dc251abb935bbb087b1d161af5675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3249f67a898789f44ff642556eeabd0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#ac3249f67a898789f44ff642556eeabd0">PIAACMCsimul_optimizeLyotStop</a> (char *IDamp_name, char *IDpha_name, char *IDincohc_name, float zmin, float zmax, double throughput, long NBz, long NBmasks)</td></tr>
+<tr class="separator:ac3249f67a898789f44ff642556eeabd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa63078ba620af23d7dbf66f25be81615"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#aa63078ba620af23d7dbf66f25be81615">PIAACMCsimul_achromFPMsol_eval</a> (double *<a class="el" href="PIAACMCsimul_8c.html#afb399b89a6a7e4e524c41f259fcd4620">fpmresp_array</a>, double *<a class="el" href="PIAACMCsimul_8c.html#a30b070e6e2b952662cec1747ec74189e">zonez_array</a>, double *<a class="el" href="PIAACMCsimul_8c.html#ae2c9d516f5c47e45b510058bfba56c8a">dphadz_array</a>, double *<a class="el" href="PIAACMCsimul_8c.html#a25bcb59481afd08467dfce3d613ca37e">outtmp_array</a>, long <a class="el" href="PIAACMCsimul_8c.html#a2598a6b03b0791c60dc22c1a9c23b94d">vsize</a>, long nbz, long nbl)</td></tr>
 <tr class="separator:aa63078ba620af23d7dbf66f25be81615"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9796ccd4fc77a73047328d0258358926"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a9796ccd4fc77a73047328d0258358926">PIAACMCsimul_achromFPMsol_eval_zonezderivative</a> (long zone, double *<a class="el" href="PIAACMCsimul_8c.html#afb399b89a6a7e4e524c41f259fcd4620">fpmresp_array</a>, double *<a class="el" href="PIAACMCsimul_8c.html#a30b070e6e2b952662cec1747ec74189e">zonez_array</a>, double *<a class="el" href="PIAACMCsimul_8c.html#ae2c9d516f5c47e45b510058bfba56c8a">dphadz_array</a>, double *<a class="el" href="PIAACMCsimul_8c.html#a25bcb59481afd08467dfce3d613ca37e">outtmp_array</a>, long <a class="el" href="PIAACMCsimul_8c.html#a2598a6b03b0791c60dc22c1a9c23b94d">vsize</a>, long nbz, long nbl)</td></tr>
@@ -213,9 +216,9 @@ Variables</h2></td></tr>
 <tr class="separator:acaeed1d7434e0febb834ca8df68eaf78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9842752e03b4de9b4593f1a3b34364ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structDATA.html">DATA</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a9842752e03b4de9b4593f1a3b34364ab">data</a></td></tr>
 <tr class="separator:a9842752e03b4de9b4593f1a3b34364ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0bbabccf4b3ad45f9b5b1681cc7165e"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#ac0bbabccf4b3ad45f9b5b1681cc7165e">piaacmcconfdir</a> [200]</td></tr>
-<tr class="memdesc:ac0bbabccf4b3ad45f9b5b1681cc7165e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current configuration directory.  <a href="#ac0bbabccf4b3ad45f9b5b1681cc7165e">More...</a><br /></td></tr>
-<tr class="separator:ac0bbabccf4b3ad45f9b5b1681cc7165e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af427eb12d4f99b7fc070f9eb7f1a5e8b"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#af427eb12d4f99b7fc070f9eb7f1a5e8b">piaacmcconfdir</a> [300]</td></tr>
+<tr class="memdesc:af427eb12d4f99b7fc070f9eb7f1a5e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current configuration directory.  <a href="#af427eb12d4f99b7fc070f9eb7f1a5e8b">More...</a><br /></td></tr>
+<tr class="separator:af427eb12d4f99b7fc070f9eb7f1a5e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd320a44eac81011bd37a9d649950587"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structOPTSYST.html">OPTSYST</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#afd320a44eac81011bd37a9d649950587">optsyst</a></td></tr>
 <tr class="separator:afd320a44eac81011bd37a9d649950587"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab07fce0d221214a8ba8f71bb7ad5cfdd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#ab07fce0d221214a8ba8f71bb7ad5cfdd">optsystinit</a> = 0</td></tr>
@@ -368,6 +371,8 @@ Variables</h2></td></tr>
 <tr class="separator:ac51c32f6d8aae8e3b125a228af3e56d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a223e67ea5a3cf457e3dd28818c4b099e"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a223e67ea5a3cf457e3dd28818c4b099e">PIAACMC_RINGOPTNB</a></td></tr>
 <tr class="separator:a223e67ea5a3cf457e3dd28818c4b099e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a882b63d9622d510d2a8010a728901a44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PIAACMCsimul_8c.html#a882b63d9622d510d2a8010a728901a44">PIAACMC_CIRC</a> = 0</td></tr>
+<tr class="separator:a882b63d9622d510d2a8010a728901a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Olivier Guyon </dd></dl>
@@ -668,7 +673,64 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5c872da1e39bdc8e5ec4dfadc6a42690"></a>
+<a class="anchor" id="a2a0aefad27ea12ebcab5e6b2e2386c5e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long PIAACMCsimul_CA2propCubeInt </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>IDamp_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>IDpha_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>zmin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>zmax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>NBz</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>sigma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>IDout_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>propagate complex amplitude image into intensity map cube </p>
+
+</div>
+</div>
+<a class="anchor" id="a0650545f10bc1e359093510f12a9f9f6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -712,7 +774,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>extmode</em>&#160;</td>
+          <td class="paramname"><em>extmode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>outsave</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -760,6 +828,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<p>identify post focal plane pupil plane</p>
 <p>compute contrast curve</p>
 <p>compute contrast curve measure average contrast value, 2-6 lambda/D </p>
 
@@ -871,22 +940,35 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3a6aa31c31adb655f2afa2416e155684"></a>
+<a class="anchor" id="a0ae7439a20fe5267506bc7d1e0533f08"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int PIAACMCsimul_makePIAAshapes </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structOPTPIAACMCDESIGN.html">OPTPIAACMCDESIGN</a> *&#160;</td>
+          <td class="paramname"><em>design</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>mirror sag shapes: piaam0z, piaam1z</p>
+<p>piaa0Cmodescoeff -&gt; piaa0Cz piaa0Fmodescoeff -&gt; piaa0Fz piaa0Cz + piaa0Fz -&gt; piaam0z </p>
 
 </div>
 </div>
-<a class="anchor" id="ac53e3930669b38f02e03f0fcdaafcde4"></a>
+<a class="anchor" id="a66561b8270f27a900b210f8180e2d1ea"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -906,7 +988,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>mode</em>&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>saveMask</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -920,35 +1008,10 @@ Variables</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">IDzonemap_name</td><td>zones </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ID_name</td><td></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>if mode = -1, make whole 1-fpm, if mode = zone, make only 1 zone with CA = (1.0, 0.0) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">saveMask</td><td>1 if mask saved to file system </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a class="anchor" id="a9c3e6da717ecc5767faaf243875a5978"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">long PIAACMCsimul_mkFocalPlaneMaskOPD </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>IDzonemap_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>IDname</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -1015,7 +1078,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Make Lyot stop geometry param[in] IDincoh_name Incoherent Lyot pupil intensity response to off-axis sources parampin] IDmc_name Intensity Lyot pupil image for on-axis source </p>
+<p>Make Lyot stop geometry param[in] IDincoh_name Incoherent Lyot pupil intensity response to off-axis sources parampin] IDmc_name Intensity Lyot pupil image for on-axis source</p>
+<p>explores two thresholding methods applied together : (1) keeps pixels for which offaxisLight / onaxisLight &gt; rsl (2) keeps pixels for which onaxisLight &lt; v0 selects the mask that achieves the strongest on-axis rejection while satifying the throughput constraint </p>
 
 </div>
 </div>
@@ -1051,7 +1115,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a16cab6d4f9b3c1b9ac68ec4954f89979"></a>
+<a class="anchor" id="ac3249f67a898789f44ff642556eeabd0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1071,7 +1135,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>IDincoh_name</em>, </td>
+          <td class="paramname"><em>IDincohc_name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1117,6 +1181,70 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="aca5dc251abb935bbb087b1d161af5675"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long PIAACMCsimul_optimizeLyotStop_OAmin </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>IDamp_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>IDpha_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>IDincohc_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>zmin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>zmax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>throughput</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>NBz</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>NBmasks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>make Lyot stops using off-axis light minimums </p>
 
 </div>
 </div>
@@ -2036,6 +2164,18 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a882b63d9622d510d2a8010a728901a44"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PIAACMC_CIRC = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ab2065dba80ddeff5ff64e76c4279d5fa"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2156,12 +2296,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac0bbabccf4b3ad45f9b5b1681cc7165e"></a>
+<a class="anchor" id="af427eb12d4f99b7fc070f9eb7f1a5e8b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char piaacmcconfdir[200]</td>
+          <td class="memname">char piaacmcconfdir[300]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2320,7 +2460,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a43bbe342066ce7b2de1328729e4bb5e.html">PIAACMCsimul</a></li><li class="navelem"><a class="el" href="PIAACMCsimul_8c.html">PIAACMCsimul.c</a></li>
-    <li class="footer">Generated on Tue May 5 2015 16:07:24 for PIAACMCdesign by
+    <li class="footer">Generated on Wed Jul 8 2015 16:50:17 for PIAACMCdesign by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

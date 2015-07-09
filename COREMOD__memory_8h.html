@@ -248,8 +248,12 @@ Functions</h2></td></tr>
 <tr class="separator:a3ffb95f61b127915041b6e8663efd00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52354e4cb18c81e026c1cb5756becebb"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="COREMOD__memory_8h.html#a52354e4cb18c81e026c1cb5756becebb">COREMOD_MEMORY_image_set_semwait</a> (char *IDname)</td></tr>
 <tr class="separator:a52354e4cb18c81e026c1cb5756becebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16cbc1d4a7d1c19eecc71ebf29f35342"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="COREMOD__memory_8h.html#a16cbc1d4a7d1c19eecc71ebf29f35342">COREMOD_MEMORY_image_set_semwait_OR_2</a> (char *IDname1, char *IDname2)</td></tr>
-<tr class="separator:a16cbc1d4a7d1c19eecc71ebf29f35342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b4b8135f1a24212048a83d6153b2d39"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="COREMOD__memory_8h.html#a1b4b8135f1a24212048a83d6153b2d39">COREMOD_MEMORY_image_set_semwait_OR_IDarray</a> (long *IDarray, long NB_ID)</td></tr>
+<tr class="memdesc:a1b4b8135f1a24212048a83d6153b2d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for multiple semaphores [OR].  <a href="#a1b4b8135f1a24212048a83d6153b2d39">More...</a><br /></td></tr>
+<tr class="separator:a1b4b8135f1a24212048a83d6153b2d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fdbf9d15c38ab7e17cba7491027299e"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="COREMOD__memory_8h.html#a6fdbf9d15c38ab7e17cba7491027299e">COREMOD_MEMORY_image_set_semflush_IDarray</a> (long *IDarray, long NB_ID)</td></tr>
+<tr class="memdesc:a6fdbf9d15c38ab7e17cba7491027299e"><td class="mdescLeft">&#160;</td><td class="mdescRight">flush multiple semaphores  <a href="#a6fdbf9d15c38ab7e17cba7491027299e">More...</a><br /></td></tr>
+<tr class="separator:a6fdbf9d15c38ab7e17cba7491027299e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb3be222ee04cb10c6e8d0e1c95767a6"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="COREMOD__memory_8h.html#adb3be222ee04cb10c6e8d0e1c95767a6">COREMOD_MEMORY_image_set_semflush</a> (char *IDname)</td></tr>
 <tr class="memdesc:adb3be222ee04cb10c6e8d0e1c95767a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">set semaphore value to 0  <a href="#adb3be222ee04cb10c6e8d0e1c95767a6">More...</a><br /></td></tr>
 <tr class="separator:adb3be222ee04cb10c6e8d0e1c95767a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -770,6 +774,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6fdbf9d15c38ab7e17cba7491027299e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long COREMOD_MEMORY_image_set_semflush_IDarray </td>
+          <td>(</td>
+          <td class="paramtype">long *&#160;</td>
+          <td class="paramname"><em>IDarray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>NB_ID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>flush multiple semaphores </p>
+
+</div>
+</div>
 <a class="anchor" id="a3ffb95f61b127915041b6e8663efd00a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -802,21 +834,21 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a16cbc1d4a7d1c19eecc71ebf29f35342"></a>
+<a class="anchor" id="a1b4b8135f1a24212048a83d6153b2d39"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">long COREMOD_MEMORY_image_set_semwait_OR_2 </td>
+          <td class="memname">long COREMOD_MEMORY_image_set_semwait_OR_IDarray </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>IDname1</em>, </td>
+          <td class="paramtype">long *&#160;</td>
+          <td class="paramname"><em>IDarray</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>IDname2</em>&#160;</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>NB_ID</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -825,6 +857,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Wait for multiple semaphores [OR]. </p>
 
 </div>
 </div>
@@ -2082,7 +2116,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_3263a6acd0ffe1d4fb8f1f8557ae17b7.html">COREMOD_memory</a></li><li class="navelem"><a class="el" href="COREMOD__memory_8h.html">COREMOD_memory.h</a></li>
-    <li class="footer">Generated on Tue May 5 2015 16:07:24 for PIAACMCdesign by
+    <li class="footer">Generated on Wed Jul 8 2015 16:50:17 for PIAACMCdesign by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>
