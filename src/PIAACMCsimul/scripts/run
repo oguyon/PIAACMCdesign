@@ -1,6 +1,49 @@
 #!/bin/bash
 
-# Designing PIAACMC for Subaru pupil
+# Designing PIAACMC 
+
+
+
+
+
+printhelp ()
+{
+echo "------------------------------------------------------------------------"
+echo "                 PIAACMC DESIGN"
+echo " Edit script to set PIAACMC design parameters"
+echo " "
+echo " Usage :"
+echo " $0 <command>"
+echo "  command : "
+echo "     optsingle : optimize"
+echo "     eval0 : level 0 evaluation"
+echo "     eval1 : level 1 evaluation"
+echo "     eval2 : level 2 evaluation"
+echo "------------------------------------------------------------------------"
+}
+
+NBARGS=1
+
+if [ "$1" = "help" ] || [ "$#" -ne $NBARGS ]; then
+        printhelp
+if [ "$#" -ne $NBARGS ]; then
+    echo "Illegal number of parameters ($NBARGS params required, $# entered)"
+fi
+        exit
+fi
+
+
+runoptcmd=$1
+
+
+
+
+
+
+
+
+
+
 
 coin=0.300            # central obstruction at input beam [beam radius]
 coout=0.290           # central obstrcution at output beam [beam radius]
@@ -80,5 +123,6 @@ echo "18" > conf_MdesignStepMax.txt
 #17  1.56353e-08
 #18  
 
-./runopt optsingle $pscale $coin $coout $fpmradld $lambda $PIAAmaterial $LStransm $NBls $mlambda $mlambdaB $NBrings $maskradld $ssize $extmode $fpmmaterial 000
+./runopt $runoptcmd $pscale $coin $coout $fpmradld $lambda $PIAAmaterial $LStransm $NBls $mlambda $mlambdaB $NBrings $maskradld $ssize $extmode $fpmmaterial $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz 000
+
 
