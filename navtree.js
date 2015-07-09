@@ -1,7 +1,7 @@
 var NAVTREE =
 [
   [ "PIAACMCdesign", "index.html", [
-    [ "Project README file", "md_README.html", null ],
+    [ "PIAACMC type coronagraph design tool", "md_README.html", null ],
     [ "Command Line Interface (CLI)", "md_src_CLIcore.html", null ],
     [ "PIAACMC_designcodes", "md_src_PIAACMCsimul_PIAACMC_designcodes.html", null ],
     [ "PIAACMC design", "md_src_PIAACMCsimul_README.html", "md_src_PIAACMCsimul_README" ],
