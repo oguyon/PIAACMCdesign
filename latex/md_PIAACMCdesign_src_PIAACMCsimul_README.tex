@@ -1,0 +1,778 @@
+\hyperlink{md_src_PIAACMCsimul_README_overview}{
+\begin{DoxyEnumerate}
+\item Overview
+\end{DoxyEnumerate}} \hyperlink{md_src_PIAACMCsimul_README_code}{
+\begin{DoxyEnumerate}
+\item C code description
+\end{DoxyEnumerate}} bashscript \hyperlink{md_src_PIAACMCsimul_README_desstep}{
+\begin{DoxyEnumerate}
+\item Design Steps for P\+I\+A\+A\+C\+M\+C
+\end{DoxyEnumerate}}
+\begin{DoxyItemize}
+\item \hyperlink{md_src_PIAACMCsimul_README_initrules}{3.\+a. Initialization rules (function P\+I\+A\+Asimul\+\_\+initpiaacmc() )}
+\item \hyperlink{md_src_PIAACMCsimul_README_mode000}{3.\+000. M\+O\+D\+E 000\+: Create an idealized centrally obscured apodized P\+I\+A\+A\+C\+M\+C monochromatic design}
+\item step001
+\item \hyperlink{md_src_PIAACMCsimul_README_step002}{3.\+002. S\+T\+E\+P 002\+: Specify input pupil geometry}
+\end{DoxyItemize}\hypertarget{md_src_PIAACMCsimul_README_overview}{}\section{1. Overview}\label{md_src_PIAACMCsimul_README_overview}
+Diffraction-\/based P\+I\+A\+A\+C\+M\+C simulation / optimization
+\begin{DoxyItemize}
+\item Uses Fresnel propagation engine ( Opt\+Syst\+Prop.\+c Opt\+Syst\+Prop.\+h ) between optical elements
+\item Computes linear perturbations around current design for optimization
+\item Automatically computes multiple Lyot stop to follow variable conjugation in different parts of the beam
+\item Polychromatic propagations
+\item Fits aspheric P\+I\+A\+A shapes on basis of radial cosines and 2-\/\+D Fourier modes
+\end{DoxyItemize}
+
+Code is composed of a several layers (from high to low) \+:
+\begin{DoxyItemize}
+\item high level design script\+: script \char`\"{}runopt\char`\"{}
+\item script \char`\"{}sim1024\char`\"{}
+\item script \char`\"{}run\+P\+I\+A\+A\+C\+M\+C\char`\"{}
+\item C code
+\end{DoxyItemize}\hypertarget{md_src_PIAACMCsimul_README_scripts}{}\section{2. High level scripts}\label{md_src_PIAACMCsimul_README_scripts}
+Scripts are located in src/\+P\+I\+A\+A\+C\+M\+Csimul/scripts
+
+T\+O\+P L\+E\+V\+E\+L S\+C\+R\+I\+P\+T\+: ~\newline
+./runopt~\newline
+This script can optimize a P\+I\+A\+A\+C\+M\+C design or run an existing design~\newline
+Type command with no argument to get help
+
+runopt calls lower level scripts sim1024
+
+./sim1024~\newline
+This script sequences operations~\newline
+Type ./sim1024 with no argument to get help message.
+
+sim1024 calls run\+P\+I\+A\+A\+C\+M\+C
+
+./run\+P\+I\+A\+A\+C\+M\+C~\newline
+This is the lower-\/level script calling the C-\/written executable~\newline
+Type ./run\+P\+I\+A\+A\+C\+M\+C with no argument to get help message.\hypertarget{md_src_PIAACMCsimul_README_code}{}\section{3. C code description}\label{md_src_PIAACMCsimul_README_code}
+\hyperlink{PIAACMC_designcodes}{P\+I\+A\+A\+C\+M\+C design codes}
+
+The main function in the source code is \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a1083c078214e43d74447950f8a236c5d}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+exec()}, which takes two arguments\+: the configuration index (usually a 3 digit integer) and the mode (integer) which describes the operation to be performed to the P\+I\+A\+A\+C\+M\+C design.
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Mode }&{\bf Description  }\\\cline{1-2}
+0 $\ast$ &Compute on-\/axis propagation for specified configuration. If configuration does not exist, create idealized monochromatic P\+I\+A\+A\+C\+M\+C (intended to create a new index) and compute on-\/axis propagation \\\cline{1-2}
+1 $\ast$ &Optimize Lyot stop(s) locations (scan) \\\cline{1-2}
+2 $\ast$ &Optimize focal plane mask transmission for idealized monochromatic P\+I\+A\+A\+C\+M\+C (scan) \\\cline{1-2}
+3 &Run without focal plane mask (for testing and calibration) \\\cline{1-2}
+4 &Linear optimization around current design, free parameters = P\+I\+A\+A optics cosines shapes (track progress by looking at val.\+opt file) \\\cline{1-2}
+5 $\ast$ &Optimize Lyot stops shapes and positions \\\cline{1-2}
+10 $\ast$ &Setup polychromatic optimization \\\cline{1-2}
+11 $\ast$ &Compute polychromatic response to zones, store result in F\+P\+Mresp \\\cline{1-2}
+12 &Search for best mask solution using F\+P\+Mresp, random search \\\cline{1-2}
+13 $\ast$ &Optimize P\+I\+A\+A optics shapes and focal plane mask transmission (idealized P\+I\+A\+A\+C\+M\+C) \\\cline{1-2}
+40 $\ast$ &Optimize P\+I\+A\+A optics shapes and focal plane mask transmission (idealized P\+I\+A\+A\+C\+M\+C) \\\cline{1-2}
+41 &Optimize P\+I\+A\+A optics shapes and focal plane mask zones (polychromatic) \\\cline{1-2}
+100 $\ast$ &Evaluate current design\+: polychromatic contrast, pointing sensitivity \\\cline{1-2}
+101 $\ast$ &Transmission as a function of angular separation \\\cline{1-2}
+200 $\ast$ &Make focal plane mask O\+P\+D map \\\cline{1-2}
+\end{TabularC}
+
+
+The following variables can be set
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Variable }&{\bf Description  }\\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+size &Array size (1024, 2048, etc...) \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+pixscale &Pixel scale \mbox{[}m\mbox{]} \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+dftgrid &Sampling interval in D\+F\+Ts \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+centobs0 &Input central obstruction \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+centobs1 &Output central obstruction \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+nblambda &Number of wavelength points \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+resolved &1 if resolved source (3 points at r = 0.\+01 l/\+D, 120 deg apart) \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+fpmtype &1 if physical mask, 0 if idealized mask \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+\+F\+P\+Msectors &Number of sectors in focal plane mask \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+\+N\+Brings &Number of rings in focal plane mask \\\cline{1-2}
+P\+I\+A\+A\+C\+M\+C\+\_\+fpmradld &Focal plane mask outer radius \\\cline{1-2}
+\end{TabularC}
+\hypertarget{md_src_PIAACMCsimul_README_desstep}{}\section{4. Design Steps for P\+I\+A\+A\+C\+M\+C}\label{md_src_PIAACMCsimul_README_desstep}
+Directories \char`\"{}./piaacmcconf$<$nnn$>$/\char`\"{} hold the default/current configuration settings and files for the P\+I\+A\+A\+C\+M\+C. The directory will be automatically created if it does not exist. By copying from/to this directory, you can save/load P\+I\+A\+A\+C\+M\+C designs.~\newline
+ By default, if no configuration file exists, a monochromatic P\+I\+A\+A\+C\+M\+C for a centrally obscured pupil will be created. This is meant as a starting point for the P\+I\+A\+A\+C\+M\+C, which will then be optimized further~\newline
+ The main command to run the P\+I\+A\+A\+C\+M\+C simulation is \begin{DoxyVerb}<executable>
+piaacmcsimrun <nnn> <mode>
+exit
+\end{DoxyVerb}
+
+
+where $<$nnn$>$ \mbox{[}long\mbox{]} is the configuration index and $<$mode$>$ \mbox{[}long\mbox{]} defines the operation to be performed.~\newline
+See function P\+I\+A\+A\+C\+M\+Csimul\+\_\+run(long confindex, long mode) for list of modes~\newline
+ The P\+I\+A\+A\+C\+M\+C design process is as follows\+:
+\begin{DoxyEnumerate}
+\item design an idealized monochromatic P\+I\+A\+A\+C\+M\+C for a centrally obscured aperture (steps 1-\/4)
+\item modify the design for the pupil aperture (steps 5-\/)
+\end{DoxyEnumerate}\hypertarget{md_src_PIAACMCsimul_README_initrules}{}\subsection{3.\+a. Initialization rules (function  P\+I\+A\+Asimul\+\_\+initpiaacmc() )}\label{md_src_PIAACMCsimul_README_initrules}
+
+\begin{DoxyEnumerate}
+\item if configuration directory exists, use it and load configuration file ( function P\+I\+A\+Asimul\+\_\+loadpiaacmcconf ), otherwise, create it
+\item load/create Cmodes
+\item load/create Fmodes
+\item load mode coefficients for piaa shapes if they exist. If not\+:
+\begin{DoxyEnumerate}
+\item create radial apodization for centrally obscured idealized monochromatic P\+I\+A\+A\+C\+M\+C
+\item fit / extrapolate radial apodization profile with cosines
+\item using above fit, create 2\+D radial sag for both P\+I\+A\+A optics ( -\/$>$ P\+I\+A\+A\+\_\+\+Mshapes.\+txt)
+\item make 2\+D sag maps for both optics ( -\/$>$ piaa0z.\+fits, piaa1z.\+fits)
+\item fit 2\+D sag maps with Cmodes and Fmodes coefficients ( -\/$>$ piaa0\+Cmodes, piaa0\+Fmodes, piaa1\+Cmodes, piaa1\+Fmodes )
+\end{DoxyEnumerate}
+\item load/create focal plane mask zone map. This is the map that defines the geometry (which ring is where)
+\item load/create focal plane mask thickness array
+\item load/create focal plane mask transmission array
+\item load/create Lyot stops
+\end{DoxyEnumerate}\hypertarget{md_src_PIAACMCsimul_README_mode000}{}\subsection{3.\+000. M\+O\+D\+E 000\+: Create an idealized centrally obscured apodized P\+I\+A\+A\+C\+M\+C monochromatic design}\label{md_src_PIAACMCsimul_README_mode000}
+This is meant as a starting point for the P\+I\+A\+A\+C\+M\+C, which will then be optimized further~\newline
+Optional parameters are\+:
+\begin{DoxyItemize}
+\item P\+I\+A\+A\+C\+M\+C\+\_\+size \+: array size (default = 1024)
+\item P\+I\+A\+A\+C\+M\+C\+\_\+pixscale \+: pixel scale (m/pix)
+\item P\+I\+A\+A\+C\+M\+C\+\_\+nblambda \+: number of wavelengths (1 for monochromatic)
+\item P\+I\+A\+A\+C\+M\+C\+\_\+dftgrid \+: D\+F\+T grid sampling gap \mbox{[}pix\mbox{]} in pupil plane
+\item P\+I\+A\+A\+C\+M\+C\+\_\+centobs0 \+: central obstruction in input pupil (default = 0.\+3)
+\item P\+I\+A\+A\+C\+M\+C\+\_\+centobs1 \+: central obstruction after remapping (default = 0.\+2)
+\item P\+I\+A\+A\+C\+M\+C\+\_\+fpmradld \+: focal plane mask radius for monochromatic idealized design, in l/\+D system unit (default = 0.\+9)
+\end{DoxyItemize}
+
+\begin{DoxyVerb}<executable>
+PIAACMC_size=1024
+PIAACMC_pixscale=0.00011
+PIAACMC_nblambda=1
+PIAACMC_dftgrid=2
+PIAACMC_centobs0=0.3
+PIAACMC_centobs1=0.15
+PIAACMC_fpmradld=1.0
+PIAACMC_dftgrid=2
+piaacmcsimrun 0 0
+exit
+\end{DoxyVerb}
+
+
+This will create the prolate function for a centrally obscured pupil, the idealized focal plane mask, and run the diffraction propagation.~\newline
+This step takes a few minutes -\/ most of the time is spent on iterations to compute the 2\+D apodization prolate function.~\newline
+ Run this twice\+: once to set up the configuration, and once to run the on-\/axis P\+S\+F.~\newline
+ After this step, the contrast will likely be around 1e-\/7. The next step to improve this nominal design is to find the optimal locations for the Lyot stops.~\newline
+ Example result (for 1 l/\+D mask, 2048 array size)\+: \begin{DoxyVerb}Peak constrast (rough estimate)= 2.02762e-06
+Total light in scoring field = 9.49968e-06  -> Average contrast = 6.88685e-08
+\end{DoxyVerb}
+
+
+\subsubsection*{Code breakdown}
+
+
+\begin{DoxyItemize}
+\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a1083c078214e43d74447950f8a236c5d}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+exec()} \+:
+\begin{DoxyItemize}
+\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a85f1459cf776292b7e2fff9932a79252}{P\+I\+A\+Asimul\+\_\+initpiaacmcconf()}\+: Load/\+Creates/initializes piaacmcconf structure and directory
+\begin{DoxyItemize}
+\item perform default initialization
+\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_adedec73128f41e8b3f83796bf913c8da}{P\+I\+A\+Asimul\+\_\+loadpiaacmcconf()}\+: Loading P\+I\+A\+A\+C\+M\+C configuration from \char`\"{}piaacmcconfxxx/piaacmcparams.\+conf\char`\"{} if it exists
+\item Creating/loading Cmodes and Fmodes
+\item I\+M\+P\+O\+R\+T / C\+R\+E\+A\+T\+E P\+I\+A\+A S\+H\+A\+P\+E\+S
+\begin{DoxyItemize}
+\item create 2\+D prolate iteratively
+\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a6828d3577dee2b0882bd7df99602f30d}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+load2\+D\+Radial\+Apodization()}\+:fit P\+I\+A\+A shapes with Cosine modes
+\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a8e2b36e622c11627571989ab113d85eb}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+init\+\_\+geom\+P\+I\+A\+A\+\_\+rad()}\+: compute radial P\+I\+A\+A sag from cosine apodization fit
+\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_adad6ba0da7cd47c07c35232b6096fa1c}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag()}\+: Make 2\+D sag shapes from radial P\+I\+A\+A sag
+\end{DoxyItemize}
+\item M\+A\+K\+E F\+O\+C\+A\+L P\+L\+A\+N\+E M\+A\+S\+K
+\item M\+A\+K\+E L\+Y\+O\+T S\+T\+O\+P\+S
+\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_aac928f8658448934caa7e805af8606a8}{P\+I\+A\+Asimul\+\_\+savepiaacmcconf()}\+: save configuration
+\end{DoxyItemize}
+\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a0ae7439a20fe5267506bc7d1e0533f08}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes()}\+: construct P\+I\+A\+A shapes from fitting coefficients
+\begin{DoxyItemize}
+\item construct 2\+D P\+I\+A\+A mirror shapes from piaa0\+Cmodescoeff, piaa0\+Fmodescoeff, piaa1\+Cmodescoeff, piaa1\+Fmodescoeff
+\end{DoxyItemize}
+\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a0650545f10bc1e359093510f12a9f9f6}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F()}\+: Compute P\+S\+F
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Output Files}
+
+A\+P\+L\+Cmask\+Ctransm.\+txt ?? fpm\+\_\+ampl.\+fits fpm\+\_\+pha.\+fits F\+Pmask.\+tmp.\+fits
+
+\paragraph*{Configuration \+:}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Output file }&{\bf Notes  }\\\cline{1-2}
+./piaaconfxxx/piaacmcparams.conf &Configuration parameters \\\cline{1-2}
+./piaaconfxxx/conjugations.txt &Conjugations \\\cline{1-2}
+./piaaconfxxx/lambdalist.txt &list of wavelength values \\\cline{1-2}
+./piaaconfxxx/pupa0\+\_\+\mbox{[}size\mbox{]}.fits &input pupil (created by default if does not exist) \\\cline{1-2}
+\end{TabularC}
+\paragraph*{Wavefront Modes \+:}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Output file }&{\bf Notes  }\\\cline{1-2}
+Cmodes.\+fits &circular radial cosine modes (40 modes, hard coded) \\\cline{1-2}
+Fmodes.\+fits &Fourier modes (625 modes = 10 C\+P\+A, hard coded) \\\cline{1-2}
+./piaaconfxxx/\+Modes\+Expr\+\_\+\+C\+P\+A.txt &modes definition \\\cline{1-2}
+./piaaconfxxx/\+A\+P\+Omodes\+Cos.fits &Cosine modes for fitting 2\+D apodization profile \\\cline{1-2}
+\end{TabularC}
+
+
+\paragraph*{P\+I\+A\+A mirrors, apodization, fits\+:}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Output file }&{\bf Notes  }\\\cline{1-2}
+./piaaconfxxx/\+A\+P\+L\+Capo.1.\+400.\+0.\+300.\+info &file written by prolate generation function coronagraph\+\_\+make\+\_\+2\+Dprolate in coronagraphs.\+c \\\cline{1-2}
+./piaaconfxxx/apo2\+Drad.fits &idealized P\+I\+A\+A\+C\+M\+C 2\+D apodization \\\cline{1-2}
+./piaaconfxxx/piaam0z.fits &P\+I\+A\+A M0 shape (2\+D sag) \\\cline{1-2}
+./piaaconfxxx/piaam1z.fits &P\+I\+A\+A M1 shape (2\+D sag) \\\cline{1-2}
+./piaaconfxxx/\+P\+I\+A\+A\+\_\+\+Mshapes.txt &P\+I\+A\+A shapes (radial txt file, cols\+: r0, z0, r1, z1) \\\cline{1-2}
+./piaaconfxxx/piaa0\+Fz.fits &P\+I\+A\+A M0 shape, Fourier components (2\+D file) \\\cline{1-2}
+./piaaconfxxx/piaa1\+Fz.fits &P\+I\+A\+A M1 shape, Fourier components (2\+D file) \\\cline{1-2}
+./piaaconfxxx/piaa0\+Cmodes.fits &idealized P\+I\+A\+A\+C\+M\+C mirror 0 cosine modes (copied from ./piaaref/) \\\cline{1-2}
+./piaaconfxxx/piaa0\+Fmodes.fits &idealized P\+I\+A\+A\+C\+M\+C mirror 0 Fourier modes (copied from ./piaaref/) \\\cline{1-2}
+./piaaconfxxx/piaa1\+Cmodes.fits &idealized P\+I\+A\+A\+C\+M\+C mirror 1 cosine modes (copied from ./piaaref/) \\\cline{1-2}
+./piaaconfxxx/piaa1\+Fmodes.fits &idealized P\+I\+A\+A\+C\+M\+C mirror 1 Fourier modes (copied from ./piaaref/) \\\cline{1-2}
+./piaaconfxxx/piaa0\+Cres.fits &idealized P\+I\+A\+A M0 cosine fit residual \\\cline{1-2}
+./piaaconfxxx/piaa1\+Cres.fits &idealized P\+I\+A\+A M1 cosine fit residual \\\cline{1-2}
+./piaaconfxxx/piaa0\+Cz.fits &idealized P\+I\+A\+A M0 cosine fit sag \\\cline{1-2}
+./piaaconfxxx/piaa1\+Cz.fits &idealized P\+I\+A\+A M1 cosine fit sag \\\cline{1-2}
+./piaaconfxxx/piaa0\+Fz.fits &idealized P\+I\+A\+A M0 Fourier fit sag \\\cline{1-2}
+./piaaconfxxx/piaa1\+Fz.fits &idealized P\+I\+A\+A M1 Fourier fit sag \\\cline{1-2}
+\end{TabularC}
+
+
+\paragraph*{Idealized P\+I\+A\+A\+C\+M\+C reference point\+:}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Output file }&{\bf Notes  }\\\cline{1-2}
+./piaaconfxxx/piaaref/\+A\+P\+L\+Cmask\+Ctransm.txt &idealized P\+I\+A\+A\+C\+M\+C focal plane mask transmission \\\cline{1-2}
+./piaaconfxxx/piaaref/apo2\+Drad.fits &idealized P\+I\+A\+A\+C\+M\+C output apodization \\\cline{1-2}
+./piaaconfxxx/piaaref/piaa0\+Cmodes.fits &idealized P\+I\+A\+A\+C\+M\+C mirror 0 cosine modes \\\cline{1-2}
+./piaaconfxxx/piaaref/piaa0\+Fmodes.fits &idealized P\+I\+A\+A\+C\+M\+C mirror 0 Fourier modes \\\cline{1-2}
+./piaaconfxxx/piaaref/piaa1\+Cmodes.fits &idealized P\+I\+A\+A\+C\+M\+C mirror 1 cosine modes \\\cline{1-2}
+./piaaconfxxx/piaaref/piaa1\+Fmodes.fits &idealized P\+I\+A\+A\+C\+M\+C mirror 1 Fourier modes \\\cline{1-2}
+\end{TabularC}
+
+
+\paragraph*{Focal plane mask\+:}
+
+Focal plane mask design defined by \+:
+\begin{DoxyItemize}
+\item \mbox{[}s\mbox{]} Sectors flag (0\+: no sectors, 1\+: sectors), variable P\+I\+A\+A\+C\+M\+C\+\_\+\+F\+P\+Msectors
+\item \mbox{[}r\mbox{]} Resolved target flag (0\+: point source, 1\+: resolved source)
+\item \mbox{[}mr\mbox{]} Mask radius in units of 0.\+1 l/\+D
+\item \mbox{[}rrr\mbox{]} number of rings, variable piaacmc\mbox{[}0\mbox{]}.N\+Brings
+\item \mbox{[}zzz\mbox{]} number of zones
+\end{DoxyItemize}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Output file }&{\bf Notes  }\\\cline{1-2}
+fpmzmap\mbox{[}s\mbox{]}\+\_\+\mbox{[}rrr\mbox{]}\+\_\+\mbox{[}zzz\mbox{]}.fits &Zones map \\\cline{1-2}
+fpm\+\_\+zonea\mbox{[}r\mbox{]}\mbox{[}s\mbox{]}\+\_\+\mbox{[}mr\mbox{]}\+\_\+\mbox{[}rrr\mbox{]}\+\_\+\mbox{[}zzz\mbox{]}.fits &amplitude for each zone \\\cline{1-2}
+fpm\+\_\+zonea\mbox{[}r\mbox{]}\mbox{[}s\mbox{]}\+\_\+\mbox{[}mr\mbox{]}\+\_\+\mbox{[}rrr\mbox{]}\+\_\+\mbox{[}zzz\mbox{]}.fits &thickness for each zone \\\cline{1-2}
+\end{TabularC}
+
+
+I\+D\+E\+A\+L\+I\+Z\+E\+D O\+R P\+H\+Y\+S\+I\+C\+A\+L M\+A\+S\+K~\newline
+ Idealized mask is a single zone mask with thickness adjusted for lambda/2 phase shift and a (non-\/physical) partial transmission. Physical mask consist of 1 or more zones with full transmission. Each zone can have a different thickness.
+
+By default, a non-\/physical mask is first created with transmission piaacmc\mbox{[}0\mbox{]}.fpmaskamptransm read from piaacmcparams.\+conf. Computations indices using a physical mask\+:
+\begin{DoxyItemize}
+\item set transmission to 1.\+0\+: piaacmc\mbox{[}0\mbox{]}.fpmaskamptransm = 1.\+0.
+\item set focal plane mask radius to larger value\+: piaacmc\mbox{[}0\mbox{]}.fpm\+Rad = 0.\+5$\ast$(L\+A\+M\+B\+D\+A\+S\+T\+A\+R\+T+\+L\+A\+M\+B\+D\+A\+E\+N\+D)$\ast$piaacmc\mbox{[}0\mbox{]}.Fratio $\ast$ P\+I\+A\+A\+C\+M\+C\+\_\+\+M\+A\+S\+K\+R\+A\+D\+L\+D
+\end{DoxyItemize}
+
+\paragraph*{Lyot stops\+:}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Output file }&{\bf Notes  }\\\cline{1-2}
+./piaaconfxxx/\+Lyot\+Stop0.fits &Lyot Stop 0 \\\cline{1-2}
+./piaaconfxxx/\+Lyot\+Stop1.fits &Lyot Stop 1 \\\cline{1-2}
+\end{TabularC}
+
+
+\paragraph*{Amplitude \& Phase at planes\+:}
+
+Files are /piaaconfxxx/\+W\+Famp\+\_\+nnn.fits and W\+Fpha\+\_\+nnn.\+fits, where nnn is the plane index.~\newline
+Complex amplitude is shown A\+F\+T\+E\+R the element has been applied, in the plane of the element.~\newline
+ \begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Plane index }&{\bf description  }\\\cline{1-2}
+000 &Input pupil \\\cline{1-2}
+001 &Fold mirror used to induce pointing offsets \\\cline{1-2}
+002 &P\+I\+A\+A M0 \\\cline{1-2}
+003 &P\+I\+A\+A M1 \\\cline{1-2}
+004 &P\+I\+A\+A\+M1 edge opaque mask \\\cline{1-2}
+005 &post-\/focal plane mask pupil \\\cline{1-2}
+006 &Lyot Stop 0 \\\cline{1-2}
+007 &Lyot Stop 1 \\\cline{1-2}
+008 &inv\+P\+I\+A\+A1 \\\cline{1-2}
+009 &inv\+P\+I\+A\+A0 \\\cline{1-2}
+010 &back end mask \\\cline{1-2}
+\end{TabularC}
+
+
+\paragraph*{Performance Evaluation\+:}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Plane index }&{\bf description  }\\\cline{1-2}
+./piaaconfxxx/scoringmask0.fits &Evaluation points in focal plane, hardcoded in \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a0650545f10bc1e359093510f12a9f9f6}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F()} \\\cline{1-2}
+./piaaconfxxx/\+Cnorm\+Factor.txt &P\+S\+F normalization factor used to compute contrast \\\cline{1-2}
+./piaaconfxxx/flux.txt &total intensity at each plane \\\cline{1-2}
+\end{TabularC}
+\hypertarget{md_src_PIAACMCsimul_README_step002}{}\subsection{3.\+002. S\+T\+E\+P 002\+: Specify input pupil geometry}\label{md_src_PIAACMCsimul_README_step002}
+The pupil geometry is copied to file ./piaacmcconf\mbox{[}nnn\mbox{]}/pupa0\+\_\+\mbox{[}size\mbox{]}.fits\hypertarget{md_src_PIAACMCsimul_README_step003}{}\subsection{3.\+003. S\+T\+E\+P 003 (mode = 0)\+: compute on-\/axis P\+S\+F for new pupil geometry}\label{md_src_PIAACMCsimul_README_step003}
+\hypertarget{md_src_PIAACMCsimul_README_step004}{}\subsection{3.\+004. S\+T\+E\+P 004 (mode = 5)\+: Compute Lyot stops shapes and locations, 1st pass}\label{md_src_PIAACMCsimul_README_step004}
+For circular centrally obscured pupils, the default Lyot stops configuration consists of two stops\+: one that masks the outer part of the beam, and one that masks the central obstruction.~\newline
+ Fine optimization of the stops locations is done with a separate command. The optional lsoptrange value is the range (unit\+: m) for the mask position search (default = 2 m).~\newline
+
+
+Example result (for 1 l/\+D mask, 2048 array size)\+: \begin{DoxyVerb}Peak constrast (rough estimate)= 1.78874e-06
+Total light in scoring field = 7.75534e-06  -> Average contrast = 5.62228e-08
+\end{DoxyVerb}
+\hypertarget{md_src_PIAACMCsimul_README_step005}{}\subsection{3.\+005. S\+T\+E\+P 005 (mode = 2)\+: Optimize focal plane mask transmission, 1st pass}\label{md_src_PIAACMCsimul_README_step005}
+\hypertarget{md_src_PIAACMCsimul_README_step006}{}\subsection{3.\+006. S\+T\+E\+P 006 (mode = 5)\+: Compute Lyot stops shapes and locations, 2nd pass, 70\% throughput}\label{md_src_PIAACMCsimul_README_step006}
+\hypertarget{_}{}\subsection{}\label{_}
+This takes approximately 20mn for size = 1024.~\newline
+Progress can be tracked by watching file \+: \begin{DoxyVerb}tail -f linoptval.txt
+\end{DoxyVerb}
+\hypertarget{_}{}\subsection{}\label{_}
+\hypertarget{_}{}\subsection{}\label{_}
+\hypertarget{_}{}\subsection{}\label{_}
+\hypertarget{_}{}\subsection{}\label{_}
+\hypertarget{_}{}\subsection{}\label{_}
+The total number of free parameters is 380 = (40+150)$\ast$2, so this routine takes a long time to complete (hours).\hypertarget{_}{}\subsection{}\label{_}
+\hypertarget{PIAACMC_designcodes}{}\section{P\+I\+A\+A\+C\+M\+C design codes}\label{PIAACMC_designcodes}
+\section*{D\+E\+S\+I\+G\+N P\+A\+R\+A\+M\+E\+T\+E\+R\+S, A\+N\+D H\+O\+W/\+W\+H\+E\+R\+E T\+O S\+E\+T T\+H\+E\+M}
+
+\subsection*{Variables driving P\+I\+A\+A\+C\+M\+C optics design, excluding focal plane mask}
+
+\subsubsection*{Non-\/optional parameters}
+
+Parameters with \char`\"{}$\ast$\char`\"{} appear in directory name.
+
+\begin{TabularC}{3}
+\hline
+\rowcolor{lightgray}{\bf Variable Name }&{\bf Description }&{\bf Setting location  }\\\cline{1-3}
+pupil &pupil geometry &File ./pup\+\_\+1024.fits (name defined in script sim1024) \\\cline{1-3}
+(2) coin $\ast$ &remapping input central obstruction &argument \#2 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+centobs0 in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(3) coout $\ast$ &output central obstruction &argument \#3 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+centobs1 in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(4) fpmrad $\ast$ &P\+I\+A\+A\+C\+M\+C design nominal focal plane mask radius &argument \#4 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+fpmradld in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(5) lambda $\ast$ &design wavelength \mbox{[}nm\mbox{]} &argument \#5 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+lambda in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(6) P\+I\+A\+Amaterial $\ast$ &material for P\+I\+A\+A optics (Mirror, Ca\+F2, etc...) &argument \#6 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ File $<$confdir$>$/conf\+\_\+\+P\+I\+A\+Amaterial\+\_\+name.txt \\\cline{1-3}
+(7) L\+Stransm $\ast$ &Lyot stops geometric transmission &argument \#7 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+\+L\+Stransm0, P\+I\+A\+A\+C\+M\+C\+\_\+\+L\+Stransm1, P\+I\+A\+A\+C\+M\+C\+\_\+\+L\+Stransm2 in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(8) N\+Blyotstop $\ast$ &Number of Lyot Stops &argument \#8 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+nblstop in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+\end{TabularC}
+\subsubsection*{Optional parameters}
+
+The index number in the directory name is typically used to keep track of these parameters.
+
+\begin{TabularC}{3}
+\hline
+\rowcolor{lightgray}{\bf Variable Name }&{\bf Description }&{\bf Setting location  }\\\cline{1-3}
+size &array size \mbox{[}pix\mbox{]} &File ./conf\+\_\+size.txt (optional, default = 1024), read by ./runopt script \\\cline{1-3}
+Mdesign\+Step\+Max &Maximum design step (monochromatic) &File ./conf\+\_\+\+Mdesign\+Step\+Max.txt (optional, default = 13, max = 18), read by ./runopt script \\\cline{1-3}
+beamrad &Beam physical radius \mbox{[}m\mbox{]} &File ./conf\+\_\+\+P\+I\+A\+Abeamrad.txt (optional, default = 0.\+01), read by ./run\+P\+I\+A\+A\+C\+M\+C script, P\+I\+A\+A\+C\+M\+C\+\_\+beamrad \\\cline{1-3}
+Fratio &Focal ratio at focal plane &File ./conf\+\_\+\+Fratio.txt (optional, default = 80), read by ./run\+P\+I\+A\+A\+C\+M\+C, P\+I\+A\+A\+C\+M\+C\+\_\+\+Fratio \\\cline{1-3}
+r0lim &outer radius of first P\+I\+A\+A optic &File ./conf\+\_\+\+P\+I\+A\+Ar0lim.txt (optional, default = 1.\+15), read by ./run\+P\+I\+A\+A\+C\+M\+C, P\+I\+A\+A\+C\+M\+C\+\_\+r0lim \\\cline{1-3}
+r1lim &outer radius of second P\+I\+A\+A optic &File ./conf\+\_\+\+P\+I\+A\+Ar1lim.txt (optional, default = 1.\+50), read by ./run\+P\+I\+A\+A\+C\+M\+C, P\+I\+A\+A\+C\+M\+C\+\_\+r1lim \\\cline{1-3}
+piaasep &separation between P\+I\+A\+A elements \mbox{[}m\mbox{]} &File ./conf\+\_\+\+P\+I\+A\+Asep.txt (optional, default = 1.\+00), read by ./run\+P\+I\+A\+A\+C\+M\+C, P\+I\+A\+A\+C\+M\+C\+\_\+piaasep \\\cline{1-3}
+piaa0pos &conjugation of first P\+I\+A\+A element \mbox{[}m\mbox{]} &File ./conf\+\_\+\+P\+I\+A\+A0pos.txt (optional, default = 1.\+00), read by ./run\+P\+I\+A\+A\+C\+M\+C, P\+I\+A\+A\+C\+M\+C\+\_\+piaa0pos \\\cline{1-3}
+\end{TabularC}
+\subsection*{Variables driving focal plane mask design}
+
+\begin{TabularC}{3}
+\hline
+\rowcolor{lightgray}{\bf Variable Name }&{\bf Description }&{\bf Setting location  }\\\cline{1-3}
+(9) mlambda $\ast$ &mask central wavelength \mbox{[}nm\mbox{]} &argument \#9 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+lambda in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(10) mlambda\+B $\ast$ &mask spectral bandwidth \mbox{[}\%\mbox{]} &argument \#10 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+lambda\+B in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(11) N\+Brings $\ast$ &Number of focal plane mask rings &argument \#11 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+\+N\+Brings in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(12) maskradld $\ast$ &outer radius of focal plane mask rings &argument \#12 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+\+M\+A\+S\+K\+R\+A\+D\+L\+D in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(13) P\+I\+A\+A\+C\+M\+C\+\_\+resolved $\ast$&source size (10x (-\/log(source rad)), 00 if pt &argument \#13 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+resolved in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(14) P\+I\+A\+A\+C\+M\+C\+\_\+extmode $\ast$ &how to simulate extended source (0\+:3pts, 1\+:6pts) &argument \#14 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ P\+I\+A\+A\+C\+M\+C\+\_\+extmode in ./run\+P\+I\+A\+A\+C\+M\+C \\\cline{1-3}
+(15) fpmmaterial $\ast$ &material for focal plane mask &argument \#15 of ./runopt script -\/$>$ passed to sim1024 -\/$>$ File $<$confdir$>$/conf\+\_\+fpmmaterial\+\_\+name.txt \\\cline{1-3}
+\end{TabularC}
+
+
+\section*{F\+I\+L\+E\+S A\+N\+D D\+I\+R\+E\+C\+T\+O\+R\+I\+E\+S S\+Y\+N\+T\+A\+X}
+
+P\+I\+A\+A\+C\+M\+C designs are described by multipe parameters. Some are contained in the directory name in which the design is stored (mostly related to mirror design), and some are specific to focal plane masks and thus containted in the name of focal plane mask, as detailed below.
+
+\subsection*{D\+I\+R\+E\+C\+T\+O\+R\+I\+E\+S}
+
+\subsubsection*{M\+O\+N\+O\+C\+H\+R\+O\+M\+A\+T\+I\+C S\+E\+E\+D, C\+I\+R\+C\+U\+L\+A\+R S\+Y\+M\+M\+E\+T\+R\+I\+C}
+
+All designs start from a monochromatic \char`\"{}seed\char`\"{} design, which is an idealized monochromatic P\+I\+A\+A\+C\+M\+C design, with P\+I\+A\+A optics modeled as infinitely thin flat O\+P\+D screens.
+
+\begin{DoxyVerb}piaacmcconf_<x>_coin<x.xx>_coout<x.xx>_fpmr<x.xx>
+
+x    : focal plane scoring region (set to 1) 
+coin : input central obstruction
+coout: output central obstruction
+fpmr : design focal plane mask radius
+\end{DoxyVerb}
+
+
+\subsubsection*{O\+P\+T\+I\+M\+I\+Z\+E\+D D\+E\+S\+I\+G\+N, M\+O\+N\+O-\/ A\+N\+D P\+O\+L\+Y-\/\+C\+H\+R\+O\+M\+A\+T\+I\+C}
+
+\begin{DoxyVerb}piaacmcconf_<x>_coin<x.xxx>_coout<x.xxx>_fpmr<x.xxx>_l<xxxx>_<mmmmmm>_lt<t.tt>_ls<N>_i<xxx>
+
+x    : focal plane scoring region (set to 1) 
+coin : input central obstruction
+coout: output central obstruction
+fpmr : design focal plane mask radius
+l    : central wavelength [nm]
+mmmmm: material used for PIAA optics (corresponding code is PIAAmaterial in OPTPIAACMCDESIGN, code written as conf_PIAAmaterial.txt in directory)
+lt   : Lyot stops geometric transmission [%]
+ls   : Number of Lyot Stops
+i    : design index (used to number designs beyond parameters above)
+\end{DoxyVerb}
+
+
+\subsection*{F\+O\+C\+A\+L P\+L\+A\+N\+E M\+A\+S\+K D\+E\+S\+I\+G\+N\+S}
+
+\subsubsection*{Design solution}
+
+\begin{DoxyVerb}fpm_zonez_s<s>_l<xxxx>_sr<bb>_nbr<zzz>_mr<rrr>_ssr<ss>_ssm<m>_wb<ll>.fits
+
+
+s    : PIAACMC_FPMsectors (usually 1)
+xxxx : central mask wavelength [nm]
+bb   : spectral bandwidth [%]
+zzz  : number of rings
+rrr  : 100*PIAACMC_MASKRADLD
+ss   : computePSF_ResolvedTarget: stellar radius used for optimization  [10x log l/D]
+    radius = 10^{-0.1*ss}
+    example: ss = 15  ->  radius = 0.0316 l/D
+m    : computePSF_ResolvedTarget_mode
+    0: 3 points
+    1: 6 points
+ll   : number of wavelength bins
+
+
+sprintf(fname, "!%s/fpm_zonez_s%d_l%04ld_sr%02ld_nbr%03ld_mr%03ld_ssr%02d_ssm%d_%s_wb%02d.fits", piaacmcconfdir, PIAACMC_FPMsectors, (long) (1.0e9*piaacmc[0].lambda + 0.1), (long) (1.0*piaacmc[0].lambdaB + 0.1), piaacmc[0].NBrings, (long) (100.0*PIAACMC_MASKRADLD+0.1), computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, piaacmc[0].fpmmaterial_name, piaacmc[0].nblambda);\end{DoxyVerb}
+
+
+\subsubsection*{Linear response between focal plane mask zones sags and final focal plane complex amplitude}
+
+\begin{DoxyVerb}FPMresp<m>_s<s>_l<xxxx>_sr<bb>_nbr<zzz>_mr<rrr>_ssr<ss>_ssm<m>_wb<ll>.fits
+
+m    : Scoring mask type
+s    : PIAACMC_FPMsectors (usually 1)
+xxxx : central mask wavelength [nm]
+bb   : spectral bandwidth [%]
+zzz  : number of rings
+rrr  : 100*PIAACMC_MASKRADLD
+ss   : computePSF_ResolvedTarget: stellar radius used for optimization  [10x log l/D]
+    radius = 10^{-0.1*ss}
+    example: ss = 15  ->  radius = 0.0316 l/D
+m    : computePSF_ResolvedTarget_mode
+    0: 3 points
+    1: 6 points
+ll   : number of wavelength bins
+
+
+sprintf(fname, "!%s/FPMresp%d_s%d_l%04ld_sr%02ld_nbr%03ld_mr%03ld_ssr%02d_ssm%d_%s_wb%02d.fits", piaacmcconfdir, SCORINGMASKTYPE, PIAACMC_FPMsectors, (long) (1.0e9*piaacmc[0].lambda + 0.1), (long) (1.0*piaacmc[0].lambdaB + 0.1), piaacmc[0].NBrings, (long) (100.0*PIAACMC_MASKRADLD+0.1), computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, piaacmc[0].fpmmaterial_name, piaacmc[0].nblambda);\end{DoxyVerb}
+
+
+\subsubsection*{Evaluation files}
+
+\begin{DoxyVerb}Point source PSF:
+psfi0_ptsr_sm<m>_s<s>_l<xxxx>_sr<bb>_nbr<zzz>_mr<rrr>_ssr<ss>_ssm<m>_wb<ll>.fits
+
+Extended source PSF (4 points):
+psfi0_extsrc<exss>_sm<m>_s<s>_l<xxxx>_sr<bb>_nbr<zzz>_mr<rrr>_ssr<ss>_ssm<m>_wb<ll>.fits
+
+Flux: 
+flux_sm<m>_s<s>_l<xxxx>_sr<bb>_nbr<zzz>_mr<rrr>_ssr<ss>_ssm<m>_wb<ll>.txt
+
+Contrast estimate vale (point source):
+contrast_sm<m>_s<s>_l<xxxx>_sr<bb>_nbr<zzz>_mr<rrr>_ssr<ss>_ssm<m>_wb<ll>.txt
+
+Extended source contrast:
+ContrastVal_extsrc<exss>_sm<m>_s<s>_l<xxxx>_sr<bb>_nbr<zzz>_mr<rrr>_ssr<ss>_ssm<m>_<material>_wb<ll>.fits
+(2nd number is contrast estimate)
+
+Extended source contrast curve:
+ContrastCurve_extsrc<exss>_sm<m>_s<s>_l<xxxx>_sr<bb>_nbr<zzz>_mr<rrr>_ssr<ss>_ssm<m>_<material>_wb<ll>.fits
+
+
+exss : stellar radius used for evaluation  [10x log l/D]
+m    : Scoring mask type
+s    : PIAACMC_FPMsectors (usually 1)
+xxxx : central mask wavelength [nm]
+bb   : spectral bandwidth [%]
+zzz  : number of rings
+rrr  : 100*PIAACMC_MASKRADLD
+ss   : computePSF_ResolvedTarget: stellar radius used for optimization  [10x log l/D]
+    radius = 10^{-0.1*ss}
+    example: ss = 15  ->  radius = 0.0316 l/D
+m    : computePSF_ResolvedTarget_mode
+    0: 3 points
+    1: 6 points
+material: focal plane mask material
+ll   : number of wavelength bins
+
+
+sprintf(fname, "!%s/psfi0_sm%d_s%d_l%04ld_sr%02ld_nbr%03ld_mr%03ld_ssr%02d_ssm%d_%s_wb%02d.fits", piaacmcconfdir, SCORINGMASKTYPE, PIAACMC_FPMsectors, (long) (1.0e9*piaacmc[0].lambda + 0.1), (long) (1.0*piaacmc[0].lambdaB + 0.1), piaacmc[0].NBrings, (long) (100.0*PIAACMC_MASKRADLD+0.1), computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, piaacmc[0].fpmmaterial_name, piaacmc[0].nblambda);
+\end{DoxyVerb}
+
+
+\section*{O\+P\+E\+R\+A\+T\+I\+O\+N C\+O\+D\+E\+S}
+
+\begin{DoxyVerb}====== CODE INDICES FOR sim1024/runPIAACMC SCRIPTS =====================================================
+
+The indices are used to instruct which computation step(s) shall be performed
+Unless described otherwise, columns in this table are:
+- ###     code index/step
+- [##]   corresponding index in C function PIAACMCsimul_exec
+- ....   Description
+- [...]  approximate execution time
+
+
+
+
+
+
+--------- 0-99  Monochromatic, point source steps ---------------------------------------------------
+
+Code runs from step 0 to requested step, skipping steps that have already been completed
+Note: entering step=4 will complete steps 0, 1, 2 and 3, and STOP at step 4
+
+  0     [  0]   3.43696e-07 PREPARE - Compute on-axis PSF, monochromatic, idealized PIAACMC, first iteration  [   8mn]
+        function PIAAsimul_initpiaacmcconf
+        {
+            create/load Cmodes_1024.fits & Fmodes_1024.fits (used to fit PIAA shapes)
+
+            CREATE GENERALIZED PROLATE
+            Uses DFT iterations
+            -> APLCapo.0.800.0.300.info  (masksizeld 0.0 prolatethroughput peak)
+            -> <confdir>/piaaref/APLCmaskCtransm.txt : complex amplitude mask transmission (0.51005532508) = (1.0-peak)/peak
+            -> <confdir>/piaaref/apo2Drad.fits : 2D apodization (also copied on <confdir>/apo2Drad.fits)
+            Assumes circular aperture with circular central obstruction
+                    
+            FIT 2D RADIAL APODIZATION AS SUM OF 10 COSINES      
+            -> <confdir>/APOmodesCos.fits : modes used for fitting (2D maps)        
+            COMPUTE 2D SAG MAPS
+            Uses the cosine fit above to make 1D radial profile of PIAA shapes
+            -> <confdir>/PIAA_Mshape.txt (r0 z0 r1 z1)
+            Make 2D sag maps
+            -> <confdir>/piaam0z.fits, <confdir>/piaam1z.fits
+
+            FIT 2D PIAA SHAPES AS SUM OF COSINES
+            -> <confdir>/piaa0Cz.fits, <confdir>/piaa1Cz.fits (fitted shapes)
+            -> <confdir>/piaa0Cres.fits, <confdir>/piaa1Cres.fits (residuals)
+            FIT 2D RESIDUAL AS SUM OF FOURIER MODES
+
+            NOMINAL PIAA SHAPES, FITTED TO COSINES AND FOURIER MODES
+            -> <confdir>/piaaref/piaa0Cmodes.fits
+            -> <confdir>/piaaref/piaa1Cmodes.fits
+            -> <confdir>/piaaref/piaa0Fmodes.fits
+            -> <confdir>/piaaref/piaa1Fmodes.fits
+            + copy to <confdir>/
+        
+            CREATE FOCAL PLANE MASK
+            -> <confdir>/fpm_zonea00_00_001_001.fits    
+            -> <confdir>/fpm_zonez00_00_001_001.fits    
+
+            MAKE LYOT STOPS
+            -> <confdir>/LyotStop0.fits, <confdir>/LyotStop1.fits ...
+        }
+        
+        MAKE PIAA SHAPES FROM COEFFICIENTS (function PIAACMCsimul_makePIAAshapes())
+        -> <confdir>/piaa0Cz.fits
+        -> <confdir>/piaa0Fz.fits
+        -> <confdir>/piaa0z.fits (sum of both terms above)
+        -> <confdir>/piaa1Cz.fits
+        -> <confdir>/piaa1Fz.fits
+        -> <confdir>/piaa1z.fits (sum of both terms above)
+
+        COMPUTE PSF
+           -> psfi0_step000.fits
+
+  1     [  0]   3.43696e-07
+        -> psfi0_step001.fits
+
+  2     [   ]   5.12665e-05 Load pupil geometry                                                     [   0mn]
+        -> pupa0_1024.fits
+
+  3     [  0]   5.12665e-05 actual pupil Compute on-axis PSF                                        [   0nm]
+        -> psfi0_step003.fits
+
+  4     [  5]   3.46488e-06 Compute Lyot stops shapes and locations, 1st pass                       [   1mn]
+        throughput = LStransm2 (user-specied argument to script)
+        -> conjugations.txt
+
+  5     [  2]   3.34238e-08 optimize focal plane mask transm, 1st pass -> result_fpmt.log           [   2mn]
+        optimal value is written in file <confdir>/piaacmcparams.conf
+        -> result_fpmt.log (ampl contrast iter range stepsize)
+        
+
+  6     [  5]   2.06295e-08 Compute Lyot stops shapes and locations, 2nd pass, 60% throughput       [   1mn]
+        throughput > LStransm = LStransm0 = 0.60
+
+  7     [ 40]    3.36149e-09    tune PIAA shapes and focal plane mask transm # modes: 10, 5             [  35mn]
+        -> linoptval_step007.txt
+
+  8     [ 40]   3.3526e-09  tune PIAA shapes and focal plane mask transm # modes: 20, 20            [  23mn]
+        -> linoptval_step008.txt 
+        updates piaa shapes (piaa0Cmodes, piaa0Fmodes, piaa1Cmodes, piaa1Fmodes)
+        updates focal plane mask transm (<confdir>/piaacmcparams.conf)
+
+  9     [  5]   4.3982e-09      Compute Lyot stops shapes and locations, 2nd pass, intermediate throughput [   1mn]
+        throughput = LStransm1
+
+ 10     [  1]   3.62923e-09 tune Lyot stops conjugations                                        [   8mn]
+        throughput > LStransm1 
+        -> result_LMpos.log
+
+ 11     [ 40]   1.2318e-09  tune PIAA shapes and focal plane mask transm # modes: 20, 20            [  71mn]
+        -> linoptval_step011.txt 
+
+ 12     [ 40]   2.9522e-10  tune PIAA shapes and focal plane mask transm, # modes: 40, 150          [ 287mn]
+
+ 13     [  5]   3.14043e-08 Compute Lyot stops shapes and locations, 3rd pass, goal throughput      [   1mn]
+        throughput > LStransm2 
+        
+ 14     [  1]   1.41547e-08 Tune Lyot stops conjugations                                            [   9mn]
+        
+ 15     [ 40]   5.25497e-09 tune PIAA shapes and focal plane mask transm # modes: 20, 20            [  37mn]
+ 16     [ 40]    tune PIAA shapes and focal plane mask transm, # modes: 40, 150             [ 169mn]
+ 17     [ 40]   tune PIAA shapes and focal plane mask transm, # modes: 40, 625              [ 591mn]
+
+
+
+
+--------- 100-199  Polychromatic, extended source, physical focal plane mask (consecutive) ------------------------
+
+100 [ 11]   turn focal plane mask into zones, Compute polychromatic response to zones, store result in FPMresp
+        -> FPMresp<SRE>_<xx>_<yyy>_<ll>.fits
+            S:   SCORINGMASKTYPE
+            R:   computePSF_ResolvedTarget
+            E:   PIAACMC_FPMsectors
+            xx: (long) (10.0*PIAACMC_MASKRADLD+0.1)  NOTE: this is the outer edge of the outer ring
+            yyy: piaacmc[0].NBrings
+            ll:  piaacmc[0].nblambda
+
+101 [ 13]   linear piece-wise optimization - chromaticity
+        <- Reads input mask from <confdir>/conf_MASKRADLD.txt <confdir>/conf_FPMsectors.txt, <confdir>/conf_NBrings.txt, <confdir>/conf_resolved.txt
+        -> linoptval.txt
+            local derivatives used to indentify steepest descent direction, then scan along this direction
+            lines starting by "##" show values along line of steepest descent
+            Best value then chosen, and new direction computed
+        -> <confdir>/fpm_zonez<RE>_<rr>_<yyy>_<zzz>.fits,  <confdir>/fpm_zonea<RE>_<rr>_<yyy>_<zzz>.fits
+            R:   computePSF_ResolvedTarget
+            E:   PIAACMC_FPMsectors
+            rr:  (long) (10.0*PIAACMC_MASKRADLD+0.1)    (=00 for idealized PIAACMC) 
+            yyy: piaacmc[0].NBrings
+            zzz: piaacmc[0].focmNBzone          
+        -> mode13_<RE>_<yyy>_<zzz>_<ll>.txt
+            R:   computePSF_ResolvedTarget
+            E:   PIAACMC_FPMsectors         
+            yyy: piaacmc[0].NBrings
+            zzz: piaacmc[0].focmNBzone
+        columns:
+            1: iteration
+            2: amplitude of random offset introduced at starting point (MODampl)
+            3: starting point contrast (PIAACMCSIMUL_VALREF)
+            4: current contrast value (PIAACMCSIMUL_VAL)
+            5: best contrast value (bestval)
+            6: zero starting poing flag (zeroST): 1 if starting from zero
+        -> mode13_<RE>_<yyy>_<zzz>_<ll>.bestval.txt
+            best contrast value
+    will run until file <confdir>/stoploop13.txt detected   
+
+
+
+
+
+----------- 200-299  Optimization (polychromatic) single steps ---------------------------------------
+
+210 [40]    full co-optimization of PIAA shapes and focal plane mask zones
+        # modes: 10, 5
+
+
+
+
+
+--------- 500 - 599 : housekeeping -------------------------------------------------------------------
+
+500 [N/A]   store as reference for use at other lambda / spectral band
+
+
+
+
+
+
+------------ 700-799 EVALUATIONS ---------------------------------------------------------------------
+
+A single step will be executed.
+
+MONOCHROMATIC, PERFECT SINGLE ZONE MASK
+
+700     [  0]   Evaluate point source mask constrat, on point source, idealized mask                   [ 12sec]
+            -> psfi0_step700.fits
+        -> psfi0_%d%d_%02ld_%03ld_%03ld.fits
+piaacmcconfdir, computePSF_ResolvedTarget, PIAACMC_FPMsectors, (long) (10.0*PIAACMC_MASKRADLD+0.1), piaacmc[0].NBrings, piaacmc[0].focmNBzone                                               
+
+701     [100]   Evaluate sensitivity to pointing errors, idealized mask                                [ 25sec]
+            -> psfi0_step701.fits
+        -> <confdir>/ContrastCurve%d_%03ld_%03ld_%02d_ps%03ld.txt"
+PIAACMC_FPMsectors, piaacmc[0].NBrings, piaacmc[0].focmNBzone, piaacmc[0].nblambda, (long) (1000.0*ldoffset));
+    
+
+702     [   ]   Compute on-axis monochromatic PSF - extended source, using extended source focal plane mask
+
+
+
+720 [  0]   Compute on-axis polychromatic PSF, 10 spectral values
+        -> psfi0.fits, psfp0.fits, psfa0.fits       
+        -> WFamp and WFpha FITS files
+        -> fpm_pha.fits, fpm_amp.fits : 1 - focal plane mask complex amplitude
+        -> lambdalist.txt
+        -> psfi0_%d%d_%02ld_%03ld_%03ld.fits
+piaacmcconfdir, computePSF_ResolvedTarget, PIAACMC_FPMsectors, (long) (10.0*PIAACMC_MASKRADLD+0.1), piaacmc[0].NBrings, piaacmc[0].focmNBzone
+
+721 [100]   Evaluate sensitivity to pointing errors, polychromatic PSF
+        -> psfi0.fits, psfp0.fits, psfa0.fits       
+        -> WFamp and WFpha FITS files
+        -> fpm_pha.fits, fpm_amp.fits : 1 - focal plane mask complex amplitude
+        -> lambdalist.txt
+        -> <confdir>/ContrastVall%d%d_%02ld_%03ld_%02d_tt%03ld.txt
+computePSF_ResolvedTarget, PIAACMC_FPMsectors, (long) (10.0*PIAACMC_MASKRADLD+0.1), piaacmc[0].NBrings, piaacmc[0].nblambda, (long) (1000.0*ldoffset)
+            col 1: valref = average flux over scoring region  
+            col 2: aveC = averge contrast from 2 to 6 l/D
+            col 3: mask rad l/D
+            col 4: input Central Obs
+            col 5: output Central Obs
+            col 6: lambda [nm]
+            col 7: bandwidth [%]
+            col 8: sectors ?
+            col 9: NB rings
+            col 10: NB zones
+            col 11: NB lambda
+            col 12: source size offset
+        -> <confdir>/ContrastCurve%d_%03ld_%03ld_%02d.txt"
+PIAACMC_FPMsectors, piaacmc[0].NBrings, piaacmc[0].focmNBzone, piaacmc[0].nblambda);
+
+750 [101]   Transmission curve
+
+
+
+------------ MISC OPERATIONS -------------------------------------------------------------------------
+
+
+800     [200]   Make focal plane mask OPD map -> FITS file
+        -> <confdir>/fpmOPD<RE>_<yyy>_<zzz>.fits"
+            R:   computePSF_ResolvedTarget
+            E:   PIAACMC_FPMsectors
+            yyy: piaacmc[0].NBrings
+            zzz: piaacmc[0].focmNBzone
+
+
+
+======================================================================================================\end{DoxyVerb}
+ 

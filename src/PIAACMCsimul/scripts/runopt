@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+execname="Cfits"
 
 size=1024 # central lambda [nm]
 file="conf_size.txt"
@@ -361,13 +361,13 @@ touch looppsfcomp_done  # letting know other process that the PSF has been compu
 
 
 # END OF LOOP STUFF
-Cfits << EOF
+$execname << EOF
 creaimshm psfout $size $size $
 quit
 EOF
 
 if [ $initlooppsf -eq 0 ]; then
-Cfits << EOF
+$execname << EOF
 creaimshm psfout $size $size $NBlambda
 creaimshm psfout_re $size $size $NBlambda
 creaimshm psfout_im $size $size $NBlambda
@@ -378,7 +378,7 @@ fi
 checkerrorstatus
 
 # copy psf0 to shared memory
-Cfits << EOF
+$execname << EOF
 readshmim psfout
 readshmim psfout_re
 readshmim psfout_im
@@ -493,6 +493,5 @@ if [ $inputmode -eq 3 ]; then
 fi
 
 
-# lambdaarray initialized in PIAACMCsimul_init
 
 

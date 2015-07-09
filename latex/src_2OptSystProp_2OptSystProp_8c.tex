@@ -1,0 +1,97 @@
+\hypertarget{src_2OptSystProp_2OptSystProp_8c}{\section{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.c File Reference}
+\label{src_2OptSystProp_2OptSystProp_8c}\index{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}}
+}
+{\ttfamily \#include $<$fitsio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$ctype.\+h$>$}\\*
+{\ttfamily \#include $<$malloc.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}C\+L\+Icore.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\+O\+R\+E\+M\+O\+D\+\_\+memory/\+C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\+O\+R\+E\+M\+O\+D\+\_\+iofits/\+C\+O\+R\+E\+M\+O\+D\+\_\+iofits.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\+O\+R\+E\+M\+O\+D\+\_\+arith/\+C\+O\+R\+E\+M\+O\+D\+\_\+arith.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fft/fft.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}image\+\_\+gen/image\+\_\+gen.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}W\+Fpropagate/\+W\+Fpropagate.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}statistic/statistic.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}linopt\+\_\+imtools/linopt\+\_\+imtools.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Optics\+Materials/\+Optics\+Materials.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{src_2OptSystProp_2OptSystProp_8c_a856e9c763f542a6a0b78587b2989c159}{S\+B\+U\+F\+F\+E\+R\+S\+I\+Z\+E}~2000
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{src_2OptSystProp_2OptSystProp_8c_a1afcc0ea0323071649f5fd27f4c1a487}{init\+\_\+\+Opt\+Syst\+Prop} ()
+\item 
+int \hyperlink{src_2OptSystProp_2OptSystProp_8c_abfed4bbe5593d9c8a2e691be59a1eac8}{Opt\+Syst\+Prop\+\_\+propagate\+Cube} (\hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T} $\ast$\hyperlink{src_2PIAACMCsimul_2PIAACMCsimul_8c_afd320a44eac81011bd37a9d649950587}{optsyst}, long index, char $\ast$I\+Din\+\_\+amp\+\_\+name, char $\ast$I\+Din\+\_\+pha\+\_\+name, char $\ast$I\+Dout\+\_\+amp\+\_\+name, char $\ast$I\+Dout\+\_\+pha\+\_\+name, double zprop)
+\item 
+int \hyperlink{src_2OptSystProp_2OptSystProp_8c_a7409625459eecabd46fd1fdf39b4e435}{Opt\+Syst\+Prop\+\_\+run} (\hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T} $\ast$\hyperlink{src_2PIAACMCsimul_2PIAACMCsimul_8c_afd320a44eac81011bd37a9d649950587}{optsyst}, long index, long elemstart, long elemend, char $\ast$savedir)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structDATA}{D\+A\+T\+A} \hyperlink{src_2OptSystProp_2OptSystProp_8c_a9842752e03b4de9b4593f1a3b34364ab}{data}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{src_2OptSystProp_2OptSystProp_8c_a856e9c763f542a6a0b78587b2989c159}{\index{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}!S\+B\+U\+F\+F\+E\+R\+S\+I\+Z\+E@{S\+B\+U\+F\+F\+E\+R\+S\+I\+Z\+E}}
+\index{S\+B\+U\+F\+F\+E\+R\+S\+I\+Z\+E@{S\+B\+U\+F\+F\+E\+R\+S\+I\+Z\+E}!src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}}
+\subsubsection[{S\+B\+U\+F\+F\+E\+R\+S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+B\+U\+F\+F\+E\+R\+S\+I\+Z\+E~2000}}\label{src_2OptSystProp_2OptSystProp_8c_a856e9c763f542a6a0b78587b2989c159}
+
+
+\subsection{Function Documentation}
+\hypertarget{src_2OptSystProp_2OptSystProp_8c_a1afcc0ea0323071649f5fd27f4c1a487}{\index{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}!init\+\_\+\+Opt\+Syst\+Prop@{init\+\_\+\+Opt\+Syst\+Prop}}
+\index{init\+\_\+\+Opt\+Syst\+Prop@{init\+\_\+\+Opt\+Syst\+Prop}!src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}}
+\subsubsection[{init\+\_\+\+Opt\+Syst\+Prop}]{\setlength{\rightskip}{0pt plus 5cm}int init\+\_\+\+Opt\+Syst\+Prop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{src_2OptSystProp_2OptSystProp_8c_a1afcc0ea0323071649f5fd27f4c1a487}
+\hypertarget{src_2OptSystProp_2OptSystProp_8c_abfed4bbe5593d9c8a2e691be59a1eac8}{\index{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}!Opt\+Syst\+Prop\+\_\+propagate\+Cube@{Opt\+Syst\+Prop\+\_\+propagate\+Cube}}
+\index{Opt\+Syst\+Prop\+\_\+propagate\+Cube@{Opt\+Syst\+Prop\+\_\+propagate\+Cube}!src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}}
+\subsubsection[{Opt\+Syst\+Prop\+\_\+propagate\+Cube}]{\setlength{\rightskip}{0pt plus 5cm}int Opt\+Syst\+Prop\+\_\+propagate\+Cube (
+\begin{DoxyParamCaption}
+\item[{{\bf O\+P\+T\+S\+Y\+S\+T} $\ast$}]{optsyst, }
+\item[{long}]{index, }
+\item[{char $\ast$}]{I\+Din\+\_\+amp\+\_\+name, }
+\item[{char $\ast$}]{I\+Din\+\_\+pha\+\_\+name, }
+\item[{char $\ast$}]{I\+Dout\+\_\+amp\+\_\+name, }
+\item[{char $\ast$}]{I\+Dout\+\_\+pha\+\_\+name, }
+\item[{double}]{zprop}
+\end{DoxyParamCaption}
+)}}\label{src_2OptSystProp_2OptSystProp_8c_abfed4bbe5593d9c8a2e691be59a1eac8}
+\hypertarget{src_2OptSystProp_2OptSystProp_8c_a7409625459eecabd46fd1fdf39b4e435}{\index{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}!Opt\+Syst\+Prop\+\_\+run@{Opt\+Syst\+Prop\+\_\+run}}
+\index{Opt\+Syst\+Prop\+\_\+run@{Opt\+Syst\+Prop\+\_\+run}!src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}}
+\subsubsection[{Opt\+Syst\+Prop\+\_\+run}]{\setlength{\rightskip}{0pt plus 5cm}int Opt\+Syst\+Prop\+\_\+run (
+\begin{DoxyParamCaption}
+\item[{{\bf O\+P\+T\+S\+Y\+S\+T} $\ast$}]{optsyst, }
+\item[{long}]{index, }
+\item[{long}]{elemstart, }
+\item[{long}]{elemend, }
+\item[{char $\ast$}]{savedir}
+\end{DoxyParamCaption}
+)}}\label{src_2OptSystProp_2OptSystProp_8c_a7409625459eecabd46fd1fdf39b4e435}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & system index (usually 0) \\
+\hline
+\mbox{\tt in}  & {\em elemstart} & starting element index \\
+\hline
+\mbox{\tt in}  & {\em elemend} & ending element index \\
+\hline
+\mbox{\tt in}  & {\em savedir} & directory to which image results are saved\\
+\hline
+\end{DoxyParams}
+$\ast$elemkeepmem 1 if element complex amplitude should be kept in memory after use discard element memory after used 
+
+\subsection{Variable Documentation}
+\hypertarget{src_2OptSystProp_2OptSystProp_8c_a9842752e03b4de9b4593f1a3b34364ab}{\index{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}!data@{data}}
+\index{data@{data}!src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c@{src/\+Opt\+Syst\+Prop/\+Opt\+Syst\+Prop.\+c}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\+A\+T\+A} data}}\label{src_2OptSystProp_2OptSystProp_8c_a9842752e03b4de9b4593f1a3b34364ab}
