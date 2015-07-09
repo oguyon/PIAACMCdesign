@@ -1,6 +1,6 @@
 #!/bin/bash
 
-execname="Cfits"
+execname="PIAACMCdesign"
 
 size=1024 # central lambda [nm]
 file="conf_size.txt"

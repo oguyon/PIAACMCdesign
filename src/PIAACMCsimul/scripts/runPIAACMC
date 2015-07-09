@@ -5,6 +5,8 @@ pid=$$
 
 NBthreadsFPMresp=4 
 
+progname="PIAACMCdesign"
+
 
 errorfile="errorstatus.txt"
 checkerrorstatus ()
@@ -306,7 +308,6 @@ echo "PIAACMC_piaa0pos=${piaa0pos}" >> $startupfile
 fifoname="runPIAACMCfifo$pid"
 
 
-progname="Cfits"
 
 execname="$progname -s $startupfile -f $fifoname"
 
