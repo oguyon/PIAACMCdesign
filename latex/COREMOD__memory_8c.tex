@@ -235,8 +235,10 @@ long \hyperlink{COREMOD__memory_8c_a52354e4cb18c81e026c1cb5756becebb}{C\+O\+R\+E
 \item 
 void $\ast$ \hyperlink{COREMOD__memory_8c_a201263a8498c7557ab392a4cdcc13488}{waitforsem\+I\+D} (void $\ast$I\+D)
 \item 
-long \hyperlink{COREMOD__memory_8c_a55da993c7f577ec7165d38c1a13f6018}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R} (long $\ast$I\+Darray, long N\+B\+\_\+\+I\+D)
+long \hyperlink{COREMOD__memory_8c_a1b4b8135f1a24212048a83d6153b2d39}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R\+\_\+\+I\+Darray} (long $\ast$I\+Darray, long N\+B\+\_\+\+I\+D)
 \begin{DoxyCompactList}\small\item\em Wait for multiple semaphores \mbox{[}O\+R\mbox{]}. \end{DoxyCompactList}\item 
+long \hyperlink{COREMOD__memory_8c_a6fdbf9d15c38ab7e17cba7491027299e}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray} (long $\ast$I\+Darray, long N\+B\+\_\+\+I\+D)
+\begin{DoxyCompactList}\small\item\em flush multiple semaphores \end{DoxyCompactList}\item 
 long \hyperlink{COREMOD__memory_8c_adb3be222ee04cb10c6e8d0e1c95767a6}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush} (char $\ast$I\+Dname)
 \begin{DoxyCompactList}\small\item\em set semaphore value to 0 \end{DoxyCompactList}\item 
 long \hyperlink{COREMOD__memory_8c_ad7182d838047ce0188dd0ff058616c89}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+streamupdateloop} (char $\ast$I\+Dinname, char $\ast$I\+Doutname, long usperiod)
@@ -512,6 +514,18 @@ continuously transmits 2\+D image through T\+C\+P link mode is not currently use
 
 set semaphore value to 0 
 
+\hypertarget{COREMOD__memory_8c_a6fdbf9d15c38ab7e17cba7491027299e}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray}}
+\index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}}
+\subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray}]{\setlength{\rightskip}{0pt plus 5cm}long C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray (
+\begin{DoxyParamCaption}
+\item[{long $\ast$}]{I\+Darray, }
+\item[{long}]{N\+B\+\_\+\+I\+D}
+\end{DoxyParamCaption}
+)}}\label{COREMOD__memory_8c_a6fdbf9d15c38ab7e17cba7491027299e}
+
+
+flush multiple semaphores 
+
 \hypertarget{COREMOD__memory_8c_a3ffb95f61b127915041b6e8663efd00a}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+sempost@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+sempost}}
 \index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+sempost@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+sempost}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}}
 \subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+sempost}]{\setlength{\rightskip}{0pt plus 5cm}long C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+sempost (
@@ -540,14 +554,14 @@ set semaphore value to 0
 {}
 \end{DoxyParamCaption}
 )}}\label{COREMOD__memory_8c_a09601bc25ed277718f651f95662cf82b}
-\hypertarget{COREMOD__memory_8c_a55da993c7f577ec7165d38c1a13f6018}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R}}
-\index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}}
-\subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}long C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R (
+\hypertarget{COREMOD__memory_8c_a1b4b8135f1a24212048a83d6153b2d39}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R\+\_\+\+I\+Darray@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R\+\_\+\+I\+Darray}}
+\index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R\+\_\+\+I\+Darray@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R\+\_\+\+I\+Darray}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}}
+\subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R\+\_\+\+I\+Darray}]{\setlength{\rightskip}{0pt plus 5cm}long C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+\+O\+R\+\_\+\+I\+Darray (
 \begin{DoxyParamCaption}
 \item[{long $\ast$}]{I\+Darray, }
 \item[{long}]{N\+B\+\_\+\+I\+D}
 \end{DoxyParamCaption}
-)}}\label{COREMOD__memory_8c_a55da993c7f577ec7165d38c1a13f6018}
+)}}\label{COREMOD__memory_8c_a1b4b8135f1a24212048a83d6153b2d39}
 
 
 Wait for multiple semaphores \mbox{[}O\+R\mbox{]}. 

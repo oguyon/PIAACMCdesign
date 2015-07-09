@@ -16,7 +16,7 @@
 \end{DoxyItemize}\hypertarget{md_src_PIAACMCsimul_README_overview}{}\section{1. Overview}\label{md_src_PIAACMCsimul_README_overview}
 Diffraction-\/based P\+I\+A\+A\+C\+M\+C simulation / optimization
 \begin{DoxyItemize}
-\item Uses Fresnel propagation engine ( Opt\+Syst\+Prop.\+c Opt\+Syst\+Prop.\+h ) between optical elements
+\item Uses Fresnel propagation engine ( \hyperlink{OptSystProp_8c}{Opt\+Syst\+Prop.\+c} \hyperlink{OptSystProp_8h}{Opt\+Syst\+Prop.\+h} ) between optical elements
 \item Computes linear perturbations around current design for optimization
 \item Automatically computes multiple Lyot stop to follow variable conjugation in different parts of the beam
 \item Polychromatic propagations
@@ -50,7 +50,7 @@ This is the lower-\/level script calling the C-\/written executable~\newline
 Type ./run\+P\+I\+A\+A\+C\+M\+C with no argument to get help message.\hypertarget{md_src_PIAACMCsimul_README_code}{}\section{3. C code description}\label{md_src_PIAACMCsimul_README_code}
 \hyperlink{PIAACMC_designcodes}{P\+I\+A\+A\+C\+M\+C design codes}
 
-The main function in the source code is \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a1083c078214e43d74447950f8a236c5d}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+exec()}, which takes two arguments\+: the configuration index (usually a 3 digit integer) and the mode (integer) which describes the operation to be performed to the P\+I\+A\+A\+C\+M\+C design.
+The main function in the source code is \hyperlink{PIAACMCsimul_8c_a1083c078214e43d74447950f8a236c5d}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+exec()}, which takes two arguments\+: the configuration index (usually a 3 digit integer) and the mode (integer) which describes the operation to be performed to the P\+I\+A\+A\+C\+M\+C design.
 
 \begin{TabularC}{2}
 \hline
@@ -163,29 +163,29 @@ Total light in scoring field = 9.49968e-06  -> Average contrast = 6.88685e-08
 
 
 \begin{DoxyItemize}
-\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a1083c078214e43d74447950f8a236c5d}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+exec()} \+:
+\item \hyperlink{PIAACMCsimul_8c_a1083c078214e43d74447950f8a236c5d}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+exec()} \+:
 \begin{DoxyItemize}
-\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a85f1459cf776292b7e2fff9932a79252}{P\+I\+A\+Asimul\+\_\+initpiaacmcconf()}\+: Load/\+Creates/initializes piaacmcconf structure and directory
+\item \hyperlink{PIAACMCsimul_8c_a85f1459cf776292b7e2fff9932a79252}{P\+I\+A\+Asimul\+\_\+initpiaacmcconf()}\+: Load/\+Creates/initializes piaacmcconf structure and directory
 \begin{DoxyItemize}
 \item perform default initialization
-\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_adedec73128f41e8b3f83796bf913c8da}{P\+I\+A\+Asimul\+\_\+loadpiaacmcconf()}\+: Loading P\+I\+A\+A\+C\+M\+C configuration from \char`\"{}piaacmcconfxxx/piaacmcparams.\+conf\char`\"{} if it exists
+\item \hyperlink{PIAACMCsimul_8c_adedec73128f41e8b3f83796bf913c8da}{P\+I\+A\+Asimul\+\_\+loadpiaacmcconf()}\+: Loading P\+I\+A\+A\+C\+M\+C configuration from \char`\"{}piaacmcconfxxx/piaacmcparams.\+conf\char`\"{} if it exists
 \item Creating/loading Cmodes and Fmodes
 \item I\+M\+P\+O\+R\+T / C\+R\+E\+A\+T\+E P\+I\+A\+A S\+H\+A\+P\+E\+S
 \begin{DoxyItemize}
 \item create 2\+D prolate iteratively
-\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a6828d3577dee2b0882bd7df99602f30d}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+load2\+D\+Radial\+Apodization()}\+:fit P\+I\+A\+A shapes with Cosine modes
-\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a8e2b36e622c11627571989ab113d85eb}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+init\+\_\+geom\+P\+I\+A\+A\+\_\+rad()}\+: compute radial P\+I\+A\+A sag from cosine apodization fit
-\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_adad6ba0da7cd47c07c35232b6096fa1c}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag()}\+: Make 2\+D sag shapes from radial P\+I\+A\+A sag
+\item \hyperlink{PIAACMCsimul_8c_a6828d3577dee2b0882bd7df99602f30d}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+load2\+D\+Radial\+Apodization()}\+:fit P\+I\+A\+A shapes with Cosine modes
+\item \hyperlink{PIAACMCsimul_8c_a8e2b36e622c11627571989ab113d85eb}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+init\+\_\+geom\+P\+I\+A\+A\+\_\+rad()}\+: compute radial P\+I\+A\+A sag from cosine apodization fit
+\item \hyperlink{PIAACMCsimul_8c_adad6ba0da7cd47c07c35232b6096fa1c}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag()}\+: Make 2\+D sag shapes from radial P\+I\+A\+A sag
 \end{DoxyItemize}
 \item M\+A\+K\+E F\+O\+C\+A\+L P\+L\+A\+N\+E M\+A\+S\+K
 \item M\+A\+K\+E L\+Y\+O\+T S\+T\+O\+P\+S
-\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_aac928f8658448934caa7e805af8606a8}{P\+I\+A\+Asimul\+\_\+savepiaacmcconf()}\+: save configuration
+\item \hyperlink{PIAACMCsimul_8c_aac928f8658448934caa7e805af8606a8}{P\+I\+A\+Asimul\+\_\+savepiaacmcconf()}\+: save configuration
 \end{DoxyItemize}
-\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a0ae7439a20fe5267506bc7d1e0533f08}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes()}\+: construct P\+I\+A\+A shapes from fitting coefficients
+\item \hyperlink{PIAACMCsimul_8c_a0ae7439a20fe5267506bc7d1e0533f08}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes()}\+: construct P\+I\+A\+A shapes from fitting coefficients
 \begin{DoxyItemize}
 \item construct 2\+D P\+I\+A\+A mirror shapes from piaa0\+Cmodescoeff, piaa0\+Fmodescoeff, piaa1\+Cmodescoeff, piaa1\+Fmodescoeff
 \end{DoxyItemize}
-\item \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a0650545f10bc1e359093510f12a9f9f6}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F()}\+: Compute P\+S\+F
+\item \hyperlink{PIAACMCsimul_8c_a0650545f10bc1e359093510f12a9f9f6}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F()}\+: Compute P\+S\+F
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -220,7 +220,7 @@ Fmodes.\+fits &Fourier modes (625 modes = 10 C\+P\+A, hard coded) \\\cline{1-2}
 \begin{TabularC}{2}
 \hline
 \rowcolor{lightgray}{\bf Output file }&{\bf Notes  }\\\cline{1-2}
-./piaaconfxxx/\+A\+P\+L\+Capo.1.\+400.\+0.\+300.\+info &file written by prolate generation function coronagraph\+\_\+make\+\_\+2\+Dprolate in coronagraphs.\+c \\\cline{1-2}
+./piaaconfxxx/\+A\+P\+L\+Capo.1.\+400.\+0.\+300.\+info &file written by prolate generation function coronagraph\+\_\+make\+\_\+2\+Dprolate in \hyperlink{coronagraphs_8c}{coronagraphs.\+c} \\\cline{1-2}
 ./piaaconfxxx/apo2\+Drad.fits &idealized P\+I\+A\+A\+C\+M\+C 2\+D apodization \\\cline{1-2}
 ./piaaconfxxx/piaam0z.fits &P\+I\+A\+A M0 shape (2\+D sag) \\\cline{1-2}
 ./piaaconfxxx/piaam1z.fits &P\+I\+A\+A M1 shape (2\+D sag) \\\cline{1-2}
@@ -319,7 +319,7 @@ Complex amplitude is shown A\+F\+T\+E\+R the element has been applied, in the pl
 \begin{TabularC}{2}
 \hline
 \rowcolor{lightgray}{\bf Plane index }&{\bf description  }\\\cline{1-2}
-./piaaconfxxx/scoringmask0.fits &Evaluation points in focal plane, hardcoded in \hyperlink{PIAACMCdesign_2src_2PIAACMCsimul_2PIAACMCsimul_8c_a0650545f10bc1e359093510f12a9f9f6}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F()} \\\cline{1-2}
+./piaaconfxxx/scoringmask0.fits &Evaluation points in focal plane, hardcoded in \hyperlink{PIAACMCsimul_8c_a0650545f10bc1e359093510f12a9f9f6}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F()} \\\cline{1-2}
 ./piaaconfxxx/\+Cnorm\+Factor.txt &P\+S\+F normalization factor used to compute contrast \\\cline{1-2}
 ./piaaconfxxx/flux.txt &total intensity at each plane \\\cline{1-2}
 \end{TabularC}

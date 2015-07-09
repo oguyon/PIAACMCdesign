@@ -54,9 +54,7 @@ long \hyperlink{PIAACMCsimul_8c_a83113a71163bd3c5e43291662975513a}{P\+I\+A\+A\+C
 \item 
 long \hyperlink{PIAACMCsimul_8c_a34a3bccb03883f7501fbe95d7694ee32}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+rings2sectors} (char $\ast$I\+Din\+\_\+name, char $\ast$sectfname, char $\ast$I\+Dout\+\_\+name)
 \item 
-long \hyperlink{PIAACMCsimul_8c_a9c3e6da717ecc5767faaf243875a5978}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask\+O\+P\+D} (char $\ast$I\+Dzonemap\+\_\+name, char $\ast$I\+Dname)
-\item 
-long \hyperlink{PIAACMCsimul_8c_ac53e3930669b38f02e03f0fcdaafcde4}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask} (char $\ast$I\+Dzonemap\+\_\+name, char $\ast$I\+D\+\_\+name, int mode)
+long \hyperlink{PIAACMCsimul_8c_a66561b8270f27a900b210f8180e2d1ea}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask} (char $\ast$I\+Dzonemap\+\_\+name, char $\ast$I\+D\+\_\+name, int mode, int save\+Mask)
 \item 
 void \hyperlink{PIAACMCsimul_8c_a1019cf3ddedd12485a4c9da5fa5f0a8e}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+init} (\hyperlink{structOPTPIAACMCDESIGN}{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N} $\ast$design, long index, double T\+Txld, double T\+Tyld)
 \item 
@@ -70,9 +68,9 @@ long \hyperlink{PIAACMCsimul_8c_aa0c28552bfcd9ffae0d88bc29de5f3ca}{P\+I\+A\+Asim
 \item 
 int \hyperlink{PIAACMCsimul_8c_a85f1459cf776292b7e2fff9932a79252}{P\+I\+A\+Asimul\+\_\+initpiaacmcconf} (long piaacmctype, double fpmradld, double centobs0, double centobs1, int W\+F\+Cmode, int load)
 \begin{DoxyCompactList}\small\item\em Creates/initializes piaacmcconf structure and directory. \end{DoxyCompactList}\item 
-int \hyperlink{PIAACMCsimul_8c_a3a6aa31c31adb655f2afa2416e155684}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes} ()
+int \hyperlink{PIAACMCsimul_8c_a0ae7439a20fe5267506bc7d1e0533f08}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes} (\hyperlink{structOPTPIAACMCDESIGN}{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N} $\ast$design, long index)
 \item 
-double \hyperlink{PIAACMCsimul_8c_a5c872da1e39bdc8e5ec4dfadc6a42690}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F} (float xld, float yld, long startelem, long endelem, int savepsf, int sourcesize, int extmode)
+double \hyperlink{PIAACMCsimul_8c_a0650545f10bc1e359093510f12a9f9f6}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F} (float xld, float yld, long startelem, long endelem, int savepsf, int sourcesize, int extmode, int outsave)
 \item 
 int \hyperlink{PIAACMCsimul_8c_aac928f8658448934caa7e805af8606a8}{P\+I\+A\+Asimul\+\_\+savepiaacmcconf} (char $\ast$dname)
 \item 
@@ -80,7 +78,11 @@ int \hyperlink{PIAACMCsimul_8c_adedec73128f41e8b3f83796bf913c8da}{P\+I\+A\+Asimu
 \item 
 long \hyperlink{PIAACMCsimul_8c_a7a0f2012db71d25f80b3780e42e56f95}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Lyot\+Mask} (char $\ast$I\+Dincoh\+\_\+name, char $\ast$I\+Dmc\+\_\+name, char $\ast$I\+Dzone\+\_\+name, double throughput, char $\ast$I\+Dout\+\_\+name)
 \item 
-double \hyperlink{PIAACMCsimul_8c_a16cab6d4f9b3c1b9ac68ec4954f89979}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop} (char $\ast$I\+Damp\+\_\+name, char $\ast$I\+Dpha\+\_\+name, char $\ast$I\+Dincoh\+\_\+name, float zmin, float zmax, double throughput, long N\+Bz, long N\+Bmasks)
+long \hyperlink{PIAACMCsimul_8c_a2a0aefad27ea12ebcab5e6b2e2386c5e}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+\+C\+A2prop\+Cube\+Int} (char $\ast$I\+Damp\+\_\+name, char $\ast$I\+Dpha\+\_\+name, float zmin, float zmax, long N\+Bz, double sigma, char $\ast$I\+Dout\+\_\+name)
+\item 
+long \hyperlink{PIAACMCsimul_8c_aca5dc251abb935bbb087b1d161af5675}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop\+\_\+\+O\+Amin} (char $\ast$I\+Damp\+\_\+name, char $\ast$I\+Dpha\+\_\+name, char $\ast$I\+Dincohc\+\_\+name, float zmin, float zmax, double throughput, long N\+Bz, long N\+Bmasks)
+\begin{DoxyCompactList}\small\item\em make Lyot stops using off-\/axis light minimums \end{DoxyCompactList}\item 
+double \hyperlink{PIAACMCsimul_8c_ac3249f67a898789f44ff642556eeabd0}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop} (char $\ast$I\+Damp\+\_\+name, char $\ast$I\+Dpha\+\_\+name, char $\ast$I\+Dincohc\+\_\+name, float zmin, float zmax, double throughput, long N\+Bz, long N\+Bmasks)
 \item 
 double \hyperlink{PIAACMCsimul_8c_aa63078ba620af23d7dbf66f25be81615}{P\+I\+A\+A\+C\+M\+Csimul\+\_\+achrom\+F\+P\+Msol\+\_\+eval} (double $\ast$\hyperlink{PIAACMCsimul_8c_afb399b89a6a7e4e524c41f259fcd4620}{fpmresp\+\_\+array}, double $\ast$\hyperlink{PIAACMCsimul_8c_a30b070e6e2b952662cec1747ec74189e}{zonez\+\_\+array}, double $\ast$\hyperlink{PIAACMCsimul_8c_ae2c9d516f5c47e45b510058bfba56c8a}{dphadz\+\_\+array}, double $\ast$\hyperlink{PIAACMCsimul_8c_a25bcb59481afd08467dfce3d613ca37e}{outtmp\+\_\+array}, long \hyperlink{PIAACMCsimul_8c_a2598a6b03b0791c60dc22c1a9c23b94d}{vsize}, long nbz, long nbl)
 \item 
@@ -103,7 +105,7 @@ int \hyperlink{PIAACMCsimul_8c_acaeed1d7434e0febb834ca8df68eaf78}{W\+R\+I\+T\+E\
 \item 
 \hyperlink{structDATA}{D\+A\+T\+A} \hyperlink{PIAACMCsimul_8c_a9842752e03b4de9b4593f1a3b34364ab}{data}
 \item 
-char \hyperlink{PIAACMCsimul_8c_ac0bbabccf4b3ad45f9b5b1681cc7165e}{piaacmcconfdir} \mbox{[}200\mbox{]}
+char \hyperlink{PIAACMCsimul_8c_af427eb12d4f99b7fc070f9eb7f1a5e8b}{piaacmcconfdir} \mbox{[}300\mbox{]}
 \begin{DoxyCompactList}\small\item\em Current configuration directory. \end{DoxyCompactList}\item 
 \hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T} $\ast$ \hyperlink{PIAACMCsimul_8c_afd320a44eac81011bd37a9d649950587}{optsyst}
 \item 
@@ -256,6 +258,8 @@ long \hyperlink{PIAACMCsimul_8c_a60837195ca25309ea8ce4e9d8135a10c}{P\+I\+A\+A\+C
 long \hyperlink{PIAACMCsimul_8c_ac51c32f6d8aae8e3b125a228af3e56d9}{P\+I\+A\+A\+C\+M\+C\+\_\+\+M\+A\+X\+R\+I\+N\+G\+O\+P\+T\+N\+B} = 100
 \item 
 long \hyperlink{PIAACMCsimul_8c_a223e67ea5a3cf457e3dd28818c4b099e}{P\+I\+A\+A\+C\+M\+C\+\_\+\+R\+I\+N\+G\+O\+P\+T\+N\+B}
+\item 
+int \hyperlink{PIAACMCsimul_8c_a882b63d9622d510d2a8010a728901a44}{P\+I\+A\+A\+C\+M\+C\+\_\+\+C\+I\+R\+C} = 0
 \end{DoxyCompactItemize}
 
 
@@ -363,7 +367,20 @@ written to be fast, no checking of array sizes all arrays pre-\/allocated outsid
 \item[{long}]{nbl}
 \end{DoxyParamCaption}
 )}}\label{PIAACMCsimul_8c_a9796ccd4fc77a73047328d0258358926}
-\hypertarget{PIAACMCsimul_8c_a5c872da1e39bdc8e5ec4dfadc6a42690}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F}}
+\hypertarget{PIAACMCsimul_8c_a2a0aefad27ea12ebcab5e6b2e2386c5e}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+\+C\+A2prop\+Cube\+Int@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+\+C\+A2prop\+Cube\+Int}}
+\index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+\+C\+A2prop\+Cube\+Int@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+\+C\+A2prop\+Cube\+Int}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
+\subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+\+C\+A2prop\+Cube\+Int}]{\setlength{\rightskip}{0pt plus 5cm}long P\+I\+A\+A\+C\+M\+Csimul\+\_\+\+C\+A2prop\+Cube\+Int (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{I\+Damp\+\_\+name, }
+\item[{char $\ast$}]{I\+Dpha\+\_\+name, }
+\item[{float}]{zmin, }
+\item[{float}]{zmax, }
+\item[{long}]{N\+Bz, }
+\item[{double}]{sigma, }
+\item[{char $\ast$}]{I\+Dout\+\_\+name}
+\end{DoxyParamCaption}
+)}}\label{PIAACMCsimul_8c_a2a0aefad27ea12ebcab5e6b2e2386c5e}
+propagate complex amplitude image into intensity map cube \hypertarget{PIAACMCsimul_8c_a0650545f10bc1e359093510f12a9f9f6}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F}}
 \index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F}]{\setlength{\rightskip}{0pt plus 5cm}double P\+I\+A\+A\+C\+M\+Csimul\+\_\+compute\+P\+S\+F (
 \begin{DoxyParamCaption}
@@ -373,9 +390,10 @@ written to be fast, no checking of array sizes all arrays pre-\/allocated outsid
 \item[{long}]{endelem, }
 \item[{int}]{savepsf, }
 \item[{int}]{sourcesize, }
-\item[{int}]{extmode}
+\item[{int}]{extmode, }
+\item[{int}]{outsave}
 \end{DoxyParamCaption}
-)}}\label{PIAACMCsimul_8c_a5c872da1e39bdc8e5ec4dfadc6a42690}
+)}}\label{PIAACMCsimul_8c_a0650545f10bc1e359093510f12a9f9f6}
 returns average contrast in evaluation zone
 
 source size = 1e-\/\{sourcesize$\ast$0.1\}, except if sourcesize = 0 (point source) sourcesize is a 2-\/digit number ( 10 = 0.\+1 l/\+D, 20 = 0.\+01 l/\+D etc..)
@@ -401,6 +419,8 @@ Main simulation routine.
 \mbox{\tt in}  & {\em mode} & Type of operation to be performed \\
 \hline
 \end{DoxyParams}
+identify post focal plane pupil plane
+
 compute contrast curve
 
 compute contrast curve measure average contrast value, 2-\/6 lambda/\+D \hypertarget{PIAACMCsimul_8c_a5a2ed45bf5a3193daba9a3da8143d664}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+free@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+free}}
@@ -438,22 +458,26 @@ this function only works for circular P\+I\+A\+A uses radial P\+I\+A\+A\+C\+M\+C
 \item[{char $\ast$}]{I\+Dapofit\+\_\+name}
 \end{DoxyParamCaption}
 )}}\label{PIAACMCsimul_8c_a6828d3577dee2b0882bd7df99602f30d}
-\hypertarget{PIAACMCsimul_8c_a3a6aa31c31adb655f2afa2416e155684}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes}}
+\hypertarget{PIAACMCsimul_8c_a0ae7439a20fe5267506bc7d1e0533f08}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes}}
 \index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes}]{\setlength{\rightskip}{0pt plus 5cm}int P\+I\+A\+A\+C\+M\+Csimul\+\_\+make\+P\+I\+A\+Ashapes (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N} $\ast$}]{design, }
+\item[{long}]{index}
 \end{DoxyParamCaption}
-)}}\label{PIAACMCsimul_8c_a3a6aa31c31adb655f2afa2416e155684}
-\hypertarget{PIAACMCsimul_8c_ac53e3930669b38f02e03f0fcdaafcde4}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask}}
+)}}\label{PIAACMCsimul_8c_a0ae7439a20fe5267506bc7d1e0533f08}
+mirror sag shapes\+: piaam0z, piaam1z
+
+piaa0\+Cmodescoeff -\/$>$ piaa0\+Cz piaa0\+Fmodescoeff -\/$>$ piaa0\+Fz piaa0\+Cz + piaa0\+Fz -\/$>$ piaam0z \hypertarget{PIAACMCsimul_8c_a66561b8270f27a900b210f8180e2d1ea}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask}}
 \index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask}]{\setlength{\rightskip}{0pt plus 5cm}long P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{I\+Dzonemap\+\_\+name, }
 \item[{char $\ast$}]{I\+D\+\_\+name, }
-\item[{int}]{mode}
+\item[{int}]{mode, }
+\item[{int}]{save\+Mask}
 \end{DoxyParamCaption}
-)}}\label{PIAACMCsimul_8c_ac53e3930669b38f02e03f0fcdaafcde4}
+)}}\label{PIAACMCsimul_8c_a66561b8270f27a900b210f8180e2d1ea}
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em I\+Dzonemap\+\_\+name} & zones \\
@@ -462,15 +486,9 @@ this function only works for circular P\+I\+A\+A uses radial P\+I\+A\+A\+C\+M\+C
 \hline
 \mbox{\tt in}  & {\em mode} & if mode = -\/1, make whole 1-\/fpm, if mode = zone, make only 1 zone with C\+A = (1.\+0, 0.\+0) \\
 \hline
+\mbox{\tt in}  & {\em save\+Mask} & 1 if mask saved to file system \\
+\hline
 \end{DoxyParams}
-\hypertarget{PIAACMCsimul_8c_a9c3e6da717ecc5767faaf243875a5978}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask\+O\+P\+D@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask\+O\+P\+D}}
-\index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask\+O\+P\+D@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask\+O\+P\+D}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
-\subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask\+O\+P\+D}]{\setlength{\rightskip}{0pt plus 5cm}long P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+Focal\+Plane\+Mask\+O\+P\+D (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{I\+Dzonemap\+\_\+name, }
-\item[{char $\ast$}]{I\+Dname}
-\end{DoxyParamCaption}
-)}}\label{PIAACMCsimul_8c_a9c3e6da717ecc5767faaf243875a5978}
 \hypertarget{PIAACMCsimul_8c_a83113a71163bd3c5e43291662975513a}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+F\+P\+M\+\_\+zonemap@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+F\+P\+M\+\_\+zonemap}}
 \index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+F\+P\+M\+\_\+zonemap@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+F\+P\+M\+\_\+zonemap}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+F\+P\+M\+\_\+zonemap}]{\setlength{\rightskip}{0pt plus 5cm}long P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+F\+P\+M\+\_\+zonemap (
@@ -494,7 +512,9 @@ this function only works for circular P\+I\+A\+A uses radial P\+I\+A\+A\+C\+M\+C
 \item[{char $\ast$}]{I\+Dout\+\_\+name}
 \end{DoxyParamCaption}
 )}}\label{PIAACMCsimul_8c_a7a0f2012db71d25f80b3780e42e56f95}
-Make Lyot stop geometry param\mbox{[}in\mbox{]} I\+Dincoh\+\_\+name Incoherent Lyot pupil intensity response to off-\/axis sources parampin\mbox{]} I\+Dmc\+\_\+name Intensity Lyot pupil image for on-\/axis source \hypertarget{PIAACMCsimul_8c_adad6ba0da7cd47c07c35232b6096fa1c}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag}}
+Make Lyot stop geometry param\mbox{[}in\mbox{]} I\+Dincoh\+\_\+name Incoherent Lyot pupil intensity response to off-\/axis sources parampin\mbox{]} I\+Dmc\+\_\+name Intensity Lyot pupil image for on-\/axis source
+
+explores two thresholding methods applied together \+: (1) keeps pixels for which offaxis\+Light / onaxis\+Light $>$ rsl (2) keeps pixels for which onaxis\+Light $<$ v0 selects the mask that achieves the strongest on-\/axis rejection while satifying the throughput constraint \hypertarget{PIAACMCsimul_8c_adad6ba0da7cd47c07c35232b6096fa1c}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag}}
 \index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag}]{\setlength{\rightskip}{0pt plus 5cm}int P\+I\+A\+A\+C\+M\+Csimul\+\_\+mk\+P\+I\+A\+A\+Mshapes\+\_\+from\+\_\+\+Rad\+Sag (
 \begin{DoxyParamCaption}
@@ -503,20 +523,20 @@ Make Lyot stop geometry param\mbox{[}in\mbox{]} I\+Dincoh\+\_\+name Incoherent L
 \item[{char $\ast$}]{I\+D\+\_\+\+P\+I\+A\+A\+M1\+\_\+name}
 \end{DoxyParamCaption}
 )}}\label{PIAACMCsimul_8c_adad6ba0da7cd47c07c35232b6096fa1c}
-\hypertarget{PIAACMCsimul_8c_a16cab6d4f9b3c1b9ac68ec4954f89979}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop}}
+\hypertarget{PIAACMCsimul_8c_ac3249f67a898789f44ff642556eeabd0}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop}}
 \index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop}]{\setlength{\rightskip}{0pt plus 5cm}double P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{I\+Damp\+\_\+name, }
 \item[{char $\ast$}]{I\+Dpha\+\_\+name, }
-\item[{char $\ast$}]{I\+Dincoh\+\_\+name, }
+\item[{char $\ast$}]{I\+Dincohc\+\_\+name, }
 \item[{float}]{zmin, }
 \item[{float}]{zmax, }
 \item[{double}]{throughput, }
 \item[{long}]{N\+Bz, }
 \item[{long}]{N\+Bmasks}
 \end{DoxyParamCaption}
-)}}\label{PIAACMCsimul_8c_a16cab6d4f9b3c1b9ac68ec4954f89979}
+)}}\label{PIAACMCsimul_8c_ac3249f67a898789f44ff642556eeabd0}
 Lyot stops positions from zmin to zmax relative to current, working back (light goes from 0 to zmax) 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em Flux\+T\+O\+T} & total flux in current plane \\
@@ -524,6 +544,24 @@ Lyot stops positions from zmin to zmax relative to current, working back (light 
 \mbox{\tt in}  & {\em Flux\+Lim} & max flux allowed from star \\
 \hline
 \end{DoxyParams}
+\hypertarget{PIAACMCsimul_8c_aca5dc251abb935bbb087b1d161af5675}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop\+\_\+\+O\+Amin@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop\+\_\+\+O\+Amin}}
+\index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop\+\_\+\+O\+Amin@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop\+\_\+\+O\+Amin}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
+\subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop\+\_\+\+O\+Amin}]{\setlength{\rightskip}{0pt plus 5cm}long P\+I\+A\+A\+C\+M\+Csimul\+\_\+optimize\+Lyot\+Stop\+\_\+\+O\+Amin (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{I\+Damp\+\_\+name, }
+\item[{char $\ast$}]{I\+Dpha\+\_\+name, }
+\item[{char $\ast$}]{I\+Dincohc\+\_\+name, }
+\item[{float}]{zmin, }
+\item[{float}]{zmax, }
+\item[{double}]{throughput, }
+\item[{long}]{N\+Bz, }
+\item[{long}]{N\+Bmasks}
+\end{DoxyParamCaption}
+)}}\label{PIAACMCsimul_8c_aca5dc251abb935bbb087b1d161af5675}
+
+
+make Lyot stops using off-\/axis light minimums 
+
 \hypertarget{PIAACMCsimul_8c_a34a3bccb03883f7501fbe95d7694ee32}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+Csimul\+\_\+rings2sectors@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+rings2sectors}}
 \index{P\+I\+A\+A\+C\+M\+Csimul\+\_\+rings2sectors@{P\+I\+A\+A\+C\+M\+Csimul\+\_\+rings2sectors}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{P\+I\+A\+A\+C\+M\+Csimul\+\_\+rings2sectors}]{\setlength{\rightskip}{0pt plus 5cm}long P\+I\+A\+A\+C\+M\+Csimul\+\_\+rings2sectors (
@@ -800,6 +838,9 @@ piaacmctype\+:
 \hypertarget{PIAACMCsimul_8c_a630b070f5e9d187ea334902ef75682d5}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!piaacmc@{piaacmc}}
 \index{piaacmc@{piaacmc}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{piaacmc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}$\ast$ piaacmc}}\label{PIAACMCsimul_8c_a630b070f5e9d187ea334902ef75682d5}
+\hypertarget{PIAACMCsimul_8c_a882b63d9622d510d2a8010a728901a44}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+C\+\_\+\+C\+I\+R\+C@{P\+I\+A\+A\+C\+M\+C\+\_\+\+C\+I\+R\+C}}
+\index{P\+I\+A\+A\+C\+M\+C\+\_\+\+C\+I\+R\+C@{P\+I\+A\+A\+C\+M\+C\+\_\+\+C\+I\+R\+C}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
+\subsubsection[{P\+I\+A\+A\+C\+M\+C\+\_\+\+C\+I\+R\+C}]{\setlength{\rightskip}{0pt plus 5cm}int P\+I\+A\+A\+C\+M\+C\+\_\+\+C\+I\+R\+C = 0}}\label{PIAACMCsimul_8c_a882b63d9622d510d2a8010a728901a44}
 \hypertarget{PIAACMCsimul_8c_ab2065dba80ddeff5ff64e76c4279d5fa}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+C\+\_\+\+F\+P\+M\+\_\+\+F\+A\+S\+T\+D\+E\+R\+I\+V\+A\+T\+I\+V\+E\+S@{P\+I\+A\+A\+C\+M\+C\+\_\+\+F\+P\+M\+\_\+\+F\+A\+S\+T\+D\+E\+R\+I\+V\+A\+T\+I\+V\+E\+S}}
 \index{P\+I\+A\+A\+C\+M\+C\+\_\+\+F\+P\+M\+\_\+\+F\+A\+S\+T\+D\+E\+R\+I\+V\+A\+T\+I\+V\+E\+S@{P\+I\+A\+A\+C\+M\+C\+\_\+\+F\+P\+M\+\_\+\+F\+A\+S\+T\+D\+E\+R\+I\+V\+A\+T\+I\+V\+E\+S}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{P\+I\+A\+A\+C\+M\+C\+\_\+\+F\+P\+M\+\_\+\+F\+A\+S\+T\+D\+E\+R\+I\+V\+A\+T\+I\+V\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}int P\+I\+A\+A\+C\+M\+C\+\_\+\+F\+P\+M\+\_\+\+F\+A\+S\+T\+D\+E\+R\+I\+V\+A\+T\+I\+V\+E\+S = 0}}\label{PIAACMCsimul_8c_ab2065dba80ddeff5ff64e76c4279d5fa}
@@ -830,9 +871,9 @@ piaacmctype\+:
 \hypertarget{PIAACMCsimul_8c_a7ef14a26ad565c848184e705cb499dab}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!P\+I\+A\+A\+C\+M\+C\+\_\+save@{P\+I\+A\+A\+C\+M\+C\+\_\+save}}
 \index{P\+I\+A\+A\+C\+M\+C\+\_\+save@{P\+I\+A\+A\+C\+M\+C\+\_\+save}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
 \subsubsection[{P\+I\+A\+A\+C\+M\+C\+\_\+save}]{\setlength{\rightskip}{0pt plus 5cm}int P\+I\+A\+A\+C\+M\+C\+\_\+save = 1}}\label{PIAACMCsimul_8c_a7ef14a26ad565c848184e705cb499dab}
-\hypertarget{PIAACMCsimul_8c_ac0bbabccf4b3ad45f9b5b1681cc7165e}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!piaacmcconfdir@{piaacmcconfdir}}
+\hypertarget{PIAACMCsimul_8c_af427eb12d4f99b7fc070f9eb7f1a5e8b}{\index{P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}!piaacmcconfdir@{piaacmcconfdir}}
 \index{piaacmcconfdir@{piaacmcconfdir}!P\+I\+A\+A\+C\+M\+Csimul.\+c@{P\+I\+A\+A\+C\+M\+Csimul.\+c}}
-\subsubsection[{piaacmcconfdir}]{\setlength{\rightskip}{0pt plus 5cm}char piaacmcconfdir\mbox{[}200\mbox{]}}}\label{PIAACMCsimul_8c_ac0bbabccf4b3ad45f9b5b1681cc7165e}
+\subsubsection[{piaacmcconfdir}]{\setlength{\rightskip}{0pt plus 5cm}char piaacmcconfdir\mbox{[}300\mbox{]}}}\label{PIAACMCsimul_8c_af427eb12d4f99b7fc070f9eb7f1a5e8b}
 
 
 Current configuration directory. 
