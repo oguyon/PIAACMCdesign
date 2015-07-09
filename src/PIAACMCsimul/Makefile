@@ -285,6 +285,7 @@ top_builddir = ../..
 top_srcdir = ../..
 noinst_LTLIBRARIES = libpiaacmcsimul.la
 libpiaacmcsimul_la_SOURCES = PIAACMCsimul.c PIAACMCsimul.h
+EXTRA_DIST = scripts
 AM_CPPFLAGS = -I/home/guyon/src/PIAACMCdesign/src -fopenmp
 all: all-am
 
