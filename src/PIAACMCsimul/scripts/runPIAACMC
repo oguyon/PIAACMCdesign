@@ -5,7 +5,7 @@ pid=$$
 
 NBthreadsFPMresp=4 
 
-execname="PIAACMCdesign"
+execname="PIAACMCdesign -e"
 
 
 errorfile="errorstatus.txt"
@@ -309,7 +309,7 @@ fifoname="runPIAACMCfifo$pid"
 
 
 
-execnamestring="$execname -s $startupfile -f $fifoname"
+execnamestring="$execname -s $startupfile -f $fifoname -e"
 
 
 
