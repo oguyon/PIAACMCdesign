@@ -7070,6 +7070,11 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                 while(linscanOK==1)
                 {
                     // compute offsets
+                    sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
+                    fp = fopen(fname, "a");
+                    fprintf(fp, "###  Computing offsets\n");
+                    fclose(fp);
+
                     linoptlimflagarray[k] = 0;
                     for(i=0; i<NBparam; i++)
                     {
@@ -7084,7 +7089,12 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                             paramdeltaval[i] = parammaxstep[i];
                             linoptlimflagarray[k] = 1;
                         }
+
                         // apply offsets
+                    sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
+                    fp = fopen(fname, "a");
+                    fprintf(fp, "###  Apply offsets\n");
+                    fclose(fp);
                         if(paramtype[i]==FLOAT)
                             {
                                 
@@ -7109,6 +7119,10 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                     }
                     valold = val;
 
+                    sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
+                    fp = fopen(fname, "a");
+                    fprintf(fp, "###  Computing PSF\n");
+                    fclose(fp);
 
                     val = PIAACMCsimul_computePSF(0.0, 0.0, 0, optsyst[0].NBelem, 0, computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, 0);
 
