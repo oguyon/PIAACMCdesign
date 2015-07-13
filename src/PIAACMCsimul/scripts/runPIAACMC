@@ -6,7 +6,7 @@ pid=$$
 NBthreadsFPMresp=4 
 
 #execname="PIAACMCdesign -e"  # only run program if X is inactive (prevents slowing down user)
-execname="PIAACMCdesign"
+execname="Cfits"
 
 errorfile="errorstatus.txt"
 checkerrorstatus ()

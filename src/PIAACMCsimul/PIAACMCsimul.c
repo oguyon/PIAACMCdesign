@@ -2901,7 +2901,7 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         {
           //  sprintf(fname, "%s/fpm_zonea_s%d_l%04ld_sr%02ld_nbr%03ld_mr%03ld_ssr%02d_ssm%d_%s_wb%02d.fits", piaacmcconfdir, PIAACMC_FPMsectors, (long) (1.0e9*piaacmc[0].lambda + 0.1), (long) (1.0*piaacmc[0].lambdaB + 0.1), piaacmc[0].NBrings, (long) (100.0*PIAACMC_MASKRADLD+0.1), computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, piaacmc[0].fpmmaterial_name, piaacmc[0].nblambda);
 
-            sprintf(fname, "%s/fpm_zonez_s%d_l%04ld_sr%02ld_nbr%03ld_mr%03ld_minsag%06ld_maxsag%06ld_ccnbr%03ld_ccz%06ld_ocr%04ld_ocz%06ld_ssr%02d_ssm%d_%s_wb%02d.fits", piaacmcconfdir, PIAACMC_FPMsectors, (long) (1.0e9*piaacmc[0].lambda + 0.1), (long) (1.0*piaacmc[0].lambdaB + 0.1), piaacmc[0].NBrings, (long) (100.0*PIAACMC_MASKRADLD+0.1), (long) (1.0e9*piaacmc[0].fpmminsag + 0.1), (long) (1.0e9*piaacmc[0].fpmmaxsag + 0.1), piaacmc[0].NBringCentCone, (long) (1.0e9*piaacmc[0].fpmCentConeZ+0.1), (long) (100.0*piaacmc[0].fpmOuterConeRadld+0.1), (long) (1.0e9*piaacmc[0].fpmOuterConeZ+0.1), computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, piaacmc[0].fpmmaterial_name, piaacmc[0].nblambda);
+            sprintf(fname, "%s/fpm_zonea_s%d_l%04ld_sr%02ld_nbr%03ld_mr%03ld_minsag%06ld_maxsag%06ld_ccnbr%03ld_ccz%06ld_ocr%04ld_ocz%06ld_ssr%02d_ssm%d_%s_wb%02d.fits", piaacmcconfdir, PIAACMC_FPMsectors, (long) (1.0e9*piaacmc[0].lambda + 0.1), (long) (1.0*piaacmc[0].lambdaB + 0.1), piaacmc[0].NBrings, (long) (100.0*PIAACMC_MASKRADLD+0.1), (long) (1.0e9*piaacmc[0].fpmminsag + 0.1), (long) (1.0e9*piaacmc[0].fpmmaxsag + 0.1), piaacmc[0].NBringCentCone, (long) (1.0e9*piaacmc[0].fpmCentConeZ+0.1), (long) (100.0*piaacmc[0].fpmOuterConeRadld+0.1), (long) (1.0e9*piaacmc[0].fpmOuterConeZ+0.1), computePSF_ResolvedTarget, computePSF_ResolvedTarget_mode, piaacmc[0].fpmmaterial_name, piaacmc[0].nblambda);
 
             printf("LOADING FILE NAME : \"%s\"\n", fname);
             piaacmc[0].zoneaID = load_fits(fname, "fpmza", 1);
@@ -2913,6 +2913,8 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
     else
         CREATE_fpmza = 1;
 
+
+    
     if(CREATE_fpmza == 1)
     {
         if(piaacmc[0].zoneaID != -1)
@@ -2921,11 +2923,13 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
 
         if(PIAACMC_MASKRADLD>0.2) // physical mask
         {
+            printf("PHYSICAL MASK ... %ld zones\n", piaacmc[0].focmNBzone);
             for(ii=0; ii<piaacmc[0].focmNBzone; ii++)
                 data.image[piaacmc[0].zoneaID].array.D[ii] = 1.0;
         }
         else // idealized mask
         {
+            printf("IDEALIZED MASK ... %ld zones\n", piaacmc[0].focmNBzone);
             for(ii=0; ii<piaacmc[0].focmNBzone; ii++)
                 data.image[piaacmc[0].zoneaID].array.D[ii] = piaacmc[0].fpmaskamptransm;
         }
@@ -2938,9 +2942,8 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         save_fits("fpmza", fname);
     }
 
-    printf(" piaacmc[0].fpmaskamptransm = %f \n", piaacmc[0].fpmaskamptransm);
-    
-
+ //   printf("%d piaacmc[0].fpmaskamptransm = %f       %lf\n", CREATE_fpmza, piaacmc[0].fpmaskamptransm, data.image[piaacmc[0].zoneaID].array.D[0]);
+ //   sleep(10);
 
 
     // ============= MAKE LYOT STOPS =======================
@@ -6292,7 +6295,9 @@ int PIAACMCsimul_exec(char *confindex, long mode)
         printf("PIAACMC_fpmtype = %d\n", PIAACMC_fpmtype);
 
         PIAAsimul_initpiaacmcconf(PIAACMC_fpmtype, fpmradld, centobs0, centobs1, 0, 1);
-
+ //       printf("data.image[piaacmc[0].zoneaID].array.D[0] = %lf\n", data.image[piaacmc[0].zoneaID].array.D[0]);
+//        sleep(10);
+        
         LINOPT = 1; // perform linear optimization
         if((IDv=variable_ID("PIAACMC_nbiter"))!=-1)
             NBiter = (long) data.variable[IDv].value.f+0.01;
@@ -6318,14 +6323,14 @@ int PIAACMCsimul_exec(char *confindex, long mode)
 
         NBparam = 0;
 
-        if(PIAACMC_fpmtype==0)
+        if(PIAACMC_fpmtype==0) // ideal mask
         {
             paramtype[NBparam] = DOUBLE;
             paramval[NBparam] = &data.image[piaacmc[0].zoneaID].array.D[0];
-            paramdelta[NBparam] = 1.0e-2;
+            paramdelta[NBparam] = 1.0e-3;
             parammaxstep[NBparam] = 1.0e-1;
-            parammin[NBparam] = -1.0;
-            parammax[NBparam] = 1.0;
+            parammin[NBparam] = -2.0;
+            parammax[NBparam] = 2.0;
             NBparam++;
         }
         else // real physical mask
@@ -6338,8 +6343,8 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                     paramval[NBparam] = &data.image[piaacmc[0].zonezID].array.D[mz];
                     paramdelta[NBparam] = 1.0e-9;
                     parammaxstep[NBparam] = 1.0e-8;
-                    parammin[NBparam] = -1.0e-6;
-                    parammax[NBparam] = 1.0e-6;
+                    parammin[NBparam] = -2.0e-6;
+                    parammax[NBparam] = 2.0e-6;
                     NBparam++;
                 }
             }
@@ -6350,10 +6355,10 @@ int PIAACMCsimul_exec(char *confindex, long mode)
         {
             paramtype[NBparam] = FLOAT;
             paramvalf[NBparam] = &data.image[piaacmc[0].piaa0CmodesID].array.F[k];
-            paramdelta[NBparam] = 1.0e-9;
+            paramdelta[NBparam] = 1.0e-10;
             parammaxstep[NBparam] = 1.0e-8;
-            parammin[NBparam] = -1.0e-7;
-            parammax[NBparam] = 1.0e-7;
+            parammin[NBparam] = -1.0e-3;
+            parammax[NBparam] = 1.0e-3;
             NBparam++;
         }
 
@@ -6361,10 +6366,10 @@ int PIAACMCsimul_exec(char *confindex, long mode)
         {
             paramtype[NBparam] = FLOAT;
             paramvalf[NBparam] = &data.image[piaacmc[0].piaa1CmodesID].array.F[k];
-            paramdelta[NBparam] = 1.0e-9;
+            paramdelta[NBparam] = 1.0e-10;
             parammaxstep[NBparam] = 1.0e-8;
-            parammin[NBparam] = -1.0e-7;
-            parammax[NBparam] = 1.0e-7;
+            parammin[NBparam] = -1.0e-3;
+            parammax[NBparam] = 1.0e-3;
             NBparam++;
         }
 
@@ -6372,10 +6377,10 @@ int PIAACMCsimul_exec(char *confindex, long mode)
         {
             paramtype[NBparam] = FLOAT;
             paramvalf[NBparam] = &data.image[piaacmc[0].piaa0FmodesID].array.F[k];
-            paramdelta[NBparam] = 1.0e-9;
+            paramdelta[NBparam] = 1.0e-10;
             parammaxstep[NBparam] = 1.0e-8;
-            parammin[NBparam] = -1.0e-7;
-            parammax[NBparam] = 1.0e-7;
+            parammin[NBparam] = -1.0e-3;
+            parammax[NBparam] = 1.0e-3;
             NBparam++;
         }
 
@@ -6383,10 +6388,10 @@ int PIAACMCsimul_exec(char *confindex, long mode)
         {
             paramtype[NBparam] = FLOAT;
             paramvalf[NBparam] = &data.image[piaacmc[0].piaa1FmodesID].array.F[k];
-            paramdelta[NBparam] = 1.0e-9;
+            paramdelta[NBparam] = 1.0e-10;
             parammaxstep[NBparam] = 1.0e-8;
-            parammin[NBparam] = -1.0e-7;
-            parammax[NBparam] = 1.0e-7;
+            parammin[NBparam] = -1.0e-3;
+            parammax[NBparam] = 1.0e-3;
             NBparam++;
         }
 
