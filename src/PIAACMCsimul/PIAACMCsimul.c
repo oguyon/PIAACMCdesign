@@ -7035,7 +7035,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
 
             //    linopt_imtools_image_fitModes("vecDHref1D", "DHmodes", "DHmask", 1.0e-4, "optcoeff4", 0);
             linopt_imtools_image_fitModes("vecDHref1D", "DHmodes", "DHmask", 1.0e-5, "optcoeff0", 0);
-            linopt_imtools_image_fitModes("vecDHref1D", "DHmodes", "DHmask", 1.0e-6, "optcoeff1", 0);
+            linopt_imtools_image_fitModes("vecDHref1D", "DHmodes", "DHmask", 1.0e-7, "optcoeff1", 0);
 
             IDoptvec = arith_image_cstmult("optcoeff0", 0.0, "optvec"); // create optimal vector
 
@@ -7045,9 +7045,9 @@ int PIAACMCsimul_exec(char *confindex, long mode)
 
 
             NBlinoptgain = 0;
-            for(alphareg=0.0; alphareg<1.01; alphareg += 0.2)
+            for(alphareg=0.0; alphareg<1.01; alphareg += 0.01)
             {
-                
+                alphareg *= 1.5;
                 arith_image_cstmult("optcoeff0", alphareg, "optcoeff0m");
                 arith_image_cstmult("optcoeff1", 1.0-alphareg, "optcoeff1m");
                 arith_image_add("optcoeff0m", "optcoeff1m", "optcoeff");
