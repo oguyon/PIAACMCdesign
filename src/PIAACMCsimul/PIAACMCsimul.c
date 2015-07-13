@@ -7113,7 +7113,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
 
                     sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
                     fp = fopen(fname, "a");
-                    fprintf(fp, "##  %5.3f   %20lf %20g", alphareg, scangain, val);
+                    fprintf(fp, "##  %5.3f   %20lf %20g   [%d]", alphareg, scangain, val, linoptlimflagarray[k]);
                     fclose(fp);
 
                     fp = fopen(fname, "a");
