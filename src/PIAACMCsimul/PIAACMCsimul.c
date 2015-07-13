@@ -6973,7 +6973,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
 
                     sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
                     fp = fopen(fname, "a");
-                    fprintf(fp, "# %5ld/%5ld %5ld/%5ld %20.15g %20.15g %20.15g \n", iter, NBiter, i, NBparam, paramdelta[i], val, valref);
+                    fprintf(fp, "# %5ld/%5ld %5ld/%5ld %20.15g %20.15g %20.15g      %20.15g\n", iter, NBiter, i, NBparam, paramdelta[i], val, valref, bestval);
                     fclose(fp);
 
                     // re-package vector into 1D array and add regularization terms
@@ -7029,6 +7029,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
             sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
             fp = fopen(fname, "a");
             fprintf(fp, "### scanning gain \n");
+            fprintf(fp, "### <alphareg>  <gain>  <contrast>\n");
             fclose(fp);
 
 
