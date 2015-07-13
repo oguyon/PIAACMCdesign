@@ -7130,7 +7130,9 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                     sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
                     fp = fopen(fname, "a");
                     fprintf(fp, "##  %5.3f   %20lf %20g", alphareg, scangain, val);
+                    fclose(fp);
 
+                    fp = fopen(fname, "a");
                     if(val<bestval)
                     {
                         if(paramtype[i]==FLOAT)
