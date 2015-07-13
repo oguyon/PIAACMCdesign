@@ -6928,7 +6928,12 @@ int PIAACMCsimul_exec(char *confindex, long mode)
             IDmodes = create_3Dimage_ID("DHmodes", size1Dvec, 1, NBparam);
 
 
-            printf("PIAACMC_FPM_FASTDERIVATIVES = %d\n", PIAACMC_FPM_FASTDERIVATIVES);
+            sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
+            fp = fopen(fname, "a");
+            fprintf(fp, "### PIAACMC_FPM_FASTDERIVATIVES = %d\n", PIAACMC_FPM_FASTDERIVATIVES);
+            fclose(fp);
+            
+
             // compute local derivatives
             if(PIAACMC_FPM_FASTDERIVATIVES == 1)
             {
@@ -7020,6 +7025,11 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                     delete_image_ID("DHmodes2D");
                 }
             }
+            
+            sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
+            fp = fopen(fname, "a");
+            fprintf(fp, "### scanning gain \n");
+            fclose(fp);
 
 
             //    linopt_imtools_image_fitModes("vecDHref1D", "DHmodes", "DHmask", 1.0e-4, "optcoeff4", 0);
@@ -7036,6 +7046,12 @@ int PIAACMCsimul_exec(char *confindex, long mode)
             NBlinoptgain = 0;
             for(alphareg=0.0; alphareg<1.01; alphareg += 0.2)
             {
+                sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
+                fp = fopen(fname, "a");
+                fprintf(fp, "### alphareg = %lf\n", alphareg);
+                fclose(fp);
+
+                
                 arith_image_cstmult("optcoeff0", alphareg, "optcoeff0m");
                 arith_image_cstmult("optcoeff1", 1.0-alphareg, "optcoeff1m");
                 arith_image_add("optcoeff0m", "optcoeff1m", "optcoeff");
