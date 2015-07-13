@@ -7135,16 +7135,11 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                     fp = fopen(fname, "a");
                     if(val<bestval)
                     {
-                        if(paramtype[i]==FLOAT)
-                        {
-                            for(i=0; i<NBparam; i++)
-                            data.image[IDoptvec].array.F[i] = *(paramvalf[i]);
-                        }
-                        else
-                        {                        
                         for(i=0; i<NBparam; i++)
+                        if(paramtype[i]==FLOAT)
+                            data.image[IDoptvec].array.F[i] = *(paramvalf[i]);
+                        else
                             data.image[IDoptvec].array.F[i] = (float) *(paramval[i]); //paramdeltaval[i];
-                        }
                         bestval = val;
                         fprintf(fp, " BEST VECTOR\n");
                     }
