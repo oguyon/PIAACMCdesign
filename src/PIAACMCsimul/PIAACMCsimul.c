@@ -6328,9 +6328,9 @@ int PIAACMCsimul_exec(char *confindex, long mode)
             paramtype[NBparam] = DOUBLE;
             paramval[NBparam] = &data.image[piaacmc[0].zoneaID].array.D[0];
             paramdelta[NBparam] = 1.0e-3;
-            parammaxstep[NBparam] = 1.0e-1;
-            parammin[NBparam] = -2.0;
-            parammax[NBparam] = 2.0;
+            parammaxstep[NBparam] = 2.0e-1;
+            parammin[NBparam] = -1.0;
+            parammax[NBparam] = 1.0;
             NBparam++;
         }
         else // real physical mask
@@ -6342,7 +6342,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                     paramtype[NBparam] = DOUBLE;
                     paramval[NBparam] = &data.image[piaacmc[0].zonezID].array.D[mz];
                     paramdelta[NBparam] = 1.0e-9;
-                    parammaxstep[NBparam] = 1.0e-8;
+                    parammaxstep[NBparam] = 5.0e-8;
                     parammin[NBparam] = -2.0e-6;
                     parammax[NBparam] = 2.0e-6;
                     NBparam++;
@@ -6356,7 +6356,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
             paramtype[NBparam] = FLOAT;
             paramvalf[NBparam] = &data.image[piaacmc[0].piaa0CmodesID].array.F[k];
             paramdelta[NBparam] = 1.0e-10;
-            parammaxstep[NBparam] = 1.0e-8;
+            parammaxstep[NBparam] = 1.0e-7;
             parammin[NBparam] = -1.0e-3;
             parammax[NBparam] = 1.0e-3;
             NBparam++;
@@ -6367,7 +6367,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
             paramtype[NBparam] = FLOAT;
             paramvalf[NBparam] = &data.image[piaacmc[0].piaa1CmodesID].array.F[k];
             paramdelta[NBparam] = 1.0e-10;
-            parammaxstep[NBparam] = 1.0e-8;
+            parammaxstep[NBparam] = 1.0e-7;
             parammin[NBparam] = -1.0e-3;
             parammax[NBparam] = 1.0e-3;
             NBparam++;
@@ -6378,7 +6378,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
             paramtype[NBparam] = FLOAT;
             paramvalf[NBparam] = &data.image[piaacmc[0].piaa0FmodesID].array.F[k];
             paramdelta[NBparam] = 1.0e-10;
-            parammaxstep[NBparam] = 1.0e-8;
+            parammaxstep[NBparam] = 1.0e-7;
             parammin[NBparam] = -1.0e-3;
             parammax[NBparam] = 1.0e-3;
             NBparam++;
@@ -6389,7 +6389,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
             paramtype[NBparam] = FLOAT;
             paramvalf[NBparam] = &data.image[piaacmc[0].piaa1FmodesID].array.F[k];
             paramdelta[NBparam] = 1.0e-10;
-            parammaxstep[NBparam] = 1.0e-8;
+            parammaxstep[NBparam] = 1.0e-7;
             parammin[NBparam] = -1.0e-3;
             parammax[NBparam] = 1.0e-3;
             NBparam++;
