@@ -15,6 +15,7 @@
 #include <stdbool.h>
 #include <sys/prctl.h>
 #include <sched.h>
+#include <signal.h>
 
 #include <readline/readline.h>  
 #include <readline/history.h>  
@@ -48,7 +49,7 @@
 /**
  * @file CLIcore.c
  * @author Olivier Guyon
- * @date Sept 4, 2014
+ * @date 2015
  */
 
 
@@ -114,6 +115,32 @@ int help_command(char *cmdkey);
 
 
 
+
+
+/// signal catching
+
+
+void sig_handler(int signo)
+{
+    switch ( signo ) {
+        case SIGINT:
+            printf("received SIGINT\n");
+        break;
+        case SIGUSR1:
+             printf("received SIGUSR1\n");
+           data.signal_USR1 = 1;
+        break;
+        case SIGUSR2:
+             printf("received SIGUSR2\n");
+           data.signal_USR2 = 1;
+        break;
+    }
+}
+
+
+
+
+
 /// CLI functions
 
 int exitCLI()
@@ -149,7 +176,9 @@ int exitCLI()
 int printInfo()
 {
     float f1;
-
+    printf("\n");
+    printf("  PID = %d\n", CLIPID);
+    
     printf("--------------- GENERAL ----------------------\n");
     printf("%s VERSION   %s\n",  PACKAGE_NAME, PACKAGE_VERSION );
     printf("%s BUILT   %s %s\n", __FILE__,__DATE__,__TIME__);
@@ -496,6 +525,7 @@ int main(int argc, char *argv[])
 
     atexit(fnExit1);
 
+
     data.Debug = 0;
     data.overwrite = 0;
     data.precision = 0; // float is default precision
@@ -505,6 +535,22 @@ int main(int argc, char *argv[])
 
     data.CLIlogON = 0; // log every command
     data.fifoON = 1;
+
+
+    // signal handling
+
+    data.signal_USR1 = 0;
+    data.signal_USR2 = 0;
+    
+ //   if (signal(SIGINT, sig_handler) == SIG_ERR)
+   //     printf("\ncan't catch SIGINT\n");
+    if (signal(SIGUSR1, sig_handler) == SIG_ERR)
+        printf("\ncan't catch SIGUSR1\n");
+    if (signal(SIGUSR2, sig_handler) == SIG_ERR)
+        printf("\ncan't catch SIGUSR2\n");
+
+
+
 
 
     // to take advantage of kernel priority:
@@ -539,7 +585,7 @@ int main(int argc, char *argv[])
     }
 
     CLIPID = getpid();
-
+    
     //    sprintf(promptname, "%s", data.processname);
     sprintf(prompt,"%c[%d;%dm%s >%c[%dm ",0x1B, 1, 36, data.processname, 0x1B, 0);
     //sprintf(prompt, "%s> ", PACKAGE_NAME);
@@ -664,8 +710,15 @@ int main(int argc, char *argv[])
             if (!n)
                 continue;
             if (n == -1) {
-                perror("select");
-                return EXIT_FAILURE;
+                if(errno==EINTR)
+                    {
+                        continue;
+                    }
+                else
+                {
+                    perror("select");
+                    return EXIT_FAILURE;
+                }
             }
 
 
@@ -771,8 +824,8 @@ char* CLI_generator(const char* text, int state)
         iok = data.image[list_index1].used;
         if(iok == 1)
         {
-            name = data.image[list_index1].md[0].name;
-            //	  printf("  name %d = %s %s\n", list_index1, data.image[list_index1].md[0].name, name);
+            name = data.image[list_index1].name;
+            //	  printf("  name %d = %s %s\n", list_index1, data.image[list_index1].name, name);
         }
         list_index1++;
         if(iok == 1)
@@ -1153,6 +1206,8 @@ int re_alloc()
             data.image[i].used = 0;
             data.image[i].shmfd = -1;
             data.image[i].memsize = 0;
+            data.image[i].semptr = NULL;
+            data.image[i].semlog = NULL;
         }
     }
 
@@ -1225,6 +1280,7 @@ int command_line( int argc, char **argv)
     struct sched_param schedpar;
     int r;
     char command[200];
+
 
 
 
