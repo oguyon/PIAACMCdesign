@@ -137,10 +137,10 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a1afcc0ea0323071649f5fd27f4c1a487"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OptSystProp_8c.html#a1afcc0ea0323071649f5fd27f4c1a487">init_OptSystProp</a> ()</td></tr>
 <tr class="separator:a1afcc0ea0323071649f5fd27f4c1a487"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfed4bbe5593d9c8a2e691be59a1eac8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OptSystProp_8c.html#abfed4bbe5593d9c8a2e691be59a1eac8">OptSystProp_propagateCube</a> (<a class="el" href="structOPTSYST.html">OPTSYST</a> *<a class="el" href="PIAACMCsimul_8c.html#afd320a44eac81011bd37a9d649950587">optsyst</a>, long index, char *IDin_amp_name, char *IDin_pha_name, char *IDout_amp_name, char *IDout_pha_name, double zprop)</td></tr>
-<tr class="separator:abfed4bbe5593d9c8a2e691be59a1eac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7409625459eecabd46fd1fdf39b4e435"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OptSystProp_8c.html#a7409625459eecabd46fd1fdf39b4e435">OptSystProp_run</a> (<a class="el" href="structOPTSYST.html">OPTSYST</a> *<a class="el" href="PIAACMCsimul_8c.html#afd320a44eac81011bd37a9d649950587">optsyst</a>, long index, long elemstart, long elemend, char *savedir)</td></tr>
-<tr class="separator:a7409625459eecabd46fd1fdf39b4e435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a2cf68560344811d210d34c8e774700"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OptSystProp_8c.html#a3a2cf68560344811d210d34c8e774700">OptSystProp_propagateCube</a> (<a class="el" href="structOPTSYST.html">OPTSYST</a> *<a class="el" href="PIAACMCsimul_8c.html#afd320a44eac81011bd37a9d649950587">optsyst</a>, long index, char *IDin_amp_name, char *IDin_pha_name, char *IDout_amp_name, char *IDout_pha_name, double zprop, int sharedmem)</td></tr>
+<tr class="separator:a3a2cf68560344811d210d34c8e774700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabbbb33031b78e9b25c676693eb672b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="OptSystProp_8c.html#aabbbb33031b78e9b25c676693eb672b9">OptSystProp_run</a> (<a class="el" href="structOPTSYST.html">OPTSYST</a> *<a class="el" href="PIAACMCsimul_8c.html#afd320a44eac81011bd37a9d649950587">optsyst</a>, long index, long elemstart, long elemend, char *savedir, int sharedmem)</td></tr>
+<tr class="separator:aabbbb33031b78e9b25c676693eb672b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -176,7 +176,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="abfed4bbe5593d9c8a2e691be59a1eac8"></a>
+<a class="anchor" id="a3a2cf68560344811d210d34c8e774700"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -220,7 +220,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>zprop</em>&#160;</td>
+          <td class="paramname"><em>zprop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sharedmem</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -232,7 +238,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7409625459eecabd46fd1fdf39b4e435"></a>
+<a class="anchor" id="aabbbb33031b78e9b25c676693eb672b9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -264,7 +270,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>savedir</em>&#160;</td>
+          <td class="paramname"><em>savedir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sharedmem</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -306,7 +318,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_329feb2adc0787cbcf47a87f6fc2e340.html">OptSystProp</a></li><li class="navelem"><a class="el" href="OptSystProp_8c.html">OptSystProp.c</a></li>
-    <li class="footer">Generated on Mon Jul 13 2015 10:54:57 for PIAACMCdesign by
+    <li class="footer">Generated on Sun Aug 16 2015 12:11:55 for PIAACMCdesign by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.8 </li>
   </ul>

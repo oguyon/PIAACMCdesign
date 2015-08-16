@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"COREMOD__arith_8c.html#a958fa8861decfa44dd4d9875e8adc465":[5,0,0,1,1,193],
 "COREMOD__arith_8c.html#a9842752e03b4de9b4593f1a3b34364ab":[5,0,0,1,1,227],
 "COREMOD__arith_8c.html#a98554b07ed27200deb69394b1a842948":[5,0,0,1,1,26],
 "COREMOD__arith_8c.html#a99d3519f6a637f51da7a4762606f00b1":[5,0,0,1,1,57],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "COREMOD__arith_8h.html#ae93a86a5390ad58f687095a4ac28f72b":[5,0,0,1,2,60],
 "COREMOD__arith_8h.html#aea6a6bc1c43d7ff5ab6cbf6505958fe0":[5,0,0,1,2,122],
 "COREMOD__arith_8h.html#aec1a5a67fdd182d9337afebf42636c07":[5,0,0,1,2,128],
-"COREMOD__arith_8h.html#aed7f92e335f5a05fc81a2645a0c9be20":[5,0,0,1,2,87],
-"COREMOD__arith_8h.html#aee42e9641ebd390329d5cf131e08562a":[5,0,0,1,2,78]
+"COREMOD__arith_8h.html#aed7f92e335f5a05fc81a2645a0c9be20":[5,0,0,1,2,87]
 };

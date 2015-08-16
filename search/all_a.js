@@ -36,6 +36,8 @@ var searchData=
   ['image_5fbasic_5fstreamaverage_5fcli',['image_basic_streamaverage_cli',['../image__basic_8c.html#ae18d859de742c8bf5504b1c8eddb018b',1,'image_basic.c']]],
   ['image_5fbasic_5fstreamfeed',['IMAGE_BASIC_streamfeed',['../image__basic_8c.html#a2cb85fb1b0a43235f5f2febbca8e4299',1,'IMAGE_BASIC_streamfeed(char *IDname, char *streamname, float frequ):&#160;image_basic.c'],['../image__basic_8h.html#a2cb85fb1b0a43235f5f2febbca8e4299',1,'IMAGE_BASIC_streamfeed(char *IDname, char *streamname, float frequ):&#160;image_basic.c']]],
   ['image_5fbasic_5fstreamfeed_5fcli',['image_basic_streamfeed_cli',['../image__basic_8c.html#a9b1ed8ee31683cd5ff08f9e7a3375684',1,'image_basic.c']]],
+  ['image_5fbasic_5fstreamrecord',['IMAGE_BASIC_streamrecord',['../image__basic_8c.html#a0aa91ffd5ac8910c861776b6fbd2b09d',1,'IMAGE_BASIC_streamrecord(char *streamname, long NBframes, char *IDname):&#160;image_basic.c'],['../image__basic_8h.html#a0aa91ffd5ac8910c861776b6fbd2b09d',1,'IMAGE_BASIC_streamrecord(char *streamname, long NBframes, char *IDname):&#160;image_basic.c']]],
+  ['image_5fbasic_5fstreamrecord_5fcli',['IMAGE_BASIC_streamrecord_cli',['../image__basic_8c.html#aaf476f38cc5efc45471ac521acaa86d2',1,'image_basic.c']]],
   ['image_5ffilter_2ec',['image_filter.c',['../image__filter_8c.html',1,'']]],
   ['image_5ffilter_2eh',['image_filter.h',['../image__filter_8h.html',1,'']]],
   ['image_5fgen_2dutil_2ec',['image_gen-util.c',['../image__gen-util_8c.html',1,'']]],

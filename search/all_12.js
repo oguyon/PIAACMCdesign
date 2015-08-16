@@ -17,6 +17,8 @@ var searchData=
   ['read_5fkeyword_5falone',['read_keyword_alone',['../COREMOD__iofits_8c.html#ad08f97b8022587fc91f323c90077cdb4',1,'read_keyword_alone(char *file_name, char *KEYWORD):&#160;COREMOD_iofits.c'],['../COREMOD__iofits_8h.html#ad08f97b8022587fc91f323c90077cdb4',1,'read_keyword_alone(char *file_name, char *KEYWORD):&#160;COREMOD_iofits.c']]],
   ['read_5fsharedmem_5fimage',['read_sharedmem_image',['../COREMOD__memory_8c.html#aa344e4c7481b275005bd6872679ba7cd',1,'read_sharedmem_image(char *name):&#160;COREMOD_memory.c'],['../COREMOD__memory_8h.html#aa344e4c7481b275005bd6872679ba7cd',1,'read_sharedmem_image(char *name):&#160;COREMOD_memory.c']]],
   ['read_5fsharedmem_5fimage_5fcli',['read_sharedmem_image_cli',['../COREMOD__memory_8c.html#a679d5cfb0ec125d809695ac6622fbf86',1,'COREMOD_memory.c']]],
+  ['read_5fsharedmem_5fimage_5fsize',['read_sharedmem_image_size',['../COREMOD__memory_8c.html#afcb49d8a50d70f506ed1e3431ea741e2',1,'read_sharedmem_image_size(char *name, char *fname):&#160;COREMOD_memory.c'],['../COREMOD__memory_8h.html#afcb49d8a50d70f506ed1e3431ea741e2',1,'read_sharedmem_image_size(char *name, char *fname):&#160;COREMOD_memory.c']]],
+  ['read_5fsharedmem_5fimage_5fsize_5fcli',['read_sharedmem_image_size_cli',['../COREMOD__memory_8c.html#ab4bfd9353c1173a264f38b36c911a8bd',1,'COREMOD_memory.c']]],
   ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
   ['readme_2emd',['README.md',['../src_2PIAACMCsimul_2README_8md.html',1,'']]],
   ['rect',['rect',['../structkdtree.html#aad2df600bbe8cf682fe61ac6847f5e18',1,'kdtree']]],

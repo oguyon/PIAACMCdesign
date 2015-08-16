@@ -5,6 +5,6 @@ var OptSystProp_8h =
     [ "ASPHSURFR", "structASPHSURFR.html", "structASPHSURFR" ],
     [ "FOCMASK", "structFOCMASK.html", "structFOCMASK" ],
     [ "OPTSYST", "structOPTSYST.html", "structOPTSYST" ],
-    [ "OptSystProp_propagateCube", "OptSystProp_8h.html#abfed4bbe5593d9c8a2e691be59a1eac8", null ],
-    [ "OptSystProp_run", "OptSystProp_8h.html#a7409625459eecabd46fd1fdf39b4e435", null ]
+    [ "OptSystProp_propagateCube", "OptSystProp_8h.html#a3a2cf68560344811d210d34c8e774700", null ],
+    [ "OptSystProp_run", "OptSystProp_8h.html#aabbbb33031b78e9b25c676693eb672b9", null ]
 ];
