@@ -5,12 +5,36 @@
 
 
 
+mkdir -p conf
+
+
+
+function loadparam {
+file="conf/conf_$1.txt"
+if [ ! -f $file ]; then
+echo "" > $file
+fi
+cat $file
+}
+
+
+# loading parameters
+
+
+
+coin=loadparam("coin")
+
 
 printhelp ()
 {
 echo "------------------------------------------------------------------------"
-echo "                 PIAACMC DESIGN"
+echo "                 PIAACMC DESIGN: TOP LEVEL SCRIPT"
 echo " Edit script to set PIAACMC design parameters"
+echo " Design parameters stored in conf/conf_<param>.txt"
+echo " Design parameters list [and current or default value]:"
+echo "     coin  [0.300] : input pupil central obstruction"
+echo "    coout : output pupil central obstruction"
+echo "    " 
 echo " "
 echo " Usage :"
 echo " $0 <command>"

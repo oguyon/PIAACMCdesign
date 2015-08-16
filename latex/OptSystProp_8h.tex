@@ -17,14 +17,14 @@ struct \hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{OptSystProp_8h_abfed4bbe5593d9c8a2e691be59a1eac8}{Opt\+Syst\+Prop\+\_\+propagate\+Cube} (\hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T} $\ast$\hyperlink{PIAACMCsimul_8c_afd320a44eac81011bd37a9d649950587}{optsyst}, long index, char $\ast$I\+Din\+\_\+amp\+\_\+name, char $\ast$I\+Din\+\_\+pha\+\_\+name, char $\ast$I\+Dout\+\_\+amp\+\_\+name, char $\ast$I\+Dout\+\_\+pha\+\_\+name, double zprop)
+int \hyperlink{OptSystProp_8h_a3a2cf68560344811d210d34c8e774700}{Opt\+Syst\+Prop\+\_\+propagate\+Cube} (\hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T} $\ast$\hyperlink{PIAACMCsimul_8c_afd320a44eac81011bd37a9d649950587}{optsyst}, long index, char $\ast$I\+Din\+\_\+amp\+\_\+name, char $\ast$I\+Din\+\_\+pha\+\_\+name, char $\ast$I\+Dout\+\_\+amp\+\_\+name, char $\ast$I\+Dout\+\_\+pha\+\_\+name, double zprop, int sharedmem)
 \item 
-int \hyperlink{OptSystProp_8h_a7409625459eecabd46fd1fdf39b4e435}{Opt\+Syst\+Prop\+\_\+run} (\hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T} $\ast$\hyperlink{PIAACMCsimul_8c_afd320a44eac81011bd37a9d649950587}{optsyst}, long index, long elemstart, long elemend, char $\ast$savedir)
+int \hyperlink{OptSystProp_8h_aabbbb33031b78e9b25c676693eb672b9}{Opt\+Syst\+Prop\+\_\+run} (\hyperlink{structOPTSYST}{O\+P\+T\+S\+Y\+S\+T} $\ast$\hyperlink{PIAACMCsimul_8c_afd320a44eac81011bd37a9d649950587}{optsyst}, long index, long elemstart, long elemend, char $\ast$savedir, int sharedmem)
 \end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
-\hypertarget{OptSystProp_8h_abfed4bbe5593d9c8a2e691be59a1eac8}{\index{Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}!Opt\+Syst\+Prop\+\_\+propagate\+Cube@{Opt\+Syst\+Prop\+\_\+propagate\+Cube}}
+\hypertarget{OptSystProp_8h_a3a2cf68560344811d210d34c8e774700}{\index{Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}!Opt\+Syst\+Prop\+\_\+propagate\+Cube@{Opt\+Syst\+Prop\+\_\+propagate\+Cube}}
 \index{Opt\+Syst\+Prop\+\_\+propagate\+Cube@{Opt\+Syst\+Prop\+\_\+propagate\+Cube}!Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}}
 \subsubsection[{Opt\+Syst\+Prop\+\_\+propagate\+Cube}]{\setlength{\rightskip}{0pt plus 5cm}int Opt\+Syst\+Prop\+\_\+propagate\+Cube (
 \begin{DoxyParamCaption}
@@ -34,10 +34,11 @@ int \hyperlink{OptSystProp_8h_a7409625459eecabd46fd1fdf39b4e435}{Opt\+Syst\+Prop
 \item[{char $\ast$}]{I\+Din\+\_\+pha\+\_\+name, }
 \item[{char $\ast$}]{I\+Dout\+\_\+amp\+\_\+name, }
 \item[{char $\ast$}]{I\+Dout\+\_\+pha\+\_\+name, }
-\item[{double}]{zprop}
+\item[{double}]{zprop, }
+\item[{int}]{sharedmem}
 \end{DoxyParamCaption}
-)}}\label{OptSystProp_8h_abfed4bbe5593d9c8a2e691be59a1eac8}
-\hypertarget{OptSystProp_8h_a7409625459eecabd46fd1fdf39b4e435}{\index{Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}!Opt\+Syst\+Prop\+\_\+run@{Opt\+Syst\+Prop\+\_\+run}}
+)}}\label{OptSystProp_8h_a3a2cf68560344811d210d34c8e774700}
+\hypertarget{OptSystProp_8h_aabbbb33031b78e9b25c676693eb672b9}{\index{Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}!Opt\+Syst\+Prop\+\_\+run@{Opt\+Syst\+Prop\+\_\+run}}
 \index{Opt\+Syst\+Prop\+\_\+run@{Opt\+Syst\+Prop\+\_\+run}!Opt\+Syst\+Prop.\+h@{Opt\+Syst\+Prop.\+h}}
 \subsubsection[{Opt\+Syst\+Prop\+\_\+run}]{\setlength{\rightskip}{0pt plus 5cm}int Opt\+Syst\+Prop\+\_\+run (
 \begin{DoxyParamCaption}
@@ -45,9 +46,10 @@ int \hyperlink{OptSystProp_8h_a7409625459eecabd46fd1fdf39b4e435}{Opt\+Syst\+Prop
 \item[{long}]{index, }
 \item[{long}]{elemstart, }
 \item[{long}]{elemend, }
-\item[{char $\ast$}]{savedir}
+\item[{char $\ast$}]{savedir, }
+\item[{int}]{sharedmem}
 \end{DoxyParamCaption}
-)}}\label{OptSystProp_8h_a7409625459eecabd46fd1fdf39b4e435}
+)}}\label{OptSystProp_8h_aabbbb33031b78e9b25c676693eb672b9}
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em index} & system index (usually 0) \\
