@@ -34,4 +34,14 @@ Written in C. The main is a command line interface (C\+L\+I). Source code is in 
 
 Example bash script to run P\+I\+A\+A\+C\+M\+C design tool are provided in ./src/\+P\+I\+A\+A\+C\+M\+Cdesign/scripts/
 
-Top level script\+: ./run 
+To run design tool\+:
+\begin{DoxyItemize}
+\item copy scripts to working directory. A script is provided to do this\+:
+
+cd $\sim$/src/\+P\+I\+A\+A\+C\+M\+Cdesign/src/\+P\+I\+A\+A\+C\+M\+Csimul/scripts ./syncscripts $<$myworkdirectory$>$
+\item copy top level script run to your custom script name\+:
+
+cd $<$myworkdirectory$>$ cp run $<$myrunscriptname$>$
+\item edit the top level script as needed
+\item execute top level script. Executing script with \char`\"{}help\char`\"{} as argument will give usage/example 
+\end{DoxyItemize}

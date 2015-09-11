@@ -35,12 +35,11 @@ Example bash script to run PIAACMC design tool are provided in ./src/PIAACMCdesi
 To run design tool:
 - copy scripts to working directory. A script is provided to do this:
 
-    cd ~/src/PIAACMCdesign/src/PIAACMCsimul/scripts
-    ./syncscripts <myworkdirectory>
+    cd <myworkdirectory>
+    ./<srcdirectory>/src/PIAACMCsimul/scripts/syncscripts
 
 - copy top level script run to your custom script name:
 
-    cd <myworkdirectory>
     cp run <myrunscriptname>
 
 - edit the top level script as needed
