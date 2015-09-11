@@ -25,7 +25,12 @@ printf "%20s  [%10s]  %s\n" "$1" "$var" "$2"
 
 
 # loading parameters
-# 2nd arg is default value
+# 2nd arg is default value - will only be adopted if corresponding conf/conf_<parameter>.txt file DOES NOT EXIST
+# To force YOUR parameter values to be used, you can :
+#    (1) rm ./conf/*
+#    (2) edit values in this script
+#    (3) re-execute this script
+
 
 # MAIN FUNCTION ARGUMENTS
 loadparam coin 0.300
