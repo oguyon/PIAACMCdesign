@@ -18,7 +18,6 @@
 //
 typedef struct {
 
-
     // ======= SEED RADIAL PIAACMC PARAMETERS ======
 
     double centObs0; // input central obstruction
@@ -46,7 +45,9 @@ typedef struct {
     float prepiaa0maskpos; // position of mask before PIAA surface 0 [m]
     int postpiaa0mask; // 1 if mask after PIAA surface 0
     float postpiaa0maskpos; // position of mask after PIAA surface 0 [m]
-     
+    int invPIAAmode; // 0: no inv PIAA, 1: inv PIAA after Lyot stops, 2: inv PIAA before Lyot stops
+    float LyotZmin;
+    float LyotZmax;
 
     // ========== WAVEFRONT CONTROL ==================
     int nbDM; // number of deformable mirrors (10 max)

@@ -83,8 +83,6 @@ int FORCE_MAKE_PIAA1shape = 0;
 int MAKE_PIAA1shape = 0;
 
 int focmMode = -1; // if != -1, compute only impulse response to corresponding zone
-
-int invPIAAmode = 1; // 0: no inv PIAA, 1: inv PIAA after Lyot stops, 2: inv PIAA before Lyot stops
 int PIAACMC_FPMsectors = 0; // 1 if focal plane mask should have sectors
 
 
@@ -894,9 +892,7 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
     // printf("BEAM RADIUS = %f / %f  = %f pix,   piaacmc[0].beamrad = %f\n", optsyst[0].beamrad, optsyst[0].pixscale, beamradpix, piaacmc[0].beamrad );
     // sleep(10);
 
-    if((IDv=variable_ID("PIAACMC_invPIAAmode"))!=-1)
-        invPIAAmode = (long) (data.variable[IDv].value.f+0.001);
-
+    
     if((IDv=variable_ID("PIAACMC_dftgrid"))!=-1)
         optsyst[0].DFTgridpad = (long) (data.variable[IDv].value.f+0.001);
 
@@ -1308,7 +1304,7 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
 
 
-    if(invPIAAmode == 2) // inv PIAA -> Lyot stops
+    if(design[index].invPIAAmode == 2) // inv PIAA -> Lyot stops
     {
         // --------------------  elem 8: inv PIAA1 ------------------------
         sprintf(optsyst[0].name[elem], "invPIAA optics 1");
@@ -1351,7 +1347,7 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
 
 
-    if(invPIAAmode == 1) // Lyot masks -> inv PIAA
+    if(design[index].invPIAAmode == 1) // Lyot masks -> inv PIAA
     {
         // --------------------  elem 8: inv PIAA1 ------------------------
         sprintf(optsyst[0].name[elem], "invPIAA optics 1");
@@ -2189,7 +2185,7 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         piaacmc[0].postpiaa0maskpos = 0.0;
         piaacmc[0].piaaNBCmodesmax =  40;
         piaacmc[0].piaaCPAmax = 10.0;
-
+        
         piaacmc[0].centObs0 = centobs0; // input central obstruction
         piaacmc[0].centObs1 = centobs1; // output central obstruction
         piaacmc[0].NBradpts = 50000;
@@ -2228,7 +2224,10 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         piaacmc[0].fpmaskamptransm = 1.0;
 
 
-
+        piaacmc[0].invPIAAmode = 1;
+        if((IDv=variable_ID("PIAACMC_invPIAAmode"))!=-1)
+            piaacmc[0].invPIAAmode = (long) (data.variable[IDv].value.f+0.001);
+ 
 
         sprintf(fname, "%s/conf_fpmmaterial_name.txt", piaacmcconfdir );
         if( (fp = fopen(fname, "r")) != NULL)

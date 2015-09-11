@@ -357,6 +357,19 @@ echo "LyotZmax = $LyotZmax"
 
 
 
+invPIAAmode=1 # default
+file="conf/conf_invPIAAmode.txt"
+if [ -f $file ]
+	then
+	invPIAAmode=$(echo "$(cat $file)")
+	else
+	#echo "CANNOT READ FILE ${file}"
+	ok=0
+fi
+echo "invPIAAmode = $invPIAAmode"
+
+
+
 
 
 # 0 : default
@@ -398,6 +411,7 @@ echo "PIAACMC_r0lim=${piaar0lim}" >> $startupfile
 echo "PIAACMC_r1lim=${piaar1lim}" >> $startupfile
 echo "PIAACMC_piaasep=${piaasep}" >> $startupfile
 echo "PIAACMC_piaa0pos=${piaa0pos}" >> $startupfile
+echo "PIAACMC_invPIAAmode=${invPIAAmode}" >> $startupfile
 echo "PIAACMC_prepiaa0maskpos=${prepiaa0maskpos}" >> $startupfile
 echo "PIAACMC_postpiaa0maskpos=${postpiaa0maskpos}" >> $startupfile
 echo "PIAACMC_piaaNBCmodesmax=${piaaNBCmodesmax}" >> $startupfile

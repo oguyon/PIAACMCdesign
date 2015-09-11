@@ -36,6 +36,14 @@ float \hyperlink{structOPTPIAACMCDESIGN_a3b878597ef430b432a169fbd1138112a}{piaa0
 \item 
 float \hyperlink{structOPTPIAACMCDESIGN_ab9b00e2fc69b7a0b11354d5cdf718635}{piaasep}
 \item 
+int \hyperlink{structOPTPIAACMCDESIGN_a4f424ef8e93fc3f0a89c37a9c5972820}{prepiaa0mask}
+\item 
+float \hyperlink{structOPTPIAACMCDESIGN_a4f6c7b87f374eefda6c212329be7ba43}{prepiaa0maskpos}
+\item 
+int \hyperlink{structOPTPIAACMCDESIGN_a392b32b63ba511bff062e98c941814aa}{postpiaa0mask}
+\item 
+float \hyperlink{structOPTPIAACMCDESIGN_a5fb317d6c29f6d774462ae4f6b6c3e09}{postpiaa0maskpos}
+\item 
 int \hyperlink{structOPTPIAACMCDESIGN_abcbc2dfd1fde61c341f2689b1ed810dd}{nb\+D\+M}
 \item 
 double \hyperlink{structOPTPIAACMCDESIGN_ad508d17e469e18e4d2d8034bf0f23ea6}{D\+Mpos} \mbox{[}10\mbox{]}
@@ -58,11 +66,15 @@ long \hyperlink{structOPTPIAACMCDESIGN_a0943c7f88d6cc19f0d93aec976c33abf}{Cmsize
 \item 
 long \hyperlink{structOPTPIAACMCDESIGN_a8206d0c4c019d9c2a6dda4d22cf7d8a6}{N\+B\+Cmodes}
 \item 
+long \hyperlink{structOPTPIAACMCDESIGN_a8fbed9f02c0a17dcc2f233be4c4af697}{piaa\+N\+B\+Cmodesmax}
+\item 
 long \hyperlink{structOPTPIAACMCDESIGN_a6b13c1628f90db964d8279de9aee4f23}{Fmodes\+I\+D}
 \item 
 long \hyperlink{structOPTPIAACMCDESIGN_a0e84939f7dbafe942bc7725bd6ddfa8e}{Fmsize}
 \item 
 long \hyperlink{structOPTPIAACMCDESIGN_ac46c632c680659b8c588701a497dbb4b}{N\+B\+Fmodes}
+\item 
+float \hyperlink{structOPTPIAACMCDESIGN_a3fa5fbe424c220ac11e527ae5081e2c7}{piaa\+C\+P\+Amax}
 \item 
 long \hyperlink{structOPTPIAACMCDESIGN_a9b381fe9d31e74c5306577c8ca59116b}{piaa0\+Cmodes\+I\+D}
 \item 
@@ -244,18 +256,36 @@ int \hyperlink{structOPTPIAACMCDESIGN_a109986baab6ae4c894500a5f2e350677}{fpmmate
 \hypertarget{structOPTPIAACMCDESIGN_a5fa43c209dc396f65f2d74d3bb275e75}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!piaa1\+Fmodes\+I\+D@{piaa1\+Fmodes\+I\+D}}
 \index{piaa1\+Fmodes\+I\+D@{piaa1\+Fmodes\+I\+D}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
 \subsubsection[{piaa1\+Fmodes\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}long O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::piaa1\+Fmodes\+I\+D}}\label{structOPTPIAACMCDESIGN_a5fa43c209dc396f65f2d74d3bb275e75}
+\hypertarget{structOPTPIAACMCDESIGN_a3fa5fbe424c220ac11e527ae5081e2c7}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!piaa\+C\+P\+Amax@{piaa\+C\+P\+Amax}}
+\index{piaa\+C\+P\+Amax@{piaa\+C\+P\+Amax}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
+\subsubsection[{piaa\+C\+P\+Amax}]{\setlength{\rightskip}{0pt plus 5cm}float O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::piaa\+C\+P\+Amax}}\label{structOPTPIAACMCDESIGN_a3fa5fbe424c220ac11e527ae5081e2c7}
 \hypertarget{structOPTPIAACMCDESIGN_a9fc6f0b8de4e0e7fe0694cd8f4e827e1}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!P\+I\+A\+Amaterial\+\_\+code@{P\+I\+A\+Amaterial\+\_\+code}}
 \index{P\+I\+A\+Amaterial\+\_\+code@{P\+I\+A\+Amaterial\+\_\+code}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
 \subsubsection[{P\+I\+A\+Amaterial\+\_\+code}]{\setlength{\rightskip}{0pt plus 5cm}int O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::\+P\+I\+A\+Amaterial\+\_\+code}}\label{structOPTPIAACMCDESIGN_a9fc6f0b8de4e0e7fe0694cd8f4e827e1}
 \hypertarget{structOPTPIAACMCDESIGN_abf3280f1ad15a23b5cf9f05942ca6d69}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!P\+I\+A\+Amaterial\+\_\+name@{P\+I\+A\+Amaterial\+\_\+name}}
 \index{P\+I\+A\+Amaterial\+\_\+name@{P\+I\+A\+Amaterial\+\_\+name}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
 \subsubsection[{P\+I\+A\+Amaterial\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}char O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::\+P\+I\+A\+Amaterial\+\_\+name\mbox{[}10\mbox{]}}}\label{structOPTPIAACMCDESIGN_abf3280f1ad15a23b5cf9f05942ca6d69}
+\hypertarget{structOPTPIAACMCDESIGN_a8fbed9f02c0a17dcc2f233be4c4af697}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!piaa\+N\+B\+Cmodesmax@{piaa\+N\+B\+Cmodesmax}}
+\index{piaa\+N\+B\+Cmodesmax@{piaa\+N\+B\+Cmodesmax}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
+\subsubsection[{piaa\+N\+B\+Cmodesmax}]{\setlength{\rightskip}{0pt plus 5cm}long O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::piaa\+N\+B\+Cmodesmax}}\label{structOPTPIAACMCDESIGN_a8fbed9f02c0a17dcc2f233be4c4af697}
 \hypertarget{structOPTPIAACMCDESIGN_ab9b00e2fc69b7a0b11354d5cdf718635}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!piaasep@{piaasep}}
 \index{piaasep@{piaasep}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
 \subsubsection[{piaasep}]{\setlength{\rightskip}{0pt plus 5cm}float O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::piaasep}}\label{structOPTPIAACMCDESIGN_ab9b00e2fc69b7a0b11354d5cdf718635}
 \hypertarget{structOPTPIAACMCDESIGN_a41ee229fbf9d612f8650c127b7ed022b}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!pixscale@{pixscale}}
 \index{pixscale@{pixscale}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
 \subsubsection[{pixscale}]{\setlength{\rightskip}{0pt plus 5cm}float O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::pixscale}}\label{structOPTPIAACMCDESIGN_a41ee229fbf9d612f8650c127b7ed022b}
+\hypertarget{structOPTPIAACMCDESIGN_a392b32b63ba511bff062e98c941814aa}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!postpiaa0mask@{postpiaa0mask}}
+\index{postpiaa0mask@{postpiaa0mask}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
+\subsubsection[{postpiaa0mask}]{\setlength{\rightskip}{0pt plus 5cm}int O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::postpiaa0mask}}\label{structOPTPIAACMCDESIGN_a392b32b63ba511bff062e98c941814aa}
+\hypertarget{structOPTPIAACMCDESIGN_a5fb317d6c29f6d774462ae4f6b6c3e09}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!postpiaa0maskpos@{postpiaa0maskpos}}
+\index{postpiaa0maskpos@{postpiaa0maskpos}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
+\subsubsection[{postpiaa0maskpos}]{\setlength{\rightskip}{0pt plus 5cm}float O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::postpiaa0maskpos}}\label{structOPTPIAACMCDESIGN_a5fb317d6c29f6d774462ae4f6b6c3e09}
+\hypertarget{structOPTPIAACMCDESIGN_a4f424ef8e93fc3f0a89c37a9c5972820}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!prepiaa0mask@{prepiaa0mask}}
+\index{prepiaa0mask@{prepiaa0mask}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
+\subsubsection[{prepiaa0mask}]{\setlength{\rightskip}{0pt plus 5cm}int O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::prepiaa0mask}}\label{structOPTPIAACMCDESIGN_a4f424ef8e93fc3f0a89c37a9c5972820}
+\hypertarget{structOPTPIAACMCDESIGN_a4f6c7b87f374eefda6c212329be7ba43}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!prepiaa0maskpos@{prepiaa0maskpos}}
+\index{prepiaa0maskpos@{prepiaa0maskpos}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
+\subsubsection[{prepiaa0maskpos}]{\setlength{\rightskip}{0pt plus 5cm}float O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::prepiaa0maskpos}}\label{structOPTPIAACMCDESIGN_a4f6c7b87f374eefda6c212329be7ba43}
 \hypertarget{structOPTPIAACMCDESIGN_a0f039998bd513a4a91d5d144ba51001c}{\index{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}!r0lim@{r0lim}}
 \index{r0lim@{r0lim}!O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N@{O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N}}
 \subsubsection[{r0lim}]{\setlength{\rightskip}{0pt plus 5cm}double O\+P\+T\+P\+I\+A\+A\+C\+M\+C\+D\+E\+S\+I\+G\+N\+::r0lim}}\label{structOPTPIAACMCDESIGN_a0f039998bd513a4a91d5d144ba51001c}
