@@ -32,6 +32,19 @@ Key data structures (such as the image data structure) are declared in CLIcore.h
 ## Getting started
 Example bash script to run PIAACMC design tool are provided in ./src/PIAACMCdesign/scripts/
 
-Top level script: 
-    ./run
+To run design tool:
+- copy scripts to working directory. A script is provided to do this:
+
+    cd ~/src/PIAACMCdesign/src/PIAACMCsimul/scripts
+    ./syncscripts <myworkdirectory>
+
+- copy top level script run to your custom script name:
+
+    cd <myworkdirectory>
+    cp run <myrunscriptname>
+
+- edit the top level script as needed
+
+- execute top level script. Executing script with "help" as argument will give usage/example
+
 
