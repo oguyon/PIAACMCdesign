@@ -58,5 +58,7 @@ var searchData=
   ['logshim_5fconf',['LOGSHIM_CONF',['../structLOGSHIM__CONF.html',1,'']]],
   ['long',['LONG',['../CLIcore_8h.html#acaa7b8a7167a8214f499c71c413ddcca',1,'CLIcore.h']]],
   ['loopcnt',['LOOPCNT',['../coronagraphs_8c.html#adfef7b061132317e906e5dfd0fdd1038',1,'LOOPCNT():&#160;coronagraphs.c'],['../PIAACMCsimul_8c.html#adfef7b061132317e906e5dfd0fdd1038',1,'LOOPCNT():&#160;PIAACMCsimul.c']]],
-  ['lyotstop_5fzpos',['LyotStop_zpos',['../structOPTPIAACMCDESIGN.html#ac58466d4fb98041f6a1279ce0e1092b1',1,'OPTPIAACMCDESIGN']]]
+  ['lyotstop_5fzpos',['LyotStop_zpos',['../structOPTPIAACMCDESIGN.html#ac58466d4fb98041f6a1279ce0e1092b1',1,'OPTPIAACMCDESIGN']]],
+  ['lyotzmax',['LyotZmax',['../structOPTPIAACMCDESIGN.html#a45bce5969d933b75f2002fc35d9366a8',1,'OPTPIAACMCDESIGN']]],
+  ['lyotzmin',['LyotZmin',['../structOPTPIAACMCDESIGN.html#aaf6a20a5f06d13546d4145fd878727bf',1,'OPTPIAACMCDESIGN']]]
 ];

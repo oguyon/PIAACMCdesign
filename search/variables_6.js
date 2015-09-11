@@ -25,7 +25,7 @@ var searchData=
   ['init',['init',['../structASPHSURFR.html#ae2386c06994cf2b5a8090bbdee2a7957',1,'ASPHSURFR::init()'],['../structZERNIKE.html#aac9ea666bbfdae8b71b4bff01617b2c2',1,'ZERNIKE::init()']]],
   ['initpiaa',['initPIAA',['../coronagraphs_8c.html#a98e8407fac01f88eb8671abb3661196e',1,'coronagraphs.c']]],
   ['interval',['interval',['../structLOGSHIM__CONF.html#af4a9410a1d66d15e10df76223aeccb50',1,'LOGSHIM_CONF']]],
-  ['invpiaamode',['invPIAAmode',['../PIAACMCsimul_8c.html#abf3d91fbcde4e700fdee4507f8b895a5',1,'PIAACMCsimul.c']]],
+  ['invpiaamode',['invPIAAmode',['../structOPTPIAACMCDESIGN.html#adaa80b18e792715b3aaa88cc278a878c',1,'OPTPIAACMCDESIGN']]],
   ['invrandmax',['INVRANDMAX',['../structDATA.html#aa17d253cb7412ac4cbc8f034dfe78308',1,'DATA']]],
   ['item',['item',['../structres__node.html#a6d1e853ec1f48f263c277344f37f8cc3',1,'res_node']]]
 ];

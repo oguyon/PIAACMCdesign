@@ -118,7 +118,7 @@ var searchData=
   ['int8_5fmax',['INT8_MAX',['../calc__flex_8c.html#aaf7f29f45f1a513b4748a4e5014ddf6a',1,'calc_flex.c']]],
   ['int8_5fmin',['INT8_MIN',['../calc__flex_8c.html#aadcf2a81af243df333b31efa6461ab8e',1,'calc_flex.c']]],
   ['interval',['interval',['../structLOGSHIM__CONF.html#af4a9410a1d66d15e10df76223aeccb50',1,'LOGSHIM_CONF']]],
-  ['invpiaamode',['invPIAAmode',['../PIAACMCsimul_8c.html#abf3d91fbcde4e700fdee4507f8b895a5',1,'PIAACMCsimul.c']]],
+  ['invpiaamode',['invPIAAmode',['../structOPTPIAACMCDESIGN.html#adaa80b18e792715b3aaa88cc278a878c',1,'OPTPIAACMCDESIGN']]],
   ['invrandmax',['INVRANDMAX',['../structDATA.html#aa17d253cb7412ac4cbc8f034dfe78308',1,'DATA']]],
   ['is_5ffits_5ffile',['is_fits_file',['../COREMOD__iofits_8c.html#a641a12bab3be6f1de076d108cb32a4f8',1,'is_fits_file(char *file_name):&#160;COREMOD_iofits.c'],['../COREMOD__iofits_8h.html#a641a12bab3be6f1de076d108cb32a4f8',1,'is_fits_file(char *file_name):&#160;COREMOD_iofits.c']]],
   ['isanumber',['isanumber',['../COREMOD__arith_8c.html#a958fa8861decfa44dd4d9875e8adc465',1,'COREMOD_arith.c']]],
