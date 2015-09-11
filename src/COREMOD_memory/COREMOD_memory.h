@@ -73,7 +73,7 @@ long create_variable_string_ID(char *name, char *value);
 long create_image_ID(char *name, long naxis, long *size, int atype, int shared, int nbkw);
 
 
-
+ 
 
 long image_write_keyword_L(char *IDname, char *kname, long value, char *comment);
 long image_write_keyword_D(char *IDname, char *kname, double value, char *comment);

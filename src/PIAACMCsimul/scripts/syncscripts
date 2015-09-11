@@ -1,24 +1,28 @@
 #!/bin/bash
 
 # copy PIAACMC design scripts to local directory
+execname=PIAACMCdesign
 
-srcdir="$HOME/src/PIAACMCdesign/src/PIAACMCsimul/scripts"
+srcdir=$( $execname -i| grep SOURCEDIR| awk '{ print $NF }')
+
+#srcdir="$HOME/src/PIAACMCdesign/src/PIAACMCsimul/scripts"
+
+
 currdir=$( pwd )
 echo "Current directory : $currdir"
 echo "Source directory  : $srcdir" 
 
 
 
-
 if [ ! -f "piaacmcscriptsinit.txt" ]; then
 sudo apt-get install inotify-tools
-sudo cp $srcdir/waitforfile /usr/local/bin/
+sudo cp $srcdir/PIAACMCsimul/scripts/waitforfile /usr/local/bin/
 touch piaacmcscriptsinit.txt
 fi
 
 for sname in run runclean runopt runPIAACMC sim1024
 do
-ln -s $srcdir/$sname $currdir/$sname
+ln -s $srcdir/PIAACMCsimul/scripts/$sname $currdir/$sname
 done
 
 

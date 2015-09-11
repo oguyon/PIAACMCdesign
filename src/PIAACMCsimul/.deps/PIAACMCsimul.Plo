@@ -109,6 +109,7 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /home/guyon/src/Cfits/src/linopt_imtools/linopt_imtools.h \
  /home/guyon/src/Cfits/src/OpticsMaterials/OpticsMaterials.h \
  /home/guyon/src/Cfits/src/image_filter/image_filter.h \
+ /home/guyon/src/Cfits/src/image_basic/image_basic.h \
  /home/guyon/src/Cfits/src/coronagraphs/coronagraphs.h \
  /home/guyon/src/Cfits/src/PIAACMCsimul/PIAACMCsimul.h \
  /home/guyon/src/Cfits/src/OptSystProp/OptSystProp.h \
@@ -419,6 +420,8 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 /home/guyon/src/Cfits/src/OpticsMaterials/OpticsMaterials.h:
 
 /home/guyon/src/Cfits/src/image_filter/image_filter.h:
+
+/home/guyon/src/Cfits/src/image_basic/image_basic.h:
 
 /home/guyon/src/Cfits/src/coronagraphs/coronagraphs.h:
 
