@@ -1094,7 +1094,7 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
         sprintf(optsyst[0].name[elem], "opaque mask before PIAA element 0");
         optsyst[0].elemtype[elem] = 1; // opaque mask
         optsyst[0].elemarrayindex[elem] = ID;
-        optsyst[0].elemZpos[elem] = design[index].prepiaa0maskpos; //0.702843;
+        optsyst[0].elemZpos[elem] = design[index].prepiaa0maskpos;
 
         if(PIAACMC_save==1)
             fprintf(fp,"%02ld  %f    %s\n", elem, optsyst[0].elemZpos[elem], optsyst[0].name[elem]);

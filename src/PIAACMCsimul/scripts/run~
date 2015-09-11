@@ -39,8 +39,8 @@ loadparam fpmradld 1.100
 loadparam PIAAmaterial "Mirror"
 loadparam LStransm 0.70
 loadparam NBls 4
-loadparam lambda 565
-loadparam mlambda 565
+loadparam lambda 600
+loadparam mlambda 600
 loadparam mlambdaB 10
 loadparam NBrings 22
 loadparam maskradld 1.60
@@ -61,12 +61,12 @@ loadparam pscale 0.00011
 loadparam Fratio 80.0
 loadparam PIAAr0lim 1.15 
 loadparam PIAAr1lim 1.50
-loadparam PIAAsep 2.302606
-loadparam PIAA0pos 0.702843 
+loadparam PIAAsep 1.0
+loadparam PIAA0pos 1.0 
 loadparam invPIAAmode 1
 
-loadparam prePIAA0maskpos 0.702843 
-loadparam postPIAA0maskpos 3.005449 
+loadparam prePIAA0maskpos 1.0 
+loadparam postPIAA0maskpos 1.5 
 loadparam piaaNBCmodesmax 40
 loadparam piaaCPAmax 10.0
 loadparam LyotZmin -2.5

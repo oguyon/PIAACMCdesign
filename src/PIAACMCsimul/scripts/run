@@ -39,8 +39,8 @@ loadparam fpmradld 1.100
 loadparam PIAAmaterial "Mirror"
 loadparam LStransm 0.70
 loadparam NBls 4
-loadparam lambda 565
-loadparam mlambda 565
+loadparam lambda 600
+loadparam mlambda 600
 loadparam mlambdaB 10
 loadparam NBrings 22
 loadparam maskradld 1.60
