@@ -14,6 +14,7 @@ var searchData=
   ['pcosh',['Pcosh',['../COREMOD__arith_8c.html#a3ac28dbb735094c9dee66e55c271904f',1,'COREMOD_arith.c']]],
   ['pdiv',['Pdiv',['../COREMOD__arith_8c.html#a06d9544975fcb435a437bf6261f57235',1,'COREMOD_arith.c']]],
   ['pdiv1',['Pdiv1',['../COREMOD__arith_8c.html#a850612c6c68988ff32ecca5b2a7511d7',1,'COREMOD_arith.c']]],
+  ['peakpsf',['peakPSF',['../structOPTPIAACMCDESIGN.html#a7a4db3779c6d9030069e9311837a361a',1,'OPTPIAACMCDESIGN']]],
   ['permut',['permut',['../fft_8c.html#ac58e739ffc1de08f6a46c8596b07b09c',1,'permut(char *ID_name):&#160;fft.c'],['../fft_8h.html#ac58e739ffc1de08f6a46c8596b07b09c',1,'permut(char *ID_name):&#160;fft.c']]],
   ['pexp',['Pexp',['../COREMOD__arith_8c.html#a6d6e9320c9e80bb8ed74ce4b7731eccb',1,'COREMOD_arith.c']]],
   ['pfabs',['Pfabs',['../COREMOD__arith_8c.html#a127b1e824792e0a97c0d1d237c4ac792',1,'COREMOD_arith.c']]],
@@ -146,6 +147,7 @@ var searchData=
   ['ptestmt',['Ptestmt',['../COREMOD__arith_8c.html#acc7da2406b697521b13f3e476453d308',1,'COREMOD_arith.c']]],
   ['ptrunc',['Ptrunc',['../COREMOD__arith_8c.html#af6427f827bed4e0526cf80a1e1f54956',1,'Ptrunc(double a, double b, double c):&#160;COREMOD_arith.c'],['../COREMOD__arith_8h.html#af6427f827bed4e0526cf80a1e1f54956',1,'Ptrunc(double a, double b, double c):&#160;COREMOD_arith.c']]],
   ['pupfft',['pupfft',['../fft_8c.html#a68cb6b8da900dbff60fa49fc48f5fc0f',1,'pupfft(char *ID_name_ampl, char *ID_name_pha, char *ID_name_ampl_out, char *ID_name_pha_out, char *options):&#160;fft.c'],['../fft_8h.html#a68cb6b8da900dbff60fa49fc48f5fc0f',1,'pupfft(char *ID_name_ampl, char *ID_name_pha, char *ID_name_ampl_out, char *ID_name_pha_out, char *options):&#160;fft.c']]],
+  ['pupoutmaskrad',['pupoutmaskrad',['../structOPTPIAACMCDESIGN.html#a65968979dd96a614a86fd7eb34238e83',1,'OPTPIAACMCDESIGN']]],
   ['put_5fpoisson_5fnoise',['put_poisson_noise',['../statistic_8c.html#a4834ea9d216a2131e7ccd3943ff1478d',1,'put_poisson_noise(char *ID_in_name, char *ID_out_name):&#160;statistic.c'],['../statistic_8h.html#a4834ea9d216a2131e7ccd3943ff1478d',1,'put_poisson_noise(char *ID_in_name, char *ID_out_name):&#160;statistic.c']]],
   ['putsym',['putsym',['../calc_8h.html#aad1dfd39890f675a8b6393cc7e555d00',1,'calc.h']]]
 ];

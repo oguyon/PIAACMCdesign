@@ -2,6 +2,7 @@ var searchData=
 [
   ['parseerror',['parseerror',['../structDATA.html#a04c14ba8ea1844e3f68888dca0fe3519',1,'DATA']]],
   ['partial',['partial',['../structsavethreadmsg.html#a67b95feb0e172459de37d4e23fab693b',1,'savethreadmsg']]],
+  ['peakpsf',['peakPSF',['../structOPTPIAACMCDESIGN.html#a7a4db3779c6d9030069e9311837a361a',1,'OPTPIAACMCDESIGN']]],
   ['piaa0cmodesid',['piaa0CmodesID',['../structOPTPIAACMCDESIGN.html#a9b381fe9d31e74c5306577c8ca59116b',1,'OPTPIAACMCDESIGN']]],
   ['piaa0fmodesid',['piaa0FmodesID',['../structOPTPIAACMCDESIGN.html#a9101237f5e1b7af8a40014685cb399b9',1,'OPTPIAACMCDESIGN']]],
   ['piaa0pos',['piaa0pos',['../structOPTPIAACMCDESIGN.html#a3b878597ef430b432a169fbd1138112a',1,'OPTPIAACMCDESIGN']]],
@@ -61,5 +62,6 @@ var searchData=
   ['precision',['precision',['../structDATA.html#a7b6fce0fc9e6046ffa57b30b8bcd0d1f',1,'DATA']]],
   ['prepiaa0mask',['prepiaa0mask',['../structOPTPIAACMCDESIGN.html#a4f424ef8e93fc3f0a89c37a9c5972820',1,'OPTPIAACMCDESIGN']]],
   ['prepiaa0maskpos',['prepiaa0maskpos',['../structOPTPIAACMCDESIGN.html#a4f6c7b87f374eefda6c212329be7ba43',1,'OPTPIAACMCDESIGN']]],
-  ['processname',['processname',['../structDATA.html#a58978653cfb98eaf9b9007cb992cc0e4',1,'DATA']]]
+  ['processname',['processname',['../structDATA.html#a58978653cfb98eaf9b9007cb992cc0e4',1,'DATA']]],
+  ['pupoutmaskrad',['pupoutmaskrad',['../structOPTPIAACMCDESIGN.html#a65968979dd96a614a86fd7eb34238e83',1,'OPTPIAACMCDESIGN']]]
 ];
