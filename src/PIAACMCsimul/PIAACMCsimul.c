@@ -887,6 +887,9 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
     beamradpix = optsyst[0].beamrad/optsyst[0].pixscale;
 
+
+    
+
     list_variable_ID();
 
     // printf("BEAM RADIUS = %f / %f  = %f pix,   piaacmc[0].beamrad = %f\n", optsyst[0].beamrad, optsyst[0].pixscale, beamradpix, piaacmc[0].beamrad );
@@ -1109,51 +1112,14 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
     optsyst[0].elemarrayindex[elem] = 1; // index
     optsyst[0].elemZpos[elem] = design[index].piaa0pos;
 
-    if(design[index].PIAAmaterial_code == 0) // point to mirror
-        optsyst[0].ASPHSURFMarray[1].surfID = IDpiaam0z;
-    else // make mirror OPD cube from sag map to take into account chromaticity - The refractive surface is represented as a pre-computed chromatic mirror surface
+    if(design[index].PIAAmaterial_code == 0) // mirror
+        optsyst[0].ASPHSURFMarray[optsyst[0].elemarrayindex[elem]].surfID = IDpiaam0z;
+    else // lens
     {
-
-        // if piaar0zsag does not exist or is wrong size, create it
-        /*       IDpiaar0zsag = image_ID("piaar0zsag");
-               if(IDpiaar0zsag == -1)
-                   mkpiaar0zsag = 1;
-               else
-                   {
-                       if((data.image[IDpiaar0zsag].md[0].size[0] != size)||(data.image[IDpiaar0zsag].md[0].size[1] != size)||(data.image[IDpiaar0zsag].md[0].size[2] != design[index].nblambda))
-                       {
-                           delete_image_ID("piaar0zsag");
-                           mkpiaar0zsag = 1;
-                       }
-                   }
-               if(mkpiaar0zsag == 1)
-                   IDpiaar0zsag = create_3Dimage_ID("piaar0zsag", size, size, design[index].nblambda);
-
-
-
-               sprintf(fname, "%s/ri_array.txt", piaacmcconfdir);
-               if( (fpri=fopen(fname, "w")) == NULL)
-                   {
-                       printf("ERROR: cannot open file \"%s\"\n", fname);
-                       exit(0);
-                   }
-               ri0 = OPTICSMATERIALS_n(design[index].PIAAmaterial_code, design[index].lambda); // refractive index at central lambda
-               sag2opd_coeff0 = (ri0-1.0)/2.0;
-               for(k=0;k<design[index].nblambda;k++)
-                   {
-                       // sag to OPD coeff
-                       ri = OPTICSMATERIALS_n(design[index].PIAAmaterial_code, optsyst[0].lambdaarray[k]); // refractive index
-                       sag2opd_coeff = (ri-1.0)/2.0;
-                       fprintf(fpri, "%g %.16f %.16f %.16f %.16f\n", optsyst[0].lambdaarray[k], ri, ri0, sag2opd_coeff, sag2opd_coeff/sag2opd_coeff0);
-                       for(ii=0;ii<size*size;ii++)
-                           data.image[IDpiaar0zsag].array.F[k*size*size+ii] = sag2opd_coeff * data.image[IDpiaam0z].array.F[ii] / sag2opd_coeff0;
-                   }
-               fclose(fpri);
-               sprintf(fname, "!%s/piaar0zsag.fits", piaacmcconfdir);
-               if(PIAACMC_save==1)   save_fl_fits("piaar0zsag", fname);
-               printf("Saved piaar0zsag to %s\n", fname);
-          */
-        optsyst[0].ASPHSURFMarray[1].surfID = image_ID("piaar0zsag"); //IDpiaar0zsag;
+        optsyst[0].elemtype[elem] = 4;
+        optsyst[0].ASPHSURFRarray[optsyst[0].elemarrayindex[elem]].surfID = image_ID("piaar0zsag"); //IDpiaar0zsag;
+        optsyst[0].ASPHSURFRarray[optsyst[0].elemarrayindex[elem]].mat0 = 100;
+        optsyst[0].ASPHSURFRarray[optsyst[0].elemarrayindex[elem]].mat1 = design[0].PIAAmaterial_code; // vacuum
     }
 
     if(optsyst[0].ASPHSURFMarray[1].surfID==-1)
@@ -1165,7 +1131,6 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
     if(PIAACMC_save==1)
         fprintf(fp,"%02ld  %f    %s\n", elem, optsyst[0].elemZpos[elem], optsyst[0].name[elem]);
-    //      fprintf(fp,"%02ld  %f    PIAAM0\n", elem, optsyst[0].elemZpos[elem]);
     elem++;
 
 
@@ -1193,53 +1158,16 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
     sprintf(optsyst[0].name[elem], "PIAA optics 1");
     optsyst[0].elemtype[elem] = 3; // reflective PIAA M1
     optsyst[0].elemarrayindex[elem] = 2;
-    optsyst[0].elemZpos[elem] = optsyst[0].elemZpos[elem-1]+design[index].piaasep;
+    optsyst[0].elemZpos[elem] = design[index].piaa0pos+design[index].piaasep;
 
-    if(design[index].PIAAmaterial_code == 0) // point to mirror
+    if(design[index].PIAAmaterial_code == 0) // mirror
         optsyst[0].ASPHSURFMarray[2].surfID = IDpiaam1z;
-    else // make mirror OPD cube from sag map to take into account chromaticity - The refractive surface is represented as a pre-computed chromatic mirror surface
+    else // lens
     {
-
-        // if piaar1zsag does not exist or is wrong size, create it
-        /*    IDpiaar1zsag = image_ID("piaar1zsag");
-            if(IDpiaar1zsag == -1)
-                mkpiaar1zsag = 1;
-            else
-                {
-                    if((data.image[IDpiaar1zsag].md[0].size[0] != size)||(data.image[IDpiaar1zsag].md[0].size[1] != size)||(data.image[IDpiaar1zsag].md[0].size[2] != design[index].nblambda))
-                    {
-                        delete_image_ID("piaar1zsag");
-                        mkpiaar1zsag = 1;
-                    }
-                }
-            if(mkpiaar1zsag == 1)
-                IDpiaar1zsag = create_3Dimage_ID("piaar1zsag", size, size, design[index].nblambda);
-
-
-
-            sprintf(fname, "%s/ri_array.txt", piaacmcconfdir);
-            if( (fpri=fopen(fname, "w")) == NULL)
-                {
-                    printf("ERROR: cannot open file \"%s\"\n", fname);
-                    exit(0);
-                }
-            ri0 = OPTICSMATERIALS_n(design[index].PIAAmaterial_code, design[index].lambda); // refractive index at central lambda
-            sag2opd_coeff0 = (ri0-1.0)/2.0;
-            for(k=0;k<design[index].nblambda;k++)
-                {
-                    // sag to OPD coeff
-                    ri = OPTICSMATERIALS_n(design[index].PIAAmaterial_code, optsyst[0].lambdaarray[k]); // refractive index
-                    sag2opd_coeff = (ri-1.0)/2.0;
-                    fprintf(fpri, "%g %.16f %.16f %.16f %.16f\n", optsyst[0].lambdaarray[k], ri, ri0, sag2opd_coeff, sag2opd_coeff/sag2opd_coeff0);
-                    for(ii=0;ii<size*size;ii++)
-                        data.image[IDpiaar1zsag].array.F[k*size*size+ii] = sag2opd_coeff * data.image[IDpiaam1z].array.F[ii] / sag2opd_coeff0;
-                }
-            fclose(fpri);
-            sprintf(fname, "!%s/piaar1zsag.fits", piaacmcconfdir);
-            if(PIAACMC_save==1)   save_fl_fits("piaar1zsag", fname);
-            printf("Saved piaar1zsag to %s\n", fname);
-          */
-        optsyst[0].ASPHSURFMarray[2].surfID = image_ID("piaar1zsag");// IDpiaar1zsag;
+        optsyst[0].elemtype[elem] = 4;
+        optsyst[0].ASPHSURFRarray[2].surfID = image_ID("piaar1zsag"); //IDpiaar0zsag;
+        optsyst[0].ASPHSURFRarray[optsyst[0].elemarrayindex[elem]].mat0 = 100; // vacuum
+        optsyst[0].ASPHSURFRarray[optsyst[0].elemarrayindex[elem]].mat1 = design[0].PIAAmaterial_code;
     }
 
 
@@ -1275,6 +1203,8 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
 
     // --------------------  elem 5: focal plane mask ------------------------
+    if((IDv=variable_ID("PIAACMC_NOFPM"))==-1)
+{
     sprintf(optsyst[0].name[elem], "post focal plane mask pupil");
     optsyst[0].elemtype[elem] = 5; // focal plane mask
     optsyst[0].elemarrayindex[elem] = 0;
@@ -1298,7 +1228,7 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
         fprintf(fp,"%02ld  %f    %s\n", elem, optsyst[0].elemZpos[elem], optsyst[0].name[elem]);
     //      fprintf(fp,"%02ld  %f    post-focal plane mask pupil\n", elem, optsyst[0].elemZpos[elem]);
     elem++;
-
+}
 
 
 
@@ -1308,9 +1238,13 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
     {
         // --------------------  elem 8: inv PIAA1 ------------------------
         sprintf(optsyst[0].name[elem], "invPIAA optics 1");
-        optsyst[0].elemtype[elem] = 3; // reflective PIAA M1
+
+        if(design[index].PIAAmaterial_code == 0) // mirror
+            optsyst[0].elemtype[elem] = 3; // reflective PIAA M/L 1
+        else
+            optsyst[0].elemtype[elem] = 4; // refractive PIAA M/L 1
+
         optsyst[0].elemarrayindex[elem] = 2;
-        //       optsyst[0].ASPHSURFMarray[2].surfID = IDpiaaz1;
         optsyst[0].elemZpos[elem] = 0.0;
         if(PIAACMC_save==1)
             fprintf(fp,"%02ld  %f    %s\n", elem, optsyst[0].elemZpos[elem], optsyst[0].name[elem]);
@@ -1319,9 +1253,13 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
         // --------------------  elem 9: inv PIAA0 ------------------------
         sprintf(optsyst[0].name[elem], "invPIAA optics 0");
-        optsyst[0].elemtype[elem] = 3; // reflective PIAA M0
+        
+        if(design[index].PIAAmaterial_code == 0) //  mirror
+            optsyst[0].elemtype[elem] = 3; // reflective PIAA M/L 0
+        else
+            optsyst[0].elemtype[elem] = 4; // refractive PIAA M/L 0
+
         optsyst[0].elemarrayindex[elem] = 1;
-        //       optsyst[0].ASPHSURFMarray[1].surfID = IDpiaaz0;
         optsyst[0].elemZpos[elem] = design[index].piaasep;
         if(PIAACMC_save==1)
             fprintf(fp,"%02ld  %f    %s\n", elem, optsyst[0].elemZpos[elem], optsyst[0].name[elem]);
@@ -1351,9 +1289,11 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
     {
         // --------------------  elem 8: inv PIAA1 ------------------------
         sprintf(optsyst[0].name[elem], "invPIAA optics 1");
-        optsyst[0].elemtype[elem] = 3; // reflective PIAA M1
+        if(design[index].PIAAmaterial_code == 0) // mirror
+            optsyst[0].elemtype[elem] = 3; // reflective PIAA M/L 1
+        else
+            optsyst[0].elemtype[elem] = 4; // refractive PIAA M/L 1
         optsyst[0].elemarrayindex[elem] = 2;
-        //        optsyst[0].ASPHSURFMarray[2].surfID = IDpiaaz1;
         optsyst[0].elemZpos[elem] = 0.0;
         if(PIAACMC_save==1)
             fprintf(fp,"%02ld  %f    %s\n", elem, optsyst[0].elemZpos[elem], optsyst[0].name[elem]);
@@ -1362,9 +1302,11 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
         // --------------------  elem 9: inv PIAA0 ------------------------
         sprintf(optsyst[0].name[elem], "invPIAA optics 0");
-        optsyst[0].elemtype[elem] = 3; // reflective PIAA M0
+        if(design[index].PIAAmaterial_code == 0) //  mirror
+            optsyst[0].elemtype[elem] = 3; // reflective PIAA M/L 0
+        else
+            optsyst[0].elemtype[elem] = 4; // refractive PIAA M/L 0
         optsyst[0].elemarrayindex[elem] = 1;
-        //      optsyst[0].ASPHSURFMarray[1].surfID = IDpiaaz0;
         optsyst[0].elemZpos[elem] = design[index].piaasep;
         if(PIAACMC_save==1)
             fprintf(fp,"%02ld  %f    %s\n", elem, optsyst[0].elemZpos[elem], optsyst[0].name[elem]);
@@ -1376,15 +1318,19 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
     // --------------------  elem 9: back end mask  ------------------------
 
-    sprintf(optsyst[0].name[elem], "back end pupil stop");
+    sprintf(optsyst[0].name[elem], "back end pupil stop  (rad = %f)", design[index].pupoutmaskrad);
+
     optsyst[0].elemtype[elem] = 1;
-    ID = make_disk("outmask", size, size, 0.5*size, 0.5*size, 0.92*design[index].beamrad/design[index].pixscale);
+    ID = make_disk("pupoutmask", size, size, 0.5*size, 0.5*size, design[index].pupoutmaskrad*design[index].beamrad/design[index].pixscale);
     optsyst[0].elemarrayindex[elem] = ID;
     optsyst[0].elemZpos[elem] =  optsyst[0].elemZpos[elem-1];
     if(PIAACMC_save==1)
         fprintf(fp,"%02ld  %f    %s\n", elem, optsyst[0].elemZpos[elem], optsyst[0].name[elem]);
     //     fprintf(fp,"%02ld  %f   back end mask\n", elem, optsyst[0].elemZpos[elem]);
     elem++;
+
+
+
 
     if(PIAACMC_save==1)
         fclose(fp);
@@ -2224,6 +2170,17 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         piaacmc[0].fpmaskamptransm = 1.0;
 
 
+        if((fp = fopen("conf/conf_peakPSF.txt", "r"))!=NULL)
+        {
+            ret = fscanf(fp, "%f", &piaacmc[0].peakPSF);
+            fclose(fp);
+        }
+        else
+            piaacmc[0].peakPSF = -1.0;
+        
+
+
+
         piaacmc[0].invPIAAmode = 1;
         if((IDv=variable_ID("PIAACMC_invPIAAmode"))!=-1)
             piaacmc[0].invPIAAmode = (long) (data.variable[IDv].value.f+0.001);
@@ -2291,6 +2248,21 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
             piaacmc[0].prepiaa0maskpos = data.variable[IDv].value.f; // pre piaa elem 0 mask position
         if((IDv=variable_ID("PIAACMC_postpiaa0maskpos"))!=-1)
             piaacmc[0].postpiaa0maskpos = data.variable[IDv].value.f; // post piaa elem 0 mask position
+
+
+        piaacmc[0].LyotZmin = -3.0;
+        if((IDv=variable_ID("PIAACMC_LyotZmin"))!=-1)
+            piaacmc[0].LyotZmin = data.variable[IDv].value.f;
+        piaacmc[0].LyotZmax = 3.0;
+        if((IDv=variable_ID("PIAACMC_LyotZmax"))!=-1)
+            piaacmc[0].LyotZmax = data.variable[IDv].value.f;
+
+       piaacmc[0].pupoutmaskrad = 0.95;
+        if((IDv=variable_ID("PIAACMC_pupoutmaskrad"))!=-1)
+            piaacmc[0].pupoutmaskrad = data.variable[IDv].value.f;
+
+
+
 
         if((IDv=variable_ID("PIAACMC_piaaNBCmodesmax"))!=-1)
             piaacmc[0].piaaNBCmodesmax = (long) (data.variable[IDv].value.f +0.01); // max number of Cosine terms
@@ -2513,6 +2485,9 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         if(piaacmc[0].CmodesID!=-1)
             delete_image_ID("Cmodes");
         Cmsize = (long) (beamradpix*4);
+        // make sure Cmsize if even
+        if (Cmsize%2 == 1)
+            Cmsize++;
         piaacmc[0].Cmsize = Cmsize;
         linopt_imtools_makeCosRadModes("Cmodes", Cmsize, piaacmc[0].piaaNBCmodesmax, ApoFitCosFact*beamradpix, 2.0);
         piaacmc[0].CmodesID = image_ID("Cmodes");
@@ -2563,7 +2538,7 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
     if((piaacmc[0].piaa0CmodesID==-1)||( piaacmc[0].piaa0FmodesID==-1)||(piaacmc[0].piaa1CmodesID==-1)||( piaacmc[0].piaa1FmodesID==-1))
     {
         sprintf(fname, "%s/piaaref/piaa0Cmodes.fits", piaacmcconfdir);
-        piaacmc[0].piaa0CmodesID= load_fits(fname, "piaa0Cmodescoeff", 1);
+        piaacmc[0].piaa0CmodesID = load_fits(fname, "piaa0Cmodescoeff", 1);
 
         sprintf(fname, "%s/piaaref/piaa0Fmodes.fits", piaacmcconfdir);
         piaacmc[0].piaa0FmodesID = load_fits(fname, "piaa0Fmodescoeff", 1);
@@ -2572,7 +2547,7 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         piaacmc[0].piaa1CmodesID = load_fits(fname, "piaa1Cmodescoeff", 1);
 
         sprintf(fname, "%s/piaaref/piaa1Fmodes.fits", piaacmcconfdir);
-        piaacmc[0].piaa1FmodesID =load_fits(fname, "piaa1Fmodescoeff", 1);
+        piaacmc[0].piaa1FmodesID = load_fits(fname, "piaa1Fmodescoeff", 1);
 
         sprintf(fname, "%s/piaaref/APLCmaskCtransm.txt", piaacmcconfdir);
         fp = fopen(fname, "r");
@@ -3127,14 +3102,14 @@ int PIAACMCsimul_makePIAAshapes(OPTPIAACMCDESIGN *design, long index)
                 mkpiaar0zsag = 1;
             else
             {
-                if((data.image[IDpiaar0zsag].md[0].size[0] != size)||(data.image[IDpiaar0zsag].md[0].size[1] != size)||(data.image[IDpiaar0zsag].md[0].size[2] != design[index].nblambda))
+                if((data.image[IDpiaar0zsag].md[0].size[0] != size)||(data.image[IDpiaar0zsag].md[0].size[1] != size)) //||(data.image[IDpiaar0zsag].md[0].size[2] != design[index].nblambda))
                 {
                     delete_image_ID("piaar0zsag");
                     mkpiaar0zsag = 1;
                 }
             }
             if(mkpiaar0zsag == 1)
-                IDpiaar0zsag = create_3Dimage_ID("piaar0zsag", size, size, design[index].nblambda);
+                IDpiaar0zsag = create_2Dimage_ID("piaar0zsag", size, size); //, design[index].nblambda);
 
 
 
@@ -3152,15 +3127,20 @@ int PIAACMCsimul_makePIAAshapes(OPTPIAACMCDESIGN *design, long index)
                 ri = OPTICSMATERIALS_n(design[index].PIAAmaterial_code, piaacmc[0].lambdaarray[k]); // refractive index
                 sag2opd_coeff = (ri-1.0)/2.0;
                 fprintf(fpri, "%g %.16f %.16f %.16f %.16f\n", piaacmc[0].lambdaarray[k], ri, ri0, sag2opd_coeff, sag2opd_coeff/sag2opd_coeff0);
-                for(ii=0; ii<size*size; ii++)
-                    data.image[IDpiaar0zsag].array.F[k*size*size+ii] = data.image[IDpiaam0z].array.F[ii] * sag2opd_coeff/sag2opd_coeff0; //sag2opd_coeff * data.image[IDpiaam0z].array.F[ii] / sag2opd_coeff0;
+//                for(ii=0; ii<size*size; ii++)
+//                  data.image[IDpiaar0zsag].array.F[k*size*size+ii] = data.image[IDpiaam0z].array.F[ii] * sag2opd_coeff/sag2opd_coeff0; //sag2opd_coeff * data.image[IDpiaam0z].array.F[ii] / sag2opd_coeff0;
             }
             fclose(fpri);
+
+            for(ii=0; ii<size*size; ii++)
+                data.image[IDpiaar0zsag].array.F[ii] = data.image[IDpiaam0z].array.F[ii] / sag2opd_coeff0;
+                
             sprintf(fname, "!%s/piaar0zsag.fits", piaacmcconfdir);
             if(PIAACMC_save==1)   
                 save_fl_fits("piaar0zsag", fname);
             printf("Saved piaar0zsag to %s\n", fname);
         }
+        
     }
 
 
@@ -3217,14 +3197,14 @@ int PIAACMCsimul_makePIAAshapes(OPTPIAACMCDESIGN *design, long index)
                 mkpiaar1zsag = 1;
             else
             {
-                if((data.image[IDpiaar1zsag].md[0].size[0] != size)||(data.image[IDpiaar1zsag].md[0].size[1] != size)||(data.image[IDpiaar1zsag].md[0].size[2] != design[index].nblambda))
+                if((data.image[IDpiaar1zsag].md[0].size[0] != size)||(data.image[IDpiaar1zsag].md[0].size[1] != size)) //||(data.image[IDpiaar1zsag].md[0].size[2] != design[index].nblambda))
                 {
                     delete_image_ID("piaar1zsag");
                     mkpiaar1zsag = 1;
                 }
             }
             if(mkpiaar1zsag == 1)
-                IDpiaar1zsag = create_3Dimage_ID("piaar1zsag", size, size, design[index].nblambda);
+                IDpiaar1zsag = create_2Dimage_ID("piaar1zsag", size, size); //, design[index].nblambda);
 
 
 
@@ -3242,10 +3222,14 @@ int PIAACMCsimul_makePIAAshapes(OPTPIAACMCDESIGN *design, long index)
                 ri = OPTICSMATERIALS_n(design[index].PIAAmaterial_code, piaacmc[0].lambdaarray[k]); // refractive index
                 sag2opd_coeff = (ri-1.0)/2.0;
                 fprintf(fpri, "%g %.16f %.16f %.16f %.16f\n", piaacmc[0].lambdaarray[k], ri, ri0, sag2opd_coeff, sag2opd_coeff/sag2opd_coeff0);
-                for(ii=0; ii<size*size; ii++)
-                    data.image[IDpiaar1zsag].array.F[k*size*size+ii] = sag2opd_coeff * data.image[IDpiaam1z].array.F[ii] / sag2opd_coeff0;
+               // for(ii=0; ii<size*size; ii++)
+                //    data.image[IDpiaar1zsag].array.F[k*size*size+ii] = sag2opd_coeff * data.image[IDpiaam1z].array.F[ii] / sag2opd_coeff0;
             }
             fclose(fpri);
+            
+            for(ii=0; ii<size*size; ii++)
+                data.image[IDpiaar1zsag].array.F[ii] = data.image[IDpiaam1z].array.F[ii] / sag2opd_coeff0; 
+            
             sprintf(fname, "!%s/piaar1zsag.fits", piaacmcconfdir);
             if(PIAACMC_save==1)   save_fl_fits("piaar1zsag", fname);
             printf("Saved piaar1zsag to %s\n", fname);
@@ -3304,7 +3288,7 @@ double PIAACMCsimul_computePSF(float xld, float yld, long startelem, long endele
 
     // how to measure quality
     float focscale; // l/D per pix
-    float scoringIWA = 1.5;
+    float scoringIWA = 1.5; 
     float scoringOWA = 20.0;
     float scoringOWAhr = 8.0;
     float scoringIWAx = -20.5;
@@ -3330,6 +3314,8 @@ double PIAACMCsimul_computePSF(float xld, float yld, long startelem, long endele
     char command[1000];
     double rad1, rad2;
 
+    float val;
+    long IDv;
 
     size = piaacmc[0].size;
     size2 = size*size;
@@ -3635,7 +3621,7 @@ double PIAACMCsimul_computePSF(float xld, float yld, long startelem, long endele
         }
         else
         {
-            printf("COMPUTING UNRESOLVED SOURCE PSF\n");
+            printf("COMPUTING UNRESOLVED SOURCE PSF [%f x %f]\n", xld, yld);
 
 
             // ========== initializes optical system to piaacmc design ===========
@@ -3659,14 +3645,24 @@ double PIAACMCsimul_computePSF(float xld, float yld, long startelem, long endele
 
  //           list_image_ID();
             linopt_imtools_Image_to_vec("psfc0", "pixindex", "pixmult", "imvect");
-            //save_fits("imvect", "!imvect.fits");
-
+           
+           
+            save_fits("imvect", "!test_imvect.fits");
+            
+            mk_amph_from_complex("psfc0", "psfc0a", "psfc0p", 0);
+            save_fits("psfc0a", "!test_psfc0a.fits");
+            list_image_ID();
+            delete_image_ID("psfc0a");
+            delete_image_ID("psfc0p");
+            printf("saved -> test_psfc0a.fits\n");
+            fflush(stdout);
+            
             value = 0.0;
             peakcontrast = 0.0;
             ID = image_ID("imvect");
-            for(ii=0; ii<data.image[ID].md[0].nelement; ii++)
+            for(ii=0; ii<data.image[ID].md[0].nelement; ii+=2)
             {
-                tmpv = data.image[ID].array.F[ii]*data.image[ID].array.F[ii];
+                tmpv = data.image[ID].array.F[ii]*data.image[ID].array.F[ii] + data.image[ID].array.F[ii+1]*data.image[ID].array.F[ii+1];
                 value += tmpv;
                 if(tmpv>peakcontrast)
                     peakcontrast = tmpv;
@@ -3674,7 +3670,7 @@ double PIAACMCsimul_computePSF(float xld, float yld, long startelem, long endele
 
             for(elem=0; elem<optsyst[0].NBelem; elem++)
                 printf("    FLUX %3ld   %12.4lf %8.6lf\n", elem, optsyst[0].flux[elem], optsyst[0].flux[elem]/optsyst[0].flux[0]);
-            value = value/size/size/optsyst[0].flux[0];
+//            value = value/size/size/optsyst[0].flux[0];
 
             if(outsave==1)
             {
@@ -3695,8 +3691,9 @@ double PIAACMCsimul_computePSF(float xld, float yld, long startelem, long endele
 
            }
 
-            avContrast = value/(SCORINGTOTAL*focscale*focscale);
-
+  //          avContrast = value/(SCORINGTOTAL*focscale*focscale);
+            avContrast =  value/(optsyst[0].flux[0]*optsyst[0].flux[0])/SCORINGTOTAL;
+                
             //         CnormFactor = size*size*optsyst[0].flux[0]*arith_image_total("scoringmask")*focscale*focscale; // /optsyst[0].nblambda;
             CnormFactor = focscale*focscale*size*size*optsyst[0].flux[0]/optsyst[0].nblambda;
             sprintf(fname, "%s/CnormFactor.txt", piaacmcconfdir);
@@ -3706,9 +3703,38 @@ double PIAACMCsimul_computePSF(float xld, float yld, long startelem, long endele
             fclose(fp);
 
 
-            printf("COMPUTING UNRESOLVED SOURCE PSF\n");
-            printf("Peak constrast (rough estimate)= %g\n", peakcontrast/size/size/optsyst[0].flux[0]/focscale/focscale/normcoeff/normcoeff);
-            printf("Total light in scoring field = %g  -> Average contrast = %g\n", value, value/(arith_image_total("scoringmask")*focscale*focscale));
+            printf("COMPUTING UNRESOLVED SOURCE PSF -*- [%f x %f]\n", xld, yld);
+            if((IDv=variable_ID("PIAACMC_NOFPM"))!=-1)
+                {
+                    ID = image_ID("psfc0");
+                    piaacmc[0].peakPSF = 0.0;
+                    for(ii=0;ii<size*size;ii++)
+                        {
+                            val = data.image[ID].array.CF[ii].re*data.image[ID].array.CF[ii].re + data.image[ID].array.CF[ii].im*data.image[ID].array.CF[ii].im;
+                            if(val>piaacmc[0].peakPSF)
+                                piaacmc[0].peakPSF = val;
+                        }
+
+                    fp = fopen("conf/conf_peakPSF.txt", "w");
+                    fprintf(fp, "%g\n", piaacmc[0].peakPSF);
+                    fclose(fp);
+                }
+            if(piaacmc[0].peakPSF<1.0)
+                {
+                    printf("Peak constrast (rough estimate)= %g -> %g\n", peakcontrast, peakcontrast/(optsyst[0].flux[0]*optsyst[0].flux[0]));
+                    printf("Total light in scoring field = %g  -> Average contrast = %g\n", value, value/(optsyst[0].flux[0]*optsyst[0].flux[0])/SCORINGTOTAL); 
+                }
+            else
+                {
+                    printf("Peak constrast = %g -> %g\n", peakcontrast, peakcontrast/piaacmc[0].peakPSF);
+                    printf("Total light in scoring field = %g  -> Average contrast = %g\n", value, value/piaacmc[0].peakPSF/SCORINGTOTAL);
+                    
+                    if((fp=fopen("PSFcontrastval.txt","w"))!=NULL)
+                    {
+                        fprintf(fp, "%g %g\n", peakcontrast/piaacmc[0].peakPSF, value/piaacmc[0].peakPSF/SCORINGTOTAL);
+                        fclose(fp);
+                    }
+                }
 
             if(outsave==1)
             {
@@ -5422,6 +5448,8 @@ int PIAACMCsimul_exec(char *confindex, long mode)
         zmax = piaacmc[0].LyotZmax;
         NBincpt = 15;
         NBkr = 5;
+        
+
         ID1 = PIAACMCsimul_CA2propCubeInt(fnamea, fnamep, zmin, zmax, NBpropstep, sigma, "iproptmp");
         IDa = image_ID(fnamea);
 
@@ -6355,15 +6383,18 @@ int PIAACMCsimul_exec(char *confindex, long mode)
         if(kmaxC>data.image[piaacmc[0].piaa0CmodesID].md[0].size[0])
             kmaxC = data.image[piaacmc[0].piaa0CmodesID].md[0].size[0];
 
-
+        list_variable_ID();
+     
         kmaxF = data.image[piaacmc[0].piaa0FmodesID].md[0].size[0];
+    
         if((IDv=variable_ID("PIAACMC_maxoptFterm"))!=-1)
             kmaxF = (long) data.variable[IDv].value.f+0.01;
 
+
+ 
         if(kmaxF>data.image[piaacmc[0].piaa0FmodesID].md[0].size[0])
             kmaxF = data.image[piaacmc[0].piaa0FmodesID].md[0].size[0];
-
-
+        
 
         NBparam = 0;
 

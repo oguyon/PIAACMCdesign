@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# PRINT DESCRIPTION OF SIMULATION STEPS
+
+echo "---------- PIAACMC SIMULATION STEPS -------------"
+echo " "
+echo "STEP 000 ----------------------------------------"
+echo ""
+echo "    Compute on-axis PSF, monochromatic, idealized PIAACMC, first iteration"
+echo ""
+echo "  OUTPUT:"
+echo "      Cmodes_1024.fits         : circular radial cosine modes"
+echo "      Fmodes_1024.fits         : Fourier modes"
+echo "Inside directory piaacmcconf_1_coin<coin>_coout<coout>_fpmr<fpmr>_l<lambda>_<material>_lt<LyotTransm>_ls<#LyotStops>_i000 :"
+echo "      APLCapo.1.100.0.290.info : file written by prolate generation function coronagraph_make_2Dprolate in coronagraphs.c"
+
+echo ""
+echo "STEP 001 ----------------------------------------"
+
+echo ""
+echo "STEP 002 ----------------------------------------"
+
+echo ""
+echo "STEP 003 ----------------------------------------"
+
+echo ""
+echo "STEP 004 ----------------------------------------"
+
+echo ""
+echo "STEP 005 ----------------------------------------"
+
+echo ""
+echo "STEP 006 ----------------------------------------"
+
+echo ""
+echo "STEP 007 ----------------------------------------"
+

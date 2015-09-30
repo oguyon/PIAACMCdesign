@@ -463,6 +463,10 @@ echo "$MdesignStepMax"
 	./sim$size 500 $pscale $coin $coout $fpmrad $lambda $PIAAmaterial $LStransm $NBlyotstop $mlambda $mlambdaB $NBrings $maskradld $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz $ssize $extmode $fpmmaterial $index
 	checkerrorstatus	
 	
+	# COMPUTE ON-AXIS PSF with NO focal plane mask, monochromatic -> CONTRAST CALIBRATION
+	./sim$size 699 $pscale $coin $coout $fpmrad $lambda $PIAAmaterial $LStransm $NBlyotstop $mlambda $mlambdaB $NBrings $maskradld $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz $ssize $extmode $fpmmaterial $index
+	checkerrorstatus
+	
 	# COMPUTE ON-AXIS PSF with idealized focal plane mask, monochromatic	
 	./sim$size 700 $pscale $coin $coout $fpmrad $lambda $PIAAmaterial $LStransm $NBlyotstop $mlambda $mlambdaB $NBrings $maskradld $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz $ssize $extmode $fpmmaterial $index
 	checkerrorstatus
@@ -495,10 +499,16 @@ rm status/design_coin${coin}_coout${coout}_fpmrad${fpmrad}_l${lambda}_${PIAAmate
 
 
 
-# optmono
+
+
+
+
+# designmono
 if [ $inputmode -eq 1 ]; then
 	reoptimize=1
-	funcprocess								
+	funcprocess
+	i=$( echo "$MdesignStepMax" | awk '{print $1-1}')
+	cp PSFcontrastval.txt PSFcontrastval_step$i.txt			
 	checkerrorstatus
 fi
 

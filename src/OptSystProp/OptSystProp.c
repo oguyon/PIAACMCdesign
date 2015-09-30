@@ -231,6 +231,7 @@ int OptSystProp_run(OPTSYST *optsyst, long index, long elemstart, long elemend, 
 
 
 
+
     elemstart1 = 0;
     elemOK = 1;
     while(elemOK==1)
@@ -417,9 +418,13 @@ int OptSystProp_run(OPTSYST *optsyst, long index, long elemstart, long elemend, 
             printf("============= Refractive surface =======================\n");
             fflush(stdout);
             ID = optsyst[index].ASPHSURFRarray[optsyst[index].elemarrayindex[elem]].surfID;
-            printf("%d surface ID = %ld\n", optsyst[index].elemarrayindex[elem], ID);
+            printf("index %ld    %d surface ID : %ld \n", index, optsyst[index].elemarrayindex[elem], ID);
             fflush(stdout);
 
+         
+
+            list_image_ID();
+            
             if(optsyst[index].ASPHSURFRarray[optsyst[index].elemarrayindex[elem]].init!=1)
             {
                 for(kl=0; kl<nblambda; kl++)
@@ -427,6 +432,7 @@ int OptSystProp_run(OPTSYST *optsyst, long index, long elemstart, long elemend, 
                     n0 = OPTICSMATERIALS_n( optsyst[index].ASPHSURFRarray[optsyst[index].elemarrayindex[elem]].mat0, optsyst[index].lambdaarray[kl]);
                     n1 = OPTICSMATERIALS_n( optsyst[index].ASPHSURFRarray[optsyst[index].elemarrayindex[elem]].mat1, optsyst[index].lambdaarray[kl]);
                     optsyst[index].ASPHSURFRarray[optsyst[index].elemarrayindex[elem]].ncoeff[kl] = 2.0*M_PI*(n0-n1)/optsyst[index].lambdaarray[kl];
+//                    printf("optsyst[index].ASPHSURFRarray[optsyst[index].elemarrayindex[elem]].ncoeff[kl] = %f %f %g -> %f\n", n0, n1, optsyst[index].lambdaarray[kl], optsyst[index].ASPHSURFRarray[optsyst[index].elemarrayindex[elem]].ncoeff[kl]);
                 }
                 optsyst[index].ASPHSURFRarray[optsyst[index].elemarrayindex[elem]].init = 1;
             }

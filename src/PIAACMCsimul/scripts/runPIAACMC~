@@ -24,6 +24,54 @@ fi
 }
 
 
+black='\E[30;40m'
+red='\E[31;40m'
+green='\E[32;40m'
+yellow='\E[33;40m'
+blue='\E[34;40m'
+magenta='\E[35;40m'
+cyan='\E[36;40m'
+white='\E[37;40m'
+bblack='\E[1;30;40m'
+bred='\E[1;31;40m'
+bgreen='\E[1;32;40m'
+byellow='\E[1;33;40m'
+bblue='\E[1;34;40m'
+bmagenta='\E[1;35;40m'
+bcyan='\E[1;36;40m'
+bwhite='\E[1;37;40m'
+
+
+alias Reset="tput sgr0"      #  Reset text attributes to normal
+                             #+ without clearing screen.
+
+
+
+
+
+
+cecho ()                     # Color-echo.
+                             # Argument $1 = message
+                             # Argument $2 = color
+{
+local default_msg="No message passed."
+                             # Doesn't really need to be a local variable.
+
+message=${1:-$default_msg}   # Defaults to default message.
+color=${2:-$black}           # Defaults to black, if not specified.
+
+#  echo -e "$color"
+  echo -e "$color $message \033[0m"
+#  echo -e "\033[0m"  
+                      # Reset to normal.
+  tput sgr0
+  return
+}  
+
+
+
+
+
 
 function loadparam() {
 file="conf/conf_$1.txt"
@@ -34,12 +82,161 @@ var=$( cat "$file" )
 eval "$1=$var"
 }
 
+function checkexit() {
+if [ $state -eq $exitpt ] 
+then
+echo "REACHED STATE EXIT POINT ($exitpt)" > errorstatus.txt
+cleanup
+exit
+fi	
+}
+
+
+printhelp_designsteps()
+{
+	echo ""
+	cecho "---------- PIAACMC SIMULATION STEPS -------------" $bwhite
+	echo " "
+	cecho "STEP 000 ----------------------------------------" $bwhite
+	echo ""
+	echo "    Compute on-axis PSF, monochromatic, idealized PIAACMC, first iteration"
+	echo ""
+	echo "  OUTPUT:"
+	echo -e "     \033[1m Cmodes_1024.fits \033[0m       : Circular radial cosine modes"
+	echo -e "     \033[1m Fmodes_1024.fits \033[0m       : Fourier modes"
+	echo "Inside directory piaacmcconf_1_coin<coin>_coout<coout>_fpmr<fpmr>_l<lambda>_<material>_lt<LyotTransm>_ls<#LyotStops>_i000 :"
+	echo "   Apodization and PIAA optics:"
+	echo -e "     \033[1m APLCapo.1.100.0.290.info \033[0m : file written by prolate generation function coronagraph_make_2Dprolate in coronagraphs.c"
+	echo -e "     \033[1m apo2Drad.fits            \033[0m : Idealized PIAACMC 2D apodization (amplitude)"
+	echo -e "     \033[1m piaam0z.fits             \033[0m : PIAA M0 shape (2D sag [m])"
+	echo -e "     \033[1m piaam1z.fits             \033[0m : PIAA M1 shape (2D sag [m])"
+	echo -e "     \033[1m PIAA_Mshapes.txt         \033[0m : PIAA shapes (radial txt file, cols: r0, z0, r1, z1)"
+	echo -e "     \033[1m piaa0Cmodes.fits         \033[0m : idealized PIAACMC mirror/lens 0 cosine modes (copied from ./piaaref/) "
+	echo -e "     \033[1m piaa0Fmodes.fits         \033[0m : idealized PIAACMC mirror/lens 0 Fourier modes (copied from ./piaaref/) "
+	echo -e "     \033[1m piaa1Cmodes.fits         \033[0m : idealized PIAACMC mirror/lens 1 cosine modes (copied from ./piaaref/) "
+	echo -e "     \033[1m piaa1Fmodes.fits         \033[0m : idealized PIAACMC mirror/lens 1 Fourier modes (copied from ./piaaref/) "
+	echo -e "     \033[1m piaa0Cres.fits           \033[0m : idealized PIAA M0/L0 cosine fit residual"
+	echo -e "     \033[1m piaa1Cres.fits           \033[0m : idealized PIAA M1/L1 cosine fit residual"
+	echo -e "     \033[1m piaa0Cz.fits             \033[0m : idealized PIAA M0/L0 cosine fit sag "
+	echo -e "     \033[1m piaa1Cz.fits             \033[0m : idealized PIAA M1/L1 cosine fit sag "
+	echo -e "     \033[1m piaa0Fz.fits             \033[0m : idealized PIAA M0/L0 Fourier fit sag"
+	echo -e "     \033[1m piaa1Fz.fits             \033[0m : idealized PIAA M1/L1 Fourier fit sag"
+	echo "   Other files:"
+	echo -e "     \033[1m LyorStop<#>.fits         \033[0m : Lyot stop number #"
+	echo -e "     \033[1m flux.txt                 \033[0m : total flux at each step of the propagation"
+	echo -e "     \033[1m psfi0_step000.fits       \033[0m : PSF intensity"
+	echo -e "     \033[1m WFamp###.fits            \033[0m : Amplitude at plane ###"
+	echo -e "     \033[1m WFpha###.fits            \033[0m : Phase at plane ###"
+	echo -e "     \033[1m scoringmask0.fits        \033[0m : Set of focal plane points used for contrast optimization"
+	echo -e "     \033[1m lambdalist.txt           \033[0m : List of wavelength values"
+	echo -e "     \033[1m conjugations.txt         \033[0m : List of planes and conjugation values"
+	echo ""
+	echo -e "\E[1;32m  DESCRIPTION:\E[0m" 
+	echo "    Compute prolate spheroidal apodization for a centrally obscured circular aperture (->apo2Drad.fits)"
+	echo "    Compute radial remapping and radial PIAA Mirror shapes to achieve the desired apodization (function PIAACMCsimul_init_geomPIAA_rad) ->PIAA_Mshapes.txt"
+	echo "    Compute 2D PIAA mirror shapes -> piaam0z.fits, piaam1z.fits"
+	echo "    Fit Mirror Cmodes and Fmodes to piaam0z and piaam1z -> piaa0Cmodes.fits piaa0Fmodes.fits piaa1Cmodes.fits piaa1Fmodes.fits"
+	echo "    Make actual 2D shapes for fitted mirror coefficients (function PIAACMCsimul_makePIAAshapes) IF LENSES, MULTIPLY SHAPE BY 2/(n-1) : COEFFICIENTS ARE FOR MIRROR EQUIVALENT SHAPES"
+	echo "           -> piaam0z.fits piaam1z.fits (for mirrors)"
+	echo "           -> piaar0zsag.fits piaar1zsag.fits (for lenses)"
+	echo "    Set up optical configuration and propagate light"
+	echo ""
+	cecho "STEP 001 ----------------------------------------" $bwhite
+	echo ""
+	echo "    Repeat above step to compute on-axis PSF"
+	echo ""
+	cecho "STEP 002 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Specify input pupil geometry"
+	echo ""
+	cecho "STEP 003 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Compute on-axis PSF"
+	echo ""
+	cecho "STEP 004 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Optimize Lyot stop(s) shapes and locations (monochromatic light)"
+	echo ""
+	echo "  OUTPUT:"
+	echo -e "     \033[1m OAincohc.fits            \033[0m : Incoherent flux distribution in Lyot conjugation search space (3D cube)"
+	echo -e "     \033[1m LyotStop<###>.fits       \033[0m : Lyot Stop(s)"
+	echo -e "     \033[1m conjugations.txt         \033[0m : updated conjugation file"
+	echo ""
+	echo -e "\E[1;32m  DESCRIPTION:\E[0m" 
+	echo "    Compute incoherent flux in search space -> OAincohc.fits"
+	echo ""
+	cecho "STEP 005 ----------------------------------------" $bwhite
+	echo ""
+	echo "    Optimize focal plane mask transm -> result_fpmt.log "
+	echo ""
+	cecho "STEP 006 ----------------------------------------" $bwhite
+	echo ""
+	echo "    Compute Lyot stops shapes and locations, 2nd pass, LStransm0 throughput)"
+	echo ""
+	cecho "STEP 007 ----------------------------------------" $bwhite
+	echo ""
+	echo "    Tune PIAA shapes and focal plane mask transm, 10 cosine modes, 5 Fourier modes"
+	echo ""
+	cecho "STEP 008 ----------------------------------------" $bwhite
+	echo ""
+	echo "    Tune PIAA shapes and focal plane mask transm, 20 cosine modes, 10 Fourier modes"
+	echo ""
+	cecho "STEP 009 ----------------------------------------" $bwhite
+	echo ""
+	echo "    Compute Lyot stops shapes and locations, 2nd pass, throughput = LStransm1"
+	echo ""
+	cecho "STEP 010 ----------------------------------------" $bwhite
+	echo ""
+	echo "    Tune Lyot Stops locations"
+	echo ""
+	cecho "STEP 011 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Tune PIAA shapes and focal plane mask transm, 20, 20"
+	echo ""
+	cecho "STEP 012 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Tune PIAA shapes and focal plane mask transm"
+	echo ""
+	cecho "STEP 013 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Compute Lyot stops shapes and locations, 3rd pass, 80% throughput"
+	echo ""
+	cecho "STEP 014 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Tune Lyot stops conjugation"
+	echo ""
+	cecho "STEP 015 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Tune PIAA shapes and focal plane mask transm # modes: 20, 20"
+	echo ""
+	cecho "STEP 016 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Tune PIAA shapes and focal plane mask transm, # modes: 40, 150"
+	echo ""
+	cecho "STEP 017 ----------------------------------------" $bwhite
+	echo ""
+	echo "     Tune PIAA shapes and focal plane mask transm, # modes: 40, 625"
+	echo ""
+
+}
+
+
+
 
 
 
 printhelp ()
 {
-    echo "main PIAACMC design scrit"
+	
+	echo ""
+	echo "main PIAACMC design scrit"
+
+	echo ""
+	echo "Print description of design steps:"
+	echo "	$0 helpsteps"
+	echo ""
+
+	echo "EXPECTED INPUT:"
 	echo "  arg1 : directory name                           $1"
 	echo "  arg2 : size (1024, 2048, 4096 etc...)           $2"
 	echo "  arg3 : pupil scale (m/pix)                      $3"
@@ -73,6 +270,13 @@ printhelp ()
 
 
 NBARGS=26
+
+
+if [ "$1" = "helpsteps" ]; then
+	printhelp_designsteps
+	exit
+fi
+
 
 if [ "$1" = "help" ] || [ "$#" -ne $NBARGS ]; then
 	printhelp $@
@@ -129,7 +333,6 @@ rstep=${26}
 
 
 
-
 PIAACMC_nbiter=20
 
 
@@ -176,6 +379,16 @@ fi
 echo "state = $state"
 echo "statestop = $statestop"
 
+exitpt="100000" #default
+file="conf_exitpt.txt"
+if [ -f $file ]
+	then
+	exitpt=$(echo "$(cat $file)")
+	else
+	#echo "CANNOT READ FILE ${file}"
+	ok=0
+fi
+echo "exitpt = $exitpt"
 
 
 
@@ -234,28 +447,28 @@ fi
 echo "Fratio = $Fratio"
 
 
-piaar0lim=1.15 # default
-file="conf/conf_PIAAr0lim.txt"
+r0lim=1.15 # default
+file="conf/conf_r0lim.txt"
 if [ -f $file ]
 	then
-	piaar0lim=$(echo "$(cat $file)")
+	r0lim=$(echo "$(cat $file)")
 	else
 	#echo "CANNOT READ FILE ${file}"
 	ok=0
 fi
-echo "piaar0lim = $piaar0lim"
+echo "r0lim = $r0lim"
 
 
-piaaar1lim=1.50 # default
-file="conf/conf_PIAAr1lim.txt"
+r1lim=1.50 # default
+file="conf/conf_r1lim.txt"
 if [ -f $file ]
 	then
-	piaar1lim=$(echo "$(cat $file)")
+	r1lim=$(echo "$(cat $file)")
 	else
 	#echo "CANNOT READ FILE ${file}"
 	ok=0
 fi
-echo "piaar1lim = ${piaar1lim}"
+echo "r1lim = ${r1lim}"
 
 
 piaasep=1.00 # default
@@ -357,6 +570,20 @@ echo "LyotZmax = $LyotZmax"
 
 
 
+pupoutmaskrad=0.99 # default
+file="conf/conf_pupoutmaskrad.txt"
+if [ -f $file ]
+	then
+	pupoutmaskrad=$(echo "$(cat $file)")
+	else
+	#echo "CANNOT READ FILE ${file}"
+	ok=0
+fi
+echo "pupoutmaskrad = $pupoutmaskrad"
+
+
+
+
 invPIAAmode=1 # default
 file="conf/conf_invPIAAmode.txt"
 if [ -f $file ]
@@ -407,8 +634,8 @@ echo "PIAACMC_dftgrid=2" >> $startupfile
 echo "PIAACMC_nblambda=${nblambda}" >> $startupfile
 echo "PIAACMC_beamrad=${beamrad}" >> $startupfile
 echo "PIAACMC_Fratio=${Fratio}" >> $startupfile
-echo "PIAACMC_r0lim=${piaar0lim}" >> $startupfile
-echo "PIAACMC_r1lim=${piaar1lim}" >> $startupfile
+echo "PIAACMC_r0lim=${r0lim}" >> $startupfile
+echo "PIAACMC_r1lim=${r1lim}" >> $startupfile
 echo "PIAACMC_piaasep=${piaasep}" >> $startupfile
 echo "PIAACMC_piaa0pos=${piaa0pos}" >> $startupfile
 echo "PIAACMC_invPIAAmode=${invPIAAmode}" >> $startupfile
@@ -418,6 +645,7 @@ echo "PIAACMC_piaaNBCmodesmax=${piaaNBCmodesmax}" >> $startupfile
 echo "PIAACMC_piaaCPAmax=${piaaCPAmax}" >> $startupfile
 echo "PIAACMC_LyotZmin=${LyotZmin}" >> $startupfile
 echo "PIAACMC_LyotZmax=${LyotZmax}" >> $startupfile
+echo "PIAACMC_pupoutmaskrad=${pupoutmaskrad}" >> $startupfile
 fifoname="runPIAACMCfifo$pid"
 
 
@@ -538,6 +766,33 @@ fi
 
 
 
+
+
+
+# 699 : compute on-axis PSF (monochromatic), no focal plane mask
+if [ 699 -eq ${state} ]
+then
+ echo "699: Compute on-axis monochromatic PSF- idealized PIAACMC - no focal plane mask"
+echo "699" > ./$1/runstep
+touch ./$1/step699.run.txt
+cp ./$1/piaacmcparams_idealmonomask.conf ./$1/piaacmcparams.conf
+$execnamestring -n step699 << EOF
+# idealized mask
+PIAACMC_MASKRADLD=0.0 
+PIAACMC_NOFPM=1
+PIAACMC_fpmtype=0
+PIAACMC_FPMsectors=0
+PIAACMC_NBrings=1
+PIAACMC_nblambda=1
+PIAACMC_resolved=0
+SCORINGMASKTYPE=$SCORINGMASKTYPE
+piaacmcsimrun $1 0
+exit
+EOF
+mv ./$1/psfi0.fits ./$1/psfi0_step699.fits
+cleanup
+exit
+fi
 
 
 
@@ -981,6 +1236,20 @@ fi
 # =========================================================================================================
 #
 
+
+checkexit
+
+#kmaxC=20
+
+#kmaxF=0
+#if [ "$PIAAcirc" -eq "0" ]; then
+#kmaxF=20
+#fi
+
+
+echo "kmaxF = $kmaxF"
+sleep 1000
+
 if [ 0 -eq ${state} ]
 then
  if [ ! -f ./$1/step000.txt ]
@@ -1009,13 +1278,14 @@ fi
 if [ $state -eq $statestop ] 
 then
 echo "STATE STOP POINT (000)"
+sleep 5
 cleanup
 exit
 fi
 
 
 
-
+checkexit
 
 
 
@@ -1059,12 +1329,13 @@ fi
 if [ $state -eq $statestop ] 
 then
 echo "STATE STOP POINT (001)"
+sleep 5
 cleanup
 exit
 fi
 
 
-
+checkexit
 
 
 
@@ -1087,12 +1358,13 @@ fi
 if [ $state -eq $statestop ] 
 then
 echo "STATE STOP POINT (002)"
+sleep 5
 cleanup
 exit
 fi
 
 
-
+checkexit
 
 
 
@@ -1135,7 +1407,7 @@ fi
 
 
 
-
+checkexit
 
 
 
@@ -1194,6 +1466,7 @@ exit
 fi
 
 
+checkexit
 
 
 
@@ -1208,7 +1481,7 @@ then
  then
  echo "step 005"
 echo "005" > ./$1/runstep
-touch ./$1/step006.run.txt
+touch ./$1/step005.run.txt
 $execnamestring -n step005 << EOF
 # idealized mask
 PIAACMC_MASKRADLD=0.0 
@@ -1236,9 +1509,11 @@ exit
 fi
 
 
+checkexit
 
 
-# STEP 006: compute Lyot stops shapes and locations, 2nd pass, ~60% throughput)
+
+# STEP 006: compute Lyot stops shapes and locations, 2nd pass, LStransm0 throughput)
 # This is done in monochromatic light 
 #
 # output:
@@ -1289,6 +1564,11 @@ exit
 fi
 
 
+checkexit
+
+
+
+
 # STEP 007: tune PIAA shapes and focal plane mask transm, 10 cosine modes, 5 Fourier modes
 # -> linoptval.txt
 kmaxC=10
@@ -1297,6 +1577,10 @@ kmaxF=0
 if [ "$PIAAcirc" -eq "0" ]; then
 kmaxF=5
 fi
+echo "PIAAcirc = $PIAAcirc"
+echo "kmaxF = $kmaxF"
+
+#sleep 10000000
 
 if [ 007 -eq ${state} ]
 then
@@ -1342,6 +1626,7 @@ exit
 fi
 
 
+checkexit
 
 
 
@@ -1400,7 +1685,7 @@ cleanup
 exit
 fi
 
-
+checkexit
 
 
 
@@ -1455,6 +1740,8 @@ fi
 
 
 
+checkexit
+
 
 
 # STEP 010: Tune Lyot stops conjugations
@@ -1497,6 +1784,7 @@ fi
 
 
 
+checkexit
 
 
 # STEP 011: Tune PIAA shapes and focal plane mask transm, 20, 20
@@ -1557,6 +1845,7 @@ fi
 
 
 
+checkexit
 
 
 
@@ -1623,6 +1912,9 @@ fi
 
 
 
+checkexit
+
+
 
 
 
@@ -1675,6 +1967,8 @@ exit
 fi
 
 
+checkexit
+
 
 
 
@@ -1717,6 +2011,9 @@ cleanup
 exit
 fi
 
+
+
+checkexit
 
 
 
@@ -1777,6 +2074,7 @@ exit
 fi
 
 
+checkexit
 
 
 
@@ -1841,6 +2139,9 @@ fi
 
 
 
+checkexit
+
+
 
 # STEP 017: tune PIAA shapes and focal plane mask transm
 # -> linoptval.txt
@@ -1896,6 +2197,8 @@ cleanup
 exit
 fi
 
+
+checkexit
 
 
 # STEP 18: exit

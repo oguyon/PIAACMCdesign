@@ -1,7 +1,7 @@
 #
 # Process this file with autoconf to produce a configure script.
 #
-AC_INIT([PIAACMCdesign], [1.1.10], [oliv.guyon@gmail.com])
+AC_INIT([PIAACMCdesign], [1.1.11], [oliv.guyon@gmail.com])
 AC_PREREQ(2.61)
 #AC_CONFIG_HEADER([config.h])
 

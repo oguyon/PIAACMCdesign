@@ -48,6 +48,7 @@ typedef struct {
     int invPIAAmode; // 0: no inv PIAA, 1: inv PIAA after Lyot stops, 2: inv PIAA before Lyot stops
     float LyotZmin;
     float LyotZmax;
+    float pupoutmaskrad; // output pupil mask radius (scaled to pupil radius)
 
     // ========== WAVEFRONT CONTROL ==================
     int nbDM; // number of deformable mirrors (10 max)
@@ -78,6 +79,8 @@ typedef struct {
     long piaa1CmodesID;
     long piaa1FmodesID;
 
+    // PSF flux calib
+    float peakPSF;
 
 
     // ========= Focal Plane Mask =============
