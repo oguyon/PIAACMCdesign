@@ -1248,7 +1248,7 @@ checkexit
 
 
 echo "kmaxF = $kmaxF"
-sleep 1000
+
 
 if [ 0 -eq ${state} ]
 then
