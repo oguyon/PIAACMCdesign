@@ -14,7 +14,7 @@ var searchData=
   ['set_5fdefault_5fprecision_5fdouble',['set_default_precision_double',['../CLIcore_8c.html#a21cf484ed2d8042a284b20871d0824fc',1,'CLIcore.c']]],
   ['set_5fdefault_5fprecision_5fsingle',['set_default_precision_single',['../CLIcore_8c.html#a0b938eaf8680b1a510e8b24caa121a70',1,'CLIcore.c']]],
   ['set_5fprecision',['set_precision',['../00CORE_8c.html#a93e8d81fd1fe2de3159ddff15801af81',1,'set_precision(int vp):&#160;00CORE.c'],['../00CORE_8h.html#a93e8d81fd1fe2de3159ddff15801af81',1,'set_precision(int vp):&#160;00CORE.c']]],
-  ['sig_5fhandler',['sig_handler',['../CLIcore_8c.html#a4f31a6fd48ee5d4579ae4aaaa3cae285',1,'CLIcore.c']]],
+  ['sig_5fhandler',['sig_handler',['../CLIcore_8c.html#a4f31a6fd48ee5d4579ae4aaaa3cae285',1,'sig_handler(int signo):&#160;CLIcore.c'],['../CLIcore_8h.html#a4f31a6fd48ee5d4579ae4aaaa3cae285',1,'sig_handler(int signo):&#160;CLIcore.c']]],
   ['ssquare',['ssquare',['../info_8c.html#a3cb1bc9a95ed40447f428ad5451fbc92',1,'ssquare(char *ID_name):&#160;info.c'],['../info_8h.html#a3cb1bc9a95ed40447f428ad5451fbc92',1,'ssquare(char *ID_name):&#160;info.c']]],
   ['statistic_5fputphnoise_5fcli',['statistic_putphnoise_cli',['../statistic_8c.html#a6e701b72ef08c2fa72e0a3949d96aa52',1,'statistic.c']]]
 ];
