@@ -8,9 +8,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <semaphore.h>
-#include <time.h>
 #include <fftw3.h>
 #include <gsl/gsl_rng.h>	// for random numbers
+#include <signal.h>
 
 
 #define PI 3.14159265358979323846264338328
@@ -45,7 +45,7 @@ int C_ERRNO;			// C errno (from errno.h)
 #define SHAREDMEMDIR "/tmp"
 
 
-
+#define SEMAPHORE_MAX       1000
 #define NB_ARG_MAX                 20
 
 
@@ -232,9 +232,10 @@ typedef struct          /* structure used to store data arrays */
     sem_t **semptr; // semaphore array
 
     sem_t *semlog; // semaphore for logging
-
-   char name[80]; // local name (can be different from name in shared memory)
-
+    
+    
+    char name[80]; // local name (can be different from name in shared memory)
+    //long cnt00; // custom counter
 
     //	int logstatus; // 0: do not log this image (pause), 1: log me (default), 2: log program should nicely exit
 
@@ -265,9 +266,17 @@ typedef struct
 // THIS IS WHERE EVERYTHING THAT NEEDS TO BE WIDELY ACCESSIBLE GETS STORED
 typedef struct
 {
+    struct sigaction sigact; 
     // signals toggle flags
     int signal_USR1;
     int signal_USR2;
+    int signal_TERM;
+    int signal_INT;
+    int signal_SEGV;
+    int signal_ABRT;
+    int signal_BUS;
+    int signal_HUP;
+    int signal_PIPE;
     
     int Debug;
     int quiet;
@@ -337,7 +346,7 @@ typedef struct
 #define MAX_NB_EXCLUSIONS 40
 
 
-
+void sig_handler(int signo);
 
 
 

@@ -5,13 +5,35 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
 #include <errno.h>
 #include <unistd.h>
 #include <sys/file.h>
 #include <sys/types.h>
 #include <sys/stat.h> //for the mkdir options
 #include <sys/mman.h>
+
+
+
+#ifdef __MACH__
+#include <mach/mach_time.h>
+#define CLOCK_REALTIME 0
+#define CLOCK_MONOTONIC 0
+int clock_gettime(int clk_id, struct timespec *t){
+    mach_timebase_info_data_t timebase;
+    mach_timebase_info(&timebase);
+    uint64_t time;
+    time = mach_absolute_time();
+    double nseconds = ((double)time * (double)timebase.numer)/((double)timebase.denom);
+    double seconds = ((double)time * (double)timebase.numer)/((double)timebase.denom * 1e9);
+    t->tv_sec = seconds;
+    t->tv_nsec = nseconds;
+    return 0;
+}
+#else
+#include <time.h>
+#endif
+
+
 
 #include <fcntl.h> 
 #include <termios.h>
@@ -591,28 +613,29 @@ int info_image_monitor(char *ID_name, double frequ)
 
 long brighter(char *ID_name, double value) /* number of pixels brighter than value */
 {
-  int ID;
-  long ii,jj;
-  long naxes[2];
-  long brighter, fainter;
+    int ID;
+    long ii,jj;
+    long naxes[2];
+    long brighter, fainter;
 
-  ID = image_ID(ID_name);
-  naxes[0] = data.image[ID].md[0].size[0];
-  naxes[1] = data.image[ID].md[0].size[1];    
-    
-  brighter = 0;
-  fainter = 0;
-  for (jj = 0; jj < naxes[1]; jj++) 
-    for (ii = 0; ii < naxes[0]; ii++){
-      if(data.image[ID].array.F[jj*naxes[0]+ii]>value)
-	brighter++;
-      else
-	fainter++;
-    }
-  printf("brighter %ld   fainter %ld\n", brighter, fainter );
+    ID = image_ID(ID_name);
+    naxes[0] = data.image[ID].md[0].size[0];
+    naxes[1] = data.image[ID].md[0].size[1];
 
-  return(brighter);
+    brighter = 0;
+    fainter = 0;
+    for (jj = 0; jj < naxes[1]; jj++)
+        for (ii = 0; ii < naxes[0]; ii++) {
+            if(data.image[ID].array.F[jj*naxes[0]+ii]>value)
+                brighter++;
+            else
+                fainter++;
+        }
+    printf("brighter %ld   fainter %ld\n", brighter, fainter );
+
+    return(brighter);
 }
+
 
 int img_nbpix_flux(char *ID_name)
 {

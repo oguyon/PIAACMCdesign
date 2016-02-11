@@ -3,7 +3,29 @@
 #include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
+//#include <pthread_np.h>
+
+#ifdef __MACH__
+#include <mach/mach_time.h>
+#define CLOCK_REALTIME 0
+#define CLOCK_MONOTONIC 0
+int clock_gettime(int clk_id, struct timespec *t){
+    mach_timebase_info_data_t timebase;
+    mach_timebase_info(&timebase);
+    uint64_t time;
+    time = mach_absolute_time();
+    double nseconds = ((double)time * (double)timebase.numer)/((double)timebase.denom);
+    double seconds = ((double)time * (double)timebase.numer)/((double)timebase.denom * 1e9);
+    t->tv_sec = seconds;
+    t->tv_nsec = nseconds;
+    return 0;
+}
+#else
 #include <time.h>
+#endif
+
+
 #include <math.h>
 #include <errno.h>
 #include <unistd.h>
@@ -124,7 +146,12 @@ void sig_handler(int signo)
 {
     switch ( signo ) {
         case SIGINT:
-            printf("received SIGINT\n");
+           printf("received SIGINT\n");
+           data.signal_INT = 1;
+        break;
+        case SIGTERM:
+           printf("received SIGTERM\n");
+           data.signal_TERM = 1;
         break;
         case SIGUSR1:
              printf("received SIGUSR1\n");
@@ -134,12 +161,28 @@ void sig_handler(int signo)
              printf("received SIGUSR2\n");
            data.signal_USR2 = 1;
         break;
-    }
+         case SIGBUS:
+           printf("received SIGBUS\n");
+           data.signal_BUS = 1;
+        break;
+        case SIGABRT:
+             printf("received SIGABRT\n");
+           data.signal_ABRT = 1;
+        break;
+        case SIGSEGV:
+             printf("received SIGSEGV\n");
+           data.signal_SEGV = 1;
+        break;
+        case SIGHUP:
+             printf("received SIGHUP\n");
+           data.signal_HUP = 1;
+        break;
+         case SIGPIPE:
+             printf("received SIGPIPE\n");
+           data.signal_PIPE = 1;
+        break;
+   }
 }
-
-
-
-
 
 /// CLI functions
 
@@ -538,17 +581,28 @@ int main(int argc, char *argv[])
 
 
     // signal handling
+    
+    data.sigact.sa_handler = sig_handler;
+    sigemptyset(&data.sigact.sa_mask);
+    data.sigact.sa_flags = 0;
 
     data.signal_USR1 = 0;
     data.signal_USR2 = 0;
+    data.signal_TERM = 0;
+    data.signal_INT = 0;
+    data.signal_BUS = 0;
+    data.signal_SEGV = 0;
+    data.signal_ABRT = 0;
+    data.signal_HUP = 0;
+    data.signal_PIPE = 0;
     
- //   if (signal(SIGINT, sig_handler) == SIG_ERR)
-   //     printf("\ncan't catch SIGINT\n");
-    if (signal(SIGUSR1, sig_handler) == SIG_ERR)
+   // if (signal(SIGINT, sig_handler) == SIG_ERR)
+     //   printf("\ncan't catch SIGINT\n");
+    if (sigaction(SIGUSR1, &data.sigact, NULL) == -1)
         printf("\ncan't catch SIGUSR1\n");
-    if (signal(SIGUSR2, sig_handler) == SIG_ERR)
+    if (sigaction(SIGUSR2, &data.sigact, NULL) == -1)
         printf("\ncan't catch SIGUSR2\n");
-
+   
 
 
 
@@ -1365,7 +1419,12 @@ int command_line( int argc, char **argv)
             printf("process name '%s'\n", optarg);
             strcpy(data.processname, optarg);
             memcpy((void *)argv[0], optarg, sizeof(optarg));
-            prctl(PR_SET_NAME, optarg, 0, 0, 0);
+#ifdef __linux__
+     prctl(PR_SET_NAME, optarg, 0, 0, 0);
+#elif defined(HAVE_PTHREAD_SETNAME_NP) && defined(OS_IS_DARWIN)
+    pthread_setname_np(optarg);
+#endif
+//            prctl(PR_SET_NAME, optarg, 0, 0, 0);
             break;
 
         case 'p':
@@ -1641,7 +1700,7 @@ int CLI_checkarg0(int argnum, int argtype, int errmsg)
         }
         break;
 
-    case 3:  // should be string
+    case 3:  // should be string, but not image
         switch (data.cmdargtoken[argnum].type) {
         case 1:
             if(errmsg==1)
@@ -1700,7 +1759,34 @@ int CLI_checkarg0(int argnum, int argtype, int errmsg)
             rval = 0;
             break;
         }
-        break;
+    case 5: // should be string (image or not)
+        switch (data.cmdargtoken[argnum].type) {
+        case 1:
+            if(errmsg==1)
+                printf("arg %d is floating point, but should be string or image\n", argnum);
+            rval = 1;
+            break;
+        case 2:
+            if(errmsg==1)
+                printf("arg %d is integer, but should be string or image\n", argnum);
+            rval = 1;
+            break;
+        case 3:
+            rval = 0;
+            break;
+        case 4:
+            rval = 0;
+            break;
+        case 5:
+            if(errmsg==1)
+                printf("arg %d is command (=\"%s\"), but should be image\n", argnum, data.cmdargtoken[argnum].val.string);
+            rval = 1;
+            break;
+        case 6:
+            rval = 0;
+            break;
+        }
+    break;
 
     }
 

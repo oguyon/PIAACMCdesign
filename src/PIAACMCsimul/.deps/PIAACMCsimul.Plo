@@ -97,7 +97,14 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /usr/include/gsl/gsl_matrix_uchar.h /usr/include/gsl/gsl_matrix_char.h \
  /usr/include/gsl/gsl_min.h /home/guyon/src/Cfits/src/CLIcore.h \
  /usr/include/semaphore.h /usr/include/x86_64-linux-gnu/bits/semaphore.h \
- /usr/include/fftw3.h /usr/include/gsl/gsl_rng.h \
+ /usr/include/fftw3.h /usr/include/gsl/gsl_rng.h /usr/include/signal.h \
+ /usr/include/x86_64-linux-gnu/bits/signum.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo.h \
+ /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+ /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /home/guyon/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
  /home/guyon/src/Cfits/src/COREMOD_arith/COREMOD_arith.h \
  /home/guyon/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
@@ -398,6 +405,22 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 /usr/include/fftw3.h:
 
 /usr/include/gsl/gsl_rng.h:
+
+/usr/include/signal.h:
+
+/usr/include/x86_64-linux-gnu/bits/signum.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
+
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
 /home/guyon/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
 

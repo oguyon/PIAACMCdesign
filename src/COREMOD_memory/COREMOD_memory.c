@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
 #include <math.h>
 #include <pthread.h>
 #include <sys/types.h>
@@ -19,6 +18,27 @@
 #include <netinet/tcp.h>
 #include <fcntl.h> // for open
 #include <unistd.h> // for close
+
+
+#ifdef __MACH__
+#include <mach/mach_time.h>
+#define CLOCK_REALTIME 0
+#define CLOCK_MONOTONIC 0
+int clock_gettime(int clk_id, struct timespec *t){
+    mach_timebase_info_data_t timebase;
+    mach_timebase_info(&timebase);
+    uint64_t time;
+    time = mach_absolute_time();
+    double nseconds = ((double)time * (double)timebase.numer)/((double)timebase.denom);
+    double seconds = ((double)time * (double)timebase.numer)/((double)timebase.denom * 1e9);
+    t->tv_sec = seconds;
+    t->tv_nsec = nseconds;
+    return 0;
+}
+#else
+#include <time.h>
+#endif
+
 
 
 #include "CLIcore.h"
@@ -85,9 +105,9 @@ long tret; // thread return value
 // function CLI_checkarg used to check arguments
 // 1: float
 // 2: long
-// 3: string
+// 3: string, not existing image
 // 4: existing image
-//
+// 5: string
 
 
 
@@ -540,9 +560,13 @@ int COREMOD_MEMORY_image_set_semwait_cli()
         return 1;
 }
 
-
-
-
+int COREMOD_MEMORY_image_set_semflush_cli()
+{
+    if(CLI_checkarg(1,4)+CLI_checkarg(2,2)==0)
+        COREMOD_MEMORY_image_set_semflush(data.cmdargtoken[1].val.string, data.cmdargtoken[2].val.numl);
+    else
+        return 1;
+}
 
 
 
@@ -597,6 +621,23 @@ int COREMOD_MEMORY_image_NETWORKreceive_cli()
     else
         return 1;
 }
+
+
+
+int COREMOD_MEMORY_PixMapDecode_U_cli()
+{
+     if(CLI_checkarg(1,4)+CLI_checkarg(2,2)+CLI_checkarg(3,2)+CLI_checkarg(4,3)+CLI_checkarg(5,4)+CLI_checkarg(6,3)+CLI_checkarg(7,3)==0)
+    {
+        COREMOD_MEMORY_PixMapDecode_U(data.cmdargtoken[1].val.string, data.cmdargtoken[2].val.numl, data.cmdargtoken[3].val.numl, data.cmdargtoken[4].val.string, data.cmdargtoken[5].val.string, data.cmdargtoken[6].val.string, data.cmdargtoken[7].val.string);
+        return 0;
+    }
+    else
+        return 1;
+}
+
+
+
+
 
 
 int COREMOD_MEMORY_logshim_printstatus_cli()
@@ -912,6 +953,14 @@ int init_COREMOD_memory()
     strcpy(data.cmd[data.NBcmd].Ccall,"long COREMOD_MEMORY_image_set_semwait(char *IDname)");
     data.NBcmd++;
 
+    strcpy(data.cmd[data.NBcmd].key,"imsetsemflush");
+    strcpy(data.cmd[data.NBcmd].module,__FILE__);
+    data.cmd[data.NBcmd].fp = COREMOD_MEMORY_image_set_semflush_cli;
+    strcpy(data.cmd[data.NBcmd].info,"flush image semaphore");
+    strcpy(data.cmd[data.NBcmd].syntax,"<image> <sem index>");
+    strcpy(data.cmd[data.NBcmd].example,"imsetsemflush im1 0");
+    strcpy(data.cmd[data.NBcmd].Ccall,"long COREMOD_MEMORY_image_set_semflush(char *IDname, long index)");
+    data.NBcmd++;
 
 
     strcpy(data.cmd[data.NBcmd].key,"imcp2shm");
@@ -955,6 +1004,15 @@ int init_COREMOD_memory()
     strcpy(data.cmd[data.NBcmd].Ccall,"long COREMOD_MEMORY_image_NETWORKreceive(int port, int mode)");
     data.NBcmd++;
 
+
+    strcpy(data.cmd[data.NBcmd].key,"impixdecodeU");
+    strcpy(data.cmd[data.NBcmd].module,__FILE__);
+    data.cmd[data.NBcmd].fp = COREMOD_MEMORY_PixMapDecode_U_cli;
+    strcpy(data.cmd[data.NBcmd].info,"decode image stream");
+    strcpy(data.cmd[data.NBcmd].syntax,"<in stream> <xsize [long]> <ysize [long]> <nbpix per slice [ASCII file]> <decode map> <out stream> <out image slice index [FITS]>");
+    strcpy(data.cmd[data.NBcmd].example,"impixdecodeU streamin 120 120 pixsclienb.txt decmap outim outsliceindex.fits");
+    strcpy(data.cmd[data.NBcmd].Ccall,"COREMOD_MEMORY_PixMapDecode_U(char *inputstream_name, long xsizeim, long ysizeim, char* NBpix_fname, char* IDmap_name, char *IDout_name, char *IDout_pixslice_fname)");
+    data.NBcmd++;
 
 
     strcpy(data.cmd[data.NBcmd].key,"shmimstreamlog");
@@ -1454,7 +1512,11 @@ long create_image_ID(char *name, long naxis, long *size, int atype, int shared, 
     ID = -1;
     if(image_ID(name)==-1)
     {
+        # ifdef _OPENMP
+        #pragma omp atomic
+        #endif
         ID = next_avail_image_ID();
+        
         data.image[ID].used = 1;
         nelement = 1;
         for(i=0; i<naxis; i++)
@@ -3901,7 +3963,6 @@ long COREMOD_MEMORY_image_set_createsem(char *IDname, long NBsem)
 
     ID = image_ID(IDname);
 
-
     if(data.image[ID].sem!=NBsem)
     {
         for(s=0; s<data.image[ID].sem; s++)
@@ -3942,11 +4003,6 @@ long COREMOD_MEMORY_image_set_createsem(char *IDname, long NBsem)
         }
     }
 
-
-
-
-
-
     //printf("sem  = %d\n", data.image[ID].sem);
 
     return(ID);
@@ -3960,6 +4016,8 @@ long COREMOD_MEMORY_image_set_sempost(char *IDname, long index)
 {
     long ID;
     long s;
+    int semval;
+    
     
     ID = image_ID(IDname);
 
@@ -3969,7 +4027,11 @@ long COREMOD_MEMORY_image_set_sempost(char *IDname, long index)
     if(index<0)
         {
             for(s=0; s<data.image[ID].sem; s++)
-                sem_post(data.image[ID].semptr[s]);
+            {
+                sem_getvalue(data.image[ID].semptr[s], &semval);
+                if(semval<SEMAPHORE_MAX)
+                    sem_post(data.image[ID].semptr[s]);
+            }
         }
     else
         {
@@ -4127,12 +4189,10 @@ long COREMOD_MEMORY_image_set_semflush(char *IDname, long index)
             printf("ERROR: image %s semaphore # %ld does not exist\n", IDname, index);
         else
         {
-            for(s=0; s<data.image[ID].sem; s++)
-            {
+            s = index;
                 sem_getvalue(data.image[ID].semptr[s], &semval);
                 for(i=0; i<semval; i++)
                     sem_trywait(data.image[ID].semptr[s]);
-            }
 
         }
     }
@@ -4235,6 +4295,10 @@ long COREMOD_MEMORY_image_streamupdateloop(char *IDinname, char *IDoutname, long
 /** continuously transmits 2D image through TCP link
  * mode is not currently used
  */
+ 
+
+ 
+
 long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, int mode)
 {
     long ID;
@@ -4243,14 +4307,24 @@ long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, 
     int flag = 1;
     int result;
     long long cnt = -1;
-    long framesize;
+    long long iter = 0;
+    long framesize; // pixel data only
     long xsize, ysize;
     char *ptr0; // source
     char *ptr1; // source - offset by slice
-    
+    int rs;
+    int sockOK;
     int RT_priority = 80; //any number from 0-99
     struct sched_param schedpar;
-    
+    struct timespec ts;
+    long scnt;
+    int semval;
+    int semr;
+    int slice, oldslice;
+    int NBslices;
+    TCP_BUFFER_METADATA *frame_md;
+    long framesize1; // pixel data + metadata
+    char *buff; // transmit buffer
 
     schedpar.sched_priority = RT_priority;
     sched_setscheduler(0, SCHED_FIFO, &schedpar); //other option is SCHED_RR, might be faster
@@ -4282,7 +4356,8 @@ long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, 
 
     if (connect(fds_client, (struct sockaddr *) &sock_server, sizeof(sock_server)) < 0)
     {
-        perror("Error  connect() failed: ");
+        perror("Error  connect() failed ");
+        printf("port = %d\n", port);
         exit(0);
     }
 
@@ -4292,9 +4367,15 @@ long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, 
         fflush(stdout);
     }
 
+
+
     xsize = data.image[ID].md[0].size[0];
     ysize = data.image[ID].md[0].size[1];
-
+    NBslices = 1;
+    if(data.image[ID].md[0].naxis>2)
+        if(data.image[ID].md[0].size[2]>1)
+            NBslices = data.image[ID].md[0].size[2];
+            
 
     switch ( data.image[ID].md[0].atype ) {
     case CHAR:
@@ -4317,9 +4398,9 @@ long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, 
         printf("ERROR: WRONG DATA TYPE\n");
         exit(0);
         break;
-    } 
+    }
 
-    printf("image frame size = %ld\n", framesize);
+    printf("IMAGE FRAME SIZE = %ld\n", framesize);
 
     switch ( data.image[ID].md[0].atype ) {
     case CHAR:
@@ -4343,34 +4424,130 @@ long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, 
         exit(0);
         break;
     }
- 
 
-    while(1)
+
+    if (sigaction(SIGINT, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGTERM, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGBUS, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGSEGV, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGABRT, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGHUP, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGPIPE, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+
+
+    frame_md = (TCP_BUFFER_METADATA*) malloc(sizeof(TCP_BUFFER_METADATA));
+    framesize1 = framesize + sizeof(TCP_BUFFER_METADATA);
+    buff = (char*) malloc(sizeof(char)*framesize1);
+
+    oldslice = 0;
+    sockOK = 1;
+    printf("sem = %d\n", data.image[ID].sem);
+    fflush(stdout);
+    
+    while(sockOK==1)
     {
         if(data.image[ID].sem==0)
         {
             while(data.image[ID].md[0].cnt0==cnt) // test if new frame exists
-            {
                 usleep(5);
-                // do nothing, wait
-            }
             cnt = data.image[ID].md[0].cnt0;
-
+            semr = 0;
         }
         else
-            sem_wait(data.image[ID].semptr[0]);
-
-       ptr1 = ptr0 + framesize*data.image[ID].md[0].cnt1; // frame that was just written
-
-        if (send(fds_client, ptr1, framesize, 0) != framesize)
         {
-            printf("send() sent a different number of bytes than expected %ld\n", framesize);
-            fflush(stdout);
+            if (clock_gettime(CLOCK_REALTIME, &ts) == -1) {
+                perror("clock_gettime");
+                exit(EXIT_FAILURE);
+            }
+            ts.tv_sec += 1;
+            semr = sem_timedwait(data.image[ID].semptr[0], &ts);
+
+            if(iter == 0)
+            {
+                printf("driving semaphore to zero ... ");
+                fflush(stdout);
+                sem_getvalue(data.image[ID].semptr[0], &semval);
+                for(scnt=0; scnt<semval; scnt++)
+                    sem_trywait(data.image[ID].semptr[0]);
+                printf("done\n");
+                fflush(stdout);
+            }
         }
+        if(semr==0)
+        {
+            frame_md[0].cnt0 = data.image[ID].md[0].cnt0;
+            frame_md[0].cnt1 = data.image[ID].md[0].cnt1;
+            /*printf("counters    %8ld  %8ld\n", frame_md[0].cnt0, frame_md[0].cnt1); //TEST
+            fflush(stdout);
+           */ 
+            slice = data.image[ID].md[0].cnt1;
+            if(slice>oldslice+1)
+                slice = oldslice+1;
+            if(NBslices>1)
+                if(oldslice==NBslices-1)
+                    slice = 0;;
+
+       //     printf("[%ld -> %ld] ", oldslice, slice); // TEST
+            frame_md[0].cnt1 = slice;
+         /*   if(slice == 0)
+            {
+                printf("\n");
+                fflush(stdout);
+            }*/
+
+            ptr1 = ptr0 + framesize*slice; //data.image[ID].md[0].cnt1; // frame that was just written
+            memcpy(buff, ptr1, framesize);
+            
+            memcpy(buff+framesize, frame_md, sizeof(TCP_BUFFER_METADATA));
+
+            rs = send(fds_client, buff, framesize1, 0);
+
+            if ( rs != framesize1)
+            {
+                printf("send() sent a different number of bytes (%d) than expected %ld\n", rs, framesize);
+                fflush(stdout);
+                sockOK = 0;
+            }
+            oldslice = slice;
+        }
+       /* else//TEST
+            {
+                printf("semr = %d\n", semr);
+                fflush(stdout);
+            }*/
+        
+        if((data.signal_INT == 1)||(data.signal_TERM == 1)||(data.signal_ABRT==1)||(data.signal_BUS==1)||(data.signal_SEGV==1)||(data.signal_HUP==1)||(data.signal_PIPE==1))
+            sockOK = 0;
+
+
+        iter++;
     }
 
+    free(buff);
     close(fds_client);
-
+    printf("port %d closed\n", port);
+    fflush(stdout);
 
     return(ID);
 }
@@ -4399,10 +4576,16 @@ long COREMOD_MEMORY_image_NETWORKreceive(int port, int mode)
     long framesize;
     long xsize, ysize;
     char *ptr0; // source
+    char fname[200];
+    long NBslices;
+    int socketOpen = 1; // 0 if socket is closed
 
     imgmd = (IMAGE_METADATA*) malloc(sizeof(IMAGE_METADATA));
 
-
+    TCP_BUFFER_METADATA *frame_md;
+    long framesize1; // pixel data + metadata
+    char *buff; // buffer
+   
 
     int RT_priority = 80; //any number from 0-99
     struct sched_param schedpar;
@@ -4477,11 +4660,25 @@ long COREMOD_MEMORY_image_NETWORKreceive(int port, int mode)
         exit(0);
     }
 
+
     ID = create_image_ID(imgmd[0].name, imgmd[0].naxis, imgmd[0].size, imgmd[0].atype, imgmd[0].shared, 0);
     COREMOD_MEMORY_image_set_createsem(imgmd[0].name, 4);
+    printf("Created image stream %s - shared = %d\n", imgmd[0].name, imgmd[0].shared);
+    list_image_ID();
+    
+    
+    
+
+/*        sprintf(fname, "sock%d_stream", port);
+        ID = create_image_ID(fname, imgmd[0].naxis, imgmd[0].size, imgmd[0].atype, imgmd[0].shared, 0);
+        COREMOD_MEMORY_image_set_createsem(fname, 4);
+   */
     xsize = data.image[ID].md[0].size[0];
     ysize = data.image[ID].md[0].size[1];
-
+    NBslices = 1;
+    if(data.image[ID].md[0].naxis>2)
+        if(data.image[ID].md[0].size[2]>1)
+            NBslices = data.image[ID].md[0].size[2];
 
     switch ( data.image[ID].md[0].atype ) {
     case CHAR:
@@ -4532,12 +4729,48 @@ long COREMOD_MEMORY_image_NETWORKreceive(int port, int mode)
     }
 
 
-    while(1)
+    if (sigaction(SIGINT, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGTERM, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGBUS, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGSEGV, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+   if (sigaction(SIGABRT, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+  if (sigaction(SIGHUP, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+  if (sigaction(SIGPIPE, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+
+    frame_md = (TCP_BUFFER_METADATA*) malloc(sizeof(TCP_BUFFER_METADATA));
+    framesize1 = framesize + sizeof(TCP_BUFFER_METADATA);
+    buff = (char*) malloc(sizeof(char)*framesize1);
+
+    frame_md = (TCP_BUFFER_METADATA*) (buff + framesize);
+
+    socketOpen = 1;
+    while(socketOpen==1)
     {
-        if ((recvsize = recv(fds_client, ptr0, framesize, MSG_WAITALL)) < 0)
+        if ((recvsize = recv(fds_client, buff, framesize1, MSG_WAITALL)) < 0)
         {
             printf("ERROR recv()\n");
-            exit(0);
+            socketOpen = 0;
         }
 
         if(recvsize!=0)
@@ -4545,18 +4778,264 @@ long COREMOD_MEMORY_image_NETWORKreceive(int port, int mode)
             totsize += recvsize;
             //   printf("Received %ld bytes (expected %ld)\n", recvsize, framesize);
         }
-        data.image[ID].md[0].cnt0++;
-        if(data.image[ID].sem > 0)
-            sem_post(data.image[ID].semptr[0]);
+        else
+            socketOpen = 0;
+        
+        if(socketOpen==1)
+            {
+                frame_md = (TCP_BUFFER_METADATA*) (buff + framesize);
+            
+                data.image[ID].md[0].cnt1 = frame_md[0].cnt1;
+                
+                    
+               // printf("[%ld]", data.image[ID].md[0].cnt1); // TEST
 
+/*                if(data.image[ID].md[0].cnt1==0)
+                    {
+                        printf("\n"); // TEST
+                        fflush(stdout);
+                    }*/
+                if(NBslices>1)
+                    memcpy(ptr0+framesize*frame_md[0].cnt1, buff, framesize);
+                else
+                     memcpy(ptr0, buff, framesize);
+                data.image[ID].md[0].cnt0++;
+                if(data.image[ID].sem > 0)
+                    sem_post(data.image[ID].semptr[0]);
+            }
+        if((data.signal_INT == 1)||(data.signal_TERM == 1)||(data.signal_ABRT==1)||(data.signal_BUS==1)||(data.signal_SEGV==1)||(data.signal_HUP==1)||(data.signal_PIPE==1))
+            socketOpen = 0;
     }
+    
+    
+    free(buff);
+
     close(fds_client);
+
+    printf("port %d closed\n", port);
+    fflush(stdout);
 
     free(imgmd);
 
 
     return(ID);
 }
+
+
+
+//
+// pixel decode for unsigned short
+// sem0, cnt0 gets updated at each full frame
+// sem1 gets updated for each slice
+// cnt1 contains the slice index that was just written
+//
+long COREMOD_MEMORY_PixMapDecode_U(char *inputstream_name, long xsizeim, long ysizeim, char* NBpix_fname, char* IDmap_name, char *IDout_name, char *IDout_pixslice_fname)
+{
+    long IDout;
+    long IDin;
+    long IDmap;
+    long slice, sliceii;
+    long oldslice = 0;
+    long NBslice;
+    long *nbpixslice;
+    long xsizein, ysizein;
+    FILE *fp;
+    long *sizearray;
+    long IDout_pixslice;
+    int loopOK;
+    long ii;
+    long cnt;
+    int RT_priority = 80; //any number from 0-99
+
+    struct sched_param schedpar;
+    struct timespec ts;
+    long scnt;
+    int semval;
+    long long iter;
+    int r;
+    long tmpl0, tmpl1;
+    int semr;
+
+    double *dtarray;
+    struct timespec *tarray;
+    long slice1;
+
+    sizearray = (long*) malloc(sizeof(long)*3);
+
+    IDin = image_ID(inputstream_name);
+    IDmap = image_ID(IDmap_name);
+
+    xsizein = data.image[IDin].md[0].size[0];
+    ysizein = data.image[IDin].md[0].size[1];
+
+    if(xsizein != data.image[IDmap].md[0].size[0])
+    {
+        printf("ERROR: xsize for %s (%ld) does not match xsize for %s (%ld)\n", inputstream_name, xsizein, IDmap_name, data.image[IDmap].md[0].size[0]);
+        exit(0);
+    }
+    if(ysizein != data.image[IDmap].md[0].size[1])
+    {
+        printf("ERROR: xsize for %s (%ld) does not match xsize for %s (%ld)\n", inputstream_name, ysizein, IDmap_name, data.image[IDmap].md[0].size[1]);
+        exit(0);
+    }
+    sizearray[0] = xsizeim;
+    sizearray[1] = ysizeim;
+    IDout = create_image_ID(IDout_name, 2, sizearray, data.image[IDin].md[0].atype, 1, 0);
+    COREMOD_MEMORY_image_set_createsem(IDout_name, 4);
+    IDout_pixslice = create_image_ID("outpixsl", 2, sizearray, USHORT, 0, 0);
+
+    NBslice = data.image[IDin].md[0].size[2];
+
+    dtarray = (double*) malloc(sizeof(double)*NBslice);
+    tarray = (struct timespec *) malloc(sizeof(struct timespec)*NBslice);
+
+
+    nbpixslice = (long*) malloc(sizeof(long)*NBslice);
+    if((fp=fopen(NBpix_fname,"r"))==NULL)
+    {
+        printf("ERROR : cannor open file \"%s\"\n", NBpix_fname);
+        exit(0);
+    }
+
+    for(slice=0; slice<NBslice; slice++)
+        r = fscanf(fp, "%ld %ld %ld\n", &tmpl0, &nbpixslice[slice], &tmpl1);
+    fclose(fp);
+
+    for(slice=0; slice<NBslice; slice++)
+        printf("Slice %5ld   : %5ld pix\n", slice, nbpixslice[slice]);
+
+
+
+
+    for(slice=0; slice<NBslice; slice++)
+    {
+        sliceii = slice*data.image[IDmap].md[0].size[0]*data.image[IDmap].md[0].size[1];
+        for(ii=0; ii<nbpixslice[slice]; ii++)
+            data.image[IDout_pixslice].array.U[ data.image[IDmap].array.U[sliceii + ii] ] = (unsigned short) slice;
+    }
+
+    save_fits("outpixsl", IDout_pixslice_fname);
+    delete_image_ID("outpixsl");
+
+    if (sigaction(SIGINT, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGTERM, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGBUS, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGSEGV, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGABRT, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGHUP, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+    if (sigaction(SIGPIPE, &data.sigact, NULL) == -1) {
+        perror("sigaction");
+        exit(EXIT_FAILURE);
+    }
+
+
+    iter = 0;
+    loopOK = 1;
+    while(loopOK == 1)
+    {
+        if(data.image[IDin].sem==0)
+        {
+            while(data.image[IDin].md[0].cnt0==cnt) // test if new frame exists
+                usleep(5);
+            cnt = data.image[IDin].md[0].cnt0;
+        }
+        else
+        {
+            if (clock_gettime(CLOCK_REALTIME, &ts) == -1) {
+                perror("clock_gettime");
+                exit(EXIT_FAILURE);
+            }
+            ts.tv_sec += 1;
+            semr = sem_timedwait(data.image[IDin].semptr[0], &ts);
+
+            if(iter == 0)
+            {
+                sem_getvalue(data.image[IDin].semptr[0], &semval);
+                for(scnt=0; scnt<semval; scnt++)
+                    sem_trywait(data.image[IDin].semptr[0]);
+            }
+        }
+
+        if(semr==0)
+        {
+            slice = data.image[IDin].md[0].cnt1;
+            if(slice>oldslice+1)
+                slice = oldslice+1;
+
+
+            if(oldslice==NBslice-1)
+                slice = 0;
+
+
+            //   clock_gettime(CLOCK_REALTIME, &tarray[slice]);
+            //  dtarray[slice] = 1.0*tarray[slice].tv_sec + 1.0e-9*tarray[slice].tv_nsec;
+            data.image[IDout].md[0].write = 1;
+
+            if(slice<NBslice)
+            {
+                sliceii = slice*data.image[IDmap].md[0].size[0]*data.image[IDmap].md[0].size[1];
+                for(ii=0; ii<nbpixslice[slice]; ii++)
+                    data.image[IDout].array.U[data.image[IDmap].array.U[sliceii + ii] ] = data.image[IDin].array.U[sliceii + ii];
+            }
+            //     printf("[%ld] ", slice); //TEST
+
+            if(slice==NBslice-1)   //if(slice<oldslice)
+            {
+                sem_post(data.image[IDout].semptr[0]);
+                data.image[IDout].md[0].cnt0 ++;
+
+                //     printf("[[ Timimg [us] :   ");
+                //  for(slice1=1;slice1<NBslice;slice1++)
+                //      {
+                //              dtarray[slice1] -= dtarray[0];
+                //           printf("%6ld ", (long) (1.0e6*dtarray[slice1]));
+                //      }
+                // printf("]]");
+                //  printf("\n");//TEST
+                // fflush(stdout);
+            }
+
+            data.image[IDout].md[0].cnt1 = slice;
+            sem_post(data.image[IDout].semptr[1]);
+            data.image[IDout].md[0].write = 0;
+
+            oldslice = slice;
+        }
+
+        if((data.signal_INT == 1)||(data.signal_TERM == 1)||(data.signal_ABRT==1)||(data.signal_BUS==1)||(data.signal_SEGV==1)||(data.signal_HUP==1)||(data.signal_PIPE==1))
+            loopOK = 0;
+
+        iter++;
+    }
+
+    free(nbpixslice);
+    free(sizearray);
+    free(dtarray);
+
+    return(IDout);
+}
+
+
+
+
 
 
 

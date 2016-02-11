@@ -5,8 +5,8 @@ pid=$$
 
 NBthreadsFPMresp=4 
 
-#execname="PIAACMCdesign -e"  # only run program if X is inactive (prevents slowing down user)
-execname="PIAACMCdesign"
+execname="PIAACMCdesign -e"  # only run program if X is inactive (prevents slowing down user)
+#execname="PIAACMCdesign"
 
 errorfile="errorstatus.txt"
 checkerrorstatus ()
@@ -85,7 +85,7 @@ eval "$1=$var"
 function checkexit() {
 if [ $state -eq $exitpt ] 
 then
-echo "REACHED STATE EXIT POINT ($exitpt)" > errorstatus.txt
+echo "$0 REACHED STATE EXIT POINT ($exitpt)" > errorstatus.txt
 cleanup
 exit
 fi	
@@ -379,6 +379,8 @@ fi
 echo "state = $state"
 echo "statestop = $statestop"
 
+
+
 exitpt="100000" #default
 file="conf_exitpt.txt"
 if [ -f $file ]
@@ -410,6 +412,17 @@ LStransm1=$( echo "($LStransm0+$LStransm2)*0.5" | bc -l )
 
 
 FPMsectors=1 # default
+file="conf/conf_FPMsectors.txt"
+if [ -f $file ]
+        then
+        FPMsectors=$(echo "$(cat $file)")
+        else
+        #echo "CANNOT READ FILE ${file}"
+        ok=0
+fi
+echo "FPMsectors = $FPMsectors"
+
+
 
 nblambda=10 # default
 file="conf/conf_nblambda.txt"
@@ -684,11 +697,6 @@ rm $fifoname
 
 
 
-
-
-
-
-
 # STEP 210: tune PIAA shapes and focal plane mask zones, 10 cosine modes, 5 Fourier modes
 # -> linoptval.txt
 kmaxC=10
@@ -818,7 +826,6 @@ cp ./$1/piaacmcparams_idealmonomask.conf ./$1/piaacmcparams.conf
 $execnamestring -n step700 << EOF
 # idealized mask
 PIAACMC_MASKRADLD=0.0 
-
 loadfits "OPDerr.fits" opderr
 PIAACMC_fpmtype=0
 PIAACMC_FPMsectors=0
@@ -1221,12 +1228,6 @@ fi
 
 
 
-
-
-
-
-
-
 # ========================================================= BEGIN MAIN DESIGN SCRIPT ==============================================================================
 
 
@@ -1238,6 +1239,8 @@ fi
 
 
 checkexit
+
+
 
 #kmaxC=20
 
@@ -1274,6 +1277,7 @@ else
   fi
 state=001
 fi
+
 
 if [ $state -eq $statestop ] 
 then
@@ -1365,6 +1369,8 @@ fi
 
 
 checkexit
+
+
 
 
 
@@ -2337,9 +2343,6 @@ echo "STATE STOP POINT (100)"
 cleanup
 exit
 fi
-
-
-
 
 
 

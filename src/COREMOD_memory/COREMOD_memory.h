@@ -29,9 +29,11 @@ typedef struct
 
 
 
-
-
-
+typedef struct
+{
+    long cnt0;
+    long cnt1;
+} TCP_BUFFER_METADATA;
 
 
 
@@ -162,6 +164,8 @@ long COREMOD_MEMORY_image_streamupdateloop(char *IDinname, char *IDoutname, long
 
 long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, int mode);
 long COREMOD_MEMORY_image_NETWORKreceive(int port, int mode);
+
+long COREMOD_MEMORY_PixMapDecode_U(char *inputstream_name, long xsizeim, long ysizeim, char* NBpix_fname, char* IDmap_name, char *IDout_name, char *IDout_pixslice_fname);
 
 int COREMOD_MEMORY_logshim_printstatus(char *IDname);
 int COREMOD_MEMORY_logshim_set_on(char *IDname, int setv);
