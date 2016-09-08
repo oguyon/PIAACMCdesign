@@ -26,6 +26,9 @@ The following libraries are used:
 - gsl, for math functions and tools
 - fitsio, for reading and writing FITS image files
 
+If you use NVIDIA GPUs, install cuda and magma libraries, and add "--enable-cuda and --enable-magma" options to the configure command.
+
+
 ## Source Code Architecture 
 Written in C.
 The main is a command line interface (CLI). Source code is in CLIcore.c and CLIcore.h.
