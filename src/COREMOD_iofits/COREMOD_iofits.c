@@ -59,6 +59,7 @@ int save_fl_fits_cli()
   return 0;
 }
 
+
 int save_db_fits_cli()
 {
   char fname[200];
@@ -203,9 +204,9 @@ int init_COREMOD_iofits()
   strcpy(data.cmd[data.NBcmd].key,"imgs2cube");
   strcpy(data.cmd[data.NBcmd].module,__FILE__);
   data.cmd[data.NBcmd].fp = images_to_cube_cli;
-  strcpy(data.cmd[data.NBcmd].info,"combine individual images into cube");
+  strcpy(data.cmd[data.NBcmd].info,"combine individual images into cube, image name is prefix followed by 5 digits");
   strcpy(data.cmd[data.NBcmd].syntax,"<input image format> <max index> <output cube>");
-  strcpy(data.cmd[data.NBcmd].example,"imgs2cube im_ imc");
+  strcpy(data.cmd[data.NBcmd].example,"imgs2cube im_ 100 imc");
   strcpy(data.cmd[data.NBcmd].Ccall,"int images_to_cube(char *img_name, long nbframes, char *cube_name)");
   data.NBcmd++;
 
@@ -249,7 +250,7 @@ int check_FITSIO_status(const char *cfile, const char *cfunc, long cline, int pr
     {
         if(print==1)
         {
-            fits_get_errstatus(FITSIO_status,errstr);
+            fits_get_errstatus(FITSIO_status, errstr);
             fprintf(stderr,"%c[%d;%dmFITSIO error %d [%s, %s, %ld]: %s%c[%d;m\n\a",(char) 27, 1, 31, FITSIO_status, cfile, cfunc, cline, errstr, (char) 27, 0);
         }
         Ferr = FITSIO_status;
@@ -427,12 +428,13 @@ long load_fits(char *file_name, char ID_name[400], int errcode)
     naxes[1] = 0;
     naxes[2] = 0;
 
+
     if (fits_open_file(&fptr,file_name, READONLY, &FITSIO_status))
     {
-        if(check_FITSIO_status(__FILE__,__func__,__LINE__,1) != 0)
-        {
-            if(errcode!=0)
-            {
+		 if(errcode!=0)
+		 {
+			 if(check_FITSIO_status(__FILE__,__func__,__LINE__,1) != 0)
+			{
                 fprintf(stderr, "%c[%d;%dm Error while calling \"fits_open_file\" %c[%d;m\n", (char) 27, 1, 31, (char) 27, 0);
                 fprintf(stderr, "%c[%d;%dm within load_fits ( %s, %s ) %c[%d;m\n", (char) 27, 1, 31, ID_name, file_name, (char) 27, 0);
                 fprintf(stderr, "%c[%d;%dm Printing Cfits image buffer content: %c[%d;m\n", (char) 27, 1, 31, (char) 27, 0);
@@ -440,16 +442,16 @@ long load_fits(char *file_name, char ID_name[400], int errcode)
                 if(errcode>1)
                     exit(0);
             }
-        }
+			}
         LOAD_FITS_ERROR = 1;
         ID = -1;
     }
     else
     {
         fits_read_key(fptr, TLONG, "NAXIS", &naxis, comment, &FITSIO_status);
-        if(check_FITSIO_status(__FILE__,__func__,__LINE__,1) != 0)
-        {
-            if(errcode!=0)
+       if(errcode!=0)
+            {
+				 if(check_FITSIO_status(__FILE__,__func__,__LINE__,1) != 0)
             {
                 fprintf(stderr, "%c[%d;%dm Error while calling \"fits_read_key\" NAXIS %c[%d;m\n", (char) 27, 1, 31, (char) 27, 0);
                 fprintf(stderr, "%c[%d;%dm within load_fits ( %s, %s ) %c[%d;m\n", (char) 27, 1, 31, ID_name, file_name, (char) 27, 0);
@@ -914,7 +916,7 @@ int save_fl_fits(char *ID_name, char *file_name)
     char file_name1[SBUFFERSIZE];
     int n;
 
-    if((data.overwrite == 1)&&(file_name[0]!='!')&&(file_exists(file_name)==1))
+    if((data.overwrite == 1) && (file_name[0]!='!') && (file_exists(file_name)==1))
     {
         n = snprintf(errormessage,SBUFFERSIZE,"automatic overwrite on file \"%s\"\n",file_name);
         if(n >= SBUFFERSIZE)
@@ -993,11 +995,12 @@ int save_fl_fits(char *ID_name, char *file_name)
             exit(0);
             break;
         }
-
+		
+		FITSIO_status = 0;
         fits_create_file(&fptr, file_name1, &FITSIO_status);
-        if(check_FITSIO_status(__FILE__,__func__,__LINE__,1)!=0)
+        if(check_FITSIO_status(__FILE__, __func__, __LINE__, 1) != 0)
         {
-            fprintf(stderr,"%c[%d;%dm Error while calling \"fits_create_file\" with filename \"%s\" %c[%d;m\n", (char) 27, 1, 31,file_name1, (char) 27, 0);
+            fprintf(stderr,"%c[%d;%dm Error while calling \"fits_create_file\" with filename \"%s\" %c[%d;m\n", (char) 27, 1, 31, file_name1, (char) 27, 0);
             if(file_exists(file_name1)==1)
             {
                 fprintf(stderr,"%c[%d;%dm File \"%s\" already exists. Make sure you remove this file before attempting to write file with identical name. %c[%d;m\n", (char) 27, 1, 31,file_name1, (char) 27, 0);

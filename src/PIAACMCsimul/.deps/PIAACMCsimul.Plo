@@ -4,11 +4,11 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h \
  /usr/include/_G_config.h /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include/stdarg.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
@@ -29,8 +29,8 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed/syslimits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
@@ -52,11 +52,12 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h \
  /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h /usr/include/gsl/gsl_math.h \
  /usr/include/gsl/gsl_sys.h /usr/include/gsl/gsl_inline.h \
  /usr/include/gsl/gsl_machine.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include/float.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/float.h \
  /usr/include/gsl/gsl_precision.h /usr/include/gsl/gsl_types.h \
  /usr/include/gsl/gsl_nan.h /usr/include/gsl/gsl_pow_int.h \
  /usr/include/gsl/gsl_minmax.h /usr/include/gsl/gsl_multimin.h \
@@ -95,7 +96,7 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /usr/include/gsl/gsl_matrix_uint.h /usr/include/gsl/gsl_matrix_int.h \
  /usr/include/gsl/gsl_matrix_ushort.h /usr/include/gsl/gsl_matrix_short.h \
  /usr/include/gsl/gsl_matrix_uchar.h /usr/include/gsl/gsl_matrix_char.h \
- /usr/include/gsl/gsl_min.h /home/guyon/src/Cfits/src/CLIcore.h \
+ /usr/include/gsl/gsl_min.h /home/olivier/src/PIAACMCdesign/src/CLIcore.h \
  /usr/include/semaphore.h /usr/include/x86_64-linux-gnu/bits/semaphore.h \
  /usr/include/fftw3.h /usr/include/gsl/gsl_rng.h /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum.h \
@@ -105,22 +106,23 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/guyon/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
- /home/guyon/src/Cfits/src/COREMOD_arith/COREMOD_arith.h \
- /home/guyon/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
- /home/guyon/src/Cfits/src/info/info.h \
- /home/guyon/src/Cfits/src/fft/fft.h \
- /home/guyon/src/Cfits/src/image_gen/image_gen.h \
- /home/guyon/src/Cfits/src/WFpropagate/WFpropagate.h \
- /home/guyon/src/Cfits/src/statistic/statistic.h \
- /home/guyon/src/Cfits/src/linopt_imtools/linopt_imtools.h \
- /home/guyon/src/Cfits/src/OpticsMaterials/OpticsMaterials.h \
- /home/guyon/src/Cfits/src/image_filter/image_filter.h \
- /home/guyon/src/Cfits/src/image_basic/image_basic.h \
- /home/guyon/src/Cfits/src/coronagraphs/coronagraphs.h \
- /home/guyon/src/Cfits/src/PIAACMCsimul/PIAACMCsimul.h \
- /home/guyon/src/Cfits/src/OptSystProp/OptSystProp.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include/omp.h
+ /home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h \
+ /home/olivier/src/PIAACMCdesign/src/info/info.h \
+ /home/olivier/src/PIAACMCdesign/src/fft/fft.h \
+ /home/olivier/src/PIAACMCdesign/src/image_gen/image_gen.h \
+ /home/olivier/src/PIAACMCdesign/src/WFpropagate/WFpropagate.h \
+ /home/olivier/src/PIAACMCdesign/src/statistic/statistic.h \
+ /home/olivier/src/PIAACMCdesign/src/linopt_imtools/linopt_imtools.h \
+ /home/olivier/src/PIAACMCdesign/src/OpticsMaterials/OpticsMaterials.h \
+ /home/olivier/src/PIAACMCdesign/src/image_filter/image_filter.h \
+ /home/olivier/src/PIAACMCdesign/src/image_basic/image_basic.h \
+ /home/olivier/src/PIAACMCdesign/src/coronagraphs/coronagraphs.h \
+ /home/olivier/src/PIAACMCdesign/src/PIAACMCsimul/PIAACMCsimul.h \
+ /home/olivier/src/PIAACMCdesign/src/OptSystProp/OptSystProp.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/omp.h
 
 /usr/include/stdc-predef.h:
 
@@ -138,7 +140,7 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
@@ -150,7 +152,7 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/wchar.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stdarg.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
@@ -200,9 +202,9 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed/limits.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed/syslimits.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h:
 
 /usr/include/limits.h:
 
@@ -260,6 +262,8 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/unistd.h:
 
+/usr/include/x86_64-linux-gnu/sys/time.h:
+
 /usr/include/x86_64-linux-gnu/sys/stat.h:
 
 /usr/include/x86_64-linux-gnu/bits/stat.h:
@@ -272,7 +276,7 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/gsl/gsl_machine.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include/float.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/float.h:
 
 /usr/include/gsl/gsl_precision.h:
 
@@ -396,7 +400,7 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/gsl/gsl_min.h:
 
-/home/guyon/src/Cfits/src/CLIcore.h:
+/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
 
 /usr/include/semaphore.h:
 
@@ -422,34 +426,36 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/guyon/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h:
 
-/home/guyon/src/Cfits/src/COREMOD_arith/COREMOD_arith.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/guyon/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h:
 
-/home/guyon/src/Cfits/src/info/info.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h:
 
-/home/guyon/src/Cfits/src/fft/fft.h:
+/home/olivier/src/PIAACMCdesign/src/info/info.h:
 
-/home/guyon/src/Cfits/src/image_gen/image_gen.h:
+/home/olivier/src/PIAACMCdesign/src/fft/fft.h:
 
-/home/guyon/src/Cfits/src/WFpropagate/WFpropagate.h:
+/home/olivier/src/PIAACMCdesign/src/image_gen/image_gen.h:
 
-/home/guyon/src/Cfits/src/statistic/statistic.h:
+/home/olivier/src/PIAACMCdesign/src/WFpropagate/WFpropagate.h:
 
-/home/guyon/src/Cfits/src/linopt_imtools/linopt_imtools.h:
+/home/olivier/src/PIAACMCdesign/src/statistic/statistic.h:
 
-/home/guyon/src/Cfits/src/OpticsMaterials/OpticsMaterials.h:
+/home/olivier/src/PIAACMCdesign/src/linopt_imtools/linopt_imtools.h:
 
-/home/guyon/src/Cfits/src/image_filter/image_filter.h:
+/home/olivier/src/PIAACMCdesign/src/OpticsMaterials/OpticsMaterials.h:
 
-/home/guyon/src/Cfits/src/image_basic/image_basic.h:
+/home/olivier/src/PIAACMCdesign/src/image_filter/image_filter.h:
 
-/home/guyon/src/Cfits/src/coronagraphs/coronagraphs.h:
+/home/olivier/src/PIAACMCdesign/src/image_basic/image_basic.h:
 
-/home/guyon/src/Cfits/src/PIAACMCsimul/PIAACMCsimul.h:
+/home/olivier/src/PIAACMCdesign/src/coronagraphs/coronagraphs.h:
 
-/home/guyon/src/Cfits/src/OptSystProp/OptSystProp.h:
+/home/olivier/src/PIAACMCdesign/src/PIAACMCsimul/PIAACMCsimul.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include/omp.h:
+/home/olivier/src/PIAACMCdesign/src/OptSystProp/OptSystProp.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/5/include/omp.h:

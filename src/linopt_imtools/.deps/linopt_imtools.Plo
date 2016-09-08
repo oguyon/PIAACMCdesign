@@ -4,11 +4,11 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h \
  /usr/include/_G_config.h /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include/stdarg.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
@@ -29,8 +29,8 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed/syslimits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
@@ -47,11 +47,13 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/nan.h \
  /usr/include/x86_64-linux-gnu/bits/mathdef.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
- /usr/include/x86_64-linux-gnu/bits/mathinline.h \
+ /usr/include/x86_64-linux-gnu/bits/mathinline.h /usr/include/semaphore.h \
+ /usr/include/x86_64-linux-gnu/bits/semaphore.h /usr/include/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/sched.h \
  /usr/include/gsl/gsl_multimin.h /usr/include/gsl/gsl_types.h \
  /usr/include/gsl/gsl_math.h /usr/include/gsl/gsl_sys.h \
  /usr/include/gsl/gsl_inline.h /usr/include/gsl/gsl_machine.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.9/include/float.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/float.h \
  /usr/include/gsl/gsl_precision.h /usr/include/gsl/gsl_nan.h \
  /usr/include/gsl/gsl_pow_int.h /usr/include/gsl/gsl_minmax.h \
  /usr/include/gsl/gsl_vector.h \
@@ -91,12 +93,12 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
  /usr/include/gsl/gsl_matrix_uchar.h /usr/include/gsl/gsl_matrix_char.h \
  /usr/include/gsl/gsl_min.h /usr/include/gsl/gsl_multifit.h \
  /usr/include/gsl/gsl_eigen.h /usr/include/gsl/gsl_cblas.h \
- /home/guyon/src/Cfits/src/CLIcore.h /usr/include/unistd.h \
+ /usr/include/gsl/gsl_blas.h /usr/include/gsl/gsl_blas_types.h \
+ /home/olivier/src/Cfits/src/CLIcore.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/x86_64-linux-gnu/bits/unistd.h /usr/include/semaphore.h \
- /usr/include/x86_64-linux-gnu/bits/semaphore.h /usr/include/fftw3.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h /usr/include/fftw3.h \
  /usr/include/gsl/gsl_rng.h /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum.h \
  /usr/include/x86_64-linux-gnu/bits/siginfo.h \
@@ -105,10 +107,14 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/guyon/src/Cfits/src/00CORE/00CORE.h \
- /home/guyon/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
- /home/guyon/src/Cfits/src/statistic/statistic.h \
- /home/guyon/src/Cfits/src/linopt_imtools/linopt_imtools.h
+ /home/olivier/src/Cfits/src/00CORE/00CORE.h \
+ /home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h \
+ /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h \
+ /home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
+ /home/olivier/src/Cfits/src/statistic/statistic.h \
+ /home/olivier/src/Cfits/src/info/info.h \
+ /home/olivier/src/Cfits/src/linopt_imtools/linopt_imtools.h
 
 /usr/include/stdc-predef.h:
 
@@ -126,7 +132,7 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
@@ -138,7 +144,7 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 
 /usr/include/wchar.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stdarg.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
@@ -188,9 +194,9 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed/limits.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed/syslimits.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h:
 
 /usr/include/limits.h:
 
@@ -236,6 +242,14 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/mathinline.h:
 
+/usr/include/semaphore.h:
+
+/usr/include/x86_64-linux-gnu/bits/semaphore.h:
+
+/usr/include/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
 /usr/include/gsl/gsl_multimin.h:
 
 /usr/include/gsl/gsl_types.h:
@@ -248,7 +262,7 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 
 /usr/include/gsl/gsl_machine.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.9/include/float.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/float.h:
 
 /usr/include/gsl/gsl_precision.h:
 
@@ -374,7 +388,11 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 
 /usr/include/gsl/gsl_cblas.h:
 
-/home/guyon/src/Cfits/src/CLIcore.h:
+/usr/include/gsl/gsl_blas.h:
+
+/usr/include/gsl/gsl_blas_types.h:
+
+/home/olivier/src/Cfits/src/CLIcore.h:
 
 /usr/include/unistd.h:
 
@@ -387,10 +405,6 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 /usr/include/getopt.h:
 
 /usr/include/x86_64-linux-gnu/bits/unistd.h:
-
-/usr/include/semaphore.h:
-
-/usr/include/x86_64-linux-gnu/bits/semaphore.h:
 
 /usr/include/fftw3.h:
 
@@ -412,10 +426,18 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/guyon/src/Cfits/src/00CORE/00CORE.h:
+/home/olivier/src/Cfits/src/00CORE/00CORE.h:
 
-/home/guyon/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h:
 
-/home/guyon/src/Cfits/src/statistic/statistic.h:
+/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/guyon/src/Cfits/src/linopt_imtools/linopt_imtools.h:
+/home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h:
+
+/home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:
+
+/home/olivier/src/Cfits/src/statistic/statistic.h:
+
+/home/olivier/src/Cfits/src/info/info.h:
+
+/home/olivier/src/Cfits/src/linopt_imtools/linopt_imtools.h:

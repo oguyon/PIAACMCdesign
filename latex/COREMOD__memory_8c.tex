@@ -7,7 +7,6 @@
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
-{\ttfamily \#include $<$time.\+h$>$}\\*
 {\ttfamily \#include $<$math.\+h$>$}\\*
 {\ttfamily \#include $<$pthread.\+h$>$}\\*
 {\ttfamily \#include $<$sys/types.\+h$>$}\\*
@@ -20,6 +19,7 @@
 {\ttfamily \#include $<$netinet/in.\+h$>$}\\*
 {\ttfamily \#include $<$netinet/tcp.\+h$>$}\\*
 {\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}C\+L\+Icore.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}00\+C\+O\+R\+E/00\+C\+O\+R\+E.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}C\+O\+R\+E\+M\+O\+D\+\_\+memory/\+C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h\char`\"{}}\\*
@@ -89,6 +89,8 @@ int \hyperlink{COREMOD__memory_8c_ad56cfee75a59c62d6f11f0a1095acd35}{C\+O\+R\+E\
 \item 
 int \hyperlink{COREMOD__memory_8c_a09601bc25ed277718f651f95662cf82b}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semwait\+\_\+cli} ()
 \item 
+int \hyperlink{COREMOD__memory_8c_a4712e993ab03c04e23a1dae335a3e15f}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+cli} ()
+\item 
 int \hyperlink{COREMOD__memory_8c_a83c413cad03a0facb289a4c5b4cdb553}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+cp2shm\+\_\+cli} ()
 \item 
 int \hyperlink{COREMOD__memory_8c_a11e9b3f03baa55aeec4d46ebebe9fbd3}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+streamupdateloop\+\_\+cli} ()
@@ -96,6 +98,8 @@ int \hyperlink{COREMOD__memory_8c_a11e9b3f03baa55aeec4d46ebebe9fbd3}{C\+O\+R\+E\
 int \hyperlink{COREMOD__memory_8c_a1623461d7baecd577d830a4a2027eb19}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+\+N\+E\+T\+W\+O\+R\+Ktransmit\+\_\+cli} ()
 \item 
 int \hyperlink{COREMOD__memory_8c_a65e4c444cdab64bbc749ec715e4c90ea}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+\+N\+E\+T\+W\+O\+R\+Kreceive\+\_\+cli} ()
+\item 
+int \hyperlink{COREMOD__memory_8c_a0b45435cb4124af7f73f505657c82ffb}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U\+\_\+cli} ()
 \item 
 int \hyperlink{COREMOD__memory_8c_af7ce0ecd2fba9043d4e3aa58a5180788}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+logshim\+\_\+printstatus\+\_\+cli} ()
 \item 
@@ -250,6 +254,8 @@ long \hyperlink{COREMOD__memory_8c_ad7182d838047ce0188dd0ff058616c89}{C\+O\+R\+E
 long \hyperlink{COREMOD__memory_8c_af670c0ea50a508f81c8c517c7dd8842c}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+\+N\+E\+T\+W\+O\+R\+Ktransmit} (char $\ast$I\+Dname, char $\ast$I\+Paddr, int port, int mode)
 \item 
 long \hyperlink{COREMOD__memory_8c_a60a96faec50771cfb6908cfc8a688a97}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+\+N\+E\+T\+W\+O\+R\+Kreceive} (int port, int mode)
+\item 
+long \hyperlink{COREMOD__memory_8c_ada019e7ed61c40d945b0793d91485d1e}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U} (char $\ast$inputstream\+\_\+name, long xsizeim, long ysizeim, char $\ast$N\+Bpix\+\_\+fname, char $\ast$I\+Dmap\+\_\+name, char $\ast$I\+Dout\+\_\+name, char $\ast$I\+Dout\+\_\+pixslice\+\_\+fname)
 \item 
 \hyperlink{structLOGSHIM__CONF}{L\+O\+G\+S\+H\+I\+M\+\_\+\+C\+O\+N\+F} $\ast$ \hyperlink{COREMOD__memory_8c_a6077bf93f47d48344a126f5a4e91a623}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+logshim\+\_\+create\+\_\+\+S\+H\+Mconf} (char $\ast$logshimname)
 \begin{DoxyCompactList}\small\item\em -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/------ L\+O\+G\+G\+I\+N\+G F\+U\+N\+C\+T\+I\+O\+N\+S -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/------ \end{DoxyCompactList}\item 
@@ -520,6 +526,13 @@ continuously transmits 2\+D image through T\+C\+P link mode is not currently use
 
 set semaphore value to 0 
 
+\hypertarget{COREMOD__memory_8c_a4712e993ab03c04e23a1dae335a3e15f}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+cli@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+cli}}
+\index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+cli@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+cli}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}}
+\subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+cli}]{\setlength{\rightskip}{0pt plus 5cm}int C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+cli (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{COREMOD__memory_8c_a4712e993ab03c04e23a1dae335a3e15f}
 \hypertarget{COREMOD__memory_8c_a6fdbf9d15c38ab7e17cba7491027299e}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray}}
 \index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}}
 \subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray}]{\setlength{\rightskip}{0pt plus 5cm}long C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+set\+\_\+semflush\+\_\+\+I\+Darray (
@@ -664,6 +677,26 @@ creates logshimconf shared memory and loads it \hypertarget{COREMOD__memory_8c_a
 {}
 \end{DoxyParamCaption}
 )}}\label{COREMOD__memory_8c_aa6c9240a6d0fc12625fa7a778566b382}
+\hypertarget{COREMOD__memory_8c_ada019e7ed61c40d945b0793d91485d1e}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U}}
+\index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}}
+\subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U}]{\setlength{\rightskip}{0pt plus 5cm}long C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{inputstream\+\_\+name, }
+\item[{long}]{xsizeim, }
+\item[{long}]{ysizeim, }
+\item[{char $\ast$}]{N\+Bpix\+\_\+fname, }
+\item[{char $\ast$}]{I\+Dmap\+\_\+name, }
+\item[{char $\ast$}]{I\+Dout\+\_\+name, }
+\item[{char $\ast$}]{I\+Dout\+\_\+pixslice\+\_\+fname}
+\end{DoxyParamCaption}
+)}}\label{COREMOD__memory_8c_ada019e7ed61c40d945b0793d91485d1e}
+\hypertarget{COREMOD__memory_8c_a0b45435cb4124af7f73f505657c82ffb}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U\+\_\+cli@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U\+\_\+cli}}
+\index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U\+\_\+cli@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U\+\_\+cli}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}}
+\subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U\+\_\+cli}]{\setlength{\rightskip}{0pt plus 5cm}int C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U\+\_\+cli (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{COREMOD__memory_8c_a0b45435cb4124af7f73f505657c82ffb}
 \hypertarget{COREMOD__memory_8c_ae04f0d4c991dc4beb0b1199c8231392a}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log}}
 \index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+c}}
 \subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log}]{\setlength{\rightskip}{0pt plus 5cm}long C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log (

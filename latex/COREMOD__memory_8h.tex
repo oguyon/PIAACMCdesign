@@ -5,6 +5,8 @@
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{structLOGSHIM__CONF}{L\+O\+G\+S\+H\+I\+M\+\_\+\+C\+O\+N\+F}
+\item 
+struct \hyperlink{structTCP__BUFFER__METADATA}{T\+C\+P\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+M\+E\+T\+A\+D\+A\+T\+A}
 \end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
@@ -151,6 +153,8 @@ long \hyperlink{COREMOD__memory_8h_ad7182d838047ce0188dd0ff058616c89}{C\+O\+R\+E
 long \hyperlink{COREMOD__memory_8h_af670c0ea50a508f81c8c517c7dd8842c}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+\+N\+E\+T\+W\+O\+R\+Ktransmit} (char $\ast$I\+Dname, char $\ast$I\+Paddr, int port, int mode)
 \item 
 long \hyperlink{COREMOD__memory_8h_a60a96faec50771cfb6908cfc8a688a97}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+image\+\_\+\+N\+E\+T\+W\+O\+R\+Kreceive} (int port, int mode)
+\item 
+long \hyperlink{COREMOD__memory_8h_ada019e7ed61c40d945b0793d91485d1e}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U} (char $\ast$inputstream\+\_\+name, long xsizeim, long ysizeim, char $\ast$N\+Bpix\+\_\+fname, char $\ast$I\+Dmap\+\_\+name, char $\ast$I\+Dout\+\_\+name, char $\ast$I\+Dout\+\_\+pixslice\+\_\+fname)
 \item 
 int \hyperlink{COREMOD__memory_8h_ad24826fedf9cf7a046f177e9db5eb956}{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+logshim\+\_\+printstatus} (char $\ast$I\+Dname)
 \item 
@@ -414,6 +418,19 @@ takes a 3\+Dimage (circular buffer) and writes slices to a 2\+D image with time 
 \item[{int}]{setv}
 \end{DoxyParamCaption}
 )}}\label{COREMOD__memory_8h_afac1d9b074c339f07b6119ebda2c61d9}
+\hypertarget{COREMOD__memory_8h_ada019e7ed61c40d945b0793d91485d1e}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U}}
+\index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h}}
+\subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U}]{\setlength{\rightskip}{0pt plus 5cm}long C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+Pix\+Map\+Decode\+\_\+\+U (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{inputstream\+\_\+name, }
+\item[{long}]{xsizeim, }
+\item[{long}]{ysizeim, }
+\item[{char $\ast$}]{N\+Bpix\+\_\+fname, }
+\item[{char $\ast$}]{I\+Dmap\+\_\+name, }
+\item[{char $\ast$}]{I\+Dout\+\_\+name, }
+\item[{char $\ast$}]{I\+Dout\+\_\+pixslice\+\_\+fname}
+\end{DoxyParamCaption}
+)}}\label{COREMOD__memory_8h_ada019e7ed61c40d945b0793d91485d1e}
 \hypertarget{COREMOD__memory_8h_ae04f0d4c991dc4beb0b1199c8231392a}{\index{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h}!C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log}}
 \index{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log@{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log}!C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h@{C\+O\+R\+E\+M\+O\+D\+\_\+memory.\+h}}
 \subsubsection[{C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log}]{\setlength{\rightskip}{0pt plus 5cm}long C\+O\+R\+E\+M\+O\+D\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+shared\+Mem\+\_\+2\+Dim\+\_\+log (

@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+
+#define _GNU_SOURCE
+#include <unistd.h>
+
 //#include <pthread_np.h>
 
 #ifdef __MACH__
@@ -22,7 +26,7 @@ int clock_gettime(int clk_id, struct timespec *t){
     return 0;
 }
 #else
-#include <time.h>
+#include <sys/time.h>
 #endif
 
 
@@ -953,8 +957,8 @@ void main_init()
   /* initialization of the data structure 
    */
   data.quiet           = 1;
-  data.NB_MAX_IMAGE    = 100;
-  data.NB_MAX_VARIABLE = 100;
+  data.NB_MAX_IMAGE    = 5000;
+  data.NB_MAX_VARIABLE = 5000;
   data.INVRANDMAX      = 1.0/RAND_MAX;
   
 

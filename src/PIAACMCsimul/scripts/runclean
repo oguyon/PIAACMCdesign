@@ -1,6 +1,23 @@
+rm runPIAACMCfifo*
+rm clistartup*.txt
+rm -rf piaacmcconf_*
+rm test*
 rm piaacmc*/*thread0*.fits
 rm piaacmc*/*thread0*.fits.tmp
 rm piaacmc*/WFamp0*.fits
 rm piaacmc*/WFpha0*.fits
 rm piaacmc*/psfi*.fits
 rm piaacmc*/LMintC.fits
+rm tmp_*
+rm PSFcontrastval.txt
+rm eigenv.dat
+rm __test*
+rm stepfile*
+rm searchtime.txt
+rm looppsfcomp_done
+rm conj_test.txt
+rm piaacmcscriptsinit.txt
+rm _pupmaskload.fits
+rm SVDmodes.log
+rm eigenv_*
+
