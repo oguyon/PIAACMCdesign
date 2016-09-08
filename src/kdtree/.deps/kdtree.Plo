@@ -39,7 +39,7 @@ kdtree.lo: kdtree.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/mathdef.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathinline.h \
- /home/olivier/src/Cfits/src/kdtree/kdtree.h
+ /home/olivier/src/PIAACMCdesign/src/kdtree/kdtree.h
 
 /usr/include/stdc-predef.h:
 
@@ -145,4 +145,4 @@ kdtree.lo: kdtree.c /usr/include/stdc-predef.h /usr/include/stdio.h \
 
 /usr/include/x86_64-linux-gnu/bits/mathinline.h:
 
-/home/olivier/src/Cfits/src/kdtree/kdtree.h:
+/home/olivier/src/PIAACMCdesign/src/kdtree/kdtree.h:

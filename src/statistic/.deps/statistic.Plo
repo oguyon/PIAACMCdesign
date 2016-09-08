@@ -44,8 +44,9 @@ statistic.lo: statistic.c /usr/include/stdc-predef.h /usr/include/math.h \
  /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/gsl/gsl_inline.h /home/olivier/src/Cfits/src/CLIcore.h \
- /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/gsl/gsl_inline.h \
+ /home/olivier/src/PIAACMCdesign/src/CLIcore.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h /usr/include/semaphore.h \
@@ -57,9 +58,9 @@ statistic.lo: statistic.c /usr/include/stdc-predef.h /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/olivier/src/Cfits/src/00CORE/00CORE.h \
- /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
- /home/olivier/src/Cfits/src/statistic/statistic.h
+ /home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/PIAACMCdesign/src/statistic/statistic.h
 
 /usr/include/stdc-predef.h:
 
@@ -187,7 +188,7 @@ statistic.lo: statistic.c /usr/include/stdc-predef.h /usr/include/math.h \
 
 /usr/include/gsl/gsl_inline.h:
 
-/home/olivier/src/Cfits/src/CLIcore.h:
+/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
 
 /usr/include/unistd.h:
 
@@ -223,8 +224,8 @@ statistic.lo: statistic.c /usr/include/stdc-predef.h /usr/include/math.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/olivier/src/Cfits/src/00CORE/00CORE.h:
+/home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h:
 
-/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/olivier/src/Cfits/src/statistic/statistic.h:
+/home/olivier/src/PIAACMCdesign/src/statistic/statistic.h:

@@ -40,7 +40,7 @@ fft.lo: fft.c /usr/include/stdc-predef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/fftw3.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/omp.h \
- /home/olivier/src/Cfits/src/CLIcore.h /usr/include/unistd.h \
+ /home/olivier/src/PIAACMCdesign/src/CLIcore.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
@@ -59,12 +59,12 @@ fft.lo: fft.c /usr/include/stdc-predef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/olivier/src/Cfits/src/00CORE/00CORE.h \
- /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
- /home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
- /home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h \
- /home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h \
- /home/olivier/src/Cfits/src/fft/fft.h
+ /home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_tools/COREMOD_tools.h \
+ /home/olivier/src/PIAACMCdesign/src/fft/fft.h
 
 /usr/include/stdc-predef.h:
 
@@ -174,7 +174,7 @@ fft.lo: fft.c /usr/include/stdc-predef.h /usr/include/string.h \
 
 /usr/lib/gcc/x86_64-linux-gnu/5/include/omp.h:
 
-/home/olivier/src/Cfits/src/CLIcore.h:
+/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
 
 /usr/include/unistd.h:
 
@@ -228,14 +228,14 @@ fft.lo: fft.c /usr/include/stdc-predef.h /usr/include/string.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/olivier/src/Cfits/src/00CORE/00CORE.h:
+/home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h:
 
-/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h:
 
-/home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h:
 
-/home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_tools/COREMOD_tools.h:
 
-/home/olivier/src/Cfits/src/fft/fft.h:
+/home/olivier/src/PIAACMCdesign/src/fft/fft.h:

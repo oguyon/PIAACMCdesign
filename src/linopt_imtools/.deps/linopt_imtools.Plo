@@ -94,7 +94,7 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
  /usr/include/gsl/gsl_min.h /usr/include/gsl/gsl_multifit.h \
  /usr/include/gsl/gsl_eigen.h /usr/include/gsl/gsl_cblas.h \
  /usr/include/gsl/gsl_blas.h /usr/include/gsl/gsl_blas_types.h \
- /home/olivier/src/Cfits/src/CLIcore.h /usr/include/unistd.h \
+ /home/olivier/src/PIAACMCdesign/src/CLIcore.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
@@ -107,14 +107,14 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/olivier/src/Cfits/src/00CORE/00CORE.h \
- /home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h \
- /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
- /home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h \
- /home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
- /home/olivier/src/Cfits/src/statistic/statistic.h \
- /home/olivier/src/Cfits/src/info/info.h \
- /home/olivier/src/Cfits/src/linopt_imtools/linopt_imtools.h
+ /home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_tools/COREMOD_tools.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h \
+ /home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h \
+ /home/olivier/src/PIAACMCdesign/src/statistic/statistic.h \
+ /home/olivier/src/PIAACMCdesign/src/info/info.h \
+ /home/olivier/src/PIAACMCdesign/src/linopt_imtools/linopt_imtools.h
 
 /usr/include/stdc-predef.h:
 
@@ -392,7 +392,7 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 
 /usr/include/gsl/gsl_blas_types.h:
 
-/home/olivier/src/Cfits/src/CLIcore.h:
+/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
 
 /usr/include/unistd.h:
 
@@ -426,18 +426,18 @@ linopt_imtools.lo: linopt_imtools.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/olivier/src/Cfits/src/00CORE/00CORE.h:
+/home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h:
 
-/home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_tools/COREMOD_tools.h:
 
-/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h:
 
-/home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:
+/home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h:
 
-/home/olivier/src/Cfits/src/statistic/statistic.h:
+/home/olivier/src/PIAACMCdesign/src/statistic/statistic.h:
 
-/home/olivier/src/Cfits/src/info/info.h:
+/home/olivier/src/PIAACMCdesign/src/info/info.h:
 
-/home/olivier/src/Cfits/src/linopt_imtools/linopt_imtools.h:
+/home/olivier/src/PIAACMCdesign/src/linopt_imtools/linopt_imtools.h:
