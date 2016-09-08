@@ -16,6 +16,10 @@ PIAACMCdesign_LDADD =
 
 
 
+SUBDIRS += cudacomp
+PIAACMCdesign_LDADD += cudacomp/libcudacomp.la
+PIAACMCdesign_CPPFLAGS += -I@abs_top_srcdir@/src/cudacomp
+
 SUBDIRS += PIAACMCsimul
 PIAACMCdesign_LDADD += PIAACMCsimul/libpiaacmcsimul.la
 PIAACMCdesign_CPPFLAGS += -I@abs_top_srcdir@/src/PIAACMCsimul

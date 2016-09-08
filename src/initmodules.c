@@ -4,6 +4,7 @@ extern DATA data;
 
 int init_modules()
 {
+  init_cudacomp();
   init_PIAACMCsimul();
   init_OptSystProp();
   init_OpticsMaterials();

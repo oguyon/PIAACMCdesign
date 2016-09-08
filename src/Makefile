@@ -110,8 +110,8 @@ am_PIAACMCdesign_OBJECTS = PIAACMCdesign-CLIcore.$(OBJEXT) \
 	PIAACMCdesign-calc_bison.$(OBJEXT) \
 	PIAACMCdesign-calc_flex.$(OBJEXT)
 PIAACMCdesign_OBJECTS = $(am_PIAACMCdesign_OBJECTS)
-PIAACMCdesign_DEPENDENCIES = PIAACMCsimul/libpiaacmcsimul.la \
-	OptSystProp/liboptsystprop.la \
+PIAACMCdesign_DEPENDENCIES = cudacomp/libcudacomp.la \
+	PIAACMCsimul/libpiaacmcsimul.la OptSystProp/liboptsystprop.la \
 	OpticsMaterials/libopticsmaterials.la \
 	coronagraphs/libcoronagraphs.la \
 	ZernikePolyn/libzernikepolyn.la WFpropagate/libwfpropagate.la \
@@ -377,6 +377,7 @@ PIAACMCdesign_CPPFLAGS = -I/home/olivier/src/PIAACMCdesign/src \
 	-DCONFIGDIR=\"/home/olivier/src/PIAACMCdesign/config\" \
 	-DSOURCEDIR=\"/home/olivier/src/PIAACMCdesign/src\" \
 	-DABSSRCTOPDIR=\"/home/olivier/src/PIAACMCdesign\" -fopenmp \
+	-I/home/olivier/src/PIAACMCdesign/src/cudacomp \
 	-I/home/olivier/src/PIAACMCdesign/src/PIAACMCsimul \
 	-I/home/olivier/src/PIAACMCdesign/src/OptSystProp \
 	-I/home/olivier/src/PIAACMCdesign/src/OpticsMaterials \
@@ -399,12 +400,13 @@ AM_YFLAGS = -d
 AM_LFLAGS = -i
 noinst_HEADERS = calc.h
 BUILT_SOURCES = calc_bison.h
-SUBDIRS = PIAACMCsimul OptSystProp OpticsMaterials coronagraphs \
-	ZernikePolyn WFpropagate image_basic image_filter kdtree \
-	image_gen linopt_imtools statistic fft info COREMOD_arith \
-	COREMOD_iofits COREMOD_memory COREMOD_tools 00CORE
-PIAACMCdesign_LDADD = PIAACMCsimul/libpiaacmcsimul.la \
-	OptSystProp/liboptsystprop.la \
+SUBDIRS = cudacomp PIAACMCsimul OptSystProp OpticsMaterials \
+	coronagraphs ZernikePolyn WFpropagate image_basic image_filter \
+	kdtree image_gen linopt_imtools statistic fft info \
+	COREMOD_arith COREMOD_iofits COREMOD_memory COREMOD_tools \
+	00CORE
+PIAACMCdesign_LDADD = cudacomp/libcudacomp.la \
+	PIAACMCsimul/libpiaacmcsimul.la OptSystProp/liboptsystprop.la \
 	OpticsMaterials/libopticsmaterials.la \
 	coronagraphs/libcoronagraphs.la \
 	ZernikePolyn/libzernikepolyn.la WFpropagate/libwfpropagate.la \
