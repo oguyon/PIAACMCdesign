@@ -96,7 +96,7 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /usr/include/gsl/gsl_matrix_uint.h /usr/include/gsl/gsl_matrix_int.h \
  /usr/include/gsl/gsl_matrix_ushort.h /usr/include/gsl/gsl_matrix_short.h \
  /usr/include/gsl/gsl_matrix_uchar.h /usr/include/gsl/gsl_matrix_char.h \
- /usr/include/gsl/gsl_min.h /home/olivier/src/PIAACMCdesign/src/CLIcore.h \
+ /usr/include/gsl/gsl_min.h /home/olivier/src/Cfits/src/CLIcore.h \
  /usr/include/semaphore.h /usr/include/x86_64-linux-gnu/bits/semaphore.h \
  /usr/include/fftw3.h /usr/include/gsl/gsl_rng.h /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum.h \
@@ -106,22 +106,22 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h \
- /home/olivier/src/PIAACMCdesign/src/info/info.h \
- /home/olivier/src/PIAACMCdesign/src/fft/fft.h \
- /home/olivier/src/PIAACMCdesign/src/image_gen/image_gen.h \
- /home/olivier/src/PIAACMCdesign/src/WFpropagate/WFpropagate.h \
- /home/olivier/src/PIAACMCdesign/src/statistic/statistic.h \
- /home/olivier/src/PIAACMCdesign/src/linopt_imtools/linopt_imtools.h \
- /home/olivier/src/PIAACMCdesign/src/OpticsMaterials/OpticsMaterials.h \
- /home/olivier/src/PIAACMCdesign/src/image_filter/image_filter.h \
- /home/olivier/src/PIAACMCdesign/src/image_basic/image_basic.h \
- /home/olivier/src/PIAACMCdesign/src/coronagraphs/coronagraphs.h \
- /home/olivier/src/PIAACMCdesign/src/PIAACMCsimul/PIAACMCsimul.h \
- /home/olivier/src/PIAACMCdesign/src/OptSystProp/OptSystProp.h \
+ /home/olivier/src/Cfits/src/00CORE/00CORE.h \
+ /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h \
+ /home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
+ /home/olivier/src/Cfits/src/info/info.h \
+ /home/olivier/src/Cfits/src/fft/fft.h \
+ /home/olivier/src/Cfits/src/image_gen/image_gen.h \
+ /home/olivier/src/Cfits/src/WFpropagate/WFpropagate.h \
+ /home/olivier/src/Cfits/src/statistic/statistic.h \
+ /home/olivier/src/Cfits/src/linopt_imtools/linopt_imtools.h \
+ /home/olivier/src/Cfits/src/OpticsMaterials/OpticsMaterials.h \
+ /home/olivier/src/Cfits/src/image_filter/image_filter.h \
+ /home/olivier/src/Cfits/src/image_basic/image_basic.h \
+ /home/olivier/src/Cfits/src/coronagraphs/coronagraphs.h \
+ /home/olivier/src/Cfits/src/PIAACMCsimul/PIAACMCsimul.h \
+ /home/olivier/src/Cfits/src/OptSystProp/OptSystProp.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include/omp.h
 
 /usr/include/stdc-predef.h:
@@ -400,7 +400,7 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/gsl/gsl_min.h:
 
-/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
+/home/olivier/src/Cfits/src/CLIcore.h:
 
 /usr/include/semaphore.h:
 
@@ -426,36 +426,36 @@ PIAACMCsimul.lo: PIAACMCsimul.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h:
+/home/olivier/src/Cfits/src/00CORE/00CORE.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h:
+/home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h:
+/home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:
 
-/home/olivier/src/PIAACMCdesign/src/info/info.h:
+/home/olivier/src/Cfits/src/info/info.h:
 
-/home/olivier/src/PIAACMCdesign/src/fft/fft.h:
+/home/olivier/src/Cfits/src/fft/fft.h:
 
-/home/olivier/src/PIAACMCdesign/src/image_gen/image_gen.h:
+/home/olivier/src/Cfits/src/image_gen/image_gen.h:
 
-/home/olivier/src/PIAACMCdesign/src/WFpropagate/WFpropagate.h:
+/home/olivier/src/Cfits/src/WFpropagate/WFpropagate.h:
 
-/home/olivier/src/PIAACMCdesign/src/statistic/statistic.h:
+/home/olivier/src/Cfits/src/statistic/statistic.h:
 
-/home/olivier/src/PIAACMCdesign/src/linopt_imtools/linopt_imtools.h:
+/home/olivier/src/Cfits/src/linopt_imtools/linopt_imtools.h:
 
-/home/olivier/src/PIAACMCdesign/src/OpticsMaterials/OpticsMaterials.h:
+/home/olivier/src/Cfits/src/OpticsMaterials/OpticsMaterials.h:
 
-/home/olivier/src/PIAACMCdesign/src/image_filter/image_filter.h:
+/home/olivier/src/Cfits/src/image_filter/image_filter.h:
 
-/home/olivier/src/PIAACMCdesign/src/image_basic/image_basic.h:
+/home/olivier/src/Cfits/src/image_basic/image_basic.h:
 
-/home/olivier/src/PIAACMCdesign/src/coronagraphs/coronagraphs.h:
+/home/olivier/src/Cfits/src/coronagraphs/coronagraphs.h:
 
-/home/olivier/src/PIAACMCdesign/src/PIAACMCsimul/PIAACMCsimul.h:
+/home/olivier/src/Cfits/src/PIAACMCsimul/PIAACMCsimul.h:
 
-/home/olivier/src/PIAACMCdesign/src/OptSystProp/OptSystProp.h:
+/home/olivier/src/Cfits/src/OptSystProp/OptSystProp.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/5/include/omp.h:
