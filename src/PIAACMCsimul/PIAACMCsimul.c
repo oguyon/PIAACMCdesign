@@ -7848,6 +7848,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
 						val += val1;
 					}
                     
+                    
 						
                     data.image[IDstatus].array.U[0] = 24;
                     sprintf(fname, "%s/linoptval.txt", piaacmcconfdir);
