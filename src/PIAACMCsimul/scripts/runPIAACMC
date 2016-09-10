@@ -1170,11 +1170,8 @@ touch ./$1/step016.txt
 touch ./$1/step017.txt
 fi
 
-echo "$execnamestring"
-sleep 100
 
-$execnamestring 
-#-n step000 << EOF
+$execnamestring -n step000 << EOF
 # idealized mask
 PIAACMC_MASKRADLD=0.0 
 
@@ -1184,6 +1181,7 @@ PIAACMC_lambda=${lambda}
 
 # load mask if available
 loadfits "_pupmaskload.fits" pupmaskim
+
 piaacmcsimrun $1 0
 exit
 EOF
