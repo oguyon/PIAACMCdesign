@@ -47,7 +47,7 @@ ZernikePolyn.lo: ZernikePolyn.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/mathdef.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathinline.h \
- /home/olivier/src/PIAACMCdesign/src/CLIcore.h /usr/include/unistd.h \
+ /home/olivier/src/Cfits/src/CLIcore.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
@@ -66,12 +66,12 @@ ZernikePolyn.lo: ZernikePolyn.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h \
- /home/olivier/src/PIAACMCdesign/src/info/info.h \
- /home/olivier/src/PIAACMCdesign/src/image_gen/image_gen.h \
- /home/olivier/src/PIAACMCdesign/src/ZernikePolyn/ZernikePolyn.h
+ /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
+ /home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h \
+ /home/olivier/src/Cfits/src/info/info.h \
+ /home/olivier/src/Cfits/src/image_gen/image_gen.h \
+ /home/olivier/src/Cfits/src/ZernikePolyn/ZernikePolyn.h
 
 /usr/include/stdc-predef.h:
 
@@ -195,7 +195,7 @@ ZernikePolyn.lo: ZernikePolyn.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/mathinline.h:
 
-/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
+/home/olivier/src/Cfits/src/CLIcore.h:
 
 /usr/include/unistd.h:
 
@@ -251,14 +251,14 @@ ZernikePolyn.lo: ZernikePolyn.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h:
+/home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h:
+/home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h:
 
-/home/olivier/src/PIAACMCdesign/src/info/info.h:
+/home/olivier/src/Cfits/src/info/info.h:
 
-/home/olivier/src/PIAACMCdesign/src/image_gen/image_gen.h:
+/home/olivier/src/Cfits/src/image_gen/image_gen.h:
 
-/home/olivier/src/PIAACMCdesign/src/ZernikePolyn/ZernikePolyn.h:
+/home/olivier/src/Cfits/src/ZernikePolyn/ZernikePolyn.h:

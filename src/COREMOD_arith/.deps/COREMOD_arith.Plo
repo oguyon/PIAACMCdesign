@@ -50,7 +50,7 @@ COREMOD_arith.lo: COREMOD_arith.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /home/olivier/src/PIAACMCdesign/src/CLIcore.h /usr/include/unistd.h \
+ /home/olivier/src/Cfits/src/CLIcore.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
@@ -65,10 +65,10 @@ COREMOD_arith.lo: COREMOD_arith.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_tools/COREMOD_tools.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h
+ /home/olivier/src/Cfits/src/00CORE/00CORE.h \
+ /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h \
+ /home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h
 
 /usr/include/stdc-predef.h:
 
@@ -206,7 +206,7 @@ COREMOD_arith.lo: COREMOD_arith.c /usr/include/stdc-predef.h \
 
 /usr/include/asm-generic/errno-base.h:
 
-/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
+/home/olivier/src/Cfits/src/CLIcore.h:
 
 /usr/include/unistd.h:
 
@@ -250,10 +250,10 @@ COREMOD_arith.lo: COREMOD_arith.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h:
+/home/olivier/src/Cfits/src/00CORE/00CORE.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_tools/COREMOD_tools.h:
+/home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h:
+/home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h:

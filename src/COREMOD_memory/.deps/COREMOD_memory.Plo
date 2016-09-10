@@ -87,16 +87,16 @@ COREMOD_memory.lo: COREMOD_memory.c /usr/include/stdc-predef.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/socket2.h \
  /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/netinet/tcp.h \
- /home/olivier/src/PIAACMCdesign/src/CLIcore.h /usr/include/fftw3.h \
+ /home/olivier/src/Cfits/src/CLIcore.h /usr/include/fftw3.h \
  /usr/include/gsl/gsl_rng.h /usr/include/gsl/gsl_types.h \
  /usr/include/gsl/gsl_errno.h /usr/include/errno.h \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/gsl/gsl_inline.h \
- /home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h
+ /home/olivier/src/Cfits/src/00CORE/00CORE.h \
+ /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h
 
 /usr/include/stdc-predef.h:
 
@@ -328,7 +328,7 @@ COREMOD_memory.lo: COREMOD_memory.c /usr/include/stdc-predef.h \
 
 /usr/include/netinet/tcp.h:
 
-/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
+/home/olivier/src/Cfits/src/CLIcore.h:
 
 /usr/include/fftw3.h:
 
@@ -352,8 +352,8 @@ COREMOD_memory.lo: COREMOD_memory.c /usr/include/stdc-predef.h \
 
 /usr/include/gsl/gsl_inline.h:
 
-/home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h:
+/home/olivier/src/Cfits/src/00CORE/00CORE.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h:
+/home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:

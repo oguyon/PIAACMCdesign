@@ -57,7 +57,7 @@
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/x86_64-linux-gnu/bits/unistd.h \
- /home/olivier/src/PIAACMCdesign/src/CLIcore.h /usr/include/semaphore.h \
+ /home/olivier/src/Cfits/src/CLIcore.h /usr/include/semaphore.h \
  /usr/include/x86_64-linux-gnu/bits/semaphore.h /usr/include/fftw3.h \
  /usr/include/gsl/gsl_rng.h /usr/include/gsl/gsl_types.h \
  /usr/include/gsl/gsl_errno.h /usr/include/gsl/gsl_inline.h \
@@ -68,7 +68,7 @@
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h
+ /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h
 
 /usr/include/stdc-predef.h:
 
@@ -224,7 +224,7 @@
 
 /usr/include/x86_64-linux-gnu/bits/unistd.h:
 
-/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
+/home/olivier/src/Cfits/src/CLIcore.h:
 
 /usr/include/semaphore.h:
 
@@ -256,4 +256,4 @@
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:

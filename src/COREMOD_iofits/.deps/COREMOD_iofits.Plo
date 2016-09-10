@@ -39,7 +39,7 @@ COREMOD_iofits.lo: COREMOD_iofits.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/string.h \
  /usr/include/x86_64-linux-gnu/bits/string2.h \
  /usr/include/x86_64-linux-gnu/bits/string3.h \
- /home/olivier/src/PIAACMCdesign/src/CLIcore.h /usr/include/unistd.h \
+ /home/olivier/src/Cfits/src/CLIcore.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
@@ -58,9 +58,9 @@ COREMOD_iofits.lo: COREMOD_iofits.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h
+ /home/olivier/src/Cfits/src/00CORE/00CORE.h \
+ /home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
+ /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h
 
 /usr/include/stdc-predef.h:
 
@@ -166,7 +166,7 @@ COREMOD_iofits.lo: COREMOD_iofits.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/string3.h:
 
-/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
+/home/olivier/src/Cfits/src/CLIcore.h:
 
 /usr/include/unistd.h:
 
@@ -222,8 +222,8 @@ COREMOD_iofits.lo: COREMOD_iofits.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h:
+/home/olivier/src/Cfits/src/00CORE/00CORE.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h:
+/home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:

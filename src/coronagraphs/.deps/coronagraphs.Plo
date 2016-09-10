@@ -42,7 +42,7 @@ coronagraphs.lo: coronagraphs.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
  /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h \
- /home/olivier/src/PIAACMCdesign/src/CLIcore.h /usr/include/unistd.h \
+ /home/olivier/src/Cfits/src/CLIcore.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
@@ -61,18 +61,18 @@ coronagraphs.lo: coronagraphs.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h \
- /home/olivier/src/PIAACMCdesign/src/COREMOD_tools/COREMOD_tools.h \
- /home/olivier/src/PIAACMCdesign/src/info/info.h \
- /home/olivier/src/PIAACMCdesign/src/fft/fft.h \
- /home/olivier/src/PIAACMCdesign/src/WFpropagate/WFpropagate.h \
- /home/olivier/src/PIAACMCdesign/src/ZernikePolyn/ZernikePolyn.h \
- /home/olivier/src/PIAACMCdesign/src/image_gen/image_gen.h \
- /home/olivier/src/PIAACMCdesign/src/coronagraphs/coronagraphs.h \
- /home/olivier/src/PIAACMCdesign/src/statistic/statistic.h \
+ /home/olivier/src/Cfits/src/00CORE/00CORE.h \
+ /home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h \
+ /home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h \
+ /home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h \
+ /home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h \
+ /home/olivier/src/Cfits/src/info/info.h \
+ /home/olivier/src/Cfits/src/fft/fft.h \
+ /home/olivier/src/Cfits/src/WFpropagate/WFpropagate.h \
+ /home/olivier/src/Cfits/src/ZernikePolyn/ZernikePolyn.h \
+ /home/olivier/src/Cfits/src/image_gen/image_gen.h \
+ /home/olivier/src/Cfits/src/coronagraphs/coronagraphs.h \
+ /home/olivier/src/Cfits/src/statistic/statistic.h \
  /usr/include/gsl/gsl_math.h /usr/include/gsl/gsl_sys.h \
  /usr/include/gsl/gsl_machine.h \
  /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
@@ -227,7 +227,7 @@ coronagraphs.lo: coronagraphs.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/stat.h:
 
-/home/olivier/src/PIAACMCdesign/src/CLIcore.h:
+/home/olivier/src/Cfits/src/CLIcore.h:
 
 /usr/include/unistd.h:
 
@@ -283,29 +283,29 @@ coronagraphs.lo: coronagraphs.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
-/home/olivier/src/PIAACMCdesign/src/00CORE/00CORE.h:
+/home/olivier/src/Cfits/src/00CORE/00CORE.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_memory/COREMOD_memory.h:
+/home/olivier/src/Cfits/src/COREMOD_memory/COREMOD_memory.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_iofits/COREMOD_iofits.h:
+/home/olivier/src/Cfits/src/COREMOD_iofits/COREMOD_iofits.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_arith/COREMOD_arith.h:
+/home/olivier/src/Cfits/src/COREMOD_arith/COREMOD_arith.h:
 
-/home/olivier/src/PIAACMCdesign/src/COREMOD_tools/COREMOD_tools.h:
+/home/olivier/src/Cfits/src/COREMOD_tools/COREMOD_tools.h:
 
-/home/olivier/src/PIAACMCdesign/src/info/info.h:
+/home/olivier/src/Cfits/src/info/info.h:
 
-/home/olivier/src/PIAACMCdesign/src/fft/fft.h:
+/home/olivier/src/Cfits/src/fft/fft.h:
 
-/home/olivier/src/PIAACMCdesign/src/WFpropagate/WFpropagate.h:
+/home/olivier/src/Cfits/src/WFpropagate/WFpropagate.h:
 
-/home/olivier/src/PIAACMCdesign/src/ZernikePolyn/ZernikePolyn.h:
+/home/olivier/src/Cfits/src/ZernikePolyn/ZernikePolyn.h:
 
-/home/olivier/src/PIAACMCdesign/src/image_gen/image_gen.h:
+/home/olivier/src/Cfits/src/image_gen/image_gen.h:
 
-/home/olivier/src/PIAACMCdesign/src/coronagraphs/coronagraphs.h:
+/home/olivier/src/Cfits/src/coronagraphs/coronagraphs.h:
 
-/home/olivier/src/PIAACMCdesign/src/statistic/statistic.h:
+/home/olivier/src/Cfits/src/statistic/statistic.h:
 
 /usr/include/gsl/gsl_math.h:
 
