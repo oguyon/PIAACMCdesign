@@ -406,11 +406,11 @@ configure:11858: checking lex output file root
 configure:11872: result: lex.yy
 configure:11877: checking lex library
 configure:11891: gcc -o conftest -g -O2   conftest.c   >&5
-/tmp/ccCdobHq.o: In function `input':
+/tmp/cccbk4Ko.o: In function `input':
 /home/olivier/src/PIAACMCdesign/lex.yy.c:1186: undefined reference to `yywrap'
-/tmp/ccCdobHq.o: In function `yylex':
+/tmp/cccbk4Ko.o: In function `yylex':
 /home/olivier/src/PIAACMCdesign/lex.yy.c:884: undefined reference to `yywrap'
-/tmp/ccCdobHq.o: In function `main':
+/tmp/cccbk4Ko.o: In function `main':
 /home/olivier/src/PIAACMCdesign/conftest.l:17: undefined reference to `yywrap'
 collect2: error: ld returned 1 exit status
 configure:11891: $? = 1
@@ -2310,7 +2310,7 @@ configure:12262: $? = 0
 configure:12271: result: yes
 configure:12294: checking for library containing readline
 configure:12325: gcc -o conftest -g -O2  -I/usr/local/include/  conftest.c -lcfitsio -lgsl -lgslcblas -lrt -lm  >&5
-/tmp/ccbxodnd.o: In function `main':
+/tmp/ccPCd4m1.o: In function `main':
 /home/olivier/src/PIAACMCdesign/conftest.c:40: undefined reference to `readline'
 collect2: error: ld returned 1 exit status
 configure:12325: $? = 1
