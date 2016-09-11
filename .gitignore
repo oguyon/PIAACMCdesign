@@ -15,7 +15,6 @@ latex/
 *.m4
 missing
 *.tex
-*.in
 *.Plo
 ar-lib
 bin/*
