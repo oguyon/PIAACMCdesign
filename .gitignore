@@ -24,7 +24,6 @@ compile
 config.guess
 config.log
 config.status
-config.sub
 install-sh
 notes/
 src/cfits
