@@ -3,7 +3,7 @@
 #
 
 m4_define([PROGNAME], PIAACMCdesign)
-m4_define([PVERSION], 1.2.11)
+m4_define([PVERSION], 1.2.12)
 
 AC_INIT([PROGNAME], [PVERSION], [oliv.guyon@gmail.com], [PROGNAME])
 
