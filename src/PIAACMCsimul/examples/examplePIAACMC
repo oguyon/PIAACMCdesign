@@ -80,6 +80,12 @@ echo "0.3" > conf/conf_coin.txt
 echo "0.2" > conf/conf_coout.txt
 echo "1.0" > conf/conf_fpmradld.txt
 
+echo "0.5" > conf/conf_REGPIAACALPHA.txt
+echo "1000.0" > conf/conf_REGPIAACCOEFF.txt  
+echo "0.5" > conf/conf_REGPIAAFALPHA.txt  
+echo "1000.0" > conf/conf_REGPIAAFCOEFF.txt
+
+
 # LYOT STOP(S) DESIGN
 echo "1650" > conf/conf_lambda.txt
 
@@ -181,7 +187,6 @@ echo "0.2" > conf/conf_LyotZmax.txt
 
 # complete step 010: Tune Lyot stops conjugations
 ./run optsingle 11
-# start 09:25
 # this step takes approximately 1hr
 # to monitor progress: tail -f result_LMpos.log 
 
