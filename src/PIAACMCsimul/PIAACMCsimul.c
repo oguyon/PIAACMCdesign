@@ -156,8 +156,9 @@ int PIAACMC_CIRC = 0; // 1 if PIAA optics must be circular symmetric
 // function CLI_checkarg used to check arguments
 // 1: float
 // 2: long
-// 3: string
+// 3: string, not existing image
 // 4: existing image
+// 5: string 
 //
 
 

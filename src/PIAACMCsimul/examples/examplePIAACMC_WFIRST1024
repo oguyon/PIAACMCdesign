@@ -254,6 +254,8 @@ echo "2.0e-6" > conf/conf_fpmmaxsag.txt
 # tmp_fpmCA_pha.fits
 # tmp_fpmCA_ampl.fits
 #
-
+# PSF:
+# psfi0.fits
+#
 
 

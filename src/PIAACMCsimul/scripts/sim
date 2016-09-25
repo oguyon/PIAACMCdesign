@@ -247,14 +247,15 @@ fpmocz=${19}
 
 echo "====== EXECUTING: ./runPIAACMC $dirname $size $pscale $pupfile $coin $coout $fpmrad $lambda $PIAAmaterial $LStransm $NBlyotstop $mlambda $mlambdaB $NBrings $maskradld $ssize $extmode $fpmmaterial $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz $index $designstep"
 
-# TEST
-# sleep 10
 
 
 
 
 # $fpmrad $coin $coout $rmode $emode $sprange $lambda $PIAAmaterial $designstep"
 #echo "----------------$designstep ->  ssize = $ssize"
+
+
+echo "./runPIAACMC $dirname $size $pscale $pupfile $coin $coout $fpmrad $lambda $PIAAmaterial $LStransm $NBlyotstop $mlambda $mlambdaB $NBrings $maskradld $ssize $extmode $fpmmaterial $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz $index $designstep" >> cmdlog.txt
 
 ./runPIAACMC $dirname $size $pscale $pupfile $coin $coout $fpmrad $lambda $PIAAmaterial $LStransm $NBlyotstop $mlambda $mlambdaB $NBrings $maskradld $ssize $extmode $fpmmaterial $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz $index $designstep
 #$fpmrad $coin $coout ${rmode} ${emode} ${sprange} $lambda $PIAAmaterial $designstep
