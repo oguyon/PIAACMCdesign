@@ -215,6 +215,10 @@ printhelpeval1 ()
 	echo ""
 	echo "psfi0_x50_y00.fits                        Polychromatic off-axis point source PSF, x=5l/D at central lambda, y=0"
 	echo "psfi0_ptsrc_sm0_s2_....fits               Polychromatic on-axis point source PSF"
+	echo "psfi0_extsrc15_sm0_s2_l....fits           Polychromatic on-axis resolved source (0.03 l/D radius)"
+	echo "ContrastCurve_extsrc15_sm0_s2_l....fits   contrast curve for 0.03 l/D radius source"
+	echo "psfi0_extsrc20_sm0_s2_l....fits           Polychromatic on-axis resolved source (0.01 l/D radius)"
+	echo "ContrastCurve_extsrc20_sm0_s2_l....fits   contrast curve for 0.01 l/D radius source"
 	echo ""
 	echo ""
 	echo "---------------------------------------------------------------------"
@@ -319,7 +323,7 @@ fi
 echo "$2" > ./log/conf_exitpt.txt
 
 
-
+3333
 
 if [ "$runoptcmd" = "eval0" ]; then
 echo "$2" > ./log/conf_MdesignStepMax.txt
@@ -342,8 +346,8 @@ fi
 rm cmdlog.txt
 
 
-
-echo "./runopt $runoptcmd $pscale $coin $coout $fpmradld $lambda $PIAAmaterial $LStransm $NBls $mlambda $mlambdaB $NBrings $maskradld $ssize $extmode $fpmmaterial $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz 000" > cmdlog.txt
+datestr=`date -u +%Y-%m-%d_%H:%M:%S`
+echo "$datestr  ./runopt $runoptcmd $pscale $coin $coout $fpmradld $lambda $PIAAmaterial $LStransm $NBls $mlambda $mlambdaB $NBrings $maskradld $ssize $extmode $fpmmaterial $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz 000" > cmdlog.txt
 
 ./runopt $runoptcmd $pscale $coin $coout $fpmradld $lambda $PIAAmaterial $LStransm $NBls $mlambda $mlambdaB $NBrings $maskradld $ssize $extmode $fpmmaterial $fpmminsag $fpmmaxsag $fpmccnbr $fpmccz $fpmocradld $fpmocz 000
 
@@ -376,6 +380,13 @@ fi
 if [ "$runoptcmd" = "eval1" ]; then
 mkdir -p eval1
 printhelpeval1 > ./eval1/readme_eval1.txt
+cp varlog.txt ./eval1/varlog.txt
+cp piaacmcconf_i000/psfi0_x50_y00.fits ./eval1/
+cp piaacmcconf_i000/psfi0_ptsrc_sm0_s2*.fits ./eval1/
+cp piaacmcconf_i000/psfi0_extsrc15_sm0_s2_l*.fits ./eval1/
+cp piaacmcconf_i000/ContrastCurve_extsrc15_sm0_s2_l*.txt ./eval1/
+cp piaacmcconf_i000/psfi0_extsrc20_sm0_s2_l*.fits ./eval1/
+cp piaacmcconf_i000/ContrastCurve_extsrc20_sm0_s2_l*.txt ./eval1/
 fi
 
 if [ "$runoptcmd" = "eval2" ]; then

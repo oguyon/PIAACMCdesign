@@ -38,15 +38,15 @@ ln -s $srcdir/syncscripts syncscripts
 # ===========================================
 
 # you may create / import your own pupil
-# in this example, the pupil must be a 2048 x 2048 pixel FITS file, single precision floating point
-# the pupil array size (2048 pix) must match the "size" parameter
-# the pupil radius in this example is 400 pix, and must match beamrad/pscale
+# in this example, the pupil must be a 1024 x 1024 pixel FITS file, single precision floating point
+# the pupil array size (1024 pix) must match the "size" parameter
+# the pupil radius in this example is 200 pix, and must match beamrad/pscale
 # the pupil central obstruction should match the coin parameter (0.3 in this example)
 # if you wish to use your own pupil file, make sure you either match the array size and beam size (pix) of this example, or modify the size, beamrad, pscale and coin parameters according to your pupil file
 
 
 
-# the name of the pupil file is "pup_2048.fits"
+# the name of the pupil file is "pup_1024.fits"
 
 
 
@@ -59,8 +59,8 @@ exampledir="/home/olivier/src/Cfits/src/PIAACMCsimul/examples"
 
 
 
-cp $exampledir/pup_seg3rings_1024.fits pup_1024.fits
-
+cp $exampledir/gmt1024.fits.gz pup_1024.fits.gz
+gunzip pup_1024.fits.gz
 
 
 
@@ -76,9 +76,9 @@ echo "0.0" > ./conf/conf_prePIAA0maskpos.txt
 
 
 # PIAA OPTICS DESIGN
-echo "0.16" > conf/conf_coin.txt
-echo "0.14" > conf/conf_coout.txt
-echo "1.2" > conf/conf_fpmradld.txt
+echo "0.11" > conf/conf_coin.txt
+echo "0.1" > conf/conf_coout.txt
+echo "1.0" > conf/conf_fpmradld.txt
 
 echo "0.5" > conf/conf_REGPIAACALPHA.txt
 echo "1000.0" > conf/conf_REGPIAACCOEFF.txt  
@@ -87,31 +87,32 @@ echo "1000.0" > conf/conf_REGPIAAFCOEFF.txt
 
 
 # LYOT STOP(S) DESIGN
-echo "600" > conf/conf_lambda.txt
-echo "3" > conf/conf_NBls.txt
+echo "1650" > conf/conf_lambda.txt
+echo "1" > conf/conf_NBls.txt
+
 
 # FOCAL PLANE MASK DESIGN
-echo "Mirror" > conf/conf_fpmmaterial.txt
+echo "SiO2" > conf/conf_fpmmaterial.txt
 echo "2" > conf/conf_FPMsectors.txt
 echo "22" > conf/conf_NBrings.txt
 echo "2.00" > conf/conf_maskradld.txt
-echo "-2.0e-6" > conf/conf_fpmminsag.txt
-echo "2.0e-6" > conf/conf_fpmmaxsag.txt
+echo "-3.0e-6" > conf/conf_fpmminsag.txt
+echo "3.0e-6" > conf/conf_fpmmaxsag.txt
 
 # OPTIMIZATION PARAMETERS
-echo "600" > conf/conf_mlambda.txt
+echo "1650" > conf/conf_mlambda.txt
 echo "10" > conf/conf_mlambdaB.txt
-echo "50" > conf/conf_ssize.txt
+echo "20" > conf/conf_ssize.txt
 
 # OPTICAL DESIGN
 echo "1024" > conf/conf_size.txt
-echo "0.022" > conf/conf_beamrad.txt
-echo "0.00011" > conf/conf_pscale.txt
+echo "0.030" > conf/conf_beamrad.txt
+echo "0.00015" > conf/conf_pscale.txt
 echo "80" > conf/conf_Fratio.txt
-echo "1.0" > conf/conf_PIAAsep.txt
+echo "0.2" > conf/conf_PIAAsep.txt
 echo "0.0" > conf/conf_PIAA0pos.txt
-echo "-2.5" > conf/conf_LyotZmin.txt
-echo "0.5" > conf/conf_LyotZmax.txt
+echo "-0.4" > conf/conf_LyotZmin.txt
+echo "0.4" > conf/conf_LyotZmax.txt
 
 
 # ===========================================
@@ -120,8 +121,9 @@ echo "0.5" > conf/conf_LyotZmax.txt
 
 # CREATE APODIZATION PROFILE AND PIAA OPTICS SHAPES FOR CENTRALLY OBSCURED CIRCULAR PUPIL APPROXIMATION
 ./run optsingle 1
-# this operation should take approximately 3 minutes
-# [0] Total light in scoring field = 2.59424e+07, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 8.147e-07
+
+# this operation should take approximately 10 minutes
+
 # The following files will be created:
 
 # Cmodes_2048.fits : Cosine modes
@@ -148,19 +150,18 @@ echo "0.5" > conf/conf_LyotZmax.txt
 
 # complete step 003 : Compute on-axis PSF
 ./run optsingle 4
-# [0] Total light in scoring field = 7.22313e+08, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 2.79473e-05
-# this operation should take approximately 1mn
+# this operation should take approximately 3mn
 
 
 # complete step 004 : compute Lyot stops shapes and locations
 ./run optsingle 5
-# this step takes approximately 90mn
+# this step takes approximately 8hr
 # the Lyot stops are named "LyotStop0.fits, LyotStop1.fits ...
 
 
 # complete step 005 : optimize focal plane mask transm
 ./run optsingle 6
-# this step takes approximately 30mn
+# this step takes approximately 2hr
 # -> piaacmcconf_i000/result_fpmt.log
 
 
@@ -173,61 +174,63 @@ echo "0.5" > conf/conf_LyotZmax.txt
 ./run optsingle 8
 # this step takes approximately 4hr (PIAACMC_dftgrid=2)
 # to monitor optimization, view linoptval.txt with tail -f 
-# [0] Total light in scoring field = 1.29693e+06, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 5.01802e-08
-
 
 # complete step 008 :  tune PIAA shapes and focal plane mask transm, 20 cosine modes, 20 Fourier modes
 ./run optsingle 9
-# this step takes approximately  (PIAACMC_dftgrid=2)
+# this step takes approximately 6hr (PIAACMC_dftgrid=2)
 # to monitor optimization, view linoptval.txt with tail -f 
-# >>->     3             3.01625e-08 <-          5.35473e-08 
-
-
+# contrast =          1.22808e-06
 
 # complete step 009 : Compute Lyot stops shapes and locations, 3nd pass, throughput = LStransm1
 ./run optsingle 10
 # this step takes approximately 20mn
-# BEST SOLUTION: 15.002462206317 / 15.002462206317    0.000001725154 / 0.000018572831  -> 0.652304542274  0.007301006939
+# BEST SOLUTION: 3.755878053803 / 3.682233386082    0.000001336506 / 0.000004015620  -> 0.651398409628  0.071384621752
+# BEST SOLUTION: 3.755878053803 / 3.682233386082    0.000001712712 / 0.000004288296  -> 0.652970578150  0.075272989285
 
 
 # complete step 010: Tune Lyot stops conjugations
 ./run optsingle 11
-# this step takes approximately 22mn
+# this step takes approximately 1hr
 # to monitor progress: tail -f result_LMpos.log 
-# [0] Total light in scoring field = 1.81457e+06, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 7.02082e-08
+
+# [0] Total light in scoring field = 1.67163e+09, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 4.98592e-06
+# [0] Total light in scoring field = 1.62817e+09, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 4.8563e-06
+
+
 
 
 # complete step 011 :  tune PIAA shapes and focal plane mask transm, 20 cosine modes, 20 Fourier modes
 ./run optsingle 12
-# this step takes approximately 1h (PIAACMC_dftgrid=2)
-# [0] Total light in scoring field = 1.25349e+06, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 4.84994e-08
+# this step takes approximately 6h (PIAACMC_dftgrid=2)
+# contrast =  1.46909e-06
 
 
 # complete step 012 : tune PIAA shapes and focal plane mask transm, 40, 100
 ./run optsingle 13
-# this step takes approximately 5h
-# [0] Total light in scoring field = 733886, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 2.83951e-08
+# this step takes approximately 18h
+
 
 
 # complete step 013 : Compute Lyot stops shapes and locations, 4rth pass, $LStransm2 throughput
 ./run optsingle 14
-# this step takes approximately 7mn
-# BEST SOLUTION: 11.047267624652 / 12.274741805168    0.000001688393 / 0.000018177068  -> 0.700198308520  0.011569878218
+# this step takes approximately 20mn
+# BEST SOLUTION: 3.133245863066 / 3.012736406794    0.000002213436 / 0.000003848618  -> 0.703131215257  0.086711655779
 
 
 # complete step 014 : Tune Lyot stops conjugations
 ./run optsingle 15
-# this step takes approximately 25mn
-# [0] Total light in scoring field = 2.3516e+06, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 9.09868e-08
-
+# this step takes approximately 1h
 
 # complete step 015 : tune PIAA shapes and focal plane mask transm, # modes: 20, 20
 ./run optsingle 16
-# [0] Total light in scoring field = 1.65547e+06, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 6.40525e-08
+# [0] Total light in scoring field = 6.07659e+08, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 1.81245e-06
 
-
-# skip steps 16 and 17
+# skip steps 16 
 touch ./piaacmcconf_i000/step016.txt
+# [0] Total light in scoring field = 857055, peak PSF = -1, SCOTINGTOTAL = 2436   -> Average contrast = 3.31607e-08
+# 
+
+# skip steps 17
 touch ./piaacmcconf_i000/step017.txt
 
 

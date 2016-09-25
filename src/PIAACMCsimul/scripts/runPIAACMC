@@ -1543,8 +1543,8 @@ cp ./$1/LyotStop3.fits ./$1/LyotStop3_step006.fits
 
 touch ./$1/step006.txt
  else
- echo "skip step 006 [  5] (Compute Lyot stops shapes and locations, 2nd pass, 70%% throughput)"
- echo "skip step 006 [  5] (Compute Lyot stops shapes and locations, 2nd pass, 70%% throughput)" >> cmdlog.txt
+ echo "$datestr  skip step 006 [  5] (Compute Lyot stops shapes and locations, 2nd pass, 70%% throughput)"
+ echo "$datestr  skip step 006 [  5] (Compute Lyot stops shapes and locations, 2nd pass, 70%% throughput)" >> cmdlog.txt
  fi
 state=007
 fi
@@ -1616,8 +1616,8 @@ cp ./$1/fpm_zonea.fits ./$1/fpm_zonea_step$step.fits
 cp ./$1/linoptval.txt ./$1/linoptval_step007.txt
 touch ./$1/step007.txt
  else
- echo "skip step 007 [ 40] (tune PIAA shapes and focal plane mask transm # modes: 10, 5)"
- echo "skip step 007 [ 40] (tune PIAA shapes and focal plane mask transm # modes: 10, 5)" >> cmdlog.txt
+ echo "$datestr  skip step 007 [ 40] (tune PIAA shapes and focal plane mask transm # modes: 10, 5)"
+ echo "$datestr  skip step 007 [ 40] (tune PIAA shapes and focal plane mask transm # modes: 10, 5)" >> cmdlog.txt
  fi
 state="008"
 fi
@@ -1928,8 +1928,8 @@ cp ./$1/linoptval.txt ./$1/linoptval_step012.txt
 cp ./$1/piaacmcparams.conf ./$1/piaacmcparams_idealmonomask.conf
 touch ./$1/step012.txt
  else
- echo "skip step 012 [ 40] (Tune PIAA shapes and focal plane mask transm, # modes: $kmaxC, $kmaxF)"
- echo "skip step 012 [ 40] (Tune PIAA shapes and focal plane mask transm, # modes: $kmaxC, $kmaxF)" >> cmdlog.txt
+ echo "$datestr  skip step 012 [ 40] (Tune PIAA shapes and focal plane mask transm, # modes: $kmaxC, $kmaxF)"
+ echo "$datestr  skip step 012 [ 40] (Tune PIAA shapes and focal plane mask transm, # modes: $kmaxC, $kmaxF)" >> cmdlog.txt
  fi
 state="013"
 fi
