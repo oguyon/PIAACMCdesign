@@ -88,7 +88,7 @@ echo "1000.0" > conf/conf_REGPIAAFCOEFF.txt
 
 # LYOT STOP(S) DESIGN
 echo "1650" > conf/conf_lambda.txt
-echo "1" > conf/conf_NBls.txt
+echo "3" > conf/conf_NBls.txt
 
 
 # FOCAL PLANE MASK DESIGN
@@ -109,10 +109,10 @@ echo "1024" > conf/conf_size.txt
 echo "0.030" > conf/conf_beamrad.txt
 echo "0.00015" > conf/conf_pscale.txt
 echo "80" > conf/conf_Fratio.txt
-echo "0.2" > conf/conf_PIAAsep.txt
+echo "2.0" > conf/conf_PIAAsep.txt
 echo "0.0" > conf/conf_PIAA0pos.txt
-echo "-0.4" > conf/conf_LyotZmin.txt
-echo "0.4" > conf/conf_LyotZmax.txt
+echo "-2.0" > conf/conf_LyotZmin.txt
+echo "0.8" > conf/conf_LyotZmax.txt
 
 
 # ===========================================
@@ -121,13 +121,12 @@ echo "0.4" > conf/conf_LyotZmax.txt
 
 # CREATE APODIZATION PROFILE AND PIAA OPTICS SHAPES FOR CENTRALLY OBSCURED CIRCULAR PUPIL APPROXIMATION
 ./run optsingle 1
-
-# this operation should take approximately 10 minutes
+# this operation should take approximately 4 minutes
 
 # The following files will be created:
 
-# Cmodes_2048.fits : Cosine modes
-# Fmodes_2048.fits : Fourier modes
+# Cmodes_1024.fits : Cosine modes
+# Fmodes_1024.fits : Fourier modes
 
 # in ./piaacmcconf_i000 directory :
 # WFamp0_xxx.fits and WFpha0_xxx.fits: amplitude and phase in specific planes
@@ -139,7 +138,7 @@ echo "0.4" > conf/conf_LyotZmax.txt
 
 # repeat above step to compute on-axis PSF
 ./run optsingle 2
-# this operation should take approximately 3mn
+# this operation should take approximately 1mn
 
 
 
@@ -150,36 +149,46 @@ echo "0.4" > conf/conf_LyotZmax.txt
 
 # complete step 003 : Compute on-axis PSF
 ./run optsingle 4
-# this operation should take approximately 3mn
+# this operation should take approximately 1mn
 
 
 # complete step 004 : compute Lyot stops shapes and locations
 ./run optsingle 5
-# this step takes approximately 8hr
-# the Lyot stops are named "LyotStop0.fits, LyotStop1.fits ...
+# this step takes approximately 2hr
+# the Lyot stop is named "LyotStop0.fits"
 
 
 # complete step 005 : optimize focal plane mask transm
 ./run optsingle 6
-# this step takes approximately 2hr
+# this step takes approximately 30mn
 # -> piaacmcconf_i000/result_fpmt.log
 
 
 # complete step 006 : compute Lyot stops shapes and locations, 2nd pass, LStransm0 throughput)
 ./run optsingle 7
-# this step takes approximately 20mn
+# this step takes approximately 5mn
 
 
 # complete step 007 : tune PIAA shapes and focal plane mask transm, 10 cosine modes, 5 Fourier modes
 ./run optsingle 8
-# this step takes approximately 4hr (PIAACMC_dftgrid=2)
+# this step takes approximately 2hr (PIAACMC_dftgrid=2)
 # to monitor optimization, view linoptval.txt with tail -f 
+
+
+
+
 
 # complete step 008 :  tune PIAA shapes and focal plane mask transm, 20 cosine modes, 20 Fourier modes
 ./run optsingle 9
 # this step takes approximately 6hr (PIAACMC_dftgrid=2)
 # to monitor optimization, view linoptval.txt with tail -f 
 # contrast =          1.22808e-06
+
+
+
+
+
+
 
 # complete step 009 : Compute Lyot stops shapes and locations, 3nd pass, throughput = LStransm1
 ./run optsingle 10
@@ -206,6 +215,8 @@ echo "0.4" > conf/conf_LyotZmax.txt
 
 
 # complete step 012 : tune PIAA shapes and focal plane mask transm, 40, 100
+# skip step 12
+touch piaacmcconf_i000/step012.txt
 ./run optsingle 13
 # this step takes approximately 18h
 
