@@ -1703,7 +1703,7 @@ int PIAACMCsimul_init_geomPIAA_rad(char *IDapofit_name)
     verr = 1.0;
     NBistep = piaacmc[0].centObs0*piaacmc[0].NBradpts/piaacmc[0].r0lim;
     //  innerprof_cumul = (double*) malloc(sizeof(double)*NBistep);
-
+	dir = 1.0; // initial direction
     while(fabs(verr)>1.0e-9)
     {
         t0 = 0.0;
@@ -2255,7 +2255,7 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
 
         /// Wavefront control
         piaacmc[0].nbDM = WFCmode; // number of deformable mirrors (10 max)
-        for(iDM; iDM<piaacmc[0].nbDM; iDM++)
+        for(iDM=0; iDM<piaacmc[0].nbDM; iDM++)
         {
             piaacmc[0].DMpos[iDM] = 0.0 + 0.6*iDM/(0.01+piaacmc[0].nbDM-1.0); // DM conjugation in collimated space
             piaacmc[0].ID_DM[iDM] = -1;  // DM image identifier - to be updated later
@@ -4568,7 +4568,7 @@ double PIAACMCsimul_optimizeLyotStop(char *IDamp_name, char *IDpha_name, char *I
     // light propagates from zmin to zmax
     // we start with a single mask in zmax, and work back
     //
-    double ratio;
+    double ratio = 1.0; // output metric... not used yet, currently a placeholder
 
     long ID, IDa, IDp;
     long nblambda; // number of wavelengths, read from input cube
@@ -7364,7 +7364,6 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                 for(jj=0; jj<data.image[piaacmc[0].piaa0CmodesID].md[0].size[0]; jj++)
                 {
 					tmp = piaa0C_regcoeff * (data.image[ID].array.F[jj]-data.image[IDref].array.F[jj]) * pow(1.0*jj,piaa0C_regcoeff_alpha);
-                    data.image[ID1Dref].array.F[ii] = tmp;
                     val0 += tmp*tmp;
                 }
 
@@ -7381,7 +7380,6 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                 for(jj=0; jj<data.image[piaacmc[0].piaa1CmodesID].md[0].size[0]; jj++)
                 {
 					tmp = piaa1C_regcoeff * (data.image[ID].array.F[jj]-data.image[IDref].array.F[jj]) * pow(1.0*jj,piaa1C_regcoeff_alpha);
-                    data.image[ID1Dref].array.F[ii] = tmp;
                     val0 += tmp*tmp;
                 }
 
@@ -7399,7 +7397,6 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                 for(jj=0; jj<data.image[piaacmc[0].piaa0FmodesID].md[0].size[0]; jj++)
                 {
 					tmp = piaa0F_regcoeff * (data.image[ID].array.F[jj]-data.image[IDref].array.F[jj]) * pow(1.0*data.image[ID_CPAfreq].array.F[jj], piaa0F_regcoeff_alpha);
-                    data.image[ID1Dref].array.F[ii] = tmp;
                     val0 += tmp*tmp;
                 }
 
@@ -7414,7 +7411,6 @@ int PIAACMCsimul_exec(char *confindex, long mode)
                 for(jj=0; jj<data.image[piaacmc[0].piaa1FmodesID].md[0].size[0]; jj++)
                 {
 					tmp = piaa1F_regcoeff * (data.image[ID].array.F[jj]-data.image[IDref].array.F[jj]) * pow(1.0*data.image[ID_CPAfreq].array.F[jj], piaa1F_regcoeff_alpha);
-                    data.image[ID1Dref].array.F[ii] = tmp;
                     val0 += tmp*tmp;
                 }
 
