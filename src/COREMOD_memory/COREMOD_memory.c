@@ -1271,7 +1271,6 @@ long next_avail_image_ID() /* next available ID number */
 {
     long i;
     long ID = -1;
-    int found = 0;
 
 # ifdef _OPENMP
     #pragma omp critical
@@ -1279,10 +1278,11 @@ long next_avail_image_ID() /* next available ID number */
 #endif
         for (i=0; i<data.NB_MAX_IMAGE; i++)
         {
-            if((data.image[i].used == 0)&&(found == 0))
+            if(data.image[i].used == 0)
             {
                 ID = i;
-                found = 1;
+                data.image[ID].used = 1;
+                break;
             }
         }
 # ifdef _OPENMP
@@ -1290,7 +1290,11 @@ long next_avail_image_ID() /* next available ID number */
 # endif
 
     if(ID==-1)
-        ID = data.NB_MAX_IMAGE;
+        {
+			printf("ERROR: ran out of image IDs - cannot allocate new ID\n");
+			printf("NB_MAX_IMAGE should be increased above current value (%ld)\n", data.NB_MAX_IMAGE);
+			exit(0);
+		}
 
     return(ID);
 }
@@ -1537,12 +1541,8 @@ long create_image_ID(char *name, long naxis, long *size, int atype, int shared, 
     ID = -1;
     if(image_ID(name) == -1)
     {
-        # ifdef _OPENMP
-        #pragma omp atomic
-        #endif
         ID = next_avail_image_ID();
-        
-        data.image[ID].used = 1;
+
         nelement = 1;
         for(i=0; i<naxis; i++)
             nelement*=size[i];
@@ -2136,7 +2136,6 @@ long read_sharedmem_image(char *name)
     //	int *vint;
 
     ID = next_avail_image_ID();
-    data.image[ID].used = 1;
 
 
     sprintf(SM_fname, "%s/%s.im.shm", SHAREDMEMDIR, name);
