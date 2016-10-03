@@ -6032,7 +6032,7 @@ int PIAACMCsimul_exec(char *confindex, long mode)
 
 
                 sprintf(fname1, "!%s.tmp", fname);
-                sprintf(fname2, "!%s", fname);
+                sprintf(fname2, "%s", fname);
                 mzoffset = PIAACMC_FPMresp_thread;
                 mzstep = PIAACMC_FPMresp_mp;
 
@@ -6233,13 +6233,13 @@ int PIAACMCsimul_exec(char *confindex, long mode)
 
                     printf("Saving FPMresp (ID = %ld) as \"%s\" ...", image_ID("FPMresp"), fname2);
                     fflush(stdout);
-                    save_fits("FPMresp", fname2);
+                    save_fits_atomic("FPMresp", fname2);
                     printf("Done \n");
                     fflush(stdout);
                     WRITE_OK = 0;
 
-                    sprintf(command, "mv %s %s", fname1, fname2);
-                    r = system(command);
+                 //   sprintf(command, "mv %s %s", fname1, fname2);
+                 //   r = system(command);
                 }
             }
             else

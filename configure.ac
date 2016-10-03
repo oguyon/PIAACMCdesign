@@ -3,7 +3,7 @@
 #
 
 m4_define([PROGNAME], PIAACMCdesign)
-m4_define([PVERSION], 1.2.18)
+m4_define([PVERSION], 1.2.19)
 
 AC_INIT([PROGNAME], [PVERSION], [oliv.guyon@gmail.com], [PROGNAME])
 
@@ -82,6 +82,12 @@ AC_CHECK_LIB([m],[main],
 		  exit 0;
 		])
 
+
+case "$host_os" in
+*darwin* | *rhapsody* | *macosx*)
+     AC_DEFINE_UNQUOTED(OSX,1,[This is an OS X system])
+     ;;
+*)
 AC_CHECK_LIB([rt], [clock],
 		[],
 		[ echo "Cannot find required library:rt";
@@ -89,6 +95,8 @@ AC_CHECK_LIB([rt], [clock],
 		  AC_MSG_FAILURE(["FATAL...Cannot find required library:rt"]);
 		  exit 0;
 		])
+;;
+esac
 
 
 AC_CHECK_LIB([pthread], [pthread_create].
