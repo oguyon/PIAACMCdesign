@@ -638,13 +638,23 @@ int main(int argc, char *argv[])
 
     // to take advantage of kernel priority:
     // owner=root mode=4755
+<<<<<<< HEAD
     
     #ifndef __MACH__
+=======
+
+#ifndef __MACH__
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
     getresuid(&euid_real, &euid_called, &suid);
 
     //This sets it to the privileges of the normal user
     r = seteuid(euid_real);
+<<<<<<< HEAD
 	#endif
+=======
+#endif
+
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
 
 
 
@@ -1466,12 +1476,17 @@ int command_line( int argc, char **argv)
 
         case 'p':
             schedpar.sched_priority = atoi(optarg);
+<<<<<<< HEAD
             #ifndef __MACH__
+=======
+#ifndef __MACH__
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
             r = seteuid(euid_called); //This goes up to maximum privileges
             sched_setscheduler(0, SCHED_FIFO, &schedpar); //other option is SCHED_RR, might be faster
             r = seteuid(euid_real);//Go back to normal privileges
             #endif
             break;
+#endif
 
         case 'f':
             printf("using input fifo '%s'\n", optarg);

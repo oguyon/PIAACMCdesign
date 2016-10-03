@@ -1,6 +1,11 @@
 while [ ! -f "$1" ]
 do
 	echo "waitforfile: WAITING for file $1"
+<<<<<<< HEAD
 	sleep 1
 	#inotifywait -qqt 2 -e create -e moved_to "$(dirname $1)"
+=======
+#	inotifywait -qqt 2 -e create -e moved_to "$(dirname $1)"
+	sleep 1
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
 done

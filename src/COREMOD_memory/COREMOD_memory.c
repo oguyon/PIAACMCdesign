@@ -12,6 +12,9 @@
 #include <sys/mman.h>
 #include <signal.h> 
 #include <ncurses.h>
+#ifdef __MACH__
+#include <sys/stat.h>
+#endif
 
 #include <semaphore.h>
 #include <arpa/inet.h>
@@ -4516,9 +4519,15 @@ long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, 
     char *buff; // transmit buffer
 
     schedpar.sched_priority = RT_priority;
+<<<<<<< HEAD
     #ifndef __MACH__
     sched_setscheduler(0, SCHED_FIFO, &schedpar); //other option is SCHED_RR, might be faster
     #endif
+=======
+#ifndef __MACH__
+    sched_setscheduler(0, SCHED_FIFO, &schedpar); //other option is SCHED_RR, might be faster
+#endif
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
 
     ID = image_ID(IDname);
 
@@ -4672,6 +4681,7 @@ long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, 
                 exit(EXIT_FAILURE);
             }
             ts.tv_sec += 1;
+<<<<<<< HEAD
             
             #ifndef __MACH__
             semr = sem_timedwait(data.image[ID].semptr[0], &ts);
@@ -4680,6 +4690,15 @@ long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, 
 			semr = sem_wait(data.image[ID].semptr[0])
 			#endif
 			
+=======
+#ifndef __MACH__
+            semr = sem_timedwait(data.image[ID].semptr[0], &ts);
+#else
+            alarm(1);
+            semr = sem_wait(data.image[ID].semptr[0]);
+#endif
+
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
             if(iter == 0)
             {
                 printf("driving semaphore to zero ... ");
@@ -4791,11 +4810,21 @@ long COREMOD_MEMORY_image_NETWORKreceive(int port, int mode)
     
 
     schedpar.sched_priority = RT_priority;
+<<<<<<< HEAD
     #ifndef __MACH__
     // r = seteuid(euid_called); //This goes up to maximum privileges
     sched_setscheduler(0, SCHED_FIFO, &schedpar); //other option is SCHED_RR, might be faster
     // r = seteuid(euid_real);//Go back to normal privileges
     #endif
+=======
+#ifndef __MACH__
+    // r = seteuid(euid_called); //This goes up to maximum privileges
+    sched_setscheduler(0, SCHED_FIFO, &schedpar); //other option is SCHED_RR, might be faster
+    // r = seteuid(euid_real);//Go back to normal privileges
+#endif
+
+
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
 
     // create TCP socket
     if((fds_server=socket(PF_INET, SOCK_STREAM, IPPROTO_TCP))==-1)
@@ -5167,12 +5196,21 @@ long COREMOD_MEMORY_PixMapDecode_U(char *inputstream_name, long xsizeim, long ys
                 exit(EXIT_FAILURE);
             }
             ts.tv_sec += 1;
+<<<<<<< HEAD
             #ifndef __MACH__
             semr = sem_timedwait(data.image[IDin].semptr[0], &ts);
             #else
             alarm(1);
             semr = sem_wait(data.image[IDin].semptr[0]);
             #endif
+=======
+#ifndef __MACH__
+            semr = sem_timedwait(data.image[IDin].semptr[0], &ts);
+#else
+            alarm(1);
+            semr = sem_wait(data.image[IDin].semptr[0]);
+#endif
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
 
             if(iter == 0)
             {

@@ -5,23 +5,36 @@ Latest distribution is on [github](https://github.com/oguyon/PIAACMCdesign).
 You can clone the repository, or download the latest .tar.gz distribution.
 
 ## Compilation
+<<<<<<< HEAD
 
 The source code follows the standard GNU build process. On linux :
+=======
+The source code follows the standard GNU build process.  On linux:
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
 
     ./configure
     make
     make install
+<<<<<<< HEAD
 
 
 On OS X you need to use gcc-mp-5 for opemMP.
 
+=======
+	
+On OS X you need to use gcc-mp-5 for opemMP.
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
 	autoconf configure.ac.macosx > configure; chmod +x configure
 	./configure "CC=/opt/local/bin/gcc-mp-5" CPPFLAGS="-I/usr/include/malloc/ -I/opt/local/include/readline" LDFLAGS="-L/opt/local/lib/"
 (Replace "/opt/local/" is the location of your installed libraries. )
     make
     make install
+<<<<<<< HEAD
 
 
+=======
+	
+>>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
 ## Documentation, Getting Started
 
 Please consult the documentation :  
