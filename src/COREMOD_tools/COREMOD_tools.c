@@ -969,17 +969,11 @@ long COREMOD_TOOLS_statusStat(char *IDstat_name, long indexmax)
         data.image[IDout].array.L[st] = 0;
 
     schedpar.sched_priority = RT_priority;
-<<<<<<< HEAD
     #ifndef __MACH__
     sched_setscheduler(0, SCHED_FIFO, &schedpar);
 	#endif
 
 
-=======
-#ifndef __MACH__
-    sched_setscheduler(0, SCHED_FIFO, &schedpar);
-#endif
->>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
     printf("Measuring status distribution \n");
     fflush(stdout);
 
