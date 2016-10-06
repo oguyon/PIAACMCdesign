@@ -1431,16 +1431,10 @@ long linopt_imtools_image_construct_stream(char *IDmodes_name, char *IDcoeff_nam
    
     
     schedpar.sched_priority = RT_priority;
-<<<<<<< HEAD
     #ifndef __MACH__
     sched_setscheduler(0, SCHED_FIFO, &schedpar); //other option is SCHED_RR, might be faster
     #endif
  
-=======
-#ifndef __MACH__
-    sched_setscheduler(0, SCHED_FIFO, &schedpar); //other option is SCHED_RR, might be faster
-#endif
->>>>>>> fe7a8188093e7045b16e32f1091bd4e218b1aaa0
   
   
     IDmodes = image_ID(IDmodes_name);
@@ -1707,7 +1701,7 @@ double linopt_imtools_match_slow(char *ID_name, char *IDref_name, char *IDmask_n
 
     //  printf("Input params : %s %s %s\n",ID_name,IDref_name,IDsol_name);
 
-
+	params = (double*) malloc(sizeof(double)*1);
 	params[0] = 0.0;
 
 
@@ -1912,6 +1906,8 @@ double linopt_imtools_match_slow(char *ID_name, char *IDref_name, char *IDmask_n
     polycoeff2 = NULL;
     free(tarray);
     tarray = NULL;
+    
+    free (params);
 
     return((double) val);
 }
