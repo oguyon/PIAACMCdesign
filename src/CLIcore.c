@@ -791,6 +791,8 @@ int main(int argc, char *argv[])
 		
         while(CLIexecuteCMDready == 0)
         {
+			printf("blockCLIinput = %d\n", blockCLIinput);
+			fflush(stdout);
             n = select(fdmax+1, &cli_fdin_set, NULL, NULL, NULL);
 
             if (!n)
@@ -835,6 +837,7 @@ int main(int argc, char *argv[])
                             fflush(stdout);
                             break;
                         }
+						printf("bytes = %d\n", bytes);
                     }
 					blockCLIinput = 1;
                 }
