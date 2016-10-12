@@ -837,12 +837,14 @@ int main(int argc, char *argv[])
                             fflush(stdout);
                             break;
                         }
-						printf("bytes = %d\n", bytes);
+						printf("bytes = %d\n", (int) bytes);
+						fflush(stdout);
                     }
 					blockCLIinput = 1;
                 }
             }
-           
+           printf("here\n");
+           fflush(stdout);
            
             if(blockCLIinput == 0)
 				if (FD_ISSET(fileno(stdin), &cli_fdin_set)) {
