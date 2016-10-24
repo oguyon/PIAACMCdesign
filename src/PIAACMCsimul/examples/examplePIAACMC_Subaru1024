@@ -351,19 +351,20 @@ echo "2" > conf/conf_FPMsectors.txt
 echo "3.0" > conf/conf_maskradld.txt
 
 # 32 rings
-echo "32" > conf/conf_NBrings.txt
+echo "24" > conf/conf_NBrings.txt
 
 echo "-3.0e-6" > conf/conf_fpmminsag.txt
 echo "3.0e-6" > conf/conf_fpmmaxsag.txt
 
-# note:
-# 32 rings, 3.0 l/D,  2um limit -> 5.9968e-07, Average contrast = 5.78912e-06
-# 32 rings, 3.0 l/D,  3um limit -> 4.8364e-07, Average contrast = 5.1455e-06
+
 
 # START FOCAL PLANE MASK DESIGN
 time ./run optsingle 200
 
 
+# 32 rings, 3.0 l/D,  2um limit -> 5.9968e-07, Average contrast = 5.78912e-06
+# 32 rings, 3.0 l/D,  3um limit -> 4.6699e-07, Average contrast = 5.03258e-06
+# 24 rings, 3.0 l/D,  3um limit -> 
 
 
 # this command will run for a few hrs if the number of focal plane mask zones is large
@@ -392,7 +393,7 @@ time ./run optsingle 200
 # to compute the PSF and complex amplitudes for the best solution, execute:
 time ./run proppoly 0
 # this will take about 3mn
-
+# [1] Total light in scoring field = 1.01536e+08, peak PSF = 8.10055e+09, SCOTINGTOTAL = 2436  -> Average contrast = 5.1455e-06
 
 
 # focal plane mask solution :
