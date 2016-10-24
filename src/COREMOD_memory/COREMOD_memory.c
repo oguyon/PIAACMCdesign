@@ -4677,7 +4677,7 @@ long COREMOD_MEMORY_image_NETWORKtransmit(char *IDname, char *IPaddr, int port, 
             semr = sem_timedwait(data.image[ID].semptr[0], &ts);
 			#else
 			alarm(1);
-			semr = sem_wait(data.image[ID].semptr[0])
+			semr = sem_wait(data.image[ID].semptr[0]);
 			#endif
 			
             if(iter == 0)
