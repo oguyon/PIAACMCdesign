@@ -4011,7 +4011,7 @@ long IMAGE_BASIC_streamfeed(char *IDname, char *streamname, float frequ)
     long ii;
    
     schedpar.sched_priority = RT_priority;
-    #ifndef __MACH_
+    #ifndef __MACH__
     r = seteuid(euid_called); //This goes up to maximum privileges
     sched_setscheduler(0, SCHED_FIFO, &schedpar); //other option is SCHED_RR, might be faster
     r = seteuid(euid_real);//Go back to normal privileges
