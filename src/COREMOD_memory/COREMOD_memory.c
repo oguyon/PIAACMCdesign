@@ -2370,7 +2370,7 @@ long create_2Dimage_ID(char *ID_name, long xsize, long ysize)
     return(ID);
 }
 
-long create_2Dimagedouble_ID(char *ID_name, long xsize, long ysize)
+long create_2Dimage_ID_double(char *ID_name, long xsize, long ysize)
 {
     long ID = -1;
     long naxis=2;
@@ -2402,6 +2402,22 @@ long create_2DCimage_ID(char *ID_name, long xsize, long ysize)
 
     return(ID);
 }
+
+/* 2D complex image */
+long create_2DCimage_ID_double(char *ID_name, long xsize, long ysize)
+{
+    long ID = -1;
+    long naxis=2;
+    long naxes[2];
+
+    naxes[0]=xsize;
+    naxes[1]=ysize;
+
+    ID = create_image_ID(ID_name,naxis,naxes, 6, data.SHARED_DFT, data.NBKEWORD_DFT); // double precision
+
+    return(ID);
+}
+
 
 
 /* 3D image, single precision */

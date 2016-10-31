@@ -597,7 +597,7 @@ long basic_add(char *ID_name1, char *ID_name2, char *ID_name_out, long off1, lon
 
     if(atype==DOUBLE)
     {
-        create_2Dimagedouble_ID(ID_name_out,(xmax-xmin),(ymax-ymin));
+        create_2Dimage_ID_double(ID_name_out,(xmax-xmin),(ymax-ymin));
         ID_out = image_ID(ID_name_out);
         naxes[0] = data.image[ID_out].md[0].size[0];
         naxes[1] = data.image[ID_out].md[0].size[1];
