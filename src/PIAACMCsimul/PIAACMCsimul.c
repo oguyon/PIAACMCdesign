@@ -981,6 +981,9 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
     int savefpm;
 
+	long ID_DFTmask00;
+	double r;
+
     //    double ri, ri0, sag2opd_coeff;
     //    long IDpiaar0zsag, IDpiaar1zsag;
     //    int mkpiaar0zsag, mkpiaar1zsag;
@@ -1027,7 +1030,19 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
     // beam radius in pixels
     beamradpix = optsyst[0].beamrad/optsyst[0].pixscale;
 
-
+	// Create "_DFTmask00" : force pixels within 10% of nominal pupil radius to be part of the DFT
+	ID_DFTmask00 = create_2Dimage_ID("_DFTmask00", size, size);
+	for(ii=0;ii<size;ii++)
+		for(jj=0;jj<size;jj++)
+			{
+				x = (1.0*ii-0.5*size)/beamradpix;
+				y = (1.0*jj-0.5*size)/beamradpix;
+				r = sqrt(x*x+y*y);
+				if(r<1.1)
+					data.image[ID_DFTmask00].array.F[jj*size+ii] = 1.0;
+				else
+					data.image[ID_DFTmask00].array.F[jj*size+ii] = 0.0;					
+			}
 
 
     // printf("BEAM RADIUS = %f / %f  = %f pix,   piaacmc[0].beamrad = %f\n", optsyst[0].beamrad, optsyst[0].pixscale, beamradpix, piaacmc[0].beamrad );
@@ -1201,7 +1216,7 @@ void PIAACMCsimul_init( OPTPIAACMCDESIGN *design, long index, double TTxld, doub
 
 
     // ------------------- [OPTIONAL] pre-apodizer  -----------------------
-    // typically not present, skipping
+    // typically not present for PIAACMC
     ID = image_ID("prePIAA0mask");
     if(ID==-1)
         ID = load_fits("prePIAA0mask.fits", "prePIAA0mask", 1);
@@ -2224,7 +2239,7 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
     long Fmsize;
     long ID, ID0, ID1;
     long size2;
-    int r;
+    double rad;
     char command[1000];
     long IDv1, IDv2;
     char fname[500];
@@ -2562,7 +2577,7 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         printf("Loading PIAACMC configuration\n");
         fflush(stdout);
         sprintf(command, "mkdir -p %s", piaacmcconfdir);
-        r = system(command);
+        ret = system(command);
         loaded = PIAAsimul_loadpiaacmcconf(piaacmcconfdir);
         if(loaded==0)
         {
@@ -2747,7 +2762,7 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
 		save_fits("cpamodesfreq", "!cpamodesfreq.fits");
         sprintf(command, "mv ModesExpr_CPA.txt %s/", piaacmcconfdir);
         
-        r = system(command);
+        ret = system(command);
     }
     piaacmc[0].NBFmodes = data.image[piaacmc[0].FmodesID].md[0].size[2];
     piaacmc[0].Fmsize = data.image[piaacmc[0].FmodesID].md[0].size[0];
@@ -2801,6 +2816,10 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
             }
         }
     }
+
+
+
+
 
     if((piaacmc[0].piaa0CmodesID==-1)||( piaacmc[0].piaa0FmodesID==-1)||(piaacmc[0].piaa1CmodesID==-1)||( piaacmc[0].piaa1FmodesID==-1))
     {
@@ -2872,9 +2891,10 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
                 }
 
             }
-
-
         }
+        
+        
+        
 
 
         // split apodization in conventional pupil apodizer (apoCPA) and PIAA apodization (apo2Drad_PIAA)
@@ -2886,7 +2906,7 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
 
         if(piaacmc[0].PIAAmode==0)
         {
-            for(ii=0; ii<xsize*ysize; ii++)
+            for(ii=0; ii<xsize*ysize; ii++) // everything goes to the conventional apodizer
             {
                 data.image[IDapo_PIAA].array.F[ii] = 1.0;
                 data.image[IDapo_CPA].array.F[ii] = data.image[IDapo].array.F[ii];
@@ -2903,7 +2923,10 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         }
 
         copy_image_ID("apo2Drad_CPA", "prePIAA0mask", 0);
-        save_fits("prePIAA0mask", "!test_prePIAA0mask.fits");
+        save_fits("prePIAA0mask", "!prePIAA0mask.fits");
+        
+        
+        
 
 
         // load PIAA apodization profile and fit it a series of cosines
@@ -3272,6 +3295,8 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
         i = 0;
         sprintf(fname, "!%s/LyotStop%ld.fits", piaacmcconfdir, i);
         sprintf(name, "lyotstop%ld", i);
+
+
         
         piaacmc[0].IDLyotStop[i] = image_ID(name);
         if(piaacmc[0].IDLyotStop[i]==-1)
@@ -3279,17 +3304,29 @@ int PIAAsimul_initpiaacmcconf(long piaacmctype, double fpmradld, double centobs0
 				piaacmc[0].IDLyotStop[i] = create_2Dimage_ID(name, xsize, ysize);
 				ID = image_ID("pupmaskim");
 				for(ii=0; ii<xsize*ysize; ii++)
-					if(data.image[ID].array.F[ii] < 0.999)
+					if(data.image[ID].array.F[ii] < 0.99999999)
 						data.image[piaacmc[0].IDLyotStop[i]].array.F[ii] = 0.0;
 					else
 						data.image[piaacmc[0].IDLyotStop[i]].array.F[ii] = 1.0;
+						
+				for(ii=0;ii<xsize;ii++)
+					for(jj=0;jj<ysize;jj++)
+						{
+							x = 1.0*ii-0.5*xsize;
+							y = 1.0*jj-0.5*ysize;
+							rad = sqrt(x*x+y*y);
+							rad /= beamradpix;
+							if(rad<(piaacmc[0].centObs1+0.5/beamradpix))
+								data.image[piaacmc[0].IDLyotStop[i]].array.F[jj*xsize+ii] = 0.0;
+							if(rad>(1.0-0.5/beamradpix))
+								data.image[piaacmc[0].IDLyotStop[i]].array.F[jj*xsize+ii] = 0.0;
+						}
 				save_fl_fits(name, fname);
 			}
     }
 
     if(saveconf==1)
         PIAAsimul_savepiaacmcconf(piaacmcconfdir);
-
 
 
     return(0);
