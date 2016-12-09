@@ -34,7 +34,8 @@ loadparam srcdir "/home/olivier/src/Cfits"
 
 echo "srcdir = $srcdir"
 
-size="1024"
+
+loadparam size "1024"
 
 
 # ===========================================
@@ -101,13 +102,13 @@ set_optconfig=0
 
 
 # refractive PIAA lenses in collimated beam, SiO2 focal plane mask
-function SetConfig_PIAACMCnearIRlenses1024 {
-size="1024"
+function SetConfig_PIAACMCnearIRlenses2048 {
+size="2048"
 invPIAAmode=1
 lambda="1650"
 PIAAmaterial="CaF2"
 beamrad="0.00882"
-pscale="0.0000441"
+pscale="0.00002205"
 Fratio="29.422"
 PIAAsep="0.10"
 PIAA0pos="0.0"
@@ -140,8 +141,8 @@ PIAAsep="-2.302606"
 PIAA0pos="1.199997"
 prePIAA0maskpos="-1.102609" # optional
 postPIAA0maskpos="1.199997" # optional
-LyotZmin="-4.5"
-LyotZmax="0.5"
+LyotZmin="-2.5"
+LyotZmax="2.5"
 pupoutmaskrad="0.95"
 
 fpmmaterial="Mirror"
@@ -190,11 +191,11 @@ set_pupil=1
 
 
 
-function loadPup_Subaru1024 {
+function loadPup_Subaru2048 {
 exampledir="$srcdir/src/PIAACMCsimul/examples"
-cp $exampledir/pupSubaruM_1024.fits.gz pup_1024.fits.gz
-rm pup_1024.fits 2> /dev/null
-gunzip pup_1024.fits.gz
+cp $exampledir/pupSubaruM_2048.fits.gz pup_2048.fits.gz
+rm pup_2048.fits 2> /dev/null
+gunzip pup_2048.fits.gz
 coin="0.3175"
 coout="0.2"
 pupoutmaskrad="0.95"
@@ -275,9 +276,9 @@ echo "     $(tput bold)-p$(tput sgr0)              PIAACMC design (PIAA optics)"
 echo "     $(tput bold)-S$(tput sgr0)              save intermediate results during monochromatic design"
 echo "     $(tput bold)-r$(tput sgr0) <step>       Revert to step <step>, if it has been saved"              
 echo "     $(tput bold)-e$(tput sgr0) <index>      setup example #<index> (WILL SET ALL PARAMETERS)"
-echo "                           0 : Subaru PIAACMC, H band"
-echo "                           1 : WFIST PIAACMC, visible (default)"
-echo "                           2 : 3-rings segmented aperture, visible"
+echo "                           0 : Subaru PIAACMC, H band, 2048 pix array"
+echo "                           1 : WFIST PIAACMC, visible (default), 1024 pix array"
+echo "                           2 : 3-rings segmented aperture, visible, 1024 pix array"
 echo "     $(tput bold)-l$(tput sgr0)              List design parameters"
 echo "     $(tput bold)-m$(tput sgr0) <step>       Design PIAACMC step <step>"
 echo "                      1-18 : design monochromatic PIAACMC up to this step"
@@ -286,6 +287,7 @@ echo "                      300  : compute polychromatic on-axis PSF -> psfi0.fi
 echo "                      400  : evaluation, level 0 (on-axis PSF)"
 echo "                      401  : evaluation, level 1 (level0 + extended source with OPD errors)"
 echo "                      402  : evaluation, level 2 (level 1 + transmission curve)"
+echo "     $(tput bold)-q$(tput sgr0) <NBexp>      Quantize and process focal plane mask, <NBexp> exposures"
 echo ""
 echo "------------------------------------------------------------------------"
 }
@@ -396,10 +398,11 @@ if [ "$PIAAmode" = "0" ]; then
 APLCMC="1"
 fi
 
+FPMprocess="0"
 
 
 # Parse command line flags
-while getopts :hs:apSm:e:lcr: FLAG; do
+while getopts :hs:apSm:e:lcr:q: FLAG; do
   case $FLAG in
     S)
     SAVESTEP=1
@@ -460,6 +463,11 @@ while getopts :hs:apSm:e:lcr: FLAG; do
     fi
     exit
     ;;
+    q)
+    NBexp=$OPTARG
+    echo "Process focal plane mask - $NBexp exposures"
+    FPMprocess="1"
+    ;;
     \?) 
       echo -e \\n"Option -${BOLD}$OPTARG${NORM} not allowed."
       printHEL
@@ -494,8 +502,8 @@ fi
 if [ "$SETparams" = "1" ]; then
 # Subaru PIAACMC
 if [ "$DesignExampleIndex" -eq 0 ]; then
-loadPup_Subaru1024
-SetConfig_PIAACMCnearIRlenses1024
+loadPup_Subaru2048
+SetConfig_PIAACMCnearIRlenses2048
 SetOptParam
 fi
 
@@ -686,6 +694,44 @@ if [ "$ListParam" -eq 1 ]; then
 ./run
 exit
 fi
+
+
+
+
+
+if [ "$FPMprocess" -eq 1 ]; then
+echo "PROCESSING Focal Plane Mask"
+loadparam NBrings "12"
+loadparam FPMsectors "0"
+FPMcoordFile=$( printf "fpmsectors%d_%03d.txt" $FPMsectors $NBrings )
+echo "Coordinates file    :  $FPMcoordFile"
+
+loadparam mlambda "1000"
+loadparam mlambdaB "20"
+loadparam maskradld "2.00"
+maskradld3=$( echo "$maskradld" | sed 's/\.//g')
+loadparam fpmregsag_coeff "1.0"
+fpmregsag_coeff3=$( printf "%07.3f" $fpmregsag_coeff | sed 's/\.//g' )
+loadparam ssize 20
+loadparam fpmmaterial "SiO2"
+loadparam nblambda "20"
+FPMsagfile=$( printf "fpm_zonez_s%d_l%04ld_sr%02d_nbr%03d_mr%03d_minsag-02000_maxsag002000_fpmreg%s_ssr%02d_ssm0_%s_wb%02d.best.fits" $FPMsectors $mlambda $mlambdaB $NBrings $maskradld3 "$fpmregsag_coeff3" $ssize $fpmmaterial $nblambda )
+echo "FPM sag file        :  $FPMsagfile"
+
+execname="PIAACMCdesign"
+$execname << EOF
+loadfits "piaacmcconf_i000/$FPMsagfile" fpmin
+piaacmcfpmprocess fpmin $FPMcoordFile $NBexp fpmout.txt
+exit
+EOF
+
+exit
+fi
+
+
+
+
+
 
 
 
