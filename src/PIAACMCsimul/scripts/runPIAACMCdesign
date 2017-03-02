@@ -79,11 +79,11 @@ REGPIAAFCOEFF="300.0"
 # include inverse PIAA ?
 invPIAAmode=1
 
-# set pre-apodizer to pupil plane conjugation
+# set pre-apodizer and post-apodizer to pupil plane conjugation
 prePIAA0maskpos="0.0"
+postPIAA0maskpos="0.0"
 
-
-
+nblambda="10"
 
 
 
@@ -112,7 +112,7 @@ pscale="0.00002205"
 Fratio="29.422"
 PIAAsep="0.10"
 PIAA0pos="0.0"
-LyotZmin-"-0.1"
+LyotZmin="-0.1"
 LyotZmax="0.1"
 pupoutmaskrad="0.98"
 
@@ -251,7 +251,7 @@ set_optparam="1"
 # ===================================================================================
 
 
-
+rm LOOPMODE.txt
 
 function printHELP {
 echo "------------------------------------------------------------------------"
@@ -287,6 +287,7 @@ echo "                      300  : compute polychromatic on-axis PSF -> psfi0.fi
 echo "                      400  : evaluation, level 0 (on-axis PSF)"
 echo "                      401  : evaluation, level 1 (level0 + extended source with OPD errors)"
 echo "                      402  : evaluation, level 2 (level 1 + transmission curve)"
+echo "     $(tput bold)-L$(tput sgr0)              LOOP mode (run with \"-m 300\"): opderr -> psfiout0"
 echo "     $(tput bold)-q$(tput sgr0) <NBexp>      Quantize and process focal plane mask, <NBexp> exposures"
 echo ""
 echo "------------------------------------------------------------------------"
@@ -400,9 +401,9 @@ fi
 
 FPMprocess="0"
 
-
+OptionSelected="0"
 # Parse command line flags
-while getopts :hs:apSm:e:lcr:q: FLAG; do
+while getopts :hs:apSm:e:lcr:q:L FLAG; do
   case $FLAG in
     S)
     SAVESTEP=1
@@ -421,6 +422,7 @@ while getopts :hs:apSm:e:lcr:q: FLAG; do
     exit
     ;;
     a) # APLCMC design
+    echo "setting APLC mode (no PIAA optics)"
     APLCMC="1"
     PIAAmode="0"
     echo "$PIAAmode" > ./conf/conf_PIAAmode.txt
@@ -439,13 +441,19 @@ while getopts :hs:apSm:e:lcr:q: FLAG; do
     ;;
     m)
     mSTEP=$OPTARG
+    OptionSelected="1"
     ;;
+    L) # loop mode
+	touch LOOPMODE.txt
+    ;;    
     l)
     ListParam=1
+    OptionSelected="1"    
     ;;
     e)
     DesignExampleIndex=$OPTARG
     SETparams=1
+    OptionSelected="1"
     ;;
     c)
     ./runclean 2> /dev/null
@@ -467,6 +475,7 @@ while getopts :hs:apSm:e:lcr:q: FLAG; do
     NBexp=$OPTARG
     echo "Process focal plane mask - $NBexp exposures"
     FPMprocess="1"
+    OptionSelected="1"
     ;;
     \?) 
       echo -e \\n"Option -${BOLD}$OPTARG${NORM} not allowed."
@@ -484,9 +493,9 @@ shift $((OPTIND-1))
 
 
 
-if [ "$1" = "help" ] || [ "$#" -ne $NBARGS ]; then
+if [ "$1" = "help" ] || [ "$#" -ne $NBARGS ] || [ "$OptionSelected" = "0" ]; then
 if [ "$#" -ne $NBARGS ]; then
-    echo "$(tput setaf 1)$(tput bold) Illegal number of parameters ($NBARGS params required, $# entered) $(tput sgr0)"
+    echo "$(tput setaf 1)$(tput bold) $0: Illegal number of parameters ($NBARGS params required, $# entered) $(tput sgr0)"
 fi
 printHELP
         exit
@@ -664,6 +673,7 @@ echo "$fpmregsag_alpha" > conf/conf_fpmregsag_alpha.txt
 # OPTIMIZATION PARAMETERS
 echo "$lambda" > conf/conf_mlambda.txt
 echo "$lambdaB" > conf/conf_mlambdaB.txt
+echo "$nblambda" > conf/conf_nblambda.txt
 echo "$ssize" > conf/conf_ssize.txt
 
 # OPTICAL DESIGN

@@ -41,7 +41,9 @@ Code is composed of a several layers (from high to low) :
 -------------------- -----------------------------------------------------------
 Script                   Description
 -------------------- -----------------------------------------------------------
-**run**                  Top level script, calls **runopt** script
+**runPIAACMCdesign**	Top level script ("-h" for help)
+
+**run**                  Main script, calls **runopt** script
 
 **runopt**               Optimize a PIAACMC design or run an existing design
 						calls **sim** script
@@ -64,24 +66,45 @@ Script                   Description
 
 # Quick start
 
-The quickest way to get started is to run and modify one of the example design scripts provided in the `./examples/` directory. The bash scripts should be self-explanatory. For further details about the design steps, read the design steps section.
+
+## Configuration Setup
+
+Print help for top level script:
+
+	./runPIAACMCdesign -h
+
+The quickest way to get started is to setup and modify one of the example design scripts provided:
+
+	./runPIAACMCdesign -e 0
+
+This will configure all necessary files for a specific configuration. You can view parameters with :
+
+	./runPIAACMCdesign -l
+	
+If optimizing in APLC mode (no PIAA optics), type (after the -e command above):
+
+	./runPIAACMCdesign -a
+
+## Design
+
+Design is done with the "-m" option. This command will execute all design steps from 0 to #step-1:
+
+	./runPIAACMCdesign -m <#step>
+
+Individual design steps are described below.
+
+To run the full polychromatic design process:
+
+	./runPIAACMCdesign -m 200
+
+Note that this may take a long time to run ... (days ?). The polychromatic design will:
+
+- Construct response to focal plane mask zones if it does not already exist. This step runs in tmux sessions, and will write a FPMresp...fits file
+- Execute a search for best solution.
 
 
 
----------------------------------- -----------------------------------------------------------
-Script                             Description
----------------------------------- -----------------------------------------------------------
-**exampleAPLCMC**                  Example APLCMC design (does not include PIAA optics)
-
-**examplePIAACMC**                 Example PIAACMC design for a segmented aperture (2028x2048 arrays)
-					
-**examplePIAACMC_WFIRST1024**      Example PIAACMC design for the centrally obscured WFIRST pupil (1024x1024 arrays)
----------------------------------- -----------------------------------------------------------
-
-
-
-
-# Design steps: Monochromatic design
+# Design steps: Monochromatic design ( #step < 100 )
 
 
 ## Overview
@@ -517,6 +540,25 @@ You can follow the progress of each subprocess in the corresponding tmux session
 
 As each subprocess computes zone responses, they are stored in FITS files FPMresp..._thread<index>.fits.tmp you can open/view these files to follow progress - each zone appears as a line, and files should fill from the bottom to the top when all threads complete, the files are merged into a single FPMresp file.
 
+## Search for optimal solution
+
+Once the FPMresp... file is created, it is used by the search algorithm to quickly evaluate focal plane mask designs.
+
+The search algorithm proceeds as two nested loops (outer loop steps 1-4, inner loop steps 2-4):
+
+1. OUTER LOOP START ITERATION: starting point is chosen, either randomly or close to the best solution. 
+2. INNER LOOP START ITERATION: Derivatives around the current point.
+3. For each predefined regularization coefficient :
+	a. An SVD-based inversion used to define a search direction
+	b. The solution is evaluated along the search direction, and the best point along this line is recorded
+4. The best solution encountered in the above step is recorded. If it is a significant improvement over the last step 3 iteration, goto step 2, if not, go to step 1. If the inner loop (steps 2-3) has been running for more than 50 iterations, go to step 1.
+
+
+In the C code, this optimization corresponds to execution mode 13. To stop the loop, create file "stoploop13.txt" in the working optimization directory:
+
+	touch piaacmcconf_i000/stoploop13.txt
+
+Note that this command will stop the loop on entering step 1, so the inner loop (steps 2-4) will still keep running until the solution stops improving.
 
 
 

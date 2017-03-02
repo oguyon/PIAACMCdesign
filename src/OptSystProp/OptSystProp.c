@@ -1,10 +1,12 @@
-#include <fitsio.h>
+#include <stdint.h>
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <malloc.h>
 #include <math.h>
 #include <stdlib.h>
+
+#include <fitsio.h>
 
 #include "CLIcore.h"
 #include "COREMOD_memory/COREMOD_memory.h"
@@ -35,7 +37,7 @@ extern DATA data;
 
 
 
-int init_OptSystProp()
+int_fast8_t init_OptSystProp()
 {
     strcpy(data.module[data.NBmodule].name, __FILE__);
     strcpy(data.module[data.NBmodule].info, "Optical propagation through system");
@@ -58,7 +60,7 @@ int init_OptSystProp()
 
 
 
-int OptSystProp_propagateCube(OPTSYST *optsyst, long index, char *IDin_amp_name, char *IDin_pha_name, char *IDout_amp_name, char *IDout_pha_name, double zprop, int sharedmem)
+int OptSystProp_propagateCube(OPTSYST *optsyst, long index, const char *IDin_amp_name, const char *IDin_pha_name, const char *IDout_amp_name, const char *IDout_pha_name, double zprop, int sharedmem)
 {
     int kl;
     long ii;
@@ -149,7 +151,7 @@ int OptSystProp_propagateCube(OPTSYST *optsyst, long index, char *IDin_amp_name,
 /// *optsyst.elemkeepmem	1 if element complex amplitude should be kept in memory after use
 ///
 
-int OptSystProp_run(OPTSYST *optsyst, long index, long elemstart, long elemend, char *savedir, int sharedmem)
+int OptSystProp_run(OPTSYST *optsyst, long index, long elemstart, long elemend, const char *savedir, int sharedmem)
 {
     char command[500];
     char imname[200];
@@ -592,8 +594,8 @@ int OptSystProp_run(OPTSYST *optsyst, long index, long elemstart, long elemend, 
                             }
                         }
                 
-           //     save_fits("dftgridre", "!dftgridre.fits");
-           //     save_fits("dftgridim", "!dftgridim.fits");
+               // save_fits("dftgridre", "!dftgridre.fits");
+               // save_fits("dftgridim", "!dftgridim.fits");
                 
                 // combine separate Re and Im files into single Re/Im complex array
                 mk_complex_from_reim("dftgridre", "dftgridim", "_WFctmpc", 0);
@@ -756,6 +758,11 @@ int OptSystProp_run(OPTSYST *optsyst, long index, long elemstart, long elemend, 
 
            // exit(0); // TEST
         }
+        
+        
+        
+        
+        
         // computes the total flux at this point
         IDa = image_ID(imnameamp_out); // output of the current element
         optsyst[index].flux[elem] = 0.0;
@@ -827,7 +834,9 @@ int OptSystProp_run(OPTSYST *optsyst, long index, long elemstart, long elemend, 
 
         // compute and print total flux
         sprintf(imname, "psfi%ld", index);
+        
         arith_image_mult(imnameamp, imnameamp, imname); // intensity is amp^2
+        
         total = arith_image_total(imname)/nblambda; // total flux "averaged" over wavelength
         printf("TOTAL = %lf\n", total);
 
